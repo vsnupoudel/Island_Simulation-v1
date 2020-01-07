@@ -14,7 +14,6 @@ class testGeo:
 
     def test_proper_letters(self):
         """all letters should either be: = O, M, J, S, D"""
-        g = Geo(geo_string)
 
 
     def test_same_legth(self):
