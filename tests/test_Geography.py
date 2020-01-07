@@ -14,13 +14,17 @@ class testGeo:
 
     def test_proper_letters(self):
         """all letters should either be: = O, M, J, S, D"""
-        g = Geo("yyyy")
-        
+        with pytest.raises(ValueError):
+            Geo("yyyy")
 
 
     def test_same_legth(self):
         """rows have same length"""
-        pass
+        with pytest.raises(ValueError):
+            Geo(""""\OOOOOOO
+            JJJJJ""")
+
+    
 
 
 

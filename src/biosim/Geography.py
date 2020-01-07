@@ -27,7 +27,7 @@ class Geo:
 
         self.valid_list = ['O','S','D','J','M']
 
-        """ test 1"""
+        # check input characters
         for list_ in self.geo_list:
             for letter in list_:
                 if letter not in self.valid_list:
