@@ -10,6 +10,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import textwrap
 import pandas as pd
+from biosim.Mapping import Savannah, Jungle, Desert, Ocean, Mountain
 
 
 class Geo:
@@ -24,7 +25,7 @@ class Geo:
         :param geo_matrix_input_string: String with map coordinates
         """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
-        self.lines = self.geo_graph.splitlines()
+        self.lines = self.geo_graph.splitlines() # string into lines
 
         # check if input characters are valid letters
         for line in self.lines:
@@ -32,7 +33,7 @@ class Geo:
                 if letter not in self.valid_list:
                     raise ValueError(" Invalid Letters in the Input map ")
 
-        self.geo_list = [list(_) for _ in self.lines]
+        self.geo_list = [list(_) for _ in self.lines]  # each letter separated
         self.geo_shape = np.shape(self.geo_list)
 
         # Check if all rows in map have equal length
@@ -59,6 +60,8 @@ class Geo:
                 raise ValueError("Ocean not on the edges")
 
 
+        # Create Objects for each cell in the map
+
 
 
 
@@ -66,15 +69,18 @@ if __name__ == "__main__":
     g = Geo("""\
     OOOOOOOOOOOOOOOOOOOOO
     OOOOOOOOJMMMMJJJJJJJO
-    OSSSSSJJJJMMJJJJJJJOO""")
-    # print(g.geo_graph)     # works
-    # print(g.geo_shape)    # works, changed this to a variable from function
-    #
-    # print(g.length_first)
-    print(g.first_row)
-    # print(g.geo_shape[0]-1)
-    print(g.last_row)
-    print(g.first_column)
-    print(g.last_column)
+    OSSSSSJJJJJJJJJJJJJOO
+    OOOOOOOOOOOOOOOOOOOOO""")
+    Dict_maps= {'O':Ocean ,'M':Mountain ,'J':Jungle ,'S':Savannah,'D':Desert }
+    G = np.empty( [g.geo_shape[0] - 1,  g.geo_shape[1] - 1 ] )
+    for row in range( g.geo_shape[0] - 1):
+        for column in range(g.geo_shape[1] - 1):
+            print(row,column)
+            G[row][column] = Ocean(row,column)
+                # Dict_maps[g.geo_list[row][column]](row, column)
+            # if l=='O':
+            #     O
+
+
 
 
