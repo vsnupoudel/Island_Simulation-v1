@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
+Geo class
 """
 
 __author__ = "Anders Huse, Bishnu Poudel"
@@ -17,17 +18,16 @@ class Geo:
     """
 
     def __init__(self, geo_matrix_input_string):
+        """
+        :param geo_matrix_input_string: String with map coordinates
+        """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
-
-    def geo_2D(self):
-        """
-        Makes a 2D list of the coordinates for the geography
-        """
-        lines = self.geo_graph.splitlines()
-        geo_list = [ list(_) for _ in lines]
-        return geo_list
+        self.lines = self.geo_graph.splitlines()
+        self.geo_list = [ list(_) for _ in self.lines]
 
     def geo_shape(self):
+        """ Returns shape of the map"""
+
         return np.shape(self.geo_2D())
 
 
