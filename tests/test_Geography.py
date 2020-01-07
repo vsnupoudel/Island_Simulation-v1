@@ -24,7 +24,7 @@ class testGeo:
             Geo(""""\OOOOOOO
             JJJJJ""")
 
-    
+
 
 
 
