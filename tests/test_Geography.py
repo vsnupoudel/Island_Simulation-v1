@@ -13,19 +13,22 @@ import pytest
 # class testGeo:
 #     """ Tests for Geo class"""
 
-def test_proper_letters(self):
+def test_proper_letters():
     """all letters should either be: = O, M, J, S, D"""
     with pytest.raises(ValueError):
         Geo("yyyy")
 
 
-def test_same_legth(self):
+def test_same_legth():
     """rows have same length"""
     with pytest.raises(ValueError):
         Geo(""""\
                 OOOOOOO
                 JJJJJ""")
 
+def test_ocean_edges():
+    """Should have only ocean around the edges"""
+    pass
 
 
 

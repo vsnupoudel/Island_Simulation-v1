@@ -44,14 +44,20 @@ class Geo:
 
         # check that ocean O is around all edges of map
 
-        # self.first_row =  self.lines[0]
-        # self.last_row = self.lines[self.geo_shape[0] - 1]
-        # self.first_column = [ list(_)[0] for _ in self.lines ]
-        # self.last_column = [ list(_)[self.geo_shape[1] - 1] \
-        #                      for _ in self.lines  ]
-        #
-        # for letter in (self.first_row+self.first_row)
-        #     if
+        self.first_row =  self.lines[0]
+        self.last_row = self.lines[self.geo_shape[0] - 1]
+        self.first_column = [ list(_)[0] for _ in self.lines ]
+        self.last_column = [ list(_)[self.geo_shape[1] - 1] \
+                             for _ in self.lines  ]
+
+        for letter in (self.first_row+self.last_row):
+            if letter !='O':
+                raise ValueError("Ocean not on the edges")
+
+        for letter in (self.first_column+self.last_column):
+            if letter !='O':
+                raise ValueError("Ocean not on the edges")
+
 
 
 
@@ -71,4 +77,4 @@ if __name__ == "__main__":
     print(g.first_column)
     print(g.last_column)
 
-    print( g.first_row+g.last_row  )
+
