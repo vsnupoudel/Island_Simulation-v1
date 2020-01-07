@@ -23,33 +23,14 @@ class Geo:
         """
         Makes a 2D list of the coordinates for the geography
         """
-        lines = self.geo_graph.splitline()
+        lines = self.geo_graph.splitlines()
         geo_list = [ list(_) for _ in lines]
         return geo_list
 
-    @property
     def geo_shape(self):
-        return np.shape(self.geo_graph)
+        return np.shape(self.geo_2D())
 
 
-if __name__ == "__main__":
-    g = Geo("""\
-    OOOOOOOOOOOOOOOOOOOOO
-    OOOOOOOOSMMMMJJJJJJJO
-    OSSSSSJJJJMMJJJJJJJOO
-    OSSSSSSSSSMMJJJJJJOOO
-    OSSSSSJJJJJJJJJJJJOOO
-    OSSSSSJJJDDJJJSJJJOOO
-    OSSJJJJJDDDJJJSSSSOOO
-    OOSSSSJJJDDJJJSOOOOOO
-    OSSSJJJJJDDJJJJJJJOOO
-    OSSSSJJJJDDJJJJOOOOOO
-    OOSSSSJJJJJJJJOOOOOOO
-    OOOSSSSJJJJJJJOOOOOOO
-    OOOOOOOOOOOOOOOOOOOOO""")
-
-    a = g.geo_2D()
-    print(a)
 
 
 
