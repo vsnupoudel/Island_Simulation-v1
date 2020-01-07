@@ -25,7 +25,7 @@ class Geo:
         :param geo_matrix_input_string: String with map coordinates
         """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
-        self.lines = self.geo_graph.splitlines() # string into lines
+        self.lines = self.geo_graph.splitlines()  # string into lines
 
         # check if input characters are valid letters
         for line in self.lines:
@@ -45,24 +45,21 @@ class Geo:
 
         # check that ocean O is around all edges of map
 
-        self.first_row =  self.lines[0]
+        self.first_row = self.lines[0]
         self.last_row = self.lines[self.geo_shape[0] - 1]
-        self.first_column = [ list(_)[0] for _ in self.lines ]
-        self.last_column = [ list(_)[self.geo_shape[1] - 1] \
-                             for _ in self.lines  ]
+        self.first_column = [list(_)[0] for _ in self.lines]
+        self.last_column = [list(_)[self.geo_shape[1] - 1] \
+                            for _ in self.lines]
 
-        for letter in (self.first_row+self.last_row):
-            if letter !='O':
+        for letter in (self.first_row + self.last_row):
+            if letter != 'O':
                 raise ValueError("Ocean not on the edges")
 
-        for letter in (self.first_column+self.last_column):
-            if letter !='O':
+        for letter in (self.first_column + self.last_column):
+            if letter != 'O':
                 raise ValueError("Ocean not on the edges")
-
 
         # Create Objects for each cell in the map
-
-
 
 
 if __name__ == "__main__":
@@ -71,16 +68,16 @@ if __name__ == "__main__":
     OOOOOOOOJMMMMJJJJJJJO
     OSSSSSJJJJJJJJJJJJJOO
     OOOOOOOOOOOOOOOOOOOOO""")
-    Dict_maps= {'O':Ocean ,'M':Mountain ,'J':Jungle ,'S':Savannah,'D':Desert }
-    G = np.empty( [g.geo_shape[0] - 1,  g.geo_shape[1] - 1 ] )
-    for row in range( g.geo_shape[0] - 1):
-        for column in range(g.geo_shape[1] - 1):
-            print(row,column)
-            G[row][column] = Ocean(row,column)
-                # Dict_maps[g.geo_list[row][column]](row, column)
-            # if l=='O':
-            #     O
+    Dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
+                 'D': Desert}
+    # G =  []*(g.geo_shape[0] - 1)[]*(g.geo_shape[1] - 1 )
+    G = []
+    # print(G)
+    for row in range(g.geo_shape[0]):
+        G.append( [Dict_maps[g.geo_list[row][column]](row, column) \
+             for column in range(g.geo_shape[1])] )
+        # print(type(G))
+        # print(np.shape(G) )
 
-
-
+    print( type( G[2][3]).__name__ )
 
