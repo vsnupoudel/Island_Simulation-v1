@@ -25,6 +25,25 @@ class Geo:
         self.lines = self.geo_graph.splitlines()
         self.geo_list = [ list(_) for _ in self.lines]
 
+        self.valid_list = ['O','S','D','J','M']
+
+        """ test 1"""
+        for list_ in self.geo_list:
+            for letter in list_:
+                if letter not in self.valid_list:
+                    raise ValueError
+
+        """ test 2"""
+        length_first = len(self.lines[0])
+        for line in self.lines:
+            if len(line) != length_first:
+                raise ValueError
+
+        """ test 3"""
+
+
+
+
 
 
     def geo_shape(self):
