@@ -25,6 +25,8 @@ class Geo:
         self.lines = self.geo_graph.splitlines()
         self.geo_list = [ list(_) for _ in self.lines]
 
+
+
     def geo_shape(self):
         """ Returns shape of the map"""
 
