@@ -45,13 +45,13 @@ class Jungle(Map):
     migratable = True
     """Jungle landscape"""
 
-    def __int__(self, row,column, num_carn=0, num_herb=0, f_ij=f_max):
+    def __int__(self, row, column, num_carn=0, num_herb=0, f_ij=f_max):
         """
         :param f_ij: food in cell
         :param num_carn: number of carnevoirs in cell
         :param num_herb: number og herbevoirs in cell
         """
-        super().__init__(row,column)
+        super().__init__(row, column)
         self.food = f_ij
         self.num_carn = num_carn
         self.num_herb = num_herb
