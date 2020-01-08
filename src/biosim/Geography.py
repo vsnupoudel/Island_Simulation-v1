@@ -71,10 +71,9 @@ class Geo:
 
 if __name__ == "__main__":
     g = Geo("""\
-    OOOOOOOOOOOOOOOOOOOOO
-    OOOOOOOOJMMMMJJJJJJJO
-    OSSSSSJJJJJJJJJJJJJOO
-    OOOOOOOOOOOOOOOOOOOOO""")
+    OOO
+    OJO
+    OOO""")
     for row in g.geo_ob_array:
         arr= [ type(obj).__name__  for obj in row]
         print(arr)

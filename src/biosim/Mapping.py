@@ -21,7 +21,7 @@ class Map:
 
 class Jungle(Map):
     f_max = 800
-    migratable = True
+    is_migratable = True
 
     def __init__(
             self,
@@ -74,7 +74,7 @@ class Savannah(Map):
 class Desert(Map):
     """Desert landscape"""
 
-    migratable = True
+    is_migratable = True
     f_max = 0
 
     def __init__(
@@ -99,18 +99,18 @@ class Desert(Map):
 
 class Ocean(Map):
     """Ocean landscape """
-    migratable = False
+    is_migratable = False
     def __init__(self, row, column):
         super().__init__(row, column)
 
 
 class Mountain(Map):
     """Mountianlandscape"""
-    migratable = False
+    is_migratable = False
     def __init__(self, row, column):
         super().__init__(row, column)
 
 
 if __name__ == '__main__':
     j = Mountain(2, 3)
-    print(j.row, j.column, j.migratable)
+    print(j.row, j.column, j.is_migratable)
