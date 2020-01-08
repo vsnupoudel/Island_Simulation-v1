@@ -21,13 +21,13 @@ def test_is_instance():
 
 def test_positive_input_rows_columns():
     """all input sholud be positive integers"""
-    pass
+    jungle = Jungle(2,3)
+    assert (jungle.row > 0) & (jungle.column > 0)
 
 def test_positive_num_carn():
     """number of carnevoirs is a positive integer"""
-    pass
+    j = Jungle(2,3)
+    assert (j.num_carn >= 0) & (j.num_herb >= 0)
 
-def test_positive_num_herb():
-    """number of herbevoirs is a positive integer"""
-    pass
+
 
