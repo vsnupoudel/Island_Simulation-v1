@@ -10,7 +10,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import textwrap
 import pandas as pd
-from biosim.Mapping import Savannah, Jungle, Desert, Ocean, Mountain
+from biosim.Mapping import  Jungle  ,Savannah, Desert, Ocean, Mountain
 
 
 class Geo:
@@ -78,16 +78,3 @@ if __name__ == "__main__":
     for row in g.geo_ob_array:
         arr= [ type(obj).__name__  for obj in row]
         print(arr)
-
-    # Dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
-    #              'D': Desert}
-    # # G =  []*(g.geo_shape[0] - 1)[]*(g.geo_shape[1] - 1 )
-    # G = []
-    # # print(G)
-    # for row in range(g.geo_shape[0]):
-    #     G.append( [Dict_maps[g.geo_list[row][column]](row, column) \
-    #          for column in range(g.geo_shape[1])] )
-    #     # print(type(G))
-    #     # print(np.shape(G) )
-    #
-    # print( type( G[2][3]).__name__ )

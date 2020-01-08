@@ -7,31 +7,13 @@ Geo class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
+from biosim.Geography import Geo
 
 class Fauna:
-    def __init__(self, age):
+    def __init__(self, age, position, Land_type):
         self.age = age
-
-    def feeding(self):
-        pass
-
-    def fitness(self):
-        pass
-
-    def migration(self):
-        pass
-
-    def procreation(self):
-        pass
-
-    def aging(self):
-        pass
-
-    def loss_of_weigth(self):
-        pass
-
-    def death(self):
-        pass
+        self.position = position
+        self.Land_type= Land_type
 
 
 class Herbevoir(Fauna):
@@ -53,15 +35,14 @@ class Herbevoir(Fauna):
         "omega": 0.4,
         "F": 10.0,
     }
-    def __init__(self, params_herbs):
-        self.params_herbs = params_herbs
-
+    def __init__(self, age, position, Land_type):
+        # self.params_herbs = params_herbs
         super().__init__()
 
 
-class Carnevoir(Fauna):
-    """Animals with carnevoir characteristics"""
-    def __init__(self, params_carn):
-        self.params_carn = params_carn
-
-        super().__init__()
+if __name__ == "__main__":
+    g = Geo("""\
+       OOOOOOOOOOOOOOOOOOOOO
+       OOOOOOOOJMMMMJJJJJJJO
+       OSSSSSJJJJJJJJJJJJJOO
+       OOOOOOOOOOOOOOOOOOOOO""")

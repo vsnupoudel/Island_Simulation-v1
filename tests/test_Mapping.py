@@ -26,8 +26,8 @@ def test_positive_input_rows_columns():
 
 def test_positive_num_carn():
     """number of carnevoirs is a positive integer"""
-    j = Jungle(2,3, num_carn = 1, num_herb = 1)
-    assert (j.num_carn >= 0) & (j.num_herb >= 0)
+    j = Jungle(2,3)
+    assert (j.num_carnivores >= 0) & (j.num_herb >= 0)
 
 
 
