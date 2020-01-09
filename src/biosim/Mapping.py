@@ -18,6 +18,7 @@ class Cell:
         """
         self.row = row
         self.column = column
+        self.animal_object_list = []
 
     def set_population(self, input_list):
         """
@@ -28,18 +29,16 @@ class Cell:
 
         for animal in self.pop_list:
             (x, y) = animal['loc']
-            print(x,y)
-
-            animal_list = []
+            # print(x,y)
+            # animal_object_list = []
             for spes in animal['pop']:
-                animal_list.append((spes['species']))
-                print(animal_list)
+                self.animal_object_list.append(Herbivore((x,y), spes['weight'] , spes['age'] ))
 
- #           for spes in animal['pop']:
-#                l.append((spes['species']))
+        return self.animal_object_list
+
 
     def get_population(self):
-        return self.pop_list
+        return self.animal_object_list
 
 
 class Jungle(Cell):
@@ -69,7 +68,6 @@ class Jungle(Cell):
         # self.herb_list = []
         # self.carn_list =[]
 
-
 class Savannah(Cell):
     f_max = 300
     is_migratable = True
@@ -98,7 +96,6 @@ class Savannah(Cell):
         self.herb_list = []
         self.carn_list =[]
 
-
 class Desert(Cell):
     """Desert landscape"""
 
@@ -125,7 +122,6 @@ class Desert(Cell):
         # self.num_carn = num_carn
         self.herb_list = []
         self.carn_list =[]
-# [H,H,H,H,H]
 
 class Ocean(Cell):
     """Ocean landscape """
@@ -141,11 +137,13 @@ class Mountain(Cell):
 
 
 if __name__ == '__main__':
-    j = Jungle(2, 3)
-    # print(j.row, j.column, j.is_migratable)
-  #  j.set_population([{'species': 'Herbivore', 'age': 5, 'weight': 20}, {'species': 'Herbivore', 'age': 5, 'weight': 20}])
-  #  print(j.get_population())
-
-    a = [{'loc': (10, 10), 'pop': [{'species': 'Herbivore', 'age': 5, 'weight': 20},{'species': 'Herbivore', 'age': 5, 'weight': 20}]}]
+    j = Jungle(1,1)
+    a = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 10, 'weight': 20}\
+        ,{'species': 'Herbivore', 'age': 5, 'weight': 20}]}]
 
     j.set_population(a)
+    print(j.get_population())
+
+    for pop in j.get_population():
+        print(pop.position,pop.weight, pop.age)
+    # print(j.get_population())  #This should be list of objects
