@@ -10,7 +10,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import textwrap
 import pandas as pd
-from biosim.Mapping import  Jungle  ,Savannah, Desert, Ocean, Mountain
+#from biosim.Mapping import  Jungle  ,Savannah, Desert, Ocean, Mountain
 
 
 class Geo:

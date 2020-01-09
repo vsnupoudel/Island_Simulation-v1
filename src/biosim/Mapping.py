@@ -24,16 +24,22 @@ class Cell:
         Sets the animals species, age and weight
                 :param input_dict: with species,age, weight
                 """
-        self.list_of_pop_object = input_list
+        self.pop_list = input_list
 
-        for animal in input_list:
+        for animal in self.pop_list:
             (x, y) = animal['loc']
+            print(x,y)
 
+            animal_list = []
             for spes in animal['pop']:
-                l.append((spes['species']))
+                animal_list.append((spes['species']))
+                print(animal_list)
+
+ #           for spes in animal['pop']:
+#                l.append((spes['species']))
 
     def get_population(self):
-        return self.list_of_pop_object
+        return self.pop_list
 
 
 class Jungle(Cell):
@@ -137,5 +143,9 @@ class Mountain(Cell):
 if __name__ == '__main__':
     j = Jungle(2, 3)
     # print(j.row, j.column, j.is_migratable)
-    j.set_population([{'species': 'Herbivore', 'age': 5, 'weight': 20}, {'species': 'Herbivore', 'age': 5, 'weight': 20}])
-    print(j.get_population())
+  #  j.set_population([{'species': 'Herbivore', 'age': 5, 'weight': 20}, {'species': 'Herbivore', 'age': 5, 'weight': 20}])
+  #  print(j.get_population())
+
+    a = [{'loc': (10, 10), 'pop': [{'species': 'Herbivore', 'age': 5, 'weight': 20},{'species': 'Herbivore', 'age': 5, 'weight': 20}]}]
+
+    j.set_population(a)
