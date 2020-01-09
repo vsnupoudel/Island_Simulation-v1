@@ -29,5 +29,12 @@ def test_positive_num_carn():
     j = Jungle(2,3)
     assert (j.num_carnivores >= 0) & (j.num_herb >= 0)
 
+def test_set_and_get_function():
+    j = Jungle(2, 3)
+    # print(j.row, j.column, j.is_migratable)
+    j.set_population([{'species': 'Herbivore', 'age': 5, 'weight': 20}, \
+                      {'species': 'Herbivore', 'age': 5, 'weight': 20}])
+    assert j.get_population()==[{'species': 'Herbivore', 'age': 5, 'weight': 20}, \
+                      {'species': 'Herbivore', 'age': 5, 'weight': 20}]
 
 
