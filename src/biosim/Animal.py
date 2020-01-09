@@ -6,29 +6,49 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import math
 import random
+
+
 # from biosim.Geography import Geo
 
 
 class Animal:
     """Animal characteristics"""
+    param = {"w_birth": None,
+             "sigma_birth": None,
+             "beta": None,
+             "eta": None,
+             "a_half": None,
+             "phi_age": None,
+             "w_half": None,
+             "phi_weight": None,
+             "mu": None,
+             "lambda": None,
+             "gamma": None,
+             "zeta": None,
+             "xi": None,
+             "omega": None,
+             "F": None,
+             "DeltaPhiMax": None}
 
-    p = {
-        "w_birth": None,
-        "sigma_birth": None,
-        "beta": None,
-        "eta": None,
-        "a_half": None,
-        "phi_age": None,
-        "w_half": None,
-        "phi_weight": None,
-        "mu": None,
-        "lambda": None,
-        "gamma": None,
-        "zeta": None,
-        "xi": None,
-        "omega": None,
-        "F": None,
-    }
+    def __init__(self, location , param):
+        self.w_birth = param['w_birth']
+        self.sigma_birth = param['sigma_birth']
+        self.beta = param['beta']
+        self.eta = param['eta']
+        self.a_half = param['a_half']
+        self.phi_age = param['phi_age']
+        self.w_half = param['w_half']
+        self.phi_weight = param['phi_weight']
+        self.mu = param['mu']
+        self.lambda_value = param['lambda']
+        self.gamma = param['gamma']
+        self.zeta = param['zeta']
+        self.xi = param['xi']
+        self.omega = param['omega']
+        self.F = param['F']
+        self.DeltaPhiMax = param['DeltaPhiMax']
+
+        self.location = (None,None)
 
     @property
     def fitness(self):
@@ -37,9 +57,9 @@ class Animal:
             return 0
         else:
             return (1 / (1 + math.e ** (self.p['phi_age'] * (
-                        self.age - self.p['a_half'])))) * (1 / (1 + math.e ** (
-                        -self.p['phi_weight'] * (
-                            self.weigth - self.p['w_half']))))
+                    self.age - self.p['a_half'])))) * (1 / (1 + math.e ** (
+                    -self.p['phi_weight'] * (
+                    self.weigth - self.p['w_half']))))
 
     def give_birth(self, N):
         """
@@ -88,11 +108,10 @@ class Animal:
         self.p.update(params_dict)
 
 
-class Herbevoir(Animal):
-    """Herbevoir characteristics, subclass of Animal class"""
+class Herbivore(Animal):
+    """Herbivore characteristics, subclass of Animal class"""
     has_procreated = False
-
-    p = {
+    param = {
         "w_birth": 8.0,
         "sigma_birth": 1.5,
         "beta": 0.9,
@@ -107,22 +126,22 @@ class Herbevoir(Animal):
         "zeta": 3.5,
         "xi": 1.2,
         "omega": 0.4,
-        "F": 10.0,
+        "F": 10.0
     }
 
-    def __init__(self, age, weigth):
-        self.age = age
-        self.weigth = weigth
+    def __init__(self, location, param):
+        super().__init__(location, param)
 
-        if self.weigth is None:
-            self.weigth = np.random.normal(self.p['w_birth'],
+        if self.weight is None:
+            self.weight = np.random.normal(self.p['w_birth'],
                                            self.p['sigma_birth'])
 
 
-class Carnevoir(Animal):
-    """Carnevoir characteristics"""
+class Carnivore(Animal):
+    """Carnivore characteristics"""
+    has_procreated = False
 
-    p = {
+    param = {
         "w_birth": 6.0,
         "sigma_birth": 1.0,
         "beta": 0.75,
@@ -141,12 +160,34 @@ class Carnevoir(Animal):
         "DeltaPhiMax": 10.0
     }
 
-    def __init__(self, age, weigth):
-        self.age = age
-        self.weigth = weigth
+    def __init__(self, location, param):
+        super().__init__(location, param)
 
-        if self.weigth is None:
-            self.weigth = np.random.normal(self.p['w_birth'],
+        if self.weight is None:
+            self.weight = np.random.normal(self.p['w_birth'],
                                            self.p['sigma_birth'])
 
 
+if __name__ == "__main__":
+    h = Herbivore()
+    c = Carnivore()
+
+    # Herbivore parameters
+    param = {
+        "w_birth": 8.0,
+        "sigma_birth": 1.5,
+        "beta": 0.9,
+        "eta": 0.05,
+        "a_half": 40.0,
+        "phi_age": 0.2,
+        "w_half": 10.0,
+        "phi_weight": 0.1,
+        "mu": 0.25,
+        "lambda": 1.0,
+        "gamma": 0.2,
+        "zeta": 3.5,
+        "xi": 1.2,
+        "omega": 0.4,
+        "F": 10.0,
+    }
+    # Carnivore parameters
