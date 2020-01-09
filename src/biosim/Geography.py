@@ -61,12 +61,13 @@ class Geo:
 
         # Create Objects for each cell in the map
 
-        dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
-                     'D': Desert}
+        dict_maps = {'O': 'Ocean', 'M': 'Mountain', 'J': 'Jungle',
+                     'S': 'Savannah',
+                     'D': 'Desert'}
         self.geo_ob_array = []
-        for row in range(self.geo_shape[0]):
-            self.geo_ob_array.append([dict_maps[self.geo_list[row][column]]( \
-                row, column) for column in range(self.geo_shape[1])])
+#        for row in range(self.geo_shape[0]):
+#            self.geo_ob_array.append([dict_maps[self.geo_list[row][column]]( \
+#                row, column) for column in range(self.geo_shape[1])])
 
     ## Input the animal dictionary into this class
 
