@@ -10,45 +10,15 @@ import random
 
 # from biosim.Geography import Geo
 
-
 class Animal:
+    p={}
     """Animal characteristics"""
-    param = {"w_birth": None,
-             "sigma_birth": None,
-             "beta": None,
-             "eta": None,
-             "a_half": None,
-             "phi_age": None,
-             "w_half": None,
-             "phi_weight": None,
-             "mu": None,
-             "lambda": None,
-             "gamma": None,
-             "zeta": None,
-             "xi": None,
-             "omega": None,
-             "F": None,
-             "DeltaPhiMax": None}
+    def __init__(self, location, param):
+        self.input_param_dict = param  # These are entered by users
+        self.location = location
+        self.weigth = 6
+        self.age = 0
 
-    def __init__(self, location , param):
-        self.w_birth = param['w_birth']
-        self.sigma_birth = param['sigma_birth']
-        self.beta = param['beta']
-        self.eta = param['eta']
-        self.a_half = param['a_half']
-        self.phi_age = param['phi_age']
-        self.w_half = param['w_half']
-        self.phi_weight = param['phi_weight']
-        self.mu = param['mu']
-        self.lambda_value = param['lambda']
-        self.gamma = param['gamma']
-        self.zeta = param['zeta']
-        self.xi = param['xi']
-        self.omega = param['omega']
-        self.F = param['F']
-        self.DeltaPhiMax = param['DeltaPhiMax']
-
-        self.location = (None,None)
 
     @property
     def fitness(self):
@@ -64,7 +34,7 @@ class Animal:
     def give_birth(self, N):
         """
         Birth
-        :param N: Number of animals of same species in one cell
+        :input_param_dict N: Number of animals of same species in one cell
         :return: new_born_weigth
         """
 
@@ -96,7 +66,7 @@ class Animal:
     def up_par(self, params_dict):
         """
         Updates animal parameters
-        :param params_dict: dictionary of parameters
+        :input_param_dict params_dict: dictionary of parameters
         """
 
         for k, v in params_dict.items():
@@ -111,37 +81,50 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class"""
     has_procreated = False
-    param = {
-        "w_birth": 8.0,
-        "sigma_birth": 1.5,
-        "beta": 0.9,
-        "eta": 0.05,
-        "a_half": 40.0,
-        "phi_age": 0.2,
-        "w_half": 10.0,
-        "phi_weight": 0.1,
-        "mu": 0.25,
-        "lambda": 1.0,
-        "gamma": 0.2,
-        "zeta": 3.5,
-        "xi": 1.2,
-        "omega": 0.4,
-        "F": 10.0
-    }
+    p = {"w_birth": 8.0,
+         "sigma_birth": 1.5,
+         "beta": 0.9,
+         "eta": 0.05,
+         "a_half": 40.0,
+         "phi_age": 0.2,
+         "w_half": 10.0,
+         "phi_weight": 0.1,
+         "mu": 0.25,
+         "lambda": 1.0,
+         "gamma": 0.2,
+         "zeta": 3.5,
+         "xi": 1.2,
+         "omega": 0.4,
+         "F": 10.0,
+         "DeltaPhiMax": None}
 
     def __init__(self, location, param):
-        super().__init__(location, param)
+        self.input_param_dict = param  # These are entered by users
+        self.location = location
 
-        if self.weight is None:
-            self.weight = np.random.normal(self.p['w_birth'],
-                                           self.p['sigma_birth'])
+        # This will be modified later in set_parameters method as per
+        # the self.input_param_dict that the user inputs
+        self.output_param = self.p
+
+
+    def set_parameters(self):
+        for key in self.input_param_dict:
+            self.output_param[key] = self.input_param_dict[key]
+        return self.output_param
+
+        # def get_parameter():
+        #     return self.output_param_dict  # result of set_parameter
+
+        # if self.weight is None:
+        # self.weight = np.random.normal(self.output_param_dict['w_birth'],
+        #                                self.output_param_dict['sigma_birth'])
 
 
 class Carnivore(Animal):
     """Carnivore characteristics"""
     has_procreated = False
 
-    param = {
+    input_param_dict = {
         "w_birth": 6.0,
         "sigma_birth": 1.0,
         "beta": 0.75,
@@ -169,25 +152,14 @@ class Carnivore(Animal):
 
 
 if __name__ == "__main__":
-    h = Herbivore()
-    c = Carnivore()
-
     # Herbivore parameters
-    param = {
+    input_param_dict = {
         "w_birth": 8.0,
         "sigma_birth": 1.5,
-        "beta": 0.9,
-        "eta": 0.05,
-        "a_half": 40.0,
-        "phi_age": 0.2,
-        "w_half": 10.0,
-        "phi_weight": 0.1,
-        "mu": 0.25,
-        "lambda": 1.0,
-        "gamma": 0.2,
-        "zeta": 3.5,
-        "xi": 1.2,
-        "omega": 0.4,
-        "F": 10.0,
+        "beta": 0.9
+        # "eta": 0.05
     }
-    # Carnivore parameters
+
+    h = Herbivore((1,1),input_param_dict )
+
+
