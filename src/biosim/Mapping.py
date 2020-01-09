@@ -6,6 +6,7 @@ __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
 from biosim.Fauna import Herbivore
 
+
 # import numpy as np
 
 class Cell:
@@ -20,22 +21,17 @@ class Cell:
         self.column = column
         self.animal_object_list = []
 
-    def set_population(self, input_list):
+    def set_population(self, input_dict):
         """
         Sets the animals species, age and weight
                 :param input_dict: with species,age, weight
                 """
-        self.pop_list = input_list
+        (x, y) = input_dict['loc']
+        for animal in input_dict['pop']:
+            self.animal_object_list.append(Herbivore((x, y), animal['weight'] \
+                                                     , animal['age']))
 
-        for animal in self.pop_list:
-            (x, y) = animal['loc']
-            # print(x,y)
-            # animal_object_list = []
-            for spes in animal['pop']:
-                self.animal_object_list.append(Herbivore((x,y), spes['weight'] , spes['age'] ))
-
-        return self.animal_object_list
-
+        # return self.animal_object_list
 
     def get_population(self):
         return self.animal_object_list
@@ -68,6 +64,7 @@ class Jungle(Cell):
         # self.herb_list = []
         # self.carn_list =[]
 
+
 class Savannah(Cell):
     f_max = 300
     is_migratable = True
@@ -94,7 +91,8 @@ class Savannah(Cell):
         # self.num_carn = num_carn
         # self.num_herb = num_herb
         self.herb_list = []
-        self.carn_list =[]
+        self.carn_list = []
+
 
 class Desert(Cell):
     """Desert landscape"""
@@ -121,29 +119,34 @@ class Desert(Cell):
         # self.num_herb = num_herb
         # self.num_carn = num_carn
         self.herb_list = []
-        self.carn_list =[]
+        self.carn_list = []
+
 
 class Ocean(Cell):
     """Ocean landscape """
     is_migratable = False
+
     def __init__(self, row, column):
         super().__init__(row, column)
+
 
 class Mountain(Cell):
     """Mountianlandscape"""
     is_migratable = False
+
     def __init__(self, row, column):
         super().__init__(row, column)
 
 
 if __name__ == '__main__':
-    j = Jungle(1,1)
-    a = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 10, 'weight': 20}\
-        ,{'species': 'Herbivore', 'age': 5, 'weight': 20}]}]
+    j = Jungle(1, 1)
+    a = {'loc': (1, 1),
+         'pop': [{'species': 'Herbivore', 'age': 10, 'weight': 20} \
+             , {'species': 'Herbivore', 'age': 5, 'weight': 20}]}
 
     j.set_population(a)
     print(j.get_population())
 
     for pop in j.get_population():
-        print(pop.position,pop.weight, pop.age)
+        print(pop.position, pop.weight, pop.age)
     # print(j.get_population())  #This should be list of objects
