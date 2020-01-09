@@ -18,12 +18,12 @@ class Cell:
         self.row = row
         self.column = column
 
-    def set_population(self, input_dict):
+    def set_population(self, input_list):
         """
         Sets the animals species, age and weight
                 :param input_dict: with species,age, weight
                 """
-        self.list_of_pop_object = []
+        self.list_of_pop_object = input_list
 
     def get_population(self):
         return self.list_of_pop_object
@@ -56,12 +56,12 @@ class Jungle(Cell):
         # self.herb_list = []
         # self.carn_list =[]
 
-        def set_population(self, input_dict):
+        def set_population(self, input_list):
             """
             Sets the animals species, age and weight
                     :param input_dict: with species,age, weight
                     """
-            self.list_of_pop_object= []
+            self.list_of_pop_object= input_list
 
         def get_population(self):
             return self.list_of_pop_object
@@ -138,5 +138,7 @@ class Mountain(Cell):
 
 
 if __name__ == '__main__':
-    j = Mountain(2, 3)
-    print(j.row, j.column, j.is_migratable)
+    j = Jungle(2, 3)
+    # print(j.row, j.column, j.is_migratable)
+    j.set_population([{'species': 'Herbivore', 'age': 5, 'weight': 20}, {'species': 'Herbivore', 'age': 5, 'weight': 20}])
+    print(j.get_population())

@@ -13,6 +13,7 @@ g = Geo("""\
     OOOO""")
 print( g.geo_ob_array[1][1])
 print( g.geo_ob_array[1][2])
+
 ini_herbs = [{'loc': (1, 1), \
             'pop': [{'species': 'Herbivore', \
             'age': 5, \
@@ -24,7 +25,11 @@ ini_herbs = [{'loc': (1, 1), \
                        'weight': 20} \
                       for _ in range(2)]} ]
 
-g.geo_ob_array[1][1]).set_population(ini_herbs[0]['pop'])
+g.geo_ob_array[1][1].set_population( ini_herbs[0]['pop'] )
+print( g.geo_ob_array[1][1].get_population()  )
+
+
+# print( ini_herbs[0]['pop'] )
 
 # print(ini_herbs[0]['loc'])
 # print(ini_herbs[0]['pop'])
