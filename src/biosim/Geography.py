@@ -10,7 +10,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import textwrap
 import pandas as pd
-#from biosim.Mapping import  Jungle  ,Savannah, Desert, Ocean, Mountain
+from biosim.Mapping import  Jungle  ,Savannah, Desert, Ocean, Mountain
 
 
 class Geo:
@@ -73,10 +73,5 @@ class Geo:
 
 
 if __name__ == "__main__":
-    g = Geo("""\
-    OOO
-    OJO
-    OOO""")
-    for row in g.geo_ob_array:
-        arr= [ type(obj).__name__  for obj in row]
-        print(arr)
+    pass
+
