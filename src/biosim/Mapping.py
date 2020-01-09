@@ -4,6 +4,7 @@
 __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
+from biosim.Fauna import Herbivore
 
 # import numpy as np
 
@@ -24,6 +25,12 @@ class Cell:
                 :param input_dict: with species,age, weight
                 """
         self.list_of_pop_object = input_list
+
+        for animal in input_list:
+            (x, y) = animal['loc']
+
+            for spes in animal['pop']:
+                l.append((spes['species']))
 
     def get_population(self):
         return self.list_of_pop_object
@@ -55,16 +62,6 @@ class Jungle(Cell):
         # self.num_herb = None
         # self.herb_list = []
         # self.carn_list =[]
-
-        def set_population(self, input_list):
-            """
-            Sets the animals species, age and weight
-                    :param input_dict: with species,age, weight
-                    """
-            self.list_of_pop_object= input_list
-
-        def get_population(self):
-            return self.list_of_pop_object
 
 
 class Savannah(Cell):
