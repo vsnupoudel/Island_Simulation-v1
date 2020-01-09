@@ -53,10 +53,10 @@ if __name__ == "__main__":
                           for _ in range(2)]} ]
     # print(ini_herbs)
 
-    s = Simulation( map, ini_herbs )
-    cell_obj_array= s.cell_obj_array
+    s = Simulation(map, ini_herbs)
+    cell_obj_array = s.cell_obj_array
     print( cell_obj_array[1][1].animal_object_list)
-    print(cell_obj_array[1][1].animal_object_list[0].age )
+    print(cell_obj_array[1][1].animal_object_list[1].age )
 
 
 
