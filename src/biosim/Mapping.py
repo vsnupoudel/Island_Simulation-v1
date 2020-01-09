@@ -7,7 +7,7 @@ __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
 # import numpy as np
 
-class Map:
+class Cell:
     """Super class for the type of Terrain"""
 
     def __init__(self, row, column):
@@ -18,8 +18,18 @@ class Map:
         self.row = row
         self.column = column
 
+    def set_population(self, input_dict):
+        """
+        Sets the animals species, age and weight
+                :param input_dict: with species,age, weight
+                """
+        self.list_of_pop_object = []
 
-class Jungle(Map):
+    def get_population(self):
+        return self.list_of_pop_object
+
+
+class Jungle(Cell):
     f_max = 800
     is_migratable = True
 
@@ -27,8 +37,8 @@ class Jungle(Map):
             self,
             row,
             column,
-            num_carn=0,
-            num_herb=0,
+            # num_carn=0,
+            # num_herb=0,
             f_ij=300,
             alpha=0.3,
     ):
@@ -40,11 +50,24 @@ class Jungle(Map):
         """
         super().__init__(row, column)
         self.food = f_ij
-        self.num_carn = num_carn
-        self.num_herb = num_herb
+        self.alpha = alpha
+        # self.num_carn = None
+        # self.num_herb = None
+        # self.herb_list = []
+        # self.carn_list =[]
+
+        def set_population(self, input_dict):
+            """
+            Sets the animals species, age and weight
+                    :param input_dict: with species,age, weight
+                    """
+            self.list_of_pop_object= []
+
+        def get_population(self):
+            return self.list_of_pop_object
 
 
-class Savannah(Map):
+class Savannah(Cell):
     f_max = 300
     is_migratable = True
 
@@ -52,8 +75,8 @@ class Savannah(Map):
             self,
             row,
             column,
-            num_carn=0,
-            num_herb=0,
+            # num_carn=0,
+            # num_herb=0,
             f_ij=300,
             alpha=0.3,
     ):
@@ -67,11 +90,13 @@ class Savannah(Map):
         super().__init__(row, column)
         self.food = f_ij
         self.aplha = alpha
-        self.num_carn = num_carn
-        self.num_herb = num_herb
+        # self.num_carn = num_carn
+        # self.num_herb = num_herb
+        self.herb_list = []
+        self.carn_list =[]
 
 
-class Desert(Map):
+class Desert(Cell):
     """Desert landscape"""
 
     is_migratable = True
@@ -81,8 +106,8 @@ class Desert(Map):
             self,
             row,
             column,
-            num_carn=0,
-            num_herb=0,
+            # num_carn=0,
+            # num_herb=0,
             f_ij=f_max,
     ):
         """"
@@ -93,18 +118,19 @@ class Desert(Map):
 
         super().__init__(row, column)
         self.food = f_ij
-        self.num_herb = num_herb
-        self.num_carn = num_carn
+        # self.num_herb = num_herb
+        # self.num_carn = num_carn
+        self.herb_list = []
+        self.carn_list =[]
+# [H,H,H,H,H]
 
-
-class Ocean(Map):
+class Ocean(Cell):
     """Ocean landscape """
     is_migratable = False
     def __init__(self, row, column):
         super().__init__(row, column)
 
-
-class Mountain(Map):
+class Mountain(Cell):
     """Mountianlandscape"""
     is_migratable = False
     def __init__(self, row, column):

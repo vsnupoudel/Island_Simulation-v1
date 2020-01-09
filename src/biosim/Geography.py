@@ -68,6 +68,8 @@ class Geo:
             self.geo_ob_array.append([dict_maps[self.geo_list[row][column]]( \
                 row, column) for column in range(self.geo_shape[1])])
 
+    ## Input the animal dictionary into this class
+
 
 if __name__ == "__main__":
     g = Geo("""\
