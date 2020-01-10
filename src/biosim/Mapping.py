@@ -57,7 +57,7 @@ class Jungle(Cell):
         :param num_herb: number og herbevoirs in cell
         """
         super().__init__(row, column)
-        self.food = f_ij
+        self.f_ij = f_ij
         self.alpha = alpha
         # self.num_carn = None
         # self.num_herb = None
@@ -75,7 +75,7 @@ class Savannah(Cell):
             column,
             # num_carn=0,
             # num_herb=0,
-            f_ij=300,
+            f_ij=200,
             alpha=0.3,
     ):
         """
@@ -86,8 +86,8 @@ class Savannah(Cell):
         """
 
         super().__init__(row, column)
-        self.food = f_ij
-        self.aplha = alpha
+        self.f_ij = f_ij
+        self.alpha = alpha
         # self.num_carn = num_carn
         # self.num_herb = num_herb
         self.herb_list = []
