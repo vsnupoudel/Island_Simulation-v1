@@ -35,13 +35,16 @@ class Cycle:
 
         for row_of_obj in map.geo_ob_array:
             for cell in row_of_obj:
+
+                herb_list = [type(cell)__name__ == 'Herbivore' for cell in cell.animal_object_list]
+
                 herb_sorted = sorted(cell.herb_list, key=lambda animal: animal.fitness,
                                  reverse=True)
 
-        for herb in herb_sorted:
-            if herb.p['F'] <= cell.f_ij:
-                herb.weight += herb.p['beta'] * herb.p['F']
-                cell.f_ij -= herb.p['F']
+                for herb in herb_sorted:
+                    if herb.p['F'] <= cell.f_ij:
+                        herb.weight += herb.p['beta'] * herb.p['F']
+                        cell.f_ij -= herb.p['F']
 
         # carn_sorted = sorted(cell.carn_list, key=lambda animal: animal.fitness,
         #                      reverse=True)
@@ -58,5 +61,7 @@ if __name__ == "__main__":
                     OOOO""")
 
     si.food_grows(input_map)
+
+
 
 
