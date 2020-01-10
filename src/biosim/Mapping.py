@@ -28,8 +28,8 @@ class Cell:
                 """
         (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
-            self.animal_object_list.append(Herbivore((x, y), animal['weight'] \
-                                                     , animal['age']))
+            self.animal_object_list.append(Herbivore(animal['weight'],\
+                                                     animal['age']))
 
         # return self.animal_object_list
 
@@ -149,8 +149,9 @@ if __name__ == '__main__':
              , {'species': 'Herbivore', 'age': 5, 'weight': 20}]}
 
     j.set_population(a)
-    print(j.get_population())
 
-    for pop in j.get_population():
-        print(pop.position, pop.weight, pop.age)
+    print(j.get_population())
+    #
+    # for pop in j.get_population():
+    #     print(pop.position, pop.weight, pop.age)
     # print(j.get_population())  #This should be list of objects
