@@ -4,6 +4,7 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from biosim.Geography import Geo
+from biosim.Eat import Eat
 
 
 class HSimulation:
@@ -35,6 +36,10 @@ class HSimulation:
             # set population to the geography at cell(x,y)
             self.cell_obj_array[x][y].set_population(one_location_list)
 
+    def simulate(self, num_years, vis_years=1, img_years= None):
+        pass
+    # Call all the functions of Cycle class here every new year
+
 if __name__ == "__main__":
     map = ("""\
         OOOO
@@ -56,4 +61,14 @@ if __name__ == "__main__":
     s = HSimulation (map, ini_herbs)
     jungle_object = s.cell_obj_array[1][1]
     print(jungle_object)
-    print( jungle_object.get_population()[0] )
+    print(jungle_object.f_ij)
+
+    print(jungle_object.get_population()[0])
+    print( jungle_object.get_population()[0].weight )
+    #make it eat
+    e = Eat()
+    e.herb_eat(jungle_object, jungle_object.get_population()[0])
+    # after eating
+
+    print(jungle_object.f_ij)
+    print(jungle_object.get_population()[0].weight)

@@ -30,20 +30,24 @@ class Cycle:
                     # print(obj.f_ij, obj.f_max)
 
     # for hver celle:
-    def animals_eat(self, cell):
+    def animals_eat(self, map):
         """Herbevoirs and Carnevoirs eat"""
 
-        herb_sorted = sorted(cell.herb_list, key=lambda animal: animal.fitness,
-                             reverse=True)
+        for row_of_obj in map.geo_ob_array:
+            for cell in row_of_obj:
+                herb_sorted = sorted(cell.herb_list, key=lambda animal: animal.fitness,
+                                 reverse=True)
 
-        for c in herb_sorted:
-            c.herb_eat()
+        for herb in herb_sorted:
+            if herb.p['F'] <= cell.f_ij:
+                herb.weight += herb.p['beta'] * herb.p['F']
+                cell.f_ij -= herb.p['F']
 
-        carn_sorted = sorted(cell.carn_list, key=lambda animal: animal.fitness,
-                             reverse=True)
-
-        for c in carn_sorted:
-            c.carn_eat()
+        # carn_sorted = sorted(cell.carn_list, key=lambda animal: animal.fitness,
+        #                      reverse=True)
+        #
+        # for c in carn_sorted:
+        #     c.carn_eat()
 
 
 if __name__ == "__main__":
