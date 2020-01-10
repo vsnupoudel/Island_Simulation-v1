@@ -29,6 +29,22 @@ class Simulation:
                     obj.f_ij = obj.f_max
                     # print(obj.f_ij, obj.f_max)
 
+    # for hver celle:
+    def animals_eat(self, ):
+        """Herbevoirs and Carnevoirs eat"""
+
+        herb_sorted = sorted(ut, key=lambda animal: animal.fitness,
+                             reverse=True)
+
+        for herb in herb_sorted:
+            h.herb_eat()
+
+        carn_sorted = sorted(ut, key=lambda animal: animal.fitness,
+                             reverse=True)
+
+        for c in carn_sorted:
+            c.carn_eat()
+
 
 if __name__ == "__main__":
     si = Simulation()

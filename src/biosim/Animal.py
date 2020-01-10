@@ -98,9 +98,8 @@ class Herbivore(Animal):
          "F": 10.0,
          "DeltaPhiMax": None}
 
-    def __init__(self, location, param):
+    def __init__(self, param):
         self.input_param_dict = param  # These are entered by users
-        self.location = location
 
         # This will be modified later in set_parameters method as per
         # the self.input_param_dict that the user inputs
@@ -118,6 +117,19 @@ class Herbivore(Animal):
         # if self.weight is None:
         # self.weight = np.random.normal(self.output_param_dict['w_birth'],
         #                                self.output_param_dict['sigma_birth'])
+
+    def herb_eat(self):
+
+        if self.F <= self.f_ij:
+            self.weigth += self.beta * self.F
+            self.f_ij -= self.F
+
+        elif 0 < self.f_ij < self.F:
+            self.weigth += self.beta * self.f_ij
+            self.f_ij = 0
+
+        elif f_ij == 0:
+            self.weigth = self.weigth
 
 
 class Carnivore(Animal):
@@ -143,8 +155,8 @@ class Carnivore(Animal):
         "DeltaPhiMax": 10.0
     }
 
-    def __init__(self, location, param):
-        super().__init__(location, param)
+    def __init__(self, param):
+        super().__init__(param)
 
         if self.weight is None:
             self.weight = np.random.normal(self.p['w_birth'],
