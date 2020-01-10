@@ -11,71 +11,84 @@ import random
 # from biosim.Geography import Geo
 
 class Animal:
-    p={}
+    p = {"w_birth": None,
+         "sigma_birth": None,
+         "beta": None,
+         "eta": None,
+         "a_half": None,
+         "phi_age": None,
+         "w_half": None,
+         "phi_weight": None,
+         "mu": None,
+         "lambda": None,
+         "gamma": None,
+         "zeta": None,
+         "xi": None,
+         "omega": None,
+         "F": None,
+         }
     """Animal characteristics"""
-    def __init__(self, location, param):
+
+    def __init__(self, param):
         self.input_param_dict = param  # These are entered by users
-        self.location = location
-        self.weigth = 6
-        self.age = 0
 
 
     @property
     def fitness(self):
         """The fitness of each animal"""
-        if self.weigth <= 0:
+        if self.weight <= 0:
             return 0
         else:
             return (1 / (1 + math.e ** (self.p['phi_age'] * (
                     self.age - self.p['a_half'])))) * (1 / (1 + math.e ** (
                     -self.p['phi_weight'] * (
-                    self.weigth - self.p['w_half']))))
+                    self.weight - self.p['w_half']))))
 
-    def give_birth(self, N):
-        """
-        Birth
-        :input_param_dict N: Number of animals of same species in one cell
-        :return: new_born_weigth
-        """
-
-        if (N <= 1) & (self.weigth < self.p['xi'] * (
-                self.p['w_birth'] + self.p['sigma_birth'])):
-            has_procreated = False
-
-        birth_prob = min(1, self.p['gamma'] * self.fitness * (N - 1))
-        num = np.random.random()
-        print(num, birth_prob)
-
-        has_procreated = num <= birth_prob
-
-        new_born_weight = np.random.normal(self.p['w_birth'],
-                                           self.p['sigma_birth'])
-
-        if self.weigth - self.p['xi'] * new_born_weight <= 0:
-            has_procreated = False
-
-        if has_procreated:
-            self.weigth -= self.p['xi'] * new_born_weight
-
-        return new_born_weight
+    # def give_birth(self, N):
+    #     """
+    #     Birth
+    #     :input_param_dict N: Number of animals of same species in one cell
+    #     :return: new_born_weigth
+    #     """
+    #
+    #     if (N <= 1) & (self.weigth < self.p['xi'] * (
+    #             self.p['w_birth'] + self.p['sigma_birth'])):
+    #         has_procreated = False
+    #
+    #     birth_prob = min(1, self.p['gamma'] * self.fitness * (N - 1))
+    #     num = np.random.random()
+    #     print(num, birth_prob)
+    #
+    #     has_procreated = num <= birth_prob
+    #
+    #     new_born_weight = np.random.normal(self.p['w_birth'],
+    #                                        self.p['sigma_birth'])
+    #
+    #     if self.weigth - self.p['xi'] * new_born_weight <= 0:
+    #         has_procreated = False
+    #
+    #     if has_procreated:
+    #         self.weigth -= self.p['xi'] * new_born_weight
+    #
+    #     return new_born_weight
 
     # then create new animal
 
     # call weigth method
 
-    def up_par(self, params_dict):
-        """
-        Updates animal parameters
-        :input_param_dict params_dict: dictionary of parameters
-        """
-
-        for k, v in params_dict.items():
-            if k not in self.p:
-                print('ValueError')
-            if v <= 0:
-                print('ValueError')
-
-        self.p.update(params_dict)
+    # def up_par(self, params_dict):
+    #     """
+    #     Updates animal parameters
+    #     :input_param_dict params_dict: dictionary of parameters
+    #     """
+    #
+    #     for k, v in params_dict.items():
+    #         if k not in self.p:
+    #             print('ValueError')
+    #         if v <= 0:
+    #             print('ValueError')
+    #
+    #     self.p.update(params_dict)
 
 
 class Herbivore(Animal):
@@ -98,38 +111,25 @@ class Herbivore(Animal):
          "F": 10.0,
          "DeltaPhiMax": None}
 
-    def __init__(self, param):
-        self.input_param_dict = param  # These are entered by users
+    def __init__(self, age, weight):
+
+        # self.input_param_dict = param  # These are entered by users
+        self.weight = weight
+        self.age = age
+        if self.weight is None:
+            self.weight = np.random.normal(self.output_param_dict['w_birth'],
+                                           self.output_param_dict[
+                                               'sigma_birth'])
+
 
         # This will be modified later in set_parameters method as per
         # the self.input_param_dict that the user inputs
         self.output_param = self.p
 
-
     def set_parameters(self):
         for key in self.input_param_dict:
             self.output_param[key] = self.input_param_dict[key]
         return self.output_param
-
-        # def get_parameter():
-        #     return self.output_param_dict  # result of set_parameter
-
-        # if self.weight is None:
-        # self.weight = np.random.normal(self.output_param_dict['w_birth'],
-        #                                self.output_param_dict['sigma_birth'])
-
-    def herb_eat(self):
-
-        if self.F <= self.f_ij:
-            self.weigth += self.beta * self.F
-            self.f_ij -= self.F
-
-        elif 0 < self.f_ij < self.F:
-            self.weigth += self.beta * self.f_ij
-            self.f_ij = 0
-
-        elif f_ij == 0:
-            self.weigth = self.weigth
 
 
 class Carnivore(Animal):
@@ -172,6 +172,4 @@ if __name__ == "__main__":
         # "eta": 0.05
     }
 
-    h = Herbivore((1,1),input_param_dict )
-
-
+    h = Herbivore(input_param_dict)
