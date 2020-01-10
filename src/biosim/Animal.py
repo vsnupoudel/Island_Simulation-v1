@@ -74,19 +74,20 @@ class Animal:
 
     # call weigth method
 
-    def up_par(self, params_dict):
+    @classmethod
+    def up_par(cls, params_dict):
          """
          Updates animal parameters
          :input_param_dict params_dict: dictionary of parameters
          """
 
          for k, v in params_dict.items():
-             if k not in self.p:
+             if k not in cls.p:
                  print('ValueError')
              if v <= 0:
                  print('ValueError')
 
-         self.p.update(params_dict)
+         cls.p.update(params_dict)
 
 
 class Herbivore(Animal):
