@@ -40,6 +40,7 @@ class Cell:
 class Jungle(Cell):
     f_max = 800
     is_migratable = True
+    #parameters = {'f_max': 800.0, 'alpha': None}
 
     def __init__(
             self,
@@ -61,13 +62,15 @@ class Jungle(Cell):
         self.alpha = alpha
         # self.num_carn = None
         # self.num_herb = None
-        # self.herb_list = []
-        # self.carn_list =[]
+        self.herb_list = []
+        self.carn_list =[]
+        #self.params = params
 
 
 class Savannah(Cell):
     f_max = 300
     is_migratable = True
+    #parameters = {'f_max': 800.0, 'alpha': None}
 
     def __init__(
             self,
@@ -92,6 +95,7 @@ class Savannah(Cell):
         # self.num_herb = num_herb
         self.herb_list = []
         self.carn_list = []
+        #self.params = params
 
 
 class Desert(Cell):

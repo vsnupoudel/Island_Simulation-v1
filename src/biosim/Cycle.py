@@ -7,7 +7,7 @@ from biosim.Geography import Geo
 from biosim.Mapping import Jungle, Savannah
 
 
-class Simulation:
+class Cycle:
     def __init__(self):
         pass
 
@@ -30,16 +30,16 @@ class Simulation:
                     # print(obj.f_ij, obj.f_max)
 
     # for hver celle:
-    def animals_eat(self, ):
+    def animals_eat(self, cell):
         """Herbevoirs and Carnevoirs eat"""
 
-        herb_sorted = sorted(ut, key=lambda animal: animal.fitness,
+        herb_sorted = sorted(cell.herb_list, key=lambda animal: animal.fitness,
                              reverse=True)
 
-        for herb in herb_sorted:
-            h.herb_eat()
+        for c in herb_sorted:
+            c.herb_eat()
 
-        carn_sorted = sorted(ut, key=lambda animal: animal.fitness,
+        carn_sorted = sorted(cell.carn_list, key=lambda animal: animal.fitness,
                              reverse=True)
 
         for c in carn_sorted:
@@ -47,7 +47,7 @@ class Simulation:
 
 
 if __name__ == "__main__":
-    si = Simulation()
+    si = Cycle()
     input_map = ("""\
                     OOOO
                     OJSO

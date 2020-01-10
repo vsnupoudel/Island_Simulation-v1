@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-__author__ = ""
-__email__ = ""
+__author__ = "Anders Huse"
+__email__ = "huse.anders@gmail.com"
 
 
 class BioSim:
@@ -39,6 +39,10 @@ class BioSim:
         img_base should contain a path and beginning of a file name.
         """
 
+        self.island_map = island_map
+        self.ini_pop = ini_pop
+        self.seed = seed
+
     def set_animal_parameters(self, species, params):
         """
         Set parameters for animal species.
@@ -47,6 +51,10 @@ class BioSim:
         :param params: Dict with valid parameter specification for species
         """
 
+        #animal, up_par
+        #Herbivore.up_par
+        #Carnivore.up_par
+
     def set_landscape_parameters(self, landscape, params):
         """
         Set parameters for landscape type.
@@ -54,6 +62,11 @@ class BioSim:
         :param landscape: String, code letter for landscape
         :param params: Dict with valid parameter specification for landscape
         """
+        if landscape == 'S':
+            Savannah.params.update(params)
+        else:
+            Jungle.params.update(params)
+
 
     def simulate(self, num_years, vis_years=1, img_years=None):
         """
@@ -72,6 +85,7 @@ class BioSim:
 
         :param population: List of dictionaries specifying population
         """
+
 
     @property
     def year(self):

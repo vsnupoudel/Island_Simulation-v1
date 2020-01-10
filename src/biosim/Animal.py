@@ -8,7 +8,7 @@ import math
 import random
 
 
-# from biosim.Geography import Geo
+#from biosim.Mapping import Jungle
 
 class Animal:
     p = {"w_birth": None,
@@ -40,9 +40,7 @@ class Animal:
             return 0
         else:
             return (1 / (1 + math.e ** (self.p['phi_age'] * (
-                    self.age - self.p['a_half'])))) * (1 / (1 + math.e ** (
-                    -self.p['phi_weight'] * (
-                    self.weight - self.p['w_half']))))
+                    self.age - self.p['a_half'])))) * (1 / (1 + math.e ** (- self.p['phi_weight'] * (self.weight - self.p['w_half']))))
 
     # def give_birth(self, N):
     #     """
@@ -76,19 +74,19 @@ class Animal:
 
     # call weigth method
 
-    # def up_par(self, params_dict):
-    #     """
-    #     Updates animal parameters
-    #     :input_param_dict params_dict: dictionary of parameters
-    #     """
-    #
-    #     for k, v in params_dict.items():
-    #         if k not in self.p:
-    #             print('ValueError')
-    #         if v <= 0:
-    #             print('ValueError')
-    #
-    #     self.p.update(params_dict)
+    def up_par(self, params_dict):
+         """
+         Updates animal parameters
+         :input_param_dict params_dict: dictionary of parameters
+         """
+
+         for k, v in params_dict.items():
+             if k not in self.p:
+                 print('ValueError')
+             if v <= 0:
+                 print('ValueError')
+
+         self.p.update(params_dict)
 
 
 class Herbivore(Animal):
@@ -113,30 +111,23 @@ class Herbivore(Animal):
 
     def __init__(self, age, weight):
 
-        # self.input_param_dict = param  # These are entered by users
         self.weight = weight
         self.age = age
+        self.is_dead = False
+
         if self.weight is None:
             self.weight = np.random.normal(self.output_param_dict['w_birth'],
                                            self.output_param_dict[
                                                'sigma_birth'])
-
-
-        # This will be modified later in set_parameters method as per
-        # the self.input_param_dict that the user inputs
-        self.output_param = self.p
-
-    def set_parameters(self):
-        for key in self.input_param_dict:
-            self.output_param[key] = self.input_param_dict[key]
-        return self.output_param
-
+        if self.is_dead:
+            #remove animal
+            pass
 
 class Carnivore(Animal):
     """Carnivore characteristics"""
     has_procreated = False
 
-    input_param_dict = {
+    p = {
         "w_birth": 6.0,
         "sigma_birth": 1.0,
         "beta": 0.75,
@@ -155,21 +146,35 @@ class Carnivore(Animal):
         "DeltaPhiMax": 10.0
     }
 
-    def __init__(self, param):
-        super().__init__(param)
+    def __init__(self, age, weight):
+
+        self.weight = weight
+        self.age = age
+        self.is_dead = False
 
         if self.weight is None:
             self.weight = np.random.normal(self.p['w_birth'],
                                            self.p['sigma_birth'])
 
+        if self.is_dead:
+            #remove animal
+            pass
+
 
 if __name__ == "__main__":
-    # Herbivore parameters
-    input_param_dict = {
-        "w_birth": 8.0,
-        "sigma_birth": 1.5,
-        "beta": 0.9
-        # "eta": 0.05
-    }
 
-    h = Herbivore(input_param_dict)
+#    h = Herbivore(2, 10)
+#    print(h.age, h.weight, h.fitness)
+#
+#    c = Carnivore(2,10)
+#    print(c.age, c.weight, c.fitness)
+
+    ini_herbs = [{'loc': (1, 1),
+                  'pop': [{'species': 'Herbivore',
+                           'age': 5,
+                           'weight': 20}
+                          for _ in range(2)]},]
+
+    j = Jungle(1,1)
+    j.set_population(ini_herbs)
+    j.get_population()
