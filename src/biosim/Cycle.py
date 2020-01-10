@@ -7,13 +7,16 @@ from biosim.Geography import Geo
 from biosim.Mapping import Jungle, Savannah
 
 
-class Cycle:
-    def __init__(self):
-        pass
+# from biosim.Herbivore_simulation import HSimulation
 
-    def food_grows(self, input_map):
+
+class Cycle:
+    def __init__(self, input_map_matrix_with_pop):
+        self.input_map_matrix_with_pop = input_map_matrix_with_pop
+
+    def food_grows(self):
         map = Geo(input_map)
-        print(map.geo_ob_array)
+        # print(map.geo_ob_array)
 
         for row_of_obj in map.geo_ob_array:
             for obj in row_of_obj:
@@ -30,27 +33,62 @@ class Cycle:
                     # print(obj.f_ij, obj.f_max)
 
     # for hver celle:
-    def animals_eat(self, map):
+    def animals_eat(self):
         """Herbevoirs and Carnevoirs eat"""
+        # map = Geo(input_map)
 
-        for row_of_obj in map.geo_ob_array:
+        for row_of_obj in self.input_map_matrix_with_pop:
             for cell in row_of_obj:
+                # print(cell)
+                if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    # print("Found")
+                    # print(cell.animal_object_list)
+                    herb_list= [animal for animal in cell.animal_object_list if \
+                     type(animal).__name__ == "Herbivore"]
+                    # print(herb_list)
 
-                herb_list = [type(cell)__name__ == 'Herbivore' for cell in cell.animal_object_list]
+                    herb_sorted = sorted(herb_list, key=lambda animal: animal.fitness,
+                                     reverse=True)
+                    # print(herb_sorted)
 
-                herb_sorted = sorted(cell.herb_list, key=lambda animal: animal.fitness,
-                                 reverse=True)
+                    for herb in herb_sorted:
+                        # print(herb.weight)
+                        if herb.p['F'] <= cell.f_ij:
+                            herb.weight += herb.p['beta'] * herb.p['F']
+                            cell.f_ij -= herb.p['F']
 
-                for herb in herb_sorted:
-                    if herb.p['F'] <= cell.f_ij:
-                        herb.weight += herb.p['beta'] * herb.p['F']
-                        cell.f_ij -= herb.p['F']
+# Eating for Carnivores after herbivores eat
+#                     carn_list = [animal for animal in cell.animal_object_list if \
+#                                  type(animal).__name__ == "Carnivore"]
+#                     # print(carn_list)
+#
+#                     carn_sorted = sorted(carn_list, key=lambda animal: animal.fitness,
+#                                          reverse=True)
+#                     # print(carn_sorted)
+#
+#                     for carn in carn_sorted:
+#                         herb_sorted_rev = sorted(herb_list, key=lambda animal: animal.fitness, reverse=True)
+#                         for herb in herb_sorted_rev:
+#                             if carn.F >= herb.weight:
+#
+#                                 if carn.fitness <= herb.fitness:
+#                                     carn_kills = 0
+#
+#                                 elif 0 < carn.fitness - herb.fitness < carn.DeltaPhiMax:
+#                                     carn_kills = (carn.fitness - herb.fitness)/carn.DeltaPhiMax
+#
+#                                 else:
+#                                     carn_kills = 1
+#
+#                                 num = random.random()
+#
+#                                 if carn_kills >= num:
+#                                     self.weigth += self.beta * herb.weigth
+#                                     carn.fitness()
+#                                     herb.is_dead = True
+#                                     #remove from list
 
-        # carn_sorted = sorted(cell.carn_list, key=lambda animal: animal.fitness,
-        #                      reverse=True)
-        #
-        # for c in carn_sorted:
-        #     c.carn_eat()
+
 
 
 if __name__ == "__main__":
@@ -59,9 +97,13 @@ if __name__ == "__main__":
                     OOOO
                     OJSO
                     OOOO""")
-
-    si.food_grows(input_map)
-
-
-
-
+    ini_herbs = [{'loc': (1, 1),
+                  'pop': [{'species': 'Herbivore',
+                           'age': 5,
+                           'weight': 20}
+                          for _ in range(2)]}, {'loc': (1, 2),
+                                                'pop': [
+                                                    {'species': 'Herbivore',
+                                                     'age': 5,
+                                                     'weight': 20}
+                                                    for _ in range(2)]}]

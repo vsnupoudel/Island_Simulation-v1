@@ -4,6 +4,7 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from biosim.Geography import Geo
+from biosim.Cycle import Cycle
 from biosim.Eat import Eat
 
 
@@ -55,20 +56,22 @@ if __name__ == "__main__":
                 'weight': 20}
                 for _ in range(2)] }]
 
-    # print(ini_herbs)
-    # print(map)
-
     s = HSimulation (map, ini_herbs)
-    jungle_object = s.cell_obj_array[1][1]
-    print(jungle_object)
-    print(jungle_object.f_ij)
 
-    print(jungle_object.get_population()[0])
-    print( jungle_object.get_population()[0].weight )
-    #make it eat
-    e = Eat()
-    e.herb_eat(jungle_object, jungle_object.get_population()[0])
-    # after eating
+    cycle = Cycle(s.cell_obj_array)
+    cycle.animals_eat()
+    # print(s.cell_obj_array)
 
-    print(jungle_object.f_ij)
-    print(jungle_object.get_population()[0].weight)
+    # jungle_object = s.cell_obj_array[1][1]
+    # print(jungle_object)
+    # print(jungle_object.f_ij)
+    #
+    # print(jungle_object.get_population()[0])
+    # print( jungle_object.get_population()[0].weight )
+    # #make it eat
+    # e = Eat()
+    # e.herb_eat(jungle_object, jungle_object.get_population()[0])
+    # # after eating
+    #
+    # print(jungle_object.f_ij)
+    # print(jungle_object.get_population()[0].weight)
