@@ -116,8 +116,6 @@ class Cycle:
                             if idx not in dead_list
                         ]
 
-
-
     def animals_reproduce(self):
         """
         Loops through the whole map and makes animals reproduce if they
@@ -201,7 +199,13 @@ class Cycle:
                         cell.animal_object_list.append(carn)
 
     def animals_migrate(self):
-        pass
+        for row_of_obj in self.object_matrix:
+            for cell in row_of_obj:
+                pass
+
+        # animal_sorted = sorted(,
+        #                      key=lambda animal: animal.fitness,
+        #                      reverse=True)
 
 
 
