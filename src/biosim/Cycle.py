@@ -69,6 +69,7 @@ class Cycle:
                     """
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
+                    print(carn_list)
 
                     carn_sorted = sorted(carn_list,
                                          key=lambda animal: animal.fitness,
@@ -85,7 +86,7 @@ class Cycle:
                         amount_eaten = 0
                         dead_list = []
                         if amount_eaten <= carn.p['F']:
-                            for ind, herb in herb_sorted_rev:
+                            for ind, herb in enumerate(herb_sorted_rev):
                                 if carn.fitness > herb.fitness:
                                     if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
                                         kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
@@ -100,7 +101,7 @@ class Cycle:
                             animal for idx, animal in enumerate(cell.animal_object_list)
                             if idx not in dead_list
                         ]
-    
+
 
 
     def animals_reproduce(self):
