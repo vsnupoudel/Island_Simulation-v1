@@ -46,3 +46,21 @@ def test_map_gives_object_output():
     assert empty_list == [['Ocean', 'Ocean', 'Ocean'],
                           ['Ocean', 'Jungle', 'Ocean'],
                           ['Ocean', 'Ocean', 'Ocean']]
+
+def test_adjacent_cell():
+    input_map = ("""\
+                        OOOO
+                        OJSO
+                        OOOO""")
+    g = Geo(input_map)
+    # print(g.object_matrix)
+    kun_migratable  = [type(cell).__name__ for cell in
+                        g.get_adjacent_migratable_cells(1, 1)]
+    all_four = [type(cell).__name__ for cell in
+                g.get_adjacent_cells(1, 1)]
+
+    assert kun_migratable == ['Savannah']
+    assert all_four == ['Ocean', 'Ocean', 'Savannah', 'Ocean']
+
+
+

@@ -31,9 +31,9 @@ total_cells = row_num * column_num
 
 fig, axs = plt.subplots(row_num, column_num, figsize=(15, 10))
 
-color_dict ={"Ocean":"#BDDBF9", "Desert":"#FAF7D0", "Savannah":"#C2FCD0",
+color_dict ={"Ocean":"#BDDBF9", "Desert":"#FAF7D0", "Savannah": "#C2FCD0",
              "Jungle":"#79EE96", "Mountain":"#E2E5E5"}
-for f , att in enumerate(axs):
+for f, att in enumerate(axs):
     for j in att:
         j.set_xlim(0,2)
         j.set_ylim(0,20)

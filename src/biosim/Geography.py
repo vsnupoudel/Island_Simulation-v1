@@ -77,6 +77,46 @@ class Geo:
     def get_plot(self):
         pass
 
+    def get_adjacent_migratable_cells(self,  row, column ):
+        list_of_adj = []
+        for i in (-1, 1):
+            try:
+                _t = self.object_matrix[row][column+i]
+            except:
+                pass
+            else:
+                if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    list_of_adj.append(_t)
+
+            try:
+                _t = self.object_matrix[row+i][column]
+            except:
+                pass
+            else:
+                if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    list_of_adj.append(_t)
+
+        return list_of_adj
+
+    def get_adjacent_cells(self,  row, column ):
+        list_of_adj = []
+        for i in (-1, 1):
+            try:
+                _t = self.object_matrix[row][column+i]
+            except:
+                pass
+            else:
+                list_of_adj.append(_t)
+
+            try:
+                _t = self.object_matrix[row+i][column]
+            except:
+                pass
+            else:
+                list_of_adj.append(_t)
+
+        return list_of_adj
+
 
 if __name__ == "__main__":
     input_map = ("""\
@@ -84,9 +124,8 @@ if __name__ == "__main__":
                         OJSO
                         OOOO""")
     g = Geo(input_map)
-    print(g.object_matrix)
+    # print(g.object_matrix)
+    print(g.get_adjacent_migratable_cells(1, 1) )
+    print(g.get_adjacent_cells(1, 1))
 
-    x = [1,2,3]
-    y = [2,4,6]
-    sns.scatterplot(x,y)
-    plt.show()
+
