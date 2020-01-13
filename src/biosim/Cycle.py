@@ -57,7 +57,16 @@ class Cycle:
                             herb.weight += herb.p['beta'] * cell.f_ij
                             cell.f_ij = 0
 
-
+                    # Start for carnivores
+                    """ This part should:
+                    1. delete herbivores from cell after they are eaten
+                    Conditions for carnivores eating
+                    1. They eat until they get an amount F
+                    2. If fitness is less than Herb, they can't kill that one
+                    3. Kill with certain probability, if they have less than 
+                    DeltaPhiMax fitness
+                    4. They certainly kill otherwise
+                    """
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
 
@@ -65,13 +74,33 @@ class Cycle:
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
 
-                    for c in carn_sorted:
+                    for carn in carn_sorted:
+
+                        herb_list = [animal for animal in
+                                     cell.animal_object_list
+                                     if type(animal).__name__ == "Herbivore"]
                         herb_sorted_rev = sorted(herb_list, key=lambda
                             animal: animal.fitness, reverse=True)
 
-                        for herb in herb_sorted_rev:
-                            
+                        amount_eaten = 0
+                        dead_list = []
+                        if amount_eaten <= carn.p['F']:
+                            for ind, herb in herb_sorted_rev:
+                                if carn.fitness > herb.fitness:
+                                    if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
+                                        kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
+                                        rand_prob = np.random.random()
+                                        if rand_prob < kill_prob:
+                                            dead_list.append(ind)
+                                    else:
+                                        dead_list.append(ind)
 
+                        # Make a method here to delete objects from list
+                        cell.animal_object_list = [
+                            animal for idx, animal in enumerate(cell.animal_object_list)
+                            if idx not in dead_list
+                        ]
+    
 
 
     def animals_reproduce(self):
