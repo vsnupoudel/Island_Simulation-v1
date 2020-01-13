@@ -68,7 +68,10 @@ if __name__ == "__main__":
     ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 6,
                                           'weight': 25},
                                          {'species': 'Herbivore', 'age': 7,
-                                          'weight': 30}]},
+                                          'weight': 30},
+                                         {'species': 'Carnivore', 'age': 10,
+                                          'weight': 100}
+                                         ]},
                  {'loc': (1, 2), 'pop': [{'species': 'Herbivore', 'age': 5,
                                           'weight': 100} for _ in range(10)]}]
 

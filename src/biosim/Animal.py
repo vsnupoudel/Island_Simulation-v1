@@ -92,7 +92,7 @@ class Herbivore(Animal):
                                                'sigma_birth'])
 
 
-class Carnevoir(Animal):
+class Carnivore(Animal):
     """Carnevoir characteristics"""
 
     p = {
@@ -114,13 +114,13 @@ class Carnevoir(Animal):
         "DeltaPhiMax": 10.0
     }
 
-    def __init__(self, age, weigth):
+    def __init__(self, age, weight):
         self.age = age
-        self.weigth = weigth
+        self.weight = weight
         self.is_dead = False
 
-        if self.weigth is None:
-            self.weigth = np.random.normal(self.p['w_birth'],
+        if self.weight is None:
+            self.weight = np.random.normal(self.p['w_birth'],
                                            self.p['sigma_birth'])
 
 

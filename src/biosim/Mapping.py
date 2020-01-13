@@ -4,7 +4,7 @@
 __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
-from biosim.Animal import Herbivore
+from biosim.Animal import Herbivore, Carnivore
 
 
 # import numpy as np
@@ -28,8 +28,13 @@ class Cell:
         """
         (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
-            self.animal_object_list.append(Herbivore(age = animal['age'],\
+            if animal['species'] == "Herbivore":
+                self.animal_object_list.append(Herbivore(age = animal['age'],\
                                                 weight = animal['weight']))
+            else:
+                self.animal_object_list.append(Carnivore(age = animal['age'],\
+                                                weight = animal['weight']))
+
 
         # return self.animal_object_list
 
@@ -146,7 +151,8 @@ if __name__ == '__main__':
     j = Jungle(1, 1)
     a = {'loc': (1, 1),
          'pop': [{'species': 'Herbivore', 'age': 10, 'weight': 20} \
-             , {'species': 'Herbivore', 'age': 5, 'weight': 20}]}
+             , {'species': 'Herbivore', 'age': 5, 'weight': 20}
+                 , {'species': 'Carnivore', 'age': 10, 'weight': 100}]}
 
     j.set_population(a)
 
