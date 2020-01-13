@@ -101,13 +101,14 @@ class Cycle:
                                         dead_list.append(ind)
                                         # amount_eaten += herb.weigth
                                         # print(dead_list)
+                                        #carn.weigth += beta*herb.weigth
 
                                 else:
                                     dead_list.append(ind)
                                     # amount_eaten += herb.weigth
+                                    # carn.weigth += beta*herb.weigth
 
                         # if amount_eaten >= carn.p['F']:
-                        #     carn.weight += carn.p['beta'] * amount_eaten
                         #     break
 
                         # Make a method here to delete objects from list
