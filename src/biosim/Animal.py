@@ -26,7 +26,7 @@ class Animal:
     """Animal characteristics"""
 
     def __init__(self, param):
-        self.input_param_dict = param  # These are entered by users
+        self.p = param  # These are entered by users
 
 
     @property
@@ -87,9 +87,43 @@ class Herbivore(Animal):
         self.is_dead = False
 
         if self.weight is None:
-            self.weight = np.random.normal(self.output_param_dict['w_birth'],
-                                           self.output_param_dict[
+            self.weight = np.random.normal(self.p['w_birth'],
+                                           self.p[
                                                'sigma_birth'])
+
+
+class Carnevoir(Animal):
+    """Carnevoir characteristics"""
+
+    p = {
+        "w_birth": 6.0,
+        "sigma_birth": 1.0,
+        "beta": 0.75,
+        "eta": 0.125,
+        "a_half": 60.0,
+        "phi_age": 0.4,
+        "w_half": 4.0,
+        "phi_weight": 0.4,
+        "mu": 0.4,
+        "lambda": 1.0,
+        "gamma": 0.8,
+        "zeta": 3.5,
+        "xi": 1.1,
+        "omega": 0.9,
+        "F": 50.0,
+        "DeltaPhiMax": 10.0
+    }
+
+    def __init__(self, age, weigth):
+        self.age = age
+        self.weigth = weigth
+        self.is_dead = False
+
+        if self.weigth is None:
+            self.weigth = np.random.normal(self.p['w_birth'],
+                                           self.p['sigma_birth'])
+
+
 
 
 if __name__ == "__main__":
