@@ -8,7 +8,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 
 # from biosim.Herbivore_simulation import HSimulation
-from biosim.Animal import Herbivore  # , Carnivore
+from biosim.Animal import Herbivore, Carnivore
 
 
 class Cycle:
@@ -140,6 +140,8 @@ class Cycle:
                     herb_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Herbivore"]
 
+                    new_herbs = []
+
                     # calculate probabilty and new born
                     for animal in herb_list:
                         b_prob = min(1, animal.p['gamma'] *
@@ -158,10 +160,45 @@ class Cycle:
 
                             # 3. check if animal has sufficient weight
                             if animal.weight >= baby_weight * animal.p['xi']:
-                                cell.animal_object_list.append(
+                                new_herbs.append(
                                     Herbivore(age=0, weight=baby_weight))
                                 # reduce the parent weight by ...
                                 animal.weight -= baby_weight * animal.p['xi']
+
+                    for herb in new_herbs:
+                        cell.animal_object_list.append(herb)
+
+
+                    #for carnevoirs
+
+                    carn_list = [animal for animal in cell.animal_object_list
+                                 if type(animal).__name__ == "Carnivore"]
+
+                    new_carns = []
+
+                    # calculate probabilty and new born
+                    for animal in carn_list:
+                        b_prob = min(1, animal.p['gamma'] *
+                                     animal.fitness * (len(carn_list) - 1))
+
+                        if (np.random.random() <= b_prob) & \
+                                (animal.weight >= animal.p['zeta'] * (
+                                        animal.p['w_birth'] + animal.p[
+                                    'sigma_birth'])):
+
+                            baby_weight = np.random.normal(
+                                animal.p['w_birth'], animal.p['sigma_birth'])
+
+                            # 3. check if animal has sufficient weight
+                            if animal.weight >= baby_weight * animal.p['xi']:
+                                new_carns.append(
+                                    Carnivore(age=0, weight=baby_weight))
+                                # reduce the parent weight by ...
+                                animal.weight -= baby_weight * animal.p['xi']
+
+                    for carn in new_carns:
+                        cell.animal_object_list.append(carn)
+
 
 
 if __name__ == "__main__":
