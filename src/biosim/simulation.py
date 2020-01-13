@@ -52,8 +52,8 @@ class BioSim:
         """
 
         #animal, up_par
-        #Herbivore.up_par
-        #Carnivore.up_par
+        Herbivore.up_par()
+        Carnivore.up_par()
 
     def set_landscape_parameters(self, landscape, params):
         """
