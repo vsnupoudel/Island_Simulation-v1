@@ -103,4 +103,50 @@ def test_animals_reproduce():
     assert (len(s.object_matrix[1][2].animal_object_list) > 10) &  (len(
         s.object_matrix[1][1].animal_object_list) >= 2)
 
+def test_both_reproduce():
+    map = ("""\
+           OOOOO
+           OJSDO
+           OJSMO
+           OJSDO
+           OOOOO""")
+    ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
+                                          'weight': 100} for _ in range(6)] + [
+                                            {'species': 'Carnivore', 'age': 10,
+                                             'weight': 500} for _ in range(2)
+                                        ]}]
+
+    s = HSimulation(map, ini_herbs)
+
+    herb_length = 0
+    carn_length = 0
+
+    for row, row_of_obj in enumerate(s.object_matrix):
+        for col, cell in enumerate(row_of_obj):
+            if (row == 1) & (col == 1):
+                for animal in cell.animal_object_list:
+                    if type(animal).__name__ == "Herbivore":
+                        herb_length += 1
+                    else:
+                        carn_length += 1
+                        # print(cell.animal_object_list)
+
+    s.call_animals_reproduce()
+
+    herb_length_after = 0
+    carn_length_after = 0
+
+    for row, row_of_obj in enumerate(s.object_matrix):
+        for col, cell in enumerate(row_of_obj):
+            if (row == 1) & (col == 1):
+                for animal in cell.animal_object_list:
+                    if type(animal).__name__ == "Herbivore":
+                        herb_length_after += 1
+                    else:
+                        carn_length_after += 1
+
+    assert (herb_length_after > herb_length) & (
+            carn_length_after > carn_length)
+
+
 

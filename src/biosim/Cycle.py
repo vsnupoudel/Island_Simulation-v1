@@ -160,6 +160,7 @@ class Cycle:
 
                             # 3. check if animal has sufficient weight
                             if animal.weight >= baby_weight * animal.p['xi']:
+                                # print("Yes")
                                 new_herbs.append(
                                     Herbivore(age=0, weight=baby_weight))
                                 # reduce the parent weight by ...
@@ -198,6 +199,9 @@ class Cycle:
 
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
+
+    def animals_migrate(self):
+        pass
 
 
 
