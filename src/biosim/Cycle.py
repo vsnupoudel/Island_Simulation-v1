@@ -57,9 +57,22 @@ class Cycle:
                             herb.weight += herb.p['beta'] * cell.f_ij
                             cell.f_ij = 0
 
-                    # carn logic here to be added later
+
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
+
+                    carn_sorted = sorted(carn_list,
+                                         key=lambda animal: animal.fitness,
+                                         reverse=True)
+
+                    for c in carn_sorted:
+                        herb_sorted_rev = sorted(herb_list, key=lambda
+                            animal: animal.fitness, reverse=True)
+
+                        for herb in herb_sorted_rev:
+                            
+
+
 
     def animals_reproduce(self):
         """
