@@ -24,12 +24,12 @@ class Cell:
     def set_population(self, input_dict):
         """
         Sets the animals species, age and weight
-                :param input_dict: with species,age, weight
-                """
+        :param input_dict: with species,age, weight
+        """
         (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
-            self.animal_object_list.append(Herbivore(animal['weight'],\
-                                                     animal['age']))
+            self.animal_object_list.append(Herbivore(age = animal['age'],\
+                                                weight = animal['weight']))
 
         # return self.animal_object_list
 
