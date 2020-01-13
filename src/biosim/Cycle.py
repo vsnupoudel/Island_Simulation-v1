@@ -69,11 +69,12 @@ class Cycle:
                     """
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
-                    print(carn_list)
+#                    print(carn_list)
 
                     carn_sorted = sorted(carn_list,
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
+#                    print(carn_sorted)
 
                     for carn in carn_sorted:
 
@@ -82,19 +83,32 @@ class Cycle:
                                      if type(animal).__name__ == "Herbivore"]
                         herb_sorted_rev = sorted(herb_list, key=lambda
                             animal: animal.fitness, reverse=True)
+#                        print(herb_sorted_rev)
 
                         amount_eaten = 0
                         dead_list = []
-                        if amount_eaten <= carn.p['F']:
-                            for ind, herb in enumerate(herb_sorted_rev):
-                                if carn.fitness > herb.fitness:
-                                    if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
-                                        kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
-                                        rand_prob = np.random.random()
-                                        if rand_prob < kill_prob:
-                                            dead_list.append(ind)
-                                    else:
+
+
+                        for ind, herb in enumerate(herb_sorted_rev):
+                            if carn.fitness > herb.fitness:
+                                if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
+                                    kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
+                                    print(kill_prob)
+                                    rand_prob = np.random.random()
+                                    print(rand_prob)
+                                    print(carn.p['DeltaPhiMax'], carn.fitness, herb.fitness)
+                                    if rand_prob < kill_prob:
                                         dead_list.append(ind)
+                                        amount_eaten += herb.weigth
+                                        print(dead_list)
+
+                                else:
+                                    dead_list.append(ind)
+                                    amount_eaten += herb.weigth
+
+                        if amount_eaten >= carn.p['F']:
+                            carn.weight += carn.p['beta'] * amount_eaten
+                            break
 
                         # Make a method here to delete objects from list
                         cell.animal_object_list = [
