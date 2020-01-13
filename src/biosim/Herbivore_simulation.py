@@ -65,19 +65,11 @@ if __name__ == "__main__":
         OJSMO
         OJSDO
         OOOOO""")
-    ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 1,
-                                          'weight': 5},
-                                         {'species': 'Herbivore', 'age': 1,
-                                          'weight': 5},
-                                         {'species': 'Herbivore', 'age': 1,
-                                          'weight': 5},
-                                         {'species': 'Herbivore', 'age': 1,
-                                          'weight': 5},
+    ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 20,
+                                          'weight': 5} for _ in range(100)] + [
                                          {'species': 'Carnivore', 'age': 10,
-                                          'weight': 2500}
-                                         ]},
-                 {'loc': (1, 2), 'pop': [{'species': 'Herbivore', 'age': 10,
-                                          'weight': 100} for _ in range(10)]}]
+                                          'weight': 500}
+                                         ]}]
 
     s = HSimulation(map, ini_herbs)
 
@@ -94,17 +86,17 @@ if __name__ == "__main__":
     #             print ( row,col, type(cell).__name__, "Food is: ", cell.f_ij)
 
 
-#    for row, row_of_obj in enumerate(s.object_matrix):
-#        for col, cell in enumerate(row_of_obj):
-#            if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-#                print(cell.animal_object_list)
+    for row, row_of_obj in enumerate(s.object_matrix):
+       for col, cell in enumerate(row_of_obj):
+           if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+               print(cell.animal_object_list)
 
     s.call_animal_eats()
 
-#    for row, row_of_obj in enumerate(s.object_matrix):
-#        for col, cell in enumerate(row_of_obj):
-#            if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-#                print(cell.animal_object_list)
+    for row, row_of_obj in enumerate(s.object_matrix):
+       for col, cell in enumerate(row_of_obj):
+           if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+               print(cell.animal_object_list)
 
     # s.call_animals_reproduce()
     #

@@ -127,4 +127,7 @@ class Carnivore(Animal):
 
 
 if __name__ == "__main__":
-    pass
+    h = Herbivore(5, 10)
+    c = Carnivore(5,10)
+    print(h.fitness)
+    print(c.fitness)

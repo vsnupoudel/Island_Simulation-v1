@@ -93,22 +93,22 @@ class Cycle:
                             if carn.fitness > herb.fitness:
                                 if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
                                     kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
-                                    print(kill_prob)
+                                    # print(kill_prob)
                                     rand_prob = np.random.random()
-                                    print(rand_prob)
-                                    print(carn.p['DeltaPhiMax'], carn.fitness, herb.fitness)
+                                    # print(rand_prob)
+                                    # print(carn.p['DeltaPhiMax'], carn.fitness, herb.fitness)
                                     if rand_prob < kill_prob:
                                         dead_list.append(ind)
-                                        amount_eaten += herb.weigth
-                                        print(dead_list)
+                                        # amount_eaten += herb.weigth
+                                        # print(dead_list)
 
                                 else:
                                     dead_list.append(ind)
-                                    amount_eaten += herb.weigth
+                                    # amount_eaten += herb.weigth
 
-                        if amount_eaten >= carn.p['F']:
-                            carn.weight += carn.p['beta'] * amount_eaten
-                            break
+                        # if amount_eaten >= carn.p['F']:
+                        #     carn.weight += carn.p['beta'] * amount_eaten
+                        #     break
 
                         # Make a method here to delete objects from list
                         cell.animal_object_list = [
