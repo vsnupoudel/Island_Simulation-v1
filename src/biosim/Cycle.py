@@ -237,10 +237,29 @@ class Cycle:
                     for cel in adj_cells:
                         propen_list_c.append(cel.pi_ij_carn)
 
-#                    print(len(propen_list_h), propen_list_c)
-
+                    #propability
                     proba_list_h = np.array(propen_list_h) / np.sum(propen_list_h)
                     proba_list_c = np.array(propen_list_c) / np.sum(propen_list_c)
+
+#                    print(proba_list_h)
+#                    print(propen_list_h)
+
+                    cum_prop = 0
+                    val = np.random.random()
+                    for i, prob in enumerate(proba_list_h):
+                        cum_prop += prob
+                        if val <= cum_prop:
+                            print(adj_cells[i], cell)
+
+#                            print('...')
+
+
+                    #remove from old cell
+                    #animal.has_moved = True
+
+
+
+
 
                     
 
