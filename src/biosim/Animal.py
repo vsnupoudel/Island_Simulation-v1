@@ -86,6 +86,8 @@ class Herbivore(Animal):
         self.age = age
         self.is_dead = False
 
+
+
         if self.weight is None:
             self.weight = np.random.normal(self.p['w_birth'],
                                            self.p[

@@ -17,9 +17,27 @@ class Cell:
         :param row: row index
         :param column: column index
         """
+        # parameters = {'f_max': None, 'alpha': None}
         self.row = row
         self.column = column
         self.animal_object_list = []
+# new parameters for each cell
+#        self.herb_list = [[a for a in cell.animal_object_list
+#                        if type(a).__name__ == "Herbivore"]]
+#        self.carn_list = [a for a in cell.animal_object_list
+#                        if type(a).__name__ == "Carnivore"]
+
+#        self.n_herbs = len(self.herb_list)
+#        self.n_carns = len(self.carn_list)
+#
+#        self.tot_herb_weigth =  # total weigth of herbevoirs in cell
+#
+#        self.rel_ab_carn = self_tot_herb_weigth / (self.n_carns + 1) * \
+#                           Carnevoirs.p['F']
+#        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
+#
+#        pi_ij_carn = math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+#        pi_ij_herb = math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
 
     def set_population(self, input_dict):
         """
