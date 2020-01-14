@@ -26,7 +26,10 @@ class Animal:
     """Animal characteristics"""
 
     def __init__(self, param):
-        self.p = param  # These are entered by users
+        """
+        :param param: Dictionary of paramerters for animals
+        """
+        self.p = param
 
 
     @property
@@ -40,15 +43,10 @@ class Animal:
                 (- self.p['phi_weight'] * (self.weight - self.p['w_half']))))
 
 
-    # then create new animal
-
-    # call weigth method
-
     @classmethod
     def up_par(cls, params_dict):
          """
-         Updates animal parameters
-         :input_param_dict params_dict: dictionary of parameters
+         :param params_dict: Dictionary of parameters to be updated
          """
 
          for k, v in params_dict.items():
@@ -62,7 +60,7 @@ class Animal:
 
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class"""
-    # has_procreated = False
+    has_procreated = False
     p = {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
@@ -96,6 +94,7 @@ class Herbivore(Animal):
 
 class Carnivore(Animal):
     """Carnevoir characteristics"""
+    has_procreated = False
 
     p = {
         "w_birth": 6.0,
