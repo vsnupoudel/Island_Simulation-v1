@@ -243,13 +243,13 @@ class Cycle:
 
 #                    print(proba_list_h)
 #                    print(propen_list_h)
-
                     cum_prop = 0
                     val = np.random.random()
                     for i, prob in enumerate(proba_list_h):
                         cum_prop += prob
                         if val <= cum_prop:
                             print(adj_cells[i], cell)
+                            break
 
 #                            print('...')
 
