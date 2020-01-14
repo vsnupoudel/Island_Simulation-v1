@@ -50,12 +50,8 @@ class Cycle:
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
                     for herb in herb_sorted:
-                        if cell.f_ij >= herb.p['F']:
-                            herb.weight += herb.p['beta'] * herb.p['F']
-                            cell.f_ij -= herb.p['F']
-                        elif cell.f_ij < herb.p['F']:
-                            herb.weight += herb.p['beta'] * cell.f_ij
-                            cell.f_ij = 0
+                        herb.herb_eat(cell)
+
 
                     # Start for carnivores
                     """ This part should:
@@ -77,45 +73,8 @@ class Cycle:
 #                    print(carn_sorted)
 
                     for carn in carn_sorted:
+                        carn.carn_eat(cell)
 
-                        herb_list = [animal for animal in
-                                     cell.animal_object_list
-                                     if type(animal).__name__ == "Herbivore"]
-                        herb_sorted_rev = sorted(herb_list, key=lambda
-                            animal: animal.fitness, reverse=True)
-#                        print(herb_sorted_rev)
-
-                        amount_eaten = 0
-                        dead_list = []
-
-
-                        for ind, herb in enumerate(herb_sorted_rev):
-                            if carn.fitness > herb.fitness:
-                                if carn.fitness - herb.fitness < carn.p['DeltaPhiMax']:
-                                    kill_prob = (carn.fitness - herb.fitness)/carn.p['DeltaPhiMax']
-                                    # print(kill_prob)
-                                    rand_prob = np.random.random()
-                                    # print(rand_prob)
-                                    # print(carn.p['DeltaPhiMax'], carn.fitness, herb.fitness)
-                                    if rand_prob < kill_prob:
-                                        dead_list.append(ind)
-                                        # amount_eaten += herb.weigth
-                                        # print(dead_list)
-                                        #carn.weigth += beta*herb.weigth
-
-                                else:
-                                    dead_list.append(ind)
-                                    # amount_eaten += herb.weigth
-                                    # carn.weigth += beta*herb.weigth
-
-                        # if amount_eaten >= carn.p['F']:
-                        #     break
-
-                        # Make a method here to delete objects from list
-                        cell.animal_object_list = [
-                            animal for idx, animal in enumerate(cell.animal_object_list)
-                            if idx not in dead_list
-                        ]
 
     def animals_reproduce(self):
         """
@@ -136,41 +95,20 @@ class Cycle:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     # new_borns = 0
                     # Add new_borns for herbivores first
-                    herb_list = [animal for animal in cell.animal_object_list                    #def herbs_eat
+                    herb_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Herbivore"]
 
                     new_herbs = []
 
                     # calculate probabilty and new born
                     for animal in herb_list:
-                        #if animal.has_procreated == False:
-                        b_prob = min(1, animal.p['gamma'] *
-                                     animal.fitness * (len(herb_list) - 1))
-                        # print(b_prob)
-                        # 1. check if random_number <= b_prob
-                        # 2. check if the weight of parent is greater than...
-
-                        if (np.random.random() <= b_prob) & \
-                                (animal.weight >= animal.p['zeta'] * (
-                                        animal.p['w_birth'] + animal.p[
-                                    'sigma_birth'])):
-
-                            baby_weight = np.random.normal(
-                                animal.p['w_birth'], animal.p['sigma_birth'])
-
-                            # 3. check if animal has sufficient weight
-                            if animal.weight >= baby_weight * animal.p['xi']:
-                                # print("Yes")
-                                new_herbs.append(
-                                    Herbivore(age=0, weight=baby_weight))
-                                # reduce the parent weight by ...
-                                animal.weight -= baby_weight * animal.p['xi']
+                        new_herbs.append( animal.herb_reproduce(len(herb_list)))
+                        # if animal.has_procreated == False:
 
                     for herb in new_herbs:
                         cell.animal_object_list.append(herb)
 
-
-                    #for carnevoirs                                                         #def carn_reproduce
+                    #def carn_reproduce
 
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
@@ -179,24 +117,8 @@ class Cycle:
 
                     # calculate probabilty and new born
                     for animal in carn_list:
+                        new_carns.append(animal.carn_reproduce(len(carn_list)))
                         # if animal.has_procreated == False:
-                        b_prob = min(1, animal.p['gamma'] *
-                                     animal.fitness * (len(carn_list) - 1))
-
-                        if (np.random.random() <= b_prob) & \
-                                (animal.weight >= animal.p['zeta'] * (
-                                        animal.p['w_birth'] + animal.p[
-                                    'sigma_birth'])):
-
-                            baby_weight = np.random.normal(
-                                animal.p['w_birth'], animal.p['sigma_birth'])
-
-                            # 3. check if animal has sufficient weight
-                            if animal.weight >= baby_weight * animal.p['xi']:
-                                new_carns.append(
-                                    Carnivore(age=0, weight=baby_weight))
-                                # reduce the parent weight by ...
-                                animal.weight -= baby_weight * animal.p['xi']
 
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
@@ -254,40 +176,38 @@ class Cycle:
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
-                        move_prob = animal.p['mu']*animal.fitness
+                        print(animal, animal.p['mu'] , animal.fitness)
+                        move_prob = animal.p['mu'] * animal.fitness
                         rand_num = np.random.random()
 
                         if (rand_num <= move_prob) & (animal.has_migrated == False):
-                            if type(animal).__name__ == "Herbivore":                     #def Herb_migrate
-                                cum_prop = 0
-                                val = np.random.random()
-                                for i, prob in enumerate(proba_list_h):
-                                    cum_prop += prob
-                                    if val <= cum_prop:
-                                        new_cell = adj_cells[i]
-                                        new_cell.animal_object_list.append(animal)
-                                        break
+                            if type(animal).__name__ == "Herbivore":
+                                animal.herb_migrates(cell, adj_cells, proba_list_h)
+                                # cum_prop = 0
+                                # val = np.random.random()
+                                # for i, prob in enumerate(proba_list_h):
+                                #     cum_prop += prob
+                                #     if val <= cum_prop:
+                                #         new_cell = adj_cells[i]
+                                #         new_cell.animal_object_list.append(animal)
+                                #         break
 
-                            if type(animal).__name__ == "Carnivore":                         #def Carn_migrate
-                                cum_prop = 0
-                                val = np.random.random()
-                                for i, prob in enumerate(proba_list_c):
-                                    cum_prop += prob
-                                    if val <= cum_prop:
-                                        new_cell = adj_cells[i]
-                                        new_cell.animal_object_list.append(animal)
-                                        break
+                            if type(animal).__name__ == "Carnivore":
+                                animal.carn_migrates(cell, adj_cells, proba_list_c)
+                                # cum_prop = 0
+                                # val = np.random.random()
+                                # for i, prob in enumerate(proba_list_c):
+                                #     cum_prop += prob
+                                #     if val <= cum_prop:
+                                #         new_cell = adj_cells[i]
+                                #         new_cell.animal_object_list.append(animal)
+                                #         break
 
                             animal.has_moved = True
                             animals_moved_away.append(animal)
 
                 cell.animal_object_list = [animal for animal in cell.animal_object_list if
                                            animal not in animals_moved_away]
-
-                print(cell.animal_object_list)
-                print(animals_moved_away)
-                print('....')
-
 
 
 

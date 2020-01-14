@@ -129,12 +129,16 @@ if __name__ == "__main__":
         OJSMO
         OOOOO""")
     ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
-                                          'weight': 100} for _ in range(6)] + [
+                                          'weight': 100} for _ in range(10)] + [
                                          {'species': 'Carnivore', 'age': 10,
-                                          'weight': 500} for _ in range(2)
+                                          'weight': 500} for _ in range(4)
                                          ]}]
 
     s = BioSim(map, ini_herbs, seed = 1)
 
+    print(s.object_matrix[1][1].animal_object_list[1].weight)
+
     s.simulate()
+
+    print(s.object_matrix[1][1].animal_object_list[1].weight)
 

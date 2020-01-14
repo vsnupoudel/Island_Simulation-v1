@@ -92,6 +92,48 @@ class Herbivore(Animal):
             self.weight = np.random.normal(self.p['w_birth'],
                                            self.p[
                                                'sigma_birth'])
+    def herb_eat(self, cell):
+        """
+        Updates food in the cell object
+        Updates the weight of the animal (self)
+        :return: None
+        """
+        if cell.f_ij >= self.p['F']:
+            self.weight += self.p['beta'] * self.p['F']
+            cell.f_ij -= self.p['F']
+        elif cell.f_ij < self.p['F']:
+            self.weight += self.p['beta'] * cell.f_ij
+            cell.f_ij = 0
+
+    def herb_reproduce(self, length):
+        b_prob = min(1, self.p['gamma'] *
+                     self.fitness * ( length - 1))
+        # print(b_prob)
+        # 1. check if random_number <= b_prob
+        # 2. check if the weight of parent is greater than...
+
+        if (np.random.random() <= b_prob) & \
+                (self.weight >= self.p['zeta'] * (
+                        self.p['w_birth'] + self.p[
+                    'sigma_birth'])):
+
+            baby_weight = np.random.normal(
+                self.p['w_birth'], self.p['sigma_birth'])
+
+            # 3. check if animal has sufficient weight
+            if self.weight >= baby_weight * self.p['xi']:
+                self.weight -= baby_weight * self.p['xi']
+                return Herbivore(age=0, weight=baby_weight)
+
+    def herb_migrates(self, cell, adj_cells, proba_list_h):
+        cum_prop = 0
+        val = np.random.random()
+        for i, prob in enumerate(proba_list_h):
+            cum_prop += prob
+            if val <= cum_prop:
+                new_cell = adj_cells[i]
+                new_cell.animal_object_list.append(self)
+                break
 
 
 class Carnivore(Animal):
@@ -126,6 +168,75 @@ class Carnivore(Animal):
         if self.weight is None:
             self.weight = np.random.normal(self.p['w_birth'],
                                            self.p['sigma_birth'])
+
+    def carn_eat(self, cell):
+        herb_list = [animal for animal in
+                     cell.animal_object_list
+                     if type(animal).__name__ == "Herbivore"]
+        herb_sorted_rev = sorted(herb_list, key=lambda
+            animal: animal.fitness, reverse=True)
+        #                        print(herb_sorted_rev)
+
+        amount_eaten = 0
+        dead_list = []
+
+        for ind, herb in enumerate(herb_sorted_rev):
+            if self.fitness > herb.fitness:
+                if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
+                    kill_prob = (self.fitness - herb.fitness) / self.p['DeltaPhiMax']
+                    # print(kill_prob)
+                    rand_prob = np.random.random()
+                    # print(rand_prob)
+                    # print(self.p['DeltaPhiMax'], self.fitness, herb.fitness)
+                    if rand_prob < kill_prob:
+                        dead_list.append(ind)
+                        # amount_eaten += herb.weigth
+                        # print(dead_list)
+                        # self.weigth += beta*herb.weigth
+
+                else:
+                    dead_list.append(ind)
+                    # amount_eaten += herb.weigth
+                    # self.weigth += beta*herb.weigth
+
+        # if amount_eaten >= self.p['F']:
+        #     break
+
+        # Make a method here to delete objects from list
+        cell.animal_object_list = [
+            animal for idx, animal in enumerate(cell.animal_object_list)
+            if idx not in dead_list
+        ]
+
+    def carn_reproduce(self, length):
+        b_prob = min(1, self.p['gamma'] *
+                     self.fitness * ( length - 1))
+        # print(b_prob)
+        # 1. check if random_number <= b_prob
+        # 2. check if the weight of parent is greater than...
+
+        if (np.random.random() <= b_prob) & \
+                (self.weight >= self.p['zeta'] * (
+                        self.p['w_birth'] + self.p[
+                    'sigma_birth'])):
+
+            baby_weight = np.random.normal(
+                self.p['w_birth'], self.p['sigma_birth'])
+
+            # 3. check if animal has sufficient weight
+            if self.weight >= baby_weight * self.p['xi']:
+                self.weight -= baby_weight * self.p['xi']
+                return Carnivore(age=0, weight=baby_weight)
+
+    def carn_migrates(self, cell, adj_cells, proba_list_c):
+        cum_prop = 0
+        val = np.random.random()
+        for i, prob in enumerate(proba_list_c):
+            cum_prop += prob
+            if val <= cum_prop:
+                new_cell = adj_cells[i]
+                new_cell.animal_object_list.append(self)
+                break
 
 
 
