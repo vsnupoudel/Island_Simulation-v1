@@ -13,13 +13,11 @@ map = ("""\
     OJSMO
     OJSDO
     OOOOO""")
-ini_herbs = [
-    {'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 6, 'weight': 50},
-                            {'species': 'Herbivore', 'age': 7, 'weight': 30},
-                            {'species': 'Carnivore', 'age': 10,
-                             'weight': 100}]},
-    {'loc': (1, 2), 'pop': [{'species': 'Herbivore', 'age': 5,
-                             'weight': 100} for _ in range(10)]}]
+ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
+                                      'weight': 100} for _ in range(6)] + [
+                                        {'species': 'Carnivore', 'age': 10,
+                                         'weight': 500} for _ in range(2)
+                                    ]}]
 g = Geo(map)  # no particular use here
 s = HSimulation(map, ini_herbs)
 # print(s.object_matrix)
@@ -29,10 +27,12 @@ row_num = g.geo_shape[0]
 column_num = g.geo_shape[1]
 total_cells = row_num * column_num
 
-fig, axs = plt.subplots(row_num, column_num, figsize=(15, 10))
+fig, axs = plt.subplots(row_num, column_num, figsize=(10, 10))
 
 color_dict ={"Ocean":"#BDDBF9", "Desert":"#FAF7D0", "Savannah": "#C2FCD0",
              "Jungle":"#79EE96", "Mountain":"#E2E5E5"}
+
+
 for f, att in enumerate(axs):
     for j in att:
         j.set_xlim(0,2)

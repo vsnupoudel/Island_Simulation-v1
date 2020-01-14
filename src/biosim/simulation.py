@@ -3,6 +3,9 @@
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
+from biosim.Cycle import Cycle
+from biosim.Geography import Geo
+
 
 class BioSim:
     def __init__(
@@ -38,10 +41,15 @@ class BioSim:
         where img_no are consecutive image numbers starting from 0.
         img_base should contain a path and beginning of a file name.
         """
-
-        self.island_map = island_map
+        self.seed = 1
+        self.island_map = Geo(island_map)
         self.ini_pop = ini_pop
-        self.seed = seed
+        # self.seed = 1
+        self.object_matrix = self.island_map.object_matrix
+
+        for one_location_list in self.ini_pop:
+            x, y = one_location_list['loc'][0], one_location_list['loc'][1]
+            self.object_matrix[x][y].set_population(one_location_list)
 
     def set_animal_parameters(self, species, params):
         """
@@ -52,8 +60,8 @@ class BioSim:
         """
 
         #animal, up_par
-        Herbivore.up_par()
-        Carnivore.up_par()
+        # Herbivore.up_par()
+        # Carnivore.up_par()
 
     def set_landscape_parameters(self, landscape, params):
         """
@@ -62,13 +70,13 @@ class BioSim:
         :param landscape: String, code letter for landscape
         :param params: Dict with valid parameter specification for landscape
         """
-        if landscape == 'S':
-            Savannah.params.update(params)
-        else:
-            Jungle.params.update(params)
+        # if landscape == 'S':
+        #     Savannah.params.update(params)
+        # else:
+        #     Jungle.params.update(params)
 
 
-    def simulate(self, num_years, vis_years=1, img_years=None):
+    def simulate(self, num_years=1, vis_years=1, img_years=None):
         """
         Run simulation while visualizing the result.
 
@@ -78,6 +86,12 @@ class BioSim:
 
         Image files will be numbered consecutively.
         """
+        c = Cycle(self.object_matrix)
+        c.food_grows()
+        c.animals_eat()
+        c.animals_reproduce()
+        c.animals_migrate()
+
 
     def add_population(self, population):
         """
@@ -105,3 +119,22 @@ class BioSim:
 
     def make_movie(self):
         """Create MPEG4 movie from visualization images saved."""
+
+
+if __name__ == "__main__":
+    map = ("""\
+        OOOOO
+        OJSDO
+        OJSMO
+        OJSMO
+        OOOOO""")
+    ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
+                                          'weight': 100} for _ in range(6)] + [
+                                         {'species': 'Carnivore', 'age': 10,
+                                          'weight': 500} for _ in range(2)
+                                         ]}]
+
+    s = BioSim(map, ini_herbs, seed = 1)
+
+    s.simulate()
+

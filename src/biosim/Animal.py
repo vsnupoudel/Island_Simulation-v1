@@ -30,6 +30,7 @@ class Animal:
         :param param: Dictionary of paramerters for animals
         """
         self.p = param
+        self.has_migrated = False
 
 
     @property

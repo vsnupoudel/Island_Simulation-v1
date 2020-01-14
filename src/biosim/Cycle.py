@@ -223,12 +223,22 @@ class Cycle:
         return list_of_adj
 
     def animals_migrate(self):
+        """
+        :param : self, the map object with all the cells and all the animals
+        This function accomplishes the following
+        - Delete migrated animals from current cell
+        - Add incoming animals to the new cell
+
+        :return: None
+
+        """
 
         for row, row_of_obj in enumerate(self.object_matrix):
             for col, cell in enumerate(row_of_obj):
+                animals_moved_away = []
                 if type(cell).__name__  in ["Desert","Savannah", "Jungle"]:
                     adj_cells = self.get_adjacent_migratable_cells(row, col)
-                    # Propensity calculation
+                    # Propensity calculation for each adjacent cell
                     propen_list_h = []
                     for cel in adj_cells:
                         propen_list_h.append(cel.pi_ij_herb)
@@ -237,41 +247,47 @@ class Cycle:
                     for cel in adj_cells:
                         propen_list_c.append(cel.pi_ij_carn)
 
-                    #propability
+                    # propability calculation for each adjacent cell
                     proba_list_h = np.array(propen_list_h) / np.sum(propen_list_h)
                     proba_list_c = np.array(propen_list_c) / np.sum(propen_list_c)
 
-#                    print(proba_list_h)
-#                    print(propen_list_h)
-                    cum_prop = 0
-                    val = np.random.random()
-                    for i, prob in enumerate(proba_list_h):
-                        cum_prop += prob
-                        if val <= cum_prop:
-                            print(adj_cells[i], cell)
-                            break
+                    # Animal migrates only if it passes probability
 
-#                            print('...')
+                    for animal in cell.animal_object_list:
+                        move_prob = animal.p['mu']*animal.fitness
+                        rand_num = np.random.random()
 
+                        if (rand_num <= move_prob) & (animal.has_migrated == False):
+                            if type(animal).__name__ == "Herbivore":
+                                cum_prop = 0
+                                val = np.random.random()
+                                for i, prob in enumerate(proba_list_h):
+                                    cum_prop += prob
+                                    if val <= cum_prop:
+                                        new_cell = adj_cells[i]
+                                        new_cell.animal_object_list.append(animal)
+                                        break
 
-                    #remove from old cell
-                    #animal.has_moved = True
+                            if type(animal).__name__ == "Carnivore":
+                                cum_prop = 0
+                                val = np.random.random()
+                                for i, prob in enumerate(proba_list_c):
+                                    cum_prop += prob
+                                    if val <= cum_prop:
+                                        new_cell = adj_cells[i]
+                                        new_cell.animal_object_list.append(animal)
+                                        break
 
+                            animal.has_moved = True
+                            animals_moved_away.append(animal)
 
+                cell.animal_object_list = [animal for animal in cell.animal_object_list if
+                                           animal not in animals_moved_away]
 
+                print(cell.animal_object_list)
+                print(animals_moved_away)
+                print('....')
 
-
-                    
-
-
-
-
-
-
-
-        # animal_sorted = sorted(,
-        #                      key=lambda animal: animal.fitness,
-        #                      reverse=True)
 
 
 
