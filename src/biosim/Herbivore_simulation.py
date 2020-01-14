@@ -57,6 +57,10 @@ class HSimulation:
         c1 = Cycle(self.object_matrix)
         c1.animals_reproduce()
 
+    def call_animals_migrate(self):
+        c1 = Cycle(self.object_matrix)
+        c1.animals_migrate()
+
 
 if __name__ == "__main__":
     map = ("""\
@@ -73,12 +77,14 @@ if __name__ == "__main__":
 
     s = HSimulation(map, ini_herbs)
 
+    s.call_animals_migrate()
+
     # for row, row_of_obj in enumerate(s.object_matrix):
     #     for col, cell in enumerate(row_of_obj):
     #         if type(cell).__name__ in  ["Savannah","Jungle"]:
     #             print ( row,col, type(cell).__name__, "Food is: ", cell.f_ij)
 
-    s.call_food_grows()
+    # s.call_food_grows()
 
     # for row, row_of_obj in enumerate(s.object_matrix):
     #     for col, cell in enumerate(row_of_obj):
@@ -93,14 +99,16 @@ if __name__ == "__main__":
 
     # s.call_animal_eats()
 
-    for row, row_of_obj in enumerate(s.object_matrix):
-       for col, cell in enumerate(row_of_obj):
-           if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-               print(cell.animal_object_list)
+    # for row, row_of_obj in enumerate(s.object_matrix):
+    #    for col, cell in enumerate(row_of_obj):
+    #        if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+    #            print(cell.animal_object_list)
 
-    s.call_animals_reproduce()
+    # s.call_animals_reproduce()
 
-    for row, row_of_obj in enumerate(s.object_matrix):
-        for col, cell in enumerate(row_of_obj):
-            if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-                print(cell.animal_object_list)
+    # for row, row_of_obj in enumerate(s.object_matrix):
+    #     for col, cell in enumerate(row_of_obj):
+    #         if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+    #             print(cell.animal_object_list)
+
+

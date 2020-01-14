@@ -5,14 +5,19 @@ __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
 from biosim.Animal import Herbivore, Carnivore
-
-
-# import numpy as np
+import numpy as np
+import math
 
 class Cell:
     """Super class for the type of Terrain"""
 
-    def __init__(self, row, column):
+    def __init__(self,
+            row,
+            column,
+            # num_carn=0,
+            # num_herb=0,
+            f_ij=0,
+            alpha=0.3,):
         """
         :param row: row index
         :param column: column index
@@ -21,33 +26,37 @@ class Cell:
         self.row = row
         self.column = column
         self.animal_object_list = []
+        self.f_ij = f_ij
+        self.alpha = alpha
+
+
 # new parameters for each cell
-#        self.herb_list = [[a for a in cell.animal_object_list
-#                        if type(a).__name__ == "Herbivore"]]
-#        self.carn_list = [a for a in cell.animal_object_list
-#                        if type(a).__name__ == "Carnivore"]
+        self.herb_list = [a for a in self.animal_object_list
+                       if type(a).__name__ == "Herbivore"]
+        self.carn_list = [a for a in self.animal_object_list
+                       if type(a).__name__ == "Carnivore"]
 
-#        self.n_herbs = len(self.herb_list)
-#        self.n_carns = len(self.carn_list)
-#
-#        self.tot_herb_weigth =  # total weigth of herbevoirs in cell
-#
-#        self.rel_ab_carn = self_tot_herb_weigth / (self.n_carns + 1) * \
-#                           Carnevoirs.p['F']
-#        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
-#
-    #    @property
-    #    def pi_ij_carn(self):
-    #       return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+        self.n_herbs = len(self.herb_list)
+        self.n_carns = len(self.carn_list)
 
-    #    @property
-    #    def pi_ij_herb(self):
-    #       return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
+        self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
+
+        self.rel_ab_carn = self.tot_herb_weight / (self.n_carns + 1) * \
+                           Carnivore.p['F']
+        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
+
+    @property
+    def pi_ij_carn(self):
+       return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+
+    @property
+    def pi_ij_herb(self):
+       return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
 
 
     def set_population(self, input_dict):
         """
-        Sets the animals species, age and weight
+        Sets the animals species, age and weightf
         :param input_dict: with species,age, weight
         """
         (x, y) = input_dict['loc']
@@ -158,6 +167,7 @@ class Desert(Cell):
 class Ocean(Cell):
     """Ocean landscape """
     is_migratable = False
+    f_ij = 0
 
     def __init__(self, row, column):
         super().__init__(row, column)
@@ -166,6 +176,7 @@ class Ocean(Cell):
 class Mountain(Cell):
     """Mountianlandscape"""
     is_migratable = False
+    f_ij = 0
 
     def __init__(self, row, column):
         super().__init__(row, column)

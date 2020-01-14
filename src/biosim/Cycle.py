@@ -3,7 +3,7 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-# from biosim.Geography import Geo
+from biosim.Geography import Geo
 # from biosim.Mapping import Jungle, Savannah
 import numpy as np
 
@@ -201,11 +201,54 @@ class Cycle:
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
 
+    def get_adjacent_migratable_cells(self, row, column ):
+        list_of_adj = []
+        for i in (-1, 1):
+            try:
+                _t = self.object_matrix[row][column+i]
+            except:
+                pass
+            else:
+                if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    list_of_adj.append(_t)
+
+            try:
+                _t = self.object_matrix[row+i][column]
+            except:
+                pass
+            else:
+                if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    list_of_adj.append(_t)
+
+        return list_of_adj
 
     def animals_migrate(self):
-        for row_of_obj in self.object_matrix:
-            for cell in row_of_obj:
-                pass
+
+        for row, row_of_obj in enumerate(self.object_matrix):
+            for col, cell in enumerate(row_of_obj):
+                if type(cell).__name__  in ["Desert","Savannah", "Jungle"]:
+                    adj_cells = self.get_adjacent_migratable_cells(row, col)
+                    # Propensity calculation
+                    propen_list_h = []
+                    for cel in adj_cells:
+                        propen_list_h.append(cel.pi_ij_herb)
+
+                    propen_list_c = []
+                    for cel in adj_cells:
+                        propen_list_c.append(cel.pi_ij_carn)
+
+#                    print(len(propen_list_h), propen_list_c)
+
+                    proba_list_h = np.array(propen_list_h) / np.sum(propen_list_h)
+                    proba_list_c = np.array(propen_list_c) / np.sum(propen_list_c)
+
+                    
+
+
+
+
+
+
 
         # animal_sorted = sorted(,
         #                      key=lambda animal: animal.fitness,
@@ -214,4 +257,12 @@ class Cycle:
 
 
 if __name__ == "__main__":
-    pass
+    map = ("""\
+        OOOOO
+        OJSDO
+        OJSJO
+        OJSDO
+        OOOOO""")
+    c = Cycle(map)
+
+    c.animals_migrate()
