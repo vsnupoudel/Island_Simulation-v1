@@ -32,6 +32,9 @@ class Geo:
         """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
         self.lines = self.geo_graph.splitlines()  # string into lines
+        self.geo_shape = None
+        self.object_matrix = []
+
 
         # check if input characters are valid letters
         for line in self.lines:
@@ -69,7 +72,7 @@ class Geo:
 
         dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
                      'D': Desert}
-        self.object_matrix = []
+
         for row in range(self.geo_shape[0]):
             self.object_matrix.append([dict_maps[self.geo_list[row][column]](
                 row, column) for column in range(self.geo_shape[1])])
