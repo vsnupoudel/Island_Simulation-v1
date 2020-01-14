@@ -43,7 +43,7 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
-                    herb_list = [animal for animal in cell.animal_object_list
+                    herb_list = [animal for animal in cell.animal_object_list                #def her_eat
                                  if type(animal).__name__ == "Herbivore"]
 
                     herb_sorted = sorted(herb_list,
@@ -67,7 +67,7 @@ class Cycle:
                     DeltaPhiMax fitness
                     4. They certainly kill otherwise
                     """
-                    carn_list = [animal for animal in cell.animal_object_list
+                    carn_list = [animal for animal in cell.animal_object_list                  #def carn_eat
                                  if type(animal).__name__ == "Carnivore"]
 #                    print(carn_list)
 
@@ -136,7 +136,7 @@ class Cycle:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     # new_borns = 0
                     # Add new_borns for herbivores first
-                    herb_list = [animal for animal in cell.animal_object_list
+                    herb_list = [animal for animal in cell.animal_object_list                    #def herbs_eat
                                  if type(animal).__name__ == "Herbivore"]
 
                     new_herbs = []
@@ -170,7 +170,7 @@ class Cycle:
                         cell.animal_object_list.append(herb)
 
 
-                    #for carnevoirs
+                    #for carnevoirs                                                         #def carn_reproduce
 
                     carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
@@ -258,7 +258,7 @@ class Cycle:
                         rand_num = np.random.random()
 
                         if (rand_num <= move_prob) & (animal.has_migrated == False):
-                            if type(animal).__name__ == "Herbivore":
+                            if type(animal).__name__ == "Herbivore":                     #def Herb_migrate
                                 cum_prop = 0
                                 val = np.random.random()
                                 for i, prob in enumerate(proba_list_h):
@@ -268,7 +268,7 @@ class Cycle:
                                         new_cell.animal_object_list.append(animal)
                                         break
 
-                            if type(animal).__name__ == "Carnivore":
+                            if type(animal).__name__ == "Carnivore":                         #def Carn_migrate
                                 cum_prop = 0
                                 val = np.random.random()
                                 for i, prob in enumerate(proba_list_c):
