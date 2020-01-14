@@ -36,8 +36,14 @@ class Cell:
 #                           Carnevoirs.p['F']
 #        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
 #
-#        pi_ij_carn = math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
-#        pi_ij_herb = math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
+    #    @property
+    #    def pi_ij_carn(self):
+    #       return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+
+    #    @property
+    #    def pi_ij_herb(self):
+    #       return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
+
 
     def set_population(self, input_dict):
         """

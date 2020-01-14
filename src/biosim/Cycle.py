@@ -143,6 +143,7 @@ class Cycle:
 
                     # calculate probabilty and new born
                     for animal in herb_list:
+                        #if animal.has_procreated == False:
                         b_prob = min(1, animal.p['gamma'] *
                                      animal.fitness * (len(herb_list) - 1))
                         # print(b_prob)
@@ -178,6 +179,7 @@ class Cycle:
 
                     # calculate probabilty and new born
                     for animal in carn_list:
+                        # if animal.has_procreated == False:
                         b_prob = min(1, animal.p['gamma'] *
                                      animal.fitness * (len(carn_list) - 1))
 
@@ -198,6 +200,7 @@ class Cycle:
 
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
+
 
     def animals_migrate(self):
         for row_of_obj in self.object_matrix:

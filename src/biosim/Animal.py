@@ -61,6 +61,7 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class"""
     has_procreated = False
+    has_migrated = False
     p = {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
@@ -95,6 +96,7 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     """Carnevoir characteristics"""
     has_procreated = False
+    has_migrated = False
 
     p = {
         "w_birth": 6.0,
