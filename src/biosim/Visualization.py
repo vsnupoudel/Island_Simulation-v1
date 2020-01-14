@@ -5,6 +5,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from biosim.Herbivore_simulation import HSimulation
 from biosim.Geography import Geo
+
 import matplotlib.pyplot as plt
 
 map = ("""\
