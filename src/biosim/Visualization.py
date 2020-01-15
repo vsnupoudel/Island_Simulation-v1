@@ -33,7 +33,7 @@ total_cells = row_num * column_num
 
 print(row_num, column_num, total_cells)
 
-# fig, axs = plt.subplots(2, 2, figsize=(5, 5))
+
 # plt.subplots_adjust(wspace=0, hspace=0)
 
 #Herbivore heatmap
@@ -51,7 +51,11 @@ for row, list_of_obj in enumerate(s.object_matrix):
 print(h_matrix )
 print(c_matrix)
 
+fig = plt.figure()
+ax = fig.add_subplot(223)
 ax = sns.heatmap(h_matrix, linewidth=0.5, cmap = "Greens")
+ax = fig.add_subplot(224)
+ax = sns.heatmap(h_matrix, linewidth=0.5, cmap = "OrRd")
 plt.show()
 
 # plt.show()
