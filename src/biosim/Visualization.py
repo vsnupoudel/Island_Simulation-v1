@@ -22,6 +22,88 @@ class Visualization:
         """
         self.object_matrix = object_matrix
 
+
+        # the following will be initialized by _setup_graphics
+        self._fig = None
+        self._map_ax = None
+        self._img_axis = None
+        self._mean_ax = None
+        self._mean_line = None
+        self._herb_ax = None
+        self._carn_ax = None
+
+    def _set_graphics(self):
+        """
+        sets the graphics
+        :return:
+        """
+
+        # create new figure window
+        if self._fig is None:
+            self._fig = plt.figure()
+
+        if self._map_ax is None:
+            self._map_ax = self._fig.add_subplot(2, 2, 1)
+            self._img_axis = None
+
+        if self._herb_ax is None:
+            self._herb_ax = self._fig.add_subplot(2, 2, 2)
+            self._img_axis = None                                #herb_axes?
+
+        if self._carn_ax is None:
+            self._carn_ax = self._fig.add_subplot(2, 2, 3)
+            self._img_axis = None
+
+        if self._mean_ax is None:                                #linegraph
+            self._mean_ax = self._fig.add_subplot(2, 2, 4)
+            self._mean_ax.set_ylim(0, 0.02)
+
+        # needs updating on subsequent calls to simulate()
+        self._mean_ax.set_xlim(0, self._final_step + 1)
+
+        #add more code for line plot
+
+
+    def update_map(self):
+        """
+        Updates map
+        :return:
+        """
+        pass
+
+    def update_herb_ax(self):
+        """
+        Updates herb_ax
+        :return:
+        """
+        pass
+
+    def update_carn_ax(self):
+        """
+    Updates carn_ax
+        :return:
+        """
+        pass
+
+    def update_graphics(self):
+        """
+        Updates graphics with current data
+        :return:
+        """
+        self.update_map(self._map_ax.get_status())
+        self.update_herb_ax(self._herb_ax.get_status())
+        self.update_carn_ax(self._carn_ax.get_status())
+
+        plt.pause(1e-6)
+
+
+    def save_graphics(self):
+        """
+        Saves graphics
+        :return:
+        """
+
+
     def plot_all(self):
         row_num = np.shape(self.object_matrix)[0]  # g.geo_shape[0]
         column_num = np.shape(self.object_matrix)[1]
