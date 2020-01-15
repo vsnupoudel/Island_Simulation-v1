@@ -5,7 +5,7 @@ __email__ = "huse.anders@gmail.com"
 
 from biosim.Cycle import Cycle
 from biosim.Geography import Geo
-
+from biosim.Visualization import Visualization
 
 class BioSim:
     def __init__(
@@ -91,6 +91,10 @@ class BioSim:
         c.animals_eat()
         c.animals_reproduce()
         c.animals_migrate()
+
+        v = Visualization(self.object_matrix)
+
+        v.plot_all()
 
 
     def add_population(self, population):
