@@ -95,7 +95,9 @@ class Cycle:
 
                     # calculate probabilty and new born
                     for animal in herb_list:
-                        new_herbs.append( animal.herb_reproduce(len(herb_list)))
+                        new = animal.herb_reproduce(len(herb_list))
+                        if new:
+                            new_herbs.append(new)
                         # if animal.has_procreated == False:
 
                     for herb in new_herbs:
@@ -110,7 +112,9 @@ class Cycle:
 
                     # calculate probabilty and new born
                     for animal in carn_list:
-                        new_carns.append(animal.carn_reproduce(len(carn_list)))
+                        new = animal.carn_reproduce(len(carn_list))
+                        if new:
+                            new_carns.append(new)
                         # if animal.has_procreated == False:
 
                     for carn in new_carns:
@@ -155,12 +159,12 @@ class Cycle:
                     adj_cells = self.get_adjacent_migratable_cells(row, col)
                     # Propensity calculation for each adjacent cell
                     propen_list_h = []
-                    for cel in adj_cells:
-                        propen_list_h.append(cel.pi_ij_herb)
+                    for _c in adj_cells:
+                        propen_list_h.append(_c.pi_ij_herb)
 
                     propen_list_c = []
-                    for cel in adj_cells:
-                        propen_list_c.append(cel.pi_ij_carn)
+                    for _c in adj_cells:
+                        propen_list_c.append(_c.pi_ij_carn)
 
                     # propability calculation for each adjacent cell
                     proba_list_h = np.array(propen_list_h) / np.sum(propen_list_h)
@@ -169,34 +173,21 @@ class Cycle:
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
-                        # print(animal, animal.p['mu'] , animal.fitness)
+                        print(cell.row, cell.column, animal, animal.p['mu'] ,
+                              animal.fitness)
                         move_prob = animal.p['mu'] * animal.fitness
                         rand_num = np.random.random()
 
                         if (rand_num <= move_prob) & (animal.has_migrated == False):
                             if type(animal).__name__ == "Herbivore":
-                                animal.herb_migrates(cell, adj_cells, proba_list_h)
-                                # cum_prop = 0
-                                # val = np.random.random()
-                                # for i, prob in enumerate(proba_list_h):
-                                #     cum_prop += prob
-                                #     if val <= cum_prop:
-                                #         new_cell = adj_cells[i]
-                                #         new_cell.animal_object_list.append(animal)
-                                #         break
+                                animal.herb_migrates(animal, cell, adj_cells,
+                                                     proba_list_h)
 
                             if type(animal).__name__ == "Carnivore":
-                                animal.carn_migrates(cell, adj_cells, proba_list_c)
-                                # cum_prop = 0
-                                # val = np.random.random()
-                                # for i, prob in enumerate(proba_list_c):
-                                #     cum_prop += prob
-                                #     if val <= cum_prop:
-                                #         new_cell = adj_cells[i]
-                                #         new_cell.animal_object_list.append(animal)
-                                #         break
+                                animal.carn_migrates(animal, cell, adj_cells,
+                                                     proba_list_c)
 
-                            animal.has_moved = True
+                            animal.has_migrated = True
                             animals_moved_away.append(animal)
 
                 cell.animal_object_list = [animal for animal in cell.animal_object_list if

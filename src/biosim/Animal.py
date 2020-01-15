@@ -111,7 +111,7 @@ class Herbivore(Animal):
         :return:
         """
         b_prob = min(1, self.p['gamma'] *
-                     self.fitness * ( length - 1))
+                     self.fitness * ( length - 1)) #should be property
 
         # 1. check if random_number <= b_prob
         # 2. check if the weight of parent is greater than...
@@ -121,14 +121,14 @@ class Herbivore(Animal):
                     'sigma_birth'])):
 
             baby_weight = np.random.normal(
-                self.p['w_birth'], self.p['sigma_birth'])
+                self.p['w_birth'], self.p['sigma_birth']) #should be property
 
             # 3. check if animal has sufficient weight
             if self.weight >= baby_weight * self.p['xi']:
                 self.weight -= baby_weight * self.p['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
-    def herb_migrates(self, cell, adj_cells, proba_list_h):
+    def herb_migrates(self,animal, cell, adj_cells, proba_list_h):
         """
         Description
         :param cell:
@@ -142,7 +142,7 @@ class Herbivore(Animal):
             cum_prop += prob
             if val <= cum_prop:
                 new_cell = adj_cells[i]
-                new_cell.animal_object_list.append(self)
+                new_cell.animal_object_list.append(animal)
                 break
 
 
@@ -242,7 +242,7 @@ class Carnivore(Animal):
                 self.weight -= baby_weight * self.p['xi']
                 return Carnivore(age=0, weight=baby_weight)
 
-    def carn_migrates(self, cell, adj_cells, proba_list_c):
+    def carn_migrates(self, animal, cell, adj_cells, proba_list_c):
         """
         Description
         :param cell:
@@ -256,7 +256,7 @@ class Carnivore(Animal):
             cum_prop += prob
             if val <= cum_prop:
                 new_cell = adj_cells[i]
-                new_cell.animal_object_list.append(self)
+                new_cell.animal_object_list.append(animal)
                 break
 
 

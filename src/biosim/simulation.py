@@ -94,7 +94,7 @@ class BioSim:
 
         step = 0
 
-        while step < 3:
+        while step < 2:
 
             v.update_graphics(self.herbivore_distribution,
                               self.carnivore_distribution,
@@ -106,19 +106,6 @@ class BioSim:
             c.animals_migrate()
 
             step += 1
-
-
-
-#        c = Cycle(self.object_matrix)
-##        c.food_grows()
- #       c.animals_eat()
- #       c.animals_reproduce()
- #       c.animals_migrate()
-
- #       v.update_graphics(self.herbivore_distribution,
- #                         self.carnivore_distribution,
- #                         s.num_animals['Herbivore'])
-
 
 
 #        v.update_map(s.island_matrix)
@@ -236,21 +223,11 @@ if __name__ == "__main__":
         OJSMO
         OOOOO""")
     ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
-                                          'weight': 100} for _ in range(10)] + [
+                                          'weight': 100} for _ in range(4)] + [
                                          {'species': 'Carnivore', 'age': 10,
-                                          'weight': 500} for _ in range(4)
+                                          'weight': 500} for _ in range(2)
                                          ]}]
 
     s = BioSim(map, ini_herbs, seed = 1)
 
-    # print(s.object_matrix[1][1].animal_object_list[1].weight)
-
     s.simulate()
-
-    # print(s.object_matrix[1][1].animal_object_list[1].weight)
-    # print("properties:")
-    # print(s.carnivore_distribution)
-    # print(s.herbivore_distribution)
-
-
-
