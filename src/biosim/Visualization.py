@@ -31,8 +31,8 @@ class Visualization:
         self._mean_line = None
         self._herb_ax = None
         self._carn_ax = None
-        self.herb_axis = None
-        self.carn_axis = None
+        self._herb_axis = None
+        self._carn_axis = None
 
     def _set_graphics(self):
         """
@@ -50,21 +50,21 @@ class Visualization:
 
         if self._herb_ax is None:
             self._herb_ax = self._fig.add_subplot(2, 2, 2)
-            self.herb_axis = None                                #herb_axes?
+            self._herb_axis = None                                #herb_axes?
 
         if self._carn_ax is None:
             self._carn_ax = self._fig.add_subplot(2, 2, 3)
-            self.carn_axis = None
+            self._carn_axis = None
 
-#        if self._mean_ax is None:                                #linegraph
-#            self._mean_ax = self._fig.add_subplot(2, 2, 4)
-#            self._mean_ax.set_ylim(0, 100)
+        if self._mean_ax is None:                                #linegraph
+           self._mean_ax = self._fig.add_subplot(2, 2, 4)
+        #            self._mean_ax.set_ylim(0, 100)
 #
 #        # needs updating on subsequent calls to simulate()
 #        self._mean_ax.set_xlim(0, self._final_step + 1)
 
         #add more code for line plot
-        plt.show()
+#        plt.show()
 
 
     def update_map(self, data):
@@ -75,11 +75,14 @@ class Visualization:
         if self._img_axis is not None:
             self._img_axis.set_data(data)
         else:
-            self._img_axis = self._map_ax.imshow(data,
-                                                 interpolation='nearest',
-                                                 vmin=0, vmax=1)
-            plt.colorbar(self._img_axis, ax=self._map_ax,
-                         orientation='horizontal')
+            # self._img_axis = self._map_ax.imshow(data,
+            #                                      interpolation='nearest',
+            #                                      vmin=0, vmax=1)
+            self._img_axis = self._map_ax.imshow(data, cmap='terrain'
+                                                 , vmax=20, vmin=1)
+
+            # plt.colorbar(self._img_axis, ax=self._map_ax,
+            #              orientation='horizontal')
 
 
     def update_herb_ax(self, herb_data):
@@ -91,17 +94,22 @@ class Visualization:
             self._herb_axis.set_data(herb_data)
 
         else:
-            #herb plot
+            self._herb_axis = sns.heatmap(herb_data, linewidth=0.5,
+                                         cmap="Greens", ax=self._herb_ax)
+        plt.show()
 
     def update_carn_ax(self, carn_data):
         """
     Updates carn_ax
         :return:
         """
-        if self._carb_axis is not None:
+        if self._carn_axis is not None:
             self._carn_axis.set_data(carn_data)
 
         else:
+            self._carn_axis = sns.heatmap(carn_data, linewidth=0.5,
+                                         cmap="OrRd", ax=self._carn_ax)
+
 
     # herb plot
 

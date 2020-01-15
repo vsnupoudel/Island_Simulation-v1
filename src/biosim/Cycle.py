@@ -169,7 +169,7 @@ class Cycle:
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
-                        print(animal, animal.p['mu'] , animal.fitness)
+                        # print(animal, animal.p['mu'] , animal.fitness)
                         move_prob = animal.p['mu'] * animal.fitness
                         rand_num = np.random.random()
 

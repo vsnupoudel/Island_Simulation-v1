@@ -6,6 +6,7 @@ __email__ = "huse.anders@gmail.com"
 from biosim.Cycle import Cycle
 from biosim.Geography import Geo
 from biosim.Visualization import Visualization
+import numpy as np
 
 class BioSim:
     def __init__(
@@ -95,6 +96,11 @@ class BioSim:
         v = Visualization(self.object_matrix)
 
         v._set_graphics()
+        #
+
+        v.update_map(s.island_matrix)
+        v.update_carn_ax(s.carnivore_distribution)
+        v.update_herb_ax(s.herbivore_distribution)
 
 #        for each year to simulate
   #          cycle
@@ -113,17 +119,80 @@ class BioSim:
     def year(self):
         """Last year simulated."""
 
-    @property
-    def num_animals(self):
-        """Total number of animals on island."""
 
     @property
-    def num_animals_per_species(self):
-        """Number of animals per species in island, as dictionary."""
+    def num_animals(self):
+        """Number of herbivores in island"""
+        h_count = 0
+        c_count = 0
+        animal_count_dict = {"Herbivore": 0, "Carnivore": 0}
+
+        for row, list_of_obj in enumerate(self.object_matrix):
+            for col, cell in enumerate(list_of_obj):
+                for animal in cell.animal_object_list:
+                    if type(animal).__name__ == "Herbivore":
+                        animal_count_dict['Herbivore'] += 1
+                    else:
+                        animal_count_dict['Carnivore'] += 1
+
+        return animal_count_dict
+
+    @property
+    def herbivore_distribution(self):
+        """Pandas DataFrame with herbivore count for each cell on
+        island."""
+        row_num = np.shape(self.object_matrix)[0]
+        column_num = np.shape(self.object_matrix)[1]
+
+        h_matrix = np.zeros((row_num, column_num))
+
+        for row, list_of_obj in enumerate(self.object_matrix):
+            for col, cell in enumerate(list_of_obj):
+                for animal in cell.animal_object_list:
+                    if type(animal).__name__ == "Herbivore":
+                        h_matrix[row][col] += 1
+
+        return h_matrix
+
+    @property
+    def carnivore_distribution(self):
+        """Pandas DataFrame with carnivore count for each
+        cell on
+        island."""
+        row_num = np.shape(self.object_matrix)[0]
+        column_num = np.shape(self.object_matrix)[1]
+
+        c_matrix = np.zeros((row_num, column_num))
+
+        for row, list_of_obj in enumerate(self.object_matrix):
+            for col, cell in enumerate(list_of_obj):
+                for animal in cell.animal_object_list:
+                    if type(animal).__name__ == "Carnivore":
+                        c_matrix[row][col] += 1
+
+        return c_matrix
 
     @property
     def animal_distribution(self):
-        """Pandas DataFrame with animal count per species for each cell on island."""
+        """Pandas DataFrame with animal count for each
+                cell on
+                island."""
+        pass
+
+    @property
+    def island_matrix(self):
+        color_dict = {"Ocean": 2, "Desert": 11, "Savannah": 8,
+                      "Jungle": 6, "Mountain": 16}
+        row_num = np.shape(self.object_matrix)[0]
+        column_num = np.shape(self.object_matrix)[1]
+
+        island_matrix = np.zeros((row_num, column_num))
+
+        for row, list_of_obj in enumerate(s.object_matrix):
+            for col, cell in enumerate(list_of_obj):
+                island_matrix[row][col] = color_dict[type(cell).__name__]
+
+        return island_matrix
 
     def make_movie(self):
         """Create MPEG4 movie from visualization images saved."""
@@ -144,9 +213,14 @@ if __name__ == "__main__":
 
     s = BioSim(map, ini_herbs, seed = 1)
 
-    print(s.object_matrix[1][1].animal_object_list[1].weight)
+    # print(s.object_matrix[1][1].animal_object_list[1].weight)
 
     s.simulate()
 
-    print(s.object_matrix[1][1].animal_object_list[1].weight)
+    # print(s.object_matrix[1][1].animal_object_list[1].weight)
+    # print("properties:")
+    # print(s.carnivore_distribution)
+    # print(s.herbivore_distribution)
+
+
 
