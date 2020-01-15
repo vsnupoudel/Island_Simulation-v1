@@ -8,21 +8,18 @@ from biosim.Animal import Herbivore, Carnivore
 import numpy as np
 import math
 
-class Cell:
-    """Super class for the type of Terrain"""
 
-    def __init__(self,
-            row,
-            column,
-            # num_carn=0,
-            # num_herb=0,
-            f_ij=0,
-            alpha=0.3,):
+class Cell:
+    """
+    Super class for the type of Terrain: Jungle,Savannah, Desert,
+    Ocean or Mountain.
+    """
+
+    def __init__(self, row, column, f_ij=0,alpha=0.3):
         """
-        :param row: row index
-        :param column: column index
+        :param row: row index of the position of the cell
+        :param column: column index of the position of the cell
         """
-        # parameters = {'f_max': None, 'alpha': None}
         self.row = row
         self.column = column
         self.animal_object_list = []

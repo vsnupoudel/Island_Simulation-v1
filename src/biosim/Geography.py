@@ -68,14 +68,14 @@ class Geo:
             if letter != 'O':
                 raise ValueError("Ocean not on the edges")
 
-        # Create Objects for each cell in the map
+        # Change the letters in Map to corresponding Objects
 
         dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
                      'D': Desert}
-
-        for row in range(self.geo_shape[0]):
-            self.object_matrix.append([dict_maps[self.geo_list[row][column]](
-                row, column) for column in range(self.geo_shape[1])])
+        for row_num in range(self.geo_shape[0]):
+            self.object_matrix.append(
+                [dict_maps[self.geo_list[row_num][column]](row_num, column)
+                 for column in range(self.geo_shape[1])])
 
     def get_plot(self):
         pass

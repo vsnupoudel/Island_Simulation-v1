@@ -139,7 +139,7 @@ class Herbivore(Animal):
         :param adj_cells: a list consisting adjacent cell objects
         :param proba_list_h: a list with probabilities corresponding to the
         list of adjacent cells
-        :return:
+        :return: None
         """
         cum_prop = 0
         val = np.random.random()
@@ -177,24 +177,25 @@ class Carnivore(Animal):
 
     def carn_eat(self, cell):
         """
-        Description
+        When Carnivores eat: This part should:
+        1. delete herbivores from cell after they are eaten.
+        2. Update the weight of carnivore (yet to implement ??)
+
+        Conditions for a carnivore eating are:
+        1. They eat until they get an amount F (yet to implement ??)
+        2. If fitness is less than a herbivore, they can't kill that herbivore
+        3. They kill with certain probability, if they have less than
+        DeltaPhiMax fitness
+        4. They certainly kill that herbivore otherwise
         :param cell:The cell object where the carnivore resides
         :return:None
-        Carnivores eat: This part should:
-        1. delete herbivores from cell after they are eaten
-        Conditions for carnivores eating are:
-        1. They eat until they get an amount F
-        2. If fitness is less than Herb, they can't kill that one
-        3. Kill with certain probability, if they have less than
-        DeltaPhiMax fitness
-        4. They certainly kill otherwise
         """
 
-        herb_list = [animal for animal in
-                     cell.animal_object_list
+        herb_list = [animal for animal in cell.animal_object_list
                      if type(animal).__name__ == "Herbivore"]
         herb_sorted_rev = sorted(herb_list,
-                                 key=lambda animal:animal.fitness,reverse=True)
+                                 key=lambda animal:animal.fitness,
+                                 reverse=True)
 
         dead_list = []
 
@@ -223,9 +224,9 @@ class Carnivore(Animal):
         :return: A baby carnivores object (with age=0 and weight equal to
         baby weight)
         """
-        
+
         b_prob = min(1, self.p['gamma'] *
-                     self.fitness * ( length - 1))
+                     self.fitness * (length - 1))
 
         # 1. Probability condition is satisfied if random_number <= b_prob
         # 2. check if the weight of parent is greater than threshold
@@ -243,20 +244,20 @@ class Carnivore(Animal):
 
     def carn_migrates(self, animal, cell, adj_cells, proba_list_c):
         """
-        Description
-        :param cell:
-        :param adj_cells:
-        :param proba_list_c:
-        :return:
+        Function decides which cell does the chosen animal migrates to
+        :param animal: the animal object that is chosen to move
+        :param cell: the current cell object
+        :param adj_cells: a list consisting adjacent cell objects
+        :param proba_list_h: a list with probabilities corresponding to the
+        list of adjacent cells
+        :return: None
         """
         cum_prop = 0
         val = np.random.random()
-        print('Carn migrates inside Animal Class')
+
         for i, prob in enumerate(proba_list_c):
-            print('Inside for loop')
             cum_prop += prob
             if val <= cum_prop:
-                print(val, cum_prop, animal)
                 new_cell = adj_cells[i]
                 new_cell.animal_object_list.append(animal)
                 break

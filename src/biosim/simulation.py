@@ -44,11 +44,11 @@ class BioSim:
         img_base should contain a path and beginning of a file name.
         """
         self.seed = 1
-        self.island_map = Geo(island_map)
         self.ini_pop = ini_pop
-        # self.seed = 1
+        self.island_map = Geo(island_map)
         self.object_matrix = self.island_map.object_matrix
 
+        # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
