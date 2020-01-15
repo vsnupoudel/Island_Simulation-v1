@@ -101,11 +101,18 @@ class BioSim:
         v.update_map(s.island_matrix)
         v.update_carn_ax(s.carnivore_distribution)
         v.update_herb_ax(s.herbivore_distribution)
+        v.update_mean_ax(s.num_animals['Herbivore'])
+        v.update_mean_ax(s.num_animals['Herbivore'])
+        v.update_mean_ax(s.num_animals['Herbivore'])
+        v.update_graphics()
+
+
+
 
 #        for each year to simulate
   #          cycle
     #        v.update_graphics()
-
+        v.show()
 
     def add_population(self, population):
         """

@@ -15,12 +15,18 @@ class Visualization:
     Plotting island map , heatmaps and line graph
     """
 
+    def show(self):
+        plt.show()
     def __init__(self, object_matrix):
         """
         :param object_matrix: 2D array of cell objects containing herbivores
         and carnivores
         """
-        self.object_matrix = object_matrix
+        self.object_matrix = object_matrix           #system
+
+        self._step = 0
+        self._final_step = 20
+        self._img_ctr = 0
 
 
         # the following will be initialized by _setup_graphics
@@ -33,6 +39,31 @@ class Visualization:
         self._carn_ax = None
         self._herb_axis = None
         self._carn_axis = None
+
+    def simulate(self, num_steps, vis_steps=1, img_steps=None):
+        """
+        Simulates prosess
+        :param num_steps:
+        :param vis_steps:
+        :param img_steps:
+        :return:
+        """
+
+        if img_steps is None:
+            img_steps = vis_steps
+
+        self._final_step = self._step + num_steps
+        self._setup_graphics()
+        while self._step < self._final_step:
+
+            if self._step % vis_steps == 0:
+                self._update_graphics()
+
+            if self._step % img_steps == 0:
+                self._save_graphics()
+
+            self._system.update()
+            self._step += 1
 
     def _set_graphics(self):
         """
@@ -58,13 +89,22 @@ class Visualization:
 
         if self._mean_ax is None:                                #linegraph
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
-        #            self._mean_ax.set_ylim(0, 100)
-#
-#        # needs updating on subsequent calls to simulate()
-#        self._mean_ax.set_xlim(0, self._final_step + 1)
+           self._mean_ax.set_ylim(0, 50)
 
-        #add more code for line plot
-#        plt.show()
+        # needs updating on subsequent calls to simulate()
+        self._mean_ax.set_xlim(0, self._final_step + 1)
+
+        if self._mean_line is None:
+            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),   #x, y
+                                           np.full(self._final_step, np.nan))
+            self._mean_line = mean_plot[0]
+        else:
+            xdata, ydata = self._mean_line.get_data()
+            xnew = np.arange(xdata[-1] + 1, self._final_step)
+            if len(xnew) > 0:
+                ynew = np.full(xnew.shape, np.nan)
+                self._mean_line.set_data(np.hstack((xdata, xnew)),
+                                         np.hstack((ydata, ynew)))
 
 
     def update_map(self, data):
@@ -81,8 +121,8 @@ class Visualization:
             self._img_axis = self._map_ax.imshow(data, cmap='terrain'
                                                  , vmax=20, vmin=1)
 
-            # plt.colorbar(self._img_axis, ax=self._map_ax,
-            #              orientation='horizontal')
+            plt.colorbar(self._img_axis, ax=self._map_ax,
+                         orientation='horizontal')
 
 
     def update_herb_ax(self, herb_data):
@@ -96,7 +136,7 @@ class Visualization:
         else:
             self._herb_axis = sns.heatmap(herb_data, linewidth=0.5,
                                          cmap="Greens", ax=self._herb_ax)
-        plt.show()
+#        plt.show()
 
     def update_carn_ax(self, carn_data):
         """
@@ -111,7 +151,12 @@ class Visualization:
                                          cmap="OrRd", ax=self._carn_ax)
 
 
-    # herb plot
+    def update_mean_ax(self, mean):
+        ydata = self._mean_line.get_ydata()
+        ydata[self._step] = mean
+        self._mean_line.set_ydata(ydata)
+        self._step += 1
+        # plt.show()
 
     def update_graphics(self):
         """
@@ -121,6 +166,7 @@ class Visualization:
         self.update_map(self._map_ax.get_status())
         self.update_herb_ax(self._herb_ax.get_status())
         self.update_carn_ax(self._carn_ax.get_status())
+        self.update_mean_ax(mean)
 
         plt.pause(1e-6)
 
