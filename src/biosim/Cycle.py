@@ -3,19 +3,19 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.Geography import Geo
+# from biosim.Geography import Geo
 # from biosim.Mapping import Jungle, Savannah
 import numpy as np
 
 # from biosim.Herbivore_simulation import HSimulation
-from biosim.Animal import Herbivore, Carnivore
+# from biosim.Animal import Herbivore, Carnivore
 
 
 class Cycle:
     def __init__(self, object_matrix):
         """
         :param object_matrix: map with population, which is modified by each
-        of the functions in this class in one after another
+        of the functions in this class in the order of definition
         """
         self.object_matrix = object_matrix
 
@@ -43,36 +43,29 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
-                    herb_list = [animal for animal in cell.animal_object_list                #def her_eat
+                    herb_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Herbivore"]
 
                     herb_sorted = sorted(herb_list,
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
+
                     for herb in herb_sorted:
                         herb.herb_eat(cell)
 
-
-                    # Start for carnivores
-                    """ This part should:
-                    1. delete herbivores from cell after they are eaten
-                    Conditions for carnivores eating
-                    1. They eat until they get an amount F
-                    2. If fitness is less than Herb, they can't kill that one
-                    3. Kill with certain probability, if they have less than 
-                    DeltaPhiMax fitness
-                    4. They certainly kill otherwise
-                    """
-                    carn_list = [animal for animal in cell.animal_object_list                  #def carn_eat
+                    # Carnivores of the cell start eating
+                if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+                    carn_list = [animal for animal in cell.animal_object_list
                                  if type(animal).__name__ == "Carnivore"]
-#                    print(carn_list)
 
                     carn_sorted = sorted(carn_list,
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
-#                    print(carn_sorted)
 
                     for carn in carn_sorted:
+                        # additional logic to be added later
+                        # currently the Carnivore eats 1 herbivore only
+                        amount_eaten = 0
                         carn.carn_eat(cell)
 
 

@@ -147,7 +147,7 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    """Carnevoir characteristics"""
+    """Carnivore characteristics"""
     has_procreated = False
     has_migrated = False
 
@@ -182,35 +182,41 @@ class Carnivore(Animal):
     def carn_eat(self, cell):
         """
         Description
-        :param cell:
-        :return:
+        :param cell:The cell object where the carnivore resides
+        :return:None
+        Carnivores eat: This part should:
+        1. delete herbivores from cell after they are eaten
+        Conditions for carnivores eating are:
+        1. They eat until they get an amount F
+        2. If fitness is less than Herb, they can't kill that one
+        3. Kill with certain probability, if they have less than
+        DeltaPhiMax fitness
+        4. They certainly kill otherwise
         """
         herb_list = [animal for animal in
                      cell.animal_object_list
                      if type(animal).__name__ == "Herbivore"]
-        herb_sorted_rev = sorted(herb_list, key=lambda
-            animal: animal.fitness, reverse=True)
+        herb_sorted_rev = sorted(herb_list,
+                                 key=lambda animal:animal.fitness,reverse=True)
 
-        amount_eaten = 0
         dead_list = []
 
         for ind, herb in enumerate(herb_sorted_rev):
             if self.fitness > herb.fitness:
                 if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
-                    kill_prob = (self.fitness - herb.fitness) / self.p['DeltaPhiMax']
+                    kill_prob = (self.fitness - herb.fitness) / self.p[
+                        'DeltaPhiMax']
                     rand_prob = np.random.random()
 
                     if rand_prob < kill_prob:
-                        dead_list.append(ind)
-
+                        dead_list.append(herb)
                 else:
-                    dead_list.append(ind)
+                    dead_list.append(herb)
 
-        # Delete objects from list
+        # Delete herbivores from list in the cell
         cell.animal_object_list = [
-            animal for idx, animal in enumerate(cell.animal_object_list)
-            if idx not in dead_list
-        ]
+            animal for animal in cell.animal_object_list
+            if animal not in dead_list]
 
     def carn_reproduce(self, length):
         """
