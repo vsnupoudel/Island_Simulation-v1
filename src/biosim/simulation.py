@@ -96,7 +96,6 @@ class BioSim:
         v = Visualization(self.object_matrix)
 
         v._set_graphics()
-        #
 
         v.update_map(s.island_matrix)
         v.update_carn_ax(s.carnivore_distribution)
@@ -104,7 +103,9 @@ class BioSim:
         v.update_mean_ax(s.num_animals['Herbivore'])
         v.update_mean_ax(s.num_animals['Herbivore'])
         v.update_mean_ax(s.num_animals['Herbivore'])
-        v.update_graphics()
+#        v.update_graphics(self.herbivore_distribution,
+#                          self.carnivore_distribution,
+#                          s.num_animals['Herbivore'])
 
 
 

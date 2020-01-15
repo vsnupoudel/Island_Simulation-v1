@@ -49,21 +49,6 @@ class Visualization:
         :return:
         """
 
-        if img_steps is None:
-            img_steps = vis_steps
-
-        self._final_step = self._step + num_steps
-        self._setup_graphics()
-        while self._step < self._final_step:
-
-            if self._step % vis_steps == 0:
-                self._update_graphics()
-
-            if self._step % img_steps == 0:
-                self._save_graphics()
-
-            self._system.update()
-            self._step += 1
 
     def _set_graphics(self):
         """
@@ -158,15 +143,15 @@ class Visualization:
         self._step += 1
         # plt.show()
 
-    def update_graphics(self):
+    def update_graphics(self, herb_pos, carn_pos, num_herbs):
         """
         Updates graphics with current data
         :return:
         """
-        self.update_map(self._map_ax.get_status())
-        self.update_herb_ax(self._herb_ax.get_status())
-        self.update_carn_ax(self._carn_ax.get_status())
-        self.update_mean_ax(mean)
+        self.update_map(self.object_matrix)
+        self.update_herb_ax(herb_pos)
+        self.update_carn_ax(carn_pos)
+        self.update_mean_ax(num_herbs)
 
         plt.pause(1e-6)
 
@@ -176,6 +161,15 @@ class Visualization:
         Saves graphics
         :return:
         """
+        if self._image_base is None:
+            return
+
+        plt.savefig('{base}_{num:05d}.{type}'.format(base=self._img_base,
+                                                     num=self._img_ctr,
+                                                     type=self._img_fmt))
+        self._img_ctr += 1
+
+
 
 
     def plot_all(self):
