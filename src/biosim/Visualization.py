@@ -3,8 +3,6 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.Herbivore_simulation import HSimulation
-from biosim.Geography import Geo
 import seaborn as sns
 import numpy as np
 
@@ -22,8 +20,7 @@ class Visualization:
         :param object_matrix: 2D array of cell objects containing herbivores
         and carnivores
         """
-        self.object_matrix = object_matrix           #system
-
+        self.object_matrix = object_matrix
         self._step = 0
         self._final_step = 20
         self._img_ctr = 0
@@ -66,13 +63,13 @@ class Visualization:
 
         if self._herb_ax is None:
             self._herb_ax = self._fig.add_subplot(2, 2, 2)
-            self._herb_axis = None                                #herb_axes?
+            self._herb_axis = None
 
         if self._carn_ax is None:
             self._carn_ax = self._fig.add_subplot(2, 2, 3)
             self._carn_axis = None
 
-        if self._mean_ax is None:                                #linegraph
+        if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, 50)
 
@@ -97,12 +94,6 @@ class Visualization:
         Updates map
         :return:
         """
-#        if self._img_axis is not None:
-#            self._img_axis.set_data(data)
-#        else:
-            # self._img_axis = self._map_ax.imshow(data,
-            #                                      interpolation='nearest',
-            #                                      vmin=0, vmax=1)
         self._img_axis = self._map_ax.imshow(data, cmap='terrain'
                                              , vmax=20, vmin=1)
 
@@ -118,7 +109,7 @@ class Visualization:
         else:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
-                                                 vmin=0, vmax=1, cmap="Greens")
+                                                 cmap="Greens")
 
 
     def update_carn_ax(self, carn_data):
@@ -130,11 +121,11 @@ class Visualization:
             self._carn_axis.set_data(carn_data)
 
         else:
-            self._carn_axis = sns.heatmap(carn_data, linewidth=0.5,
-                                         cmap="OrRd", ax=self._carn_ax)
+            # self._carn_axis = sns.heatmap(carn_data, linewidth=0.5,
+            #                              cmap="OrRd", ax=self._carn_ax)
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
-                                                 vmin=0, vmax=1, cmap="OrRd")
+                                                 cmap="OrRd")
 
 
     def update_mean_ax(self, mean):
@@ -149,7 +140,7 @@ class Visualization:
         Updates graphics with current data
         :return:
         """
-#create_map
+        # create_map will be called separately
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
         self.update_mean_ax(num_herbs)
@@ -162,82 +153,8 @@ class Visualization:
         Saves graphics
         :return:
         """
-        if self._image_base is None:
-            return
 
         plt.savefig('{base}_{num:05d}.{type}'.format(base=self._img_base,
                                                      num=self._img_ctr,
                                                      type=self._img_fmt))
-        self._img_ctr += 1
-
-
-
-
-    def plot_all(self):
-        row_num = np.shape(self.object_matrix)[0]  # g.geo_shape[0]
-        column_num = np.shape(self.object_matrix)[1]
-        total_cells = row_num * column_num
-
-        print(row_num, column_num, total_cells)
-
-        # plt.subplots_adjust(wspace=0, hspace=0)
-
-        # Herbivore heatmap
-        h_matrix = np.zeros((row_num, column_num))
-        c_matrix = np.zeros((row_num, column_num))
-
-        for row, list_of_obj in enumerate(self.object_matrix):
-            for col, cell in enumerate(list_of_obj):
-                for animal in cell.animal_object_list:
-                    if type(animal).__name__ == "Herbivore":
-                        h_matrix[row][col] += 1
-                    else:
-                        c_matrix[row][col] += 1
-
-        # print(h_matrix )
-        # print(c_matrix)
-
-        fig = plt.figure()
-        ax = fig.add_subplot(223)
-        ax = sns.heatmap(h_matrix, linewidth=0.5, cmap="Greens")
-        ax = fig.add_subplot(224)
-        ax = sns.heatmap(h_matrix, linewidth=0.5, cmap="OrRd")
-
-        # For the map of the island
-        color_dict = {"Ocean": 2, "Desert": 11, "Savannah": 8,
-                      "Jungle": 6, "Mountain": 16}
-
-        island_matrix = np.zeros((row_num, column_num))
-
-        for row, list_of_obj in enumerate(self.object_matrix):
-            for col, cell in enumerate(list_of_obj):
-                island_matrix[row][col] = color_dict[type(cell).__name__]
-        # print(island_matrix)
-
-        ax = fig.add_subplot(221)
-        ax = plt.imshow(island_matrix, cmap='terrain', vmax=20, vmin=1)
-
-        # For line plot
-        h_count = 0
-        c_count = 0
-        h_count_list = []
-        c_count_list = []
-
-        for row, list_of_obj in enumerate(self.object_matrix):
-            for col, cell in enumerate(list_of_obj):
-                for animal in cell.animal_object_list:
-                    if type(animal).__name__ == "Herbivore":
-                        h_count += 1
-                    else:
-                        c_count += 1
-
-        h_count_list.append(h_count)
-        c_count_list.append(c_count)
-        print(h_count_list, c_count_list)
-
-        ax = fig.add_subplot(222)
-        ax = plt.plot(h_count_list)
-        ax = plt.plot(c_count_list)
-
-        plt.show()
-
+        # self._img_ctr += 1

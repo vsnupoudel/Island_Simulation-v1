@@ -7,6 +7,7 @@ from biosim.Cycle import Cycle
 from biosim.Geography import Geo
 from biosim.Visualization import Visualization
 import numpy as np
+import matplotlib.pyplot as plt
 
 class BioSim:
     def __init__(
@@ -94,35 +95,27 @@ class BioSim:
 
         step = 0
 
-        while step < 2:
+        v.update_graphics(self.herbivore_distribution,
+                          self.carnivore_distribution,
+                          s.num_animals['Herbivore'])
 
-            v.update_graphics(self.herbivore_distribution,
-                              self.carnivore_distribution,
-                              s.num_animals['Herbivore'])
+        plt.savefig('{base}.{type}'.format(base=step, type="png"))
+
+        while step < 3:
+
 
             c.food_grows()
             c.animals_eat()
             c.animals_reproduce()
             c.animals_migrate()
 
+            v.update_graphics(self.herbivore_distribution,
+                              self.carnivore_distribution,
+                              s.num_animals['Herbivore'])
+            plt.savefig('{base}.{type}'.format(base=step+1, type="png"))
+
             step += 1
-
-
-#        v.update_map(s.island_matrix)
-#        v.update_carn_ax(s.carnivore_distribution)
-#        v.update_herb_ax(s.herbivore_distribution)
-#        v.update_mean_ax(s.num_animals['Herbivore'])
-#        v.update_mean_ax(s.num_animals['Herbivore'])
-#        v.update_mean_ax(s.num_animals['Herbivore'])
-
-
-
-
-
-#        for each year to simulate
-  #          cycle
-    #        v.update_graphics()
-  #      v.show()
+            # v.show()
 
     def add_population(self, population):
         """
@@ -223,9 +216,9 @@ if __name__ == "__main__":
         OJSMO
         OOOOO""")
     ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
-                                          'weight': 100} for _ in range(4)] + [
-                                         {'species': 'Carnivore', 'age': 10,
-                                          'weight': 500} for _ in range(2)
+                                          'weight': 100} for _ in range(20)]+
+                                        [{'species': 'Carnivore', 'age': 10,
+                                          'weight': 500} for _ in range(5)
                                          ]}]
 
     s = BioSim(map, ini_herbs, seed = 1)

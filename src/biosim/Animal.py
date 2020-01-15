@@ -252,9 +252,12 @@ class Carnivore(Animal):
         """
         cum_prop = 0
         val = np.random.random()
+        print('Carn migrates inside Animal Class')
         for i, prob in enumerate(proba_list_c):
+            print('Inside for loop')
             cum_prop += prob
             if val <= cum_prop:
+                print(val, cum_prop, animal)
                 new_cell = adj_cells[i]
                 new_cell.animal_object_list.append(animal)
                 break
