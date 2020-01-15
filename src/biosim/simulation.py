@@ -88,24 +88,46 @@ class BioSim:
         Image files will be numbered consecutively.
         """
         c = Cycle(self.object_matrix)
-        c.food_grows()
-        c.animals_eat()
-        c.animals_reproduce()
-        c.animals_migrate()
-
         v = Visualization(self.object_matrix)
-
         v._set_graphics()
+        v.create_map(self.island_matrix)
 
-        v.update_map(s.island_matrix)
-        v.update_carn_ax(s.carnivore_distribution)
-        v.update_herb_ax(s.herbivore_distribution)
-        v.update_mean_ax(s.num_animals['Herbivore'])
-        v.update_mean_ax(s.num_animals['Herbivore'])
-        v.update_mean_ax(s.num_animals['Herbivore'])
-#        v.update_graphics(self.herbivore_distribution,
-#                          self.carnivore_distribution,
-#                          s.num_animals['Herbivore'])
+        step = 0
+
+        while step < 3:
+
+            v.update_graphics(self.herbivore_distribution,
+                              self.carnivore_distribution,
+                              s.num_animals['Herbivore'])
+
+            c.food_grows()
+            c.animals_eat()
+            c.animals_reproduce()
+            c.animals_migrate()
+
+            step += 1
+
+
+
+#        c = Cycle(self.object_matrix)
+##        c.food_grows()
+ #       c.animals_eat()
+ #       c.animals_reproduce()
+ #       c.animals_migrate()
+
+ #       v.update_graphics(self.herbivore_distribution,
+ #                         self.carnivore_distribution,
+ #                         s.num_animals['Herbivore'])
+
+
+
+#        v.update_map(s.island_matrix)
+#        v.update_carn_ax(s.carnivore_distribution)
+#        v.update_herb_ax(s.herbivore_distribution)
+#        v.update_mean_ax(s.num_animals['Herbivore'])
+#        v.update_mean_ax(s.num_animals['Herbivore'])
+#        v.update_mean_ax(s.num_animals['Herbivore'])
+
 
 
 
@@ -113,7 +135,7 @@ class BioSim:
 #        for each year to simulate
   #          cycle
     #        v.update_graphics()
-        v.show()
+  #      v.show()
 
     def add_population(self, population):
         """

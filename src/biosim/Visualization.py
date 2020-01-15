@@ -92,22 +92,19 @@ class Visualization:
                                          np.hstack((ydata, ynew)))
 
 
-    def update_map(self, data):
+    def create_map(self, data):
         """
         Updates map
         :return:
         """
-        if self._img_axis is not None:
-            self._img_axis.set_data(data)
-        else:
+#        if self._img_axis is not None:
+#            self._img_axis.set_data(data)
+#        else:
             # self._img_axis = self._map_ax.imshow(data,
             #                                      interpolation='nearest',
             #                                      vmin=0, vmax=1)
-            self._img_axis = self._map_ax.imshow(data, cmap='terrain'
-                                                 , vmax=20, vmin=1)
-
-            plt.colorbar(self._img_axis, ax=self._map_ax,
-                         orientation='horizontal')
+        self._img_axis = self._map_ax.imshow(data, cmap='terrain'
+                                             , vmax=20, vmin=1)
 
 
     def update_herb_ax(self, herb_data):
@@ -119,9 +116,10 @@ class Visualization:
             self._herb_axis.set_data(herb_data)
 
         else:
-            self._herb_axis = sns.heatmap(herb_data, linewidth=0.5,
-                                         cmap="Greens", ax=self._herb_ax)
-#        plt.show()
+            self._herb_axis = self._herb_ax.imshow(herb_data,
+                                                 interpolation='nearest',
+                                                 vmin=0, vmax=1, cmap="Greens")
+
 
     def update_carn_ax(self, carn_data):
         """
@@ -134,6 +132,9 @@ class Visualization:
         else:
             self._carn_axis = sns.heatmap(carn_data, linewidth=0.5,
                                          cmap="OrRd", ax=self._carn_ax)
+            self._carn_axis = self._carn_ax.imshow(carn_data,
+                                                 interpolation='nearest',
+                                                 vmin=0, vmax=1, cmap="OrRd")
 
 
     def update_mean_ax(self, mean):
@@ -148,7 +149,7 @@ class Visualization:
         Updates graphics with current data
         :return:
         """
-        self.update_map(self.object_matrix)
+#create_map
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
         self.update_mean_ax(num_herbs)
