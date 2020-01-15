@@ -6,6 +6,8 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 from biosim.Herbivore_simulation import HSimulation
 from biosim.Geography import Geo
 from simulation import BioSim
+import seaborn as sns
+import numpy as np
 
 import matplotlib.pyplot as plt
 
@@ -31,33 +33,25 @@ total_cells = row_num * column_num
 
 print(row_num, column_num, total_cells)
 
-fig, axs = plt.subplots(2, 2, figsize=(5, 5))
-plt.subplots_adjust(wspace=0, hspace=0)
+# fig, axs = plt.subplots(2, 2, figsize=(5, 5))
+# plt.subplots_adjust(wspace=0, hspace=0)
 
-# color_dict ={"Ocean":"#1C53C4", "Desert":"#E3F315", "Savannah": "#C2FCD0",
-#              "Jungle":"#79EE96", "Mountain":"#4A5757"}
+#Herbivore heatmap
+h_matrix = np.zeros((row_num, column_num))
+c_matrix = np.zeros((row_num, column_num))
 
+for row, list_of_obj in enumerate(s.object_matrix):
+    for col, cell in enumerate(list_of_obj):
+        for animal in cell.animal_object_list:
+            if type(animal).__name__ == "Herbivore":
+                h_matrix[row][col] += 1
+            else:
+                c_matrix[row][col] += 1
 
-# for f, att in enumerate(axs):
-    # for j in att:
-    #     j.set_xlim(0,1)
-    #     j.set_ylim(0,20)
-    #     j.set_xticks([])
-    #     j.set_yticks([])
+print(h_matrix )
+print(c_matrix)
 
-# for row, list_of_obj in enumerate(s.object_matrix):
-#     for col, cell in enumerate(list_of_obj):
-#         axs[row, col].set_facecolor(color_dict[type(cell).__name__])
-#
-# fig.savefig("plot.png")
-# fig.show()
+ax = sns.heatmap(h_matrix, linewidth=0.5, cmap = "Greens")
+plt.show()
 
-# herb_num = len([a for a in cell.animal_object_list
-#                 if type(a).__name__ == "Herbivore"])
-# carn_num = len([a for a in cell.animal_object_list
-#                 if type(a).__name__ == "Carnivore"])
-# print(row, col, type(cell).__name__, "H and C:", herb_num, carn_num)
-# axs[row, col].bar([0.5, 1.5], [herb_num, carn_num], width=0.2)
-
-# # axs[row,col].scatter(np.random.random(), np.random.random(), alpha=0.5)
-# Update the plot, instead of replotting every time
+# plt.show()
