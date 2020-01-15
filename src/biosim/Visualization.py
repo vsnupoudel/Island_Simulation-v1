@@ -67,26 +67,43 @@ class Visualization:
         plt.show()
 
 
-    def update_map(self):
+    def update_map(self, data):
         """
         Updates map
         :return:
         """
-        pass
+        if self._img_axis is not None:
+            self._img_axis.set_data(data)
+        else:
+            self._img_axis = self._map_ax.imshow(data,
+                                                 interpolation='nearest',
+                                                 vmin=0, vmax=1)
+            plt.colorbar(self._img_axis, ax=self._map_ax,
+                         orientation='horizontal')
 
-    def update_herb_ax(self):
+
+    def update_herb_ax(self, herb_data):
         """
         Updates herb_ax
         :return:
         """
-        pass
+        if self._herb_axis is not None:
+            self._herb_axis.set_data(herb_data)
 
-    def update_carn_ax(self):
+        else:
+            #herb plot
+
+    def update_carn_ax(self, carn_data):
         """
     Updates carn_ax
         :return:
         """
-        pass
+        if self._carb_axis is not None:
+            self._carn_axis.set_data(carn_data)
+
+        else:
+
+    # herb plot
 
     def update_graphics(self):
         """
