@@ -94,7 +94,11 @@ class BioSim:
 
         v = Visualization(self.object_matrix)
 
-        v.plot_all()
+        v._set_graphics()
+
+#        for each year to simulate
+  #          cycle
+    #        v.update_graphics()
 
 
     def add_population(self, population):

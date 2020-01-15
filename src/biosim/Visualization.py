@@ -31,6 +31,8 @@ class Visualization:
         self._mean_line = None
         self._herb_ax = None
         self._carn_ax = None
+        self.herb_axis = None
+        self.carn_axis = None
 
     def _set_graphics(self):
         """
@@ -48,20 +50,21 @@ class Visualization:
 
         if self._herb_ax is None:
             self._herb_ax = self._fig.add_subplot(2, 2, 2)
-            self._img_axis = None                                #herb_axes?
+            self.herb_axis = None                                #herb_axes?
 
         if self._carn_ax is None:
             self._carn_ax = self._fig.add_subplot(2, 2, 3)
-            self._img_axis = None
+            self.carn_axis = None
 
-        if self._mean_ax is None:                                #linegraph
-            self._mean_ax = self._fig.add_subplot(2, 2, 4)
-            self._mean_ax.set_ylim(0, 0.02)
-
-        # needs updating on subsequent calls to simulate()
-        self._mean_ax.set_xlim(0, self._final_step + 1)
+#        if self._mean_ax is None:                                #linegraph
+#            self._mean_ax = self._fig.add_subplot(2, 2, 4)
+#            self._mean_ax.set_ylim(0, 100)
+#
+#        # needs updating on subsequent calls to simulate()
+#        self._mean_ax.set_xlim(0, self._final_step + 1)
 
         #add more code for line plot
+        plt.show()
 
 
     def update_map(self):
