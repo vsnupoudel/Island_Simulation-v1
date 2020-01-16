@@ -97,22 +97,22 @@ class BioSim:
 
         v.update_graphics(self.herbivore_distribution,
                           self.carnivore_distribution,
-                          s.num_animals['Herbivore'])
+                          s.num_animals)
 
         plt.savefig('{base}.{type}'.format(base=step, type="png"))
 
-        while step < 3:
-
+        while step < 5:
 
             c.food_grows()
             c.animals_eat()
             c.animals_reproduce()
             c.animals_migrate()
 
+
             v.update_graphics(self.herbivore_distribution,
                               self.carnivore_distribution,
-                              s.num_animals['Herbivore'])
-            plt.savefig('{base}.{type}'.format(base=step+1, type="png"))
+                              s.num_animals)
+            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
 
             step += 1
             # v.show()

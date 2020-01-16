@@ -77,7 +77,7 @@ class Visualization:
         self._mean_ax.set_xlim(0, self._final_step + 1)
 
         if self._mean_line is None:
-            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),   #x, y
+            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
                                            np.full(self._final_step, np.nan))
             self._mean_line = mean_plot[0]
         else:
@@ -128,14 +128,14 @@ class Visualization:
                                                  cmap="OrRd")
 
 
-    def update_mean_ax(self, mean):
+    def update_mean_ax(self, herb_num, carn_num):
         ydata = self._mean_line.get_ydata()
-        ydata[self._step] = mean
+        ydata[self._step] = herb_num
         self._mean_line.set_ydata(ydata)
         self._step += 1
         # plt.show()
 
-    def update_graphics(self, herb_pos, carn_pos, num_herbs):
+    def update_graphics(self, herb_pos, carn_pos, num_animals):
         """
         Updates graphics with current data
         :return:
@@ -143,7 +143,7 @@ class Visualization:
         # create_map will be called separately
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
-        self.update_mean_ax(num_herbs)
+        self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
 
         plt.pause(1e-6)
 
