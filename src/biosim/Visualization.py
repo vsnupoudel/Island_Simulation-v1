@@ -193,7 +193,8 @@ class Visualization:
         :return:
         """
 
-        plt.savefig('{base}_{num:05d}.{type}'.format(base=self._img_base,
+        plt.savefig('{base}_{num:05d}.{type}'.format(
+            base=self._img_base,
                                                      num=self._img_ctr,
                                                      type=self._img_fmt))
         # self._img_ctr += 1
@@ -205,15 +206,13 @@ class Visualization:
         Makes a movie of a series of images
         :return:
         """
-        subprocess.check_call([_FFMPEG_BINARY,
-                               '-i', 'Image-%03d.png',
-                               '-y',
-                               # '-framerate', '1',
-                               '-profile:v', 'baseline',
-                               '-level', '3.0',
-                               '-pix_fmt', 'yuv420p',
-                               '-r', '6',
-                               'Movie.mp4'])
+        subprocess.run(['ffmpeg',
+                               '-f','image2',
+                               '-r','3',
+                               '-i','Image-%03d.png',
+                               '-vcodec','mpeg4',
+                               '-y', 'movie.mp4'
+                               ])
 
 
 

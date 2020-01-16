@@ -107,7 +107,7 @@ class BioSim:
 
         plt.savefig('Image-{0:03d}.{type}'.format(step, type="png"))
 
-        while step < 100:
+        while step < 19:
 
             c.food_grows()
             c.animals_eat()
@@ -116,16 +116,15 @@ class BioSim:
             c.animals_die()
 
 
-#            v.update_graphics(self.herbivore_distribution,
-#                              self.carnivore_distribution,
-#                              s.num_animals)
-#            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
+            v.update_graphics(self.herbivore_distribution,
+                              self.carnivore_distribution,
+                              s.num_animals)
+            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
 
             step += 1
             self.year += 1
 
-
-  #      v.make_movie()
+        v.make_movie()
 
 
     def add_population(self, population):
@@ -260,22 +259,22 @@ if __name__ == "__main__":
     ]
 
     s = BioSim(map, ini_herbs, seed = 1)
-    print( len( s.object_matrix[10][10].animal_object_list) )
+    # print( len( s.object_matrix[10][10].animal_object_list) )
 
     s.add_population(ini_herbs)
 
-    print( len( s.object_matrix[10][10].animal_object_list) )
+    # print( len( s.object_matrix[10][10].animal_object_list) )
 
-    # s.set_animal_parameters("Carnivore",
-    #                         {
-    #                             "a_half": 70,
-    #                             "phi_age": 0.5,
-    #                             "omega": 0.3,
-    #                             "F": 65,
-    #                             "DeltaPhiMax": 9.0,
-    #                         }, )
-    # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
-    #
+    s.set_animal_parameters("Carnivore",
+                            {
+                                "a_half": 70,
+                                "phi_age": 0.5,
+                                "omega": 0.3,
+                                "F": 65,
+                                "DeltaPhiMax": 9.0,
+                            }, )
+    s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+
     s.simulate()
 
 

@@ -8,8 +8,9 @@ import math
 
 
 class Animal:
-    """SuperClass for Herbivore and Carnivore.
-    Contains methods,properties and variables that are common in both.
+    """
+    SuperClass for Herbivore and Carnivore.
+    Contains methods, properties and variables that are common in both.
     """
     has_procreated = False
     has_migrated = False
@@ -43,6 +44,7 @@ class Animal:
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
                                                     self.p['sigma_birth'])
 
+
     @property
     def fitness(self):
         """The fitness of each animal"""
@@ -59,12 +61,11 @@ class Animal:
         """
         :param params_dict: Dictionary of parameters to be updated
         """
-
         for k, v in params_dict.items():
             if k not in cls.p:
-                print('ValueError')
+                raise ValueError(k, ' is an invalid Key')
             if v <= 0:
-                print('ValueError')
+                raise ValueError(k, v, ' Param value must be positive')
 
         cls.p.update(params_dict)
 
@@ -191,35 +192,33 @@ class Carnivore(Animal):
         :return:None
         """
         amount_eaten = 0
-        while amount_eaten >= self.p['F']:
+        herb_sorted_rev = sorted(cell.herb_list,
+                                 key=lambda animal:animal.fitness,
+                                 reverse=True)
 
-#            herb_list = [animal for animal in cell.animal_object_list
-#                         if type(animal).__name__ == "Herbivore"]
-#            herb_list = cell.herb_list
-            herb_sorted_rev = sorted(cell.herb_list,
-                                     key=lambda animal:animal.fitness,
-                                     reverse=True)
+        dead_list = []
+        for herb in herb_sorted_rev:
+            if self.fitness > herb.fitness:
+                if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
+                    kill_prob = (self.fitness - herb.fitness) / self.p[
+                        'DeltaPhiMax']
+                    rand_prob = np.random.random()
 
-            dead_list = []
-            for ind, herb in enumerate(herb_sorted_rev):
-                if self.fitness > herb.fitness:
-                    if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
-                        kill_prob = (self.fitness - herb.fitness) / self.p[
-                            'DeltaPhiMax']
-                        rand_prob = np.random.random()
-
-                        if rand_prob < kill_prob:
-                            dead_list.append(herb)
-                            amount_eaten += herb.weight
-                            self.weight += self.p['beta']*herb.weight
-                    else:
+                    if rand_prob < kill_prob:
                         dead_list.append(herb)
                         amount_eaten += herb.weight
                         self.weight += self.p['beta']*herb.weight
-                        # Delete herbivores from list in the cell, update the list
-            cell.animal_object_list = [
-                animal for animal in cell.animal_object_list
-                if animal not in dead_list]
+                else:
+                    dead_list.append(herb)
+                    amount_eaten += herb.weight
+                    self.weight += self.p['beta']*herb.weight
+            # Check if the carnivore is satisfied yet
+            if amount_eaten < self.p['F']:
+                break
+        # Delete killed herbivores from list in the cell/update the list
+        cell.animal_object_list = [
+            animal for animal in cell.animal_object_list
+            if animal not in dead_list]
 
 
     def carn_reproduce(self, length):
