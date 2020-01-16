@@ -82,8 +82,6 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-
-
     def simulate(self, num_years=1, vis_years=1, img_years=None):
         """
         Run simulation while visualizing the result.
@@ -105,7 +103,7 @@ class BioSim:
                           self.carnivore_distribution,
                           s.num_animals)
 
-        plt.savefig('Image-{0:03d}.{type}'.format(step, type="png"))
+        plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
 
         while step < 19:
 
@@ -114,15 +112,14 @@ class BioSim:
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
-
-
             v.update_graphics(self.herbivore_distribution,
                               self.carnivore_distribution,
                               s.num_animals)
-            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
+            plt.savefig('Images\\Image-{0:03d}.png'.format(step+1))
 
             step += 1
             self.year += 1
+            # v._final_step += 1
 
         v.make_movie()
 
@@ -245,7 +242,7 @@ if __name__ == "__main__":
             "loc": (10, 10),
             "pop": [
                 {"species": "Herbivore", "age": 5, "weight": 20}
-                for _ in range(150)
+                for _ in range(200)
             ],
         }
     ]+ [
@@ -265,15 +262,16 @@ if __name__ == "__main__":
 
     # print( len( s.object_matrix[10][10].animal_object_list) )
 
-    s.set_animal_parameters("Carnivore",
-                            {
-                                "a_half": 70,
-                                "phi_age": 0.5,
-                                "omega": 0.3,
-                                "F": 65,
-                                "DeltaPhiMax": 9.0,
-                            }, )
-    s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+    # s.set_animal_parameters("Carnivore",
+    #                         {
+    #                             "a_half": 70,
+    #                             "phi_age": 0.5,
+    #                             "omega": 0.3,
+    #                             "F": 65,
+    #                             "DeltaPhiMax": 9.0,
+    #                         }, )
+    # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+    print(Carnivore.p['F'])
 
     s.simulate()
 

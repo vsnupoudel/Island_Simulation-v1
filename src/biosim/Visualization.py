@@ -3,7 +3,6 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-import seaborn as sns
 import numpy as np
 import subprocess
 import os
@@ -26,6 +25,7 @@ class Visualization:
 
     def show(self):
         plt.show()
+
     def __init__(self, object_matrix, img_dir=None,
                  img_name=_DEFAULT_GRAPHICS_NAME,
                  img_fmt='png'):
@@ -44,9 +44,6 @@ class Visualization:
             self._img_base = None
         self._img_fmt = img_fmt
 
-
-
-
         # the following will be initialized by _setup_graphics
         self._fig = None
         self._map_ax = None
@@ -59,19 +56,10 @@ class Visualization:
         self._herb_axis = None
         self._carn_axis = None
 
-    def simulate(self, num_steps, vis_steps=1, img_steps=None):
-        """
-        Simulates prosess
-        :param num_steps:
-        :param vis_steps:
-        :param img_steps:
-        :return:
-        """
-
 
     def _set_graphics(self):
         """
-        sets the graphics
+        Sets up the graphics with 4 subplots
         :return:
         """
 
@@ -96,7 +84,7 @@ class Visualization:
            self._mean_ax.set_ylim(0, 500)
 
         # needs updating on subsequent calls to simulate()
-        self._mean_ax.set_xlim(0, self._final_step + 1)
+        self._mean_ax.set_xlim(0, self._final_step+1)
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, self._final_step),
@@ -110,12 +98,13 @@ class Visualization:
                 self._herb_line.set_data(np.hstack((xdata, xnew)),
                                          np.hstack((ydata, ynew)))
 
-        #_______________________________
+        # Do the same for carn_line
 
         if self._carn_line is None:
             carn_plot = self._mean_ax.plot(np.arange(0, self._final_step),
                                            np.full(self._final_step, np.nan))
             self._carn_line = carn_plot[0]
+
         else:
             xdata, ydata = self._carn_line.get_data()
             xnew = np.arange(xdata[-1] + 1, self._final_step)
@@ -127,7 +116,7 @@ class Visualization:
 
     def create_map(self, data):
         """
-        Updates map
+        Creates map. Called one time at the start of the simuation
         :return:
         """
         self._img_axis = self._map_ax.imshow(data, cmap='terrain'
@@ -150,25 +139,24 @@ class Visualization:
 
     def update_carn_ax(self, carn_data):
         """
-    Updates carn_ax
+        Updates carn_ax
         :return:
         """
         if self._carn_axis is not None:
             self._carn_axis.set_data(carn_data)
 
         else:
-            # self._carn_axis = sns.heatmap(carn_data, linewidth=0.5,
-            #                              cmap="OrRd", ax=self._carn_ax)
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
                                                  cmap="OrRd")
 
 
     def update_mean_ax(self, herb_num, carn_num):
+        # self._mean_ax.set_xlim(0, self._final_step + 1)
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
-        #_____________
+        # Another line for carnivore
         ydata = self._carn_line.get_ydata()
         ydata[self._step] = carn_num
         self._carn_line.set_ydata(ydata)
@@ -183,23 +171,7 @@ class Visualization:
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
-
         plt.pause(1e-6)
-
-
-    def save_graphics(self):
-        """
-        Saves graphics
-        :return:
-        """
-
-        plt.savefig('{base}_{num:05d}.{type}'.format(
-            base=self._img_base,
-                                                     num=self._img_ctr,
-                                                     type=self._img_fmt))
-        # self._img_ctr += 1
-
-
 
     def make_movie(self):
         """
@@ -209,9 +181,12 @@ class Visualization:
         subprocess.run(['ffmpeg',
                                '-f','image2',
                                '-r','3',
-                               '-i','Image-%03d.png',
+                               '-i','Images\\Image-%03d.png',
                                '-vcodec','mpeg4',
-                               '-y', 'movie.mp4'
+                               '-y', 'movie.mp4',
+                            # To hide the logs
+                            '-hide_banner',
+                            '-loglevel', 'panic'
                                ])
 
 

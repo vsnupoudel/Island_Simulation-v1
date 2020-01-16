@@ -82,34 +82,31 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
-                    # new_borns = 0
-                    # Add new_borns for herbivores first
-                    herb_list = [animal for animal in cell.animal_object_list
-                                 if type(animal).__name__ == "Herbivore"]
-
                     new_herbs = []
+                    # print('rep')
 
                     # calculate probabilty and new born
-                    for animal in herb_list:
-                        new = animal.herb_reproduce(len(herb_list))
+                    for animal in cell.herb_list:
+                        print(animal)
+                        new = animal.herb_reproduce(len(cell.n_herbs))
+                        print('new')
                         if new:
+                            print('Herb rep')
                             new_herbs.append(new)
                         # if animal.has_procreated == False:
 
                     for herb in new_herbs:
                         cell.animal_object_list.append(herb)
 
-                    #def carn_reproduce
-
-                    carn_list = [animal for animal in cell.animal_object_list
-                                 if type(animal).__name__ == "Carnivore"]
+                    # For carn_reproduce
 
                     new_carns = []
-
                     # calculate probabilty and new born
-                    for animal in carn_list:
-                        new = animal.carn_reproduce(len(carn_list))
+                    for animal in cell.carn_list:
+                        print('Carn rep')
+                        new = animal.carn_reproduce(cell.n_carn)
                         if new:
+                            print('Carn rep')
                             new_carns.append(new)
                         # if animal.has_procreated == False:
 
