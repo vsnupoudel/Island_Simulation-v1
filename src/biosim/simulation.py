@@ -99,9 +99,9 @@ class BioSim:
                           self.carnivore_distribution,
                           s.num_animals)
 
-        plt.savefig('{base}.{type}'.format(base=step, type="png"))
+        plt.savefig('Image-{0:03d}.{type}'.format(step, type="png"))
 
-        while step < 15:
+        while step < 5:
 
             c.food_grows()
             c.animals_eat()
@@ -117,7 +117,8 @@ class BioSim:
             step += 1
             # v.show()
 
-            v.make_movie()
+            # v.make_movie()
+        # v.show()
 
     def add_population(self, population):
         """
@@ -207,6 +208,7 @@ class BioSim:
         return island_matrix
 
     def make_movie(self):
+        pass
         """Create MPEG4 movie from visualization images saved."""
 
 
@@ -218,9 +220,9 @@ if __name__ == "__main__":
         OJSMO
         OOOOO""")
     ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
-                                          'weight': 100} for _ in range(20)]+
+                                          'weight': 10} for _ in range(100)]+
                                         [{'species': 'Carnivore', 'age': 10,
-                                          'weight': 500} for _ in range(5)
+                                          'weight': 100} for _ in range(5)
                                          ]}]
 
     s = BioSim(map, ini_herbs, seed = 1)

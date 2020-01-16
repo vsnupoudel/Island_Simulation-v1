@@ -213,7 +213,7 @@ class Carnivore(Animal):
                             amount_eaten += herb.weight
                     else:
                         dead_list.append(herb)
-                        amount_eaten += herb.weight
+                        amount_eaten += herb.weight                       
 
 
             # Delete herbivores from list in the cell

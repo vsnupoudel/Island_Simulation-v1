@@ -65,7 +65,6 @@ class Cycle:
                     for carn in carn_sorted:
                         # additional logic to be added later
                         # currently the Carnivore eats 1 herbivore only
-                        amount_eaten = 0
                         carn.carn_eat(cell)
 
 
