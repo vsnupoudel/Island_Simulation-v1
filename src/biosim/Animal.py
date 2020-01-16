@@ -6,7 +6,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import math
 
-#TEST
+#TEST2
 class Animal:
     """SuperClass for Herbivore and Carnivore.
     Contains methods,properties and variables that are common in both.
