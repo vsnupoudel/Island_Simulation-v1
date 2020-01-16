@@ -117,7 +117,7 @@ class BioSim:
             step += 1
             # v.show()
 
-            v.make_movie(movie_fmt='mp4')
+            v.make_movie()
 
     def add_population(self, population):
         """

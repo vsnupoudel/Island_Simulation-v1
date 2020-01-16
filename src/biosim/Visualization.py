@@ -182,22 +182,21 @@ class Visualization:
 
 
 
-    def make_movie(self, movie_fmt=_DEFAULT_MOVIE_FORMAT):
+    def make_movie(self):
         """
         Makes a movie of a series of images
         :return:
         """
-        if movie_fmt == 'mp4':
-            try:
-                subprocess.check_call([_FFMPEG_BINARY,
-                                       '-i', 'Image-%03d.png',
-                                       '-y',
-                                       '-profile:v', 'baseline',
-                                       '-level', '3.0',
-                                       '-pix_fmt', 'yuv420p',
-                                       'Movie.mpeg'])
-            except subprocess.CalledProcessError as err:
-                raise RuntimeError('ERROR: ffmpeg failed with: {}'.format(err))
+        subprocess.check_call([_FFMPEG_BINARY,
+                               '-i', 'Image-%03d.png',
+                               '-y',
+                               # '-f','image2',
+                               # '-vcodec','mpeg4'
+                               '-r', '0.2',
+                               '-profile:v', 'baseline',
+                               '-level', '3.0',
+                               '-pix_fmt', 'yuv420p',
+                               'Movie.mp4'])
 
 
 
