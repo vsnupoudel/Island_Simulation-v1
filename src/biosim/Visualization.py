@@ -52,7 +52,8 @@ class Visualization:
         self._map_ax = None
         self._img_axis = None
         self._mean_ax = None
-        self._mean_line = None
+        self._herb_line = None
+        self._carn_line = None
         self._herb_ax = None
         self._carn_ax = None
         self._herb_axis = None
@@ -97,16 +98,30 @@ class Visualization:
         # needs updating on subsequent calls to simulate()
         self._mean_ax.set_xlim(0, self._final_step + 1)
 
-        if self._mean_line is None:
-            mean_plot = self._mean_ax.plot(np.arange(0, self._final_step),
+        if self._herb_line is None:
+            herb_plot = self._mean_ax.plot(np.arange(0, self._final_step),
                                            np.full(self._final_step, np.nan))
-            self._mean_line = mean_plot[0]
+            self._herb_line = herb_plot[0]
         else:
-            xdata, ydata = self._mean_line.get_data()
+            xdata, ydata = self._herb_line.get_data()
             xnew = np.arange(xdata[-1] + 1, self._final_step)
             if len(xnew) > 0:
                 ynew = np.full(xnew.shape, np.nan)
-                self._mean_line.set_data(np.hstack((xdata, xnew)),
+                self._herb_line.set_data(np.hstack((xdata, xnew)),
+                                         np.hstack((ydata, ynew)))
+
+        #_______________________________
+
+        if self._carn_line is None:
+            carn_plot = self._mean_ax.plot(np.arange(0, self._final_step),
+                                           np.full(self._final_step, np.nan))
+            self._carn_line = carn_plot[0]
+        else:
+            xdata, ydata = self._carn_line.get_data()
+            xnew = np.arange(xdata[-1] + 1, self._final_step)
+            if len(xnew) > 0:
+                ynew = np.full(xnew.shape, np.nan)
+                self._carn_line.set_data(np.hstack((xdata, xnew)),
                                          np.hstack((ydata, ynew)))
 
 
@@ -150,11 +165,16 @@ class Visualization:
 
 
     def update_mean_ax(self, herb_num, carn_num):
-        ydata = self._mean_line.get_ydata()
+        ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
-        self._mean_line.set_ydata(ydata)
+        self._herb_line.set_ydata(ydata)
         self._step += 1
         # plt.show()
+        #_____________
+        ydata = self._carn_line.get_ydata()
+        ydata[self._step] = carn_num
+        self._carn_line.set_ydata(ydata)
+        self._step += 1
 
     def update_graphics(self, herb_pos, carn_pos, num_animals):
         """

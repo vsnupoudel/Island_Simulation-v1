@@ -101,7 +101,7 @@ class BioSim:
 
         plt.savefig('{base}.{type}'.format(base=step, type="png"))
 
-        while step < 12:
+        while step < 15:
 
             c.food_grows()
             c.animals_eat()
