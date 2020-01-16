@@ -191,7 +191,7 @@ class Carnivore(Animal):
         :return:None
         """
         amount_eaten = 0
-        while amount_eaten <= self.p['F']:
+        while amount_eaten >= self.p['F']:
 
             herb_list = [animal for animal in cell.animal_object_list
                          if type(animal).__name__ == "Herbivore"]
@@ -200,7 +200,6 @@ class Carnivore(Animal):
                                      reverse=True)
 
             dead_list = []
-
             for ind, herb in enumerate(herb_sorted_rev):
                 if self.fitness > herb.fitness:
                     if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
@@ -214,9 +213,7 @@ class Carnivore(Animal):
                     else:
                         dead_list.append(herb)
                         amount_eaten += herb.weight
-
-
-            # Delete herbivores from list in the cell
+            # Delete herbivores from list in the cell, update the list
             cell.animal_object_list = [
                 animal for animal in cell.animal_object_list
                 if animal not in dead_list]
