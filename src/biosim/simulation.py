@@ -6,6 +6,9 @@ __email__ = "huse.anders@gmail.com"
 from biosim.Cycle import Cycle
 from biosim.Geography import Geo
 from biosim.Visualization import Visualization
+from biosim.Mapping import Savannah, Jungle
+from biosim.Animal import Herbivore, Carnivore
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -60,10 +63,11 @@ class BioSim:
         :param species: String, name of animal species
         :param params: Dict with valid parameter specification for species
         """
+        if species == 'Herbivore':
+            Herbivore.up_par(params)
 
-        #animal, up_par
-        # Herbivore.up_par()
-        # Carnivore.up_par()
+        else:
+            Carnivore.up_par()
 
     def set_landscape_parameters(self, landscape, params):
         """
@@ -72,10 +76,11 @@ class BioSim:
         :param landscape: String, code letter for landscape
         :param params: Dict with valid parameter specification for landscape
         """
-        # if landscape == 'S':
-        #     Savannah.params.update(params)
-        # else:
-        #     Jungle.params.update(params)
+        if landscape == 'S':
+            Savannah.parameters.update(params)
+        else:
+            Jungle.parameters.update(params)
+       #change mapping parameters to dictionary
 
 
     def simulate(self, num_years=1, vis_years=1, img_years=None):
@@ -107,6 +112,7 @@ class BioSim:
             c.animals_eat()
             c.animals_reproduce()
             c.animals_migrate()
+            c.animals_die()
 
 
             v.update_graphics(self.herbivore_distribution,
@@ -213,18 +219,44 @@ class BioSim:
 
 
 if __name__ == "__main__":
-    map = ("""\
-        OOOOO
-        OJSDO
-        OJSMO
-        OJSMO
-        OOOOO""")
-    ini_herbs = [{'loc': (1, 1), 'pop': [{'species': 'Herbivore', 'age': 5,
-                                          'weight': 10} for _ in range(100)]+
-                                        [{'species': 'Carnivore', 'age': 10,
-                                          'weight': 100} for _ in range(5)
-                                         ]}]
+    map = """\
+                 OOOOOOOOOOOOOOOOOOOOO
+                 OOOOOOOOSMMMMJJJJJJJO
+                 OSSSSSJJJJMMJJJJJJJOO
+                 OSSSSSSSSSMMJJJJJJOOO
+                 OSSSSSJJJJJJJJJJJJOOO
+                 OSSSSSJJJDDJJJSJJJOOO
+                 OSSJJJJJDDDJJJSSSSOOO
+                 OOSSSSJJJDDJJJSOOOOOO
+                 OSSSJJJJJDDJJJJJJJOOO
+                 OSSSSJJJJDDJJJJOOOOOO
+                 OOSSSSJJJJJJJJOOOOOOO
+                 OOOSSSSJJJJJJJOOOOOOO
+                 OOOOOOOOOOOOOOOOOOOOO"""
+
+
+    ini_herbs = [
+        {
+            "loc": (10, 10),
+            "pop": [
+                {"species": "Herbivore", "age": 5, "weight": 20}
+                for _ in range(150)
+            ],
+        }
+    ]+ [
+        {
+            "loc": (10, 10),
+            "pop": [
+                {"species": "Carnivore", "age": 5, "weight": 20}
+                for _ in range(40)
+            ],
+        }
+    ]
 
     s = BioSim(map, ini_herbs, seed = 1)
 
     s.simulate()
+
+    s.set_landscape_parameters("J", {"f_max": 700})
+    print(Jungle.parameters)
+

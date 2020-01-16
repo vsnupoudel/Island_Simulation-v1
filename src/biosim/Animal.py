@@ -210,10 +210,12 @@ class Carnivore(Animal):
                         if rand_prob < kill_prob:
                             dead_list.append(herb)
                             amount_eaten += herb.weight
+                            self.weight += self.p['beta']*herb.weight
                     else:
                         dead_list.append(herb)
                         amount_eaten += herb.weight
-            # Delete herbivores from list in the cell, update the list
+                        self.weight += self.p['beta']*herb.weight
+                        # Delete herbivores from list in the cell, update the list
             cell.animal_object_list = [
                 animal for animal in cell.animal_object_list
                 if animal not in dead_list]

@@ -208,12 +208,11 @@ class Visualization:
         subprocess.check_call([_FFMPEG_BINARY,
                                '-i', 'Image-%03d.png',
                                '-y',
-                               # '-f','image2',
-                               # '-vcodec','mpeg4'
-                               '-r', '0.2',
+                               # '-framerate', '1',
                                '-profile:v', 'baseline',
                                '-level', '3.0',
                                '-pix_fmt', 'yuv420p',
+                               '-r', '6',
                                'Movie.mp4'])
 
 

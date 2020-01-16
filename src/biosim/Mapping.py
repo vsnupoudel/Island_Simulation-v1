@@ -73,9 +73,10 @@ class Cell:
 
 
 class Jungle(Cell):
-    f_max = 800
+#    f_max = 800
+    parameters = {'f_max': 800.0, 'alpha': None}
     is_migratable = True
-    #parameters = {'f_max': 800.0, 'alpha': None}
+
 
     def __init__(
             self,
@@ -103,9 +104,9 @@ class Jungle(Cell):
 
 
 class Savannah(Cell):
-    f_max = 300
+#    f_max = 300
+    parameters = {'f_max': 800.0, 'alpha': None}
     is_migratable = True
-    #parameters = {'f_max': 800.0, 'alpha': None}
 
     def __init__(
             self,

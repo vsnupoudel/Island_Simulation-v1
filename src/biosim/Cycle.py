@@ -27,9 +27,10 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for obj in row_of_obj:
                 if type(obj).__name__ == "Savannah":
-                    obj.f_ij += obj.alpha * (obj.f_max - obj.f_ij)
+                    obj.f_ij += obj.alpha * (obj.parameters['f_max'] -
+                                             obj.f_ij)
                 elif type(obj).__name__ == "Jungle":
-                    obj.f_ij = obj.f_max
+                    obj.f_ij = obj.parameters['f_max']
 
     def animals_eat(self):
         """
@@ -193,6 +194,26 @@ class Cycle:
                 cell.animal_object_list = [animal for animal in
                                            cell.animal_object_list if
                                            animal not in animals_moved_away]
+
+    def animals_die(self):
+        death_list = []
+        for row, row_of_obj in enumerate(self.object_matrix):
+            for col, cell in enumerate(row_of_obj):
+                if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
+                    for animal in cell.animal_object_list:
+                        if animal.fitness == 0:
+                            death_list.append(animal)
+                        else:
+                            death_prob = animal.p['omega']*(1- animal.fitness)
+                            print('death:', death_prob)
+                            rand_num = np.random.random()
+                            if rand_num < death_prob:
+                                death_list.append(animal)
+
+                cell.animal_object_list = [animal for animal in
+                                           cell.animal_object_list if
+                                           animal not in death_list]
+
 
 
 

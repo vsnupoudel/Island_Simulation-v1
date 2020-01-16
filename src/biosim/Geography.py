@@ -81,27 +81,6 @@ class Geo:
         pass
 
 
-
-    def get_adjacent_cells(self,  row, column ):
-        list_of_adj = []
-        for i in (-1, 1):
-            try:
-                _t = self.object_matrix[row][column+i]
-            except:
-                pass
-            else:
-                list_of_adj.append(_t)
-
-            try:
-                _t = self.object_matrix[row+i][column]
-            except:
-                pass
-            else:
-                list_of_adj.append(_t)
-
-        return list_of_adj
-
-
 if __name__ == "__main__":
     map = ("""\
         OOOOO
