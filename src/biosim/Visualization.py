@@ -5,8 +5,19 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import seaborn as sns
 import numpy as np
-
+import subprocess
+import os
 import matplotlib.pyplot as plt
+
+# update these variables to point to your ffmpeg and convert binaries
+_FFMPEG_BINARY = 'ffmpeg'
+_CONVERT_BINARY = 'magick'
+
+# update this to the directory and file-name beginning
+# for the graphics files
+_DEFAULT_GRAPHICS_DIR = os.path.join('..', 'data')
+_DEFAULT_GRAPHICS_NAME = 'dv'
+_DEFAULT_MOVIE_FORMAT = 'mp4'   # alternatives: mp4, gif
 
 class Visualization:
     """
@@ -15,7 +26,9 @@ class Visualization:
 
     def show(self):
         plt.show()
-    def __init__(self, object_matrix):
+    def __init__(self, object_matrix, img_dir=None,
+                 img_name=_DEFAULT_GRAPHICS_NAME,
+                 img_fmt='png'):
         """
         :param object_matrix: 2D array of cell objects containing herbivores
         and carnivores
@@ -24,6 +37,14 @@ class Visualization:
         self._step = 0
         self._final_step = 20
         self._img_ctr = 0
+
+        if img_dir is not None:
+            self._img_base = os.path.join(img_dir, img_name)
+        else:
+            self._img_base = None
+        self._img_fmt = img_fmt
+
+
 
 
         # the following will be initialized by _setup_graphics
@@ -158,3 +179,28 @@ class Visualization:
                                                      num=self._img_ctr,
                                                      type=self._img_fmt))
         # self._img_ctr += 1
+
+
+
+    def make_movie(self, movie_fmt=_DEFAULT_MOVIE_FORMAT):
+        """
+        Makes a movie of a series of images
+        :return:
+        """
+        if movie_fmt == 'mp4':
+            try:
+                subprocess.check_call([_FFMPEG_BINARY,
+                                       '-i', 'Image-%03d.png',
+                                       '-y',
+                                       '-profile:v', 'baseline',
+                                       '-level', '3.0',
+                                       '-pix_fmt', 'yuv420p',
+                                       'Movie.mpeg'])
+            except subprocess.CalledProcessError as err:
+                raise RuntimeError('ERROR: ffmpeg failed with: {}'.format(err))
+
+
+
+
+
+

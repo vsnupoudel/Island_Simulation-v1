@@ -101,7 +101,7 @@ class BioSim:
 
         plt.savefig('{base}.{type}'.format(base=step, type="png"))
 
-        while step < 5:
+        while step < 12:
 
             c.food_grows()
             c.animals_eat()
@@ -116,6 +116,8 @@ class BioSim:
 
             step += 1
             # v.show()
+
+            v.make_movie(movie_fmt='mp4')
 
     def add_population(self, population):
         """
