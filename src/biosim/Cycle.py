@@ -205,7 +205,6 @@ class Cycle:
                             death_list.append(animal)
                         else:
                             death_prob = animal.p['omega']*(1- animal.fitness)
-                            print('death:', death_prob)
                             rand_num = np.random.random()
                             if rand_num < death_prob:
                                 death_list.append(animal)

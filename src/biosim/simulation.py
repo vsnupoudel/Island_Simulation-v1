@@ -50,6 +50,7 @@ class BioSim:
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
         self.object_matrix = self.island_map.object_matrix
+        self.year = 0
 
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
@@ -67,7 +68,7 @@ class BioSim:
             Herbivore.up_par(params)
 
         else:
-            Carnivore.up_par()
+            Carnivore.up_par(params)
 
     def set_landscape_parameters(self, landscape, params):
         """
@@ -80,7 +81,7 @@ class BioSim:
             Savannah.parameters.update(params)
         else:
             Jungle.parameters.update(params)
-       #change mapping parameters to dictionary
+
 
 
     def simulate(self, num_years=1, vis_years=1, img_years=None):
@@ -121,10 +122,11 @@ class BioSim:
             plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
 
             step += 1
-            # v.show()
+            self.year += 1
+
 
         v.make_movie()
-        # v.show()
+
 
     def add_population(self, population):
         """
@@ -132,11 +134,14 @@ class BioSim:
 
         :param population: List of dictionaries specifying population
         """
+        for one_location_list in population:
+            x, y = one_location_list['loc'][0], one_location_list['loc'][1]
+            self.object_matrix[x][y].set_population(one_location_list)
 
 
     @property
-    def year(self):
-        """Last year simulated."""
+    def current_year(self):
+        return self.year
 
 
     @property
@@ -196,6 +201,7 @@ class BioSim:
         """Pandas DataFrame with animal count for each
                 cell on
                 island."""
+        # to be done later
         pass
 
     @property
@@ -254,9 +260,25 @@ if __name__ == "__main__":
     ]
 
     s = BioSim(map, ini_herbs, seed = 1)
+    print( len( s.object_matrix[10][10].animal_object_list) )
 
-    s.simulate()
+    s.add_population(ini_herbs)
 
-    s.set_landscape_parameters("J", {"f_max": 700})
-    print(Jungle.parameters)
+    print( len( s.object_matrix[10][10].animal_object_list) )
+
+    # s.set_animal_parameters("Carnivore",
+    #                         {
+    #                             "a_half": 70,
+    #                             "phi_age": 0.5,
+    #                             "omega": 0.3,
+    #                             "F": 65,
+    #                             "DeltaPhiMax": 9.0,
+    #                         }, )
+    # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+    #
+    # s.simulate()
+
+
+
+
 
