@@ -109,6 +109,11 @@ class BioSim:
 
             c.food_grows()
             c.animals_eat()
+            try:
+                print( self.object_matrix[10][10].animal_object_list[0].weight)
+            except:
+                print('No herb here')
+
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
@@ -271,7 +276,7 @@ if __name__ == "__main__":
     #                             "DeltaPhiMax": 9.0,
     #                         }, )
     # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
-    print(Carnivore.p['F'])
+    # print(Carnivore.p['F'])
 
     s.simulate()
 

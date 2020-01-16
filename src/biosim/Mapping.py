@@ -25,9 +25,6 @@ class Cell:
         self.animal_object_list = []
         self.f_ij = f_ij
         self.alpha = alpha
-
-
-# new parameters for each cell
         self.herb_list = [a for a in self.animal_object_list
                        if type(a).__name__ == "Herbivore"]
         self.carn_list = [a for a in self.animal_object_list
@@ -73,10 +70,8 @@ class Cell:
 
 
 class Jungle(Cell):
-#    f_max = 800
     parameters = {'f_max': 800.0, 'alpha': None}
     is_migratable = True
-
 
     def __init__(
             self,
@@ -96,11 +91,6 @@ class Jungle(Cell):
         super().__init__(row, column)
         self.f_ij = f_ij
         self.alpha = alpha
-        # self.num_carn = None
-        # self.num_herb = None
-        self.herb_list = []
-        self.carn_list =[]
-        #self.params = params
 
 
 class Savannah(Cell):
@@ -112,8 +102,6 @@ class Savannah(Cell):
             self,
             row,
             column,
-            # num_carn=0,
-            # num_herb=0,
             f_ij=200,
             alpha=0.3,
     ):
@@ -127,11 +115,6 @@ class Savannah(Cell):
         super().__init__(row, column)
         self.f_ij = f_ij
         self.alpha = alpha
-        # self.num_carn = num_carn
-        # self.num_herb = num_herb
-        self.herb_list = []
-        self.carn_list = []
-        #self.params = params
 
 
 class Desert(Cell):
@@ -156,10 +139,6 @@ class Desert(Cell):
 
         super().__init__(row, column)
         self.food = f_ij
-        # self.num_herb = num_herb
-        # self.num_carn = num_carn
-        self.herb_list = []
-        self.carn_list = []
 
 
 class Ocean(Cell):

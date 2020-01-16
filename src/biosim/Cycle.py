@@ -27,10 +27,12 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for obj in row_of_obj:
                 if type(obj).__name__ == "Savannah":
+                    # print('food grow in Savannah')
                     obj.f_ij += obj.alpha * (obj.parameters['f_max'] -
                                              obj.f_ij)
                 elif type(obj).__name__ == "Jungle":
                     obj.f_ij = obj.parameters['f_max']
+                    # print('food grow in Jungle')
 
     def animals_eat(self):
         """
