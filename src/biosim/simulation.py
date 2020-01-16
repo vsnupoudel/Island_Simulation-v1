@@ -109,10 +109,10 @@ class BioSim:
 
             c.food_grows()
             c.animals_eat()
-            try:
-                print( self.object_matrix[10][10].animal_object_list[0].weight)
-            except:
-                print('No herb here')
+            # try:
+            #     print( self.object_matrix[10][10].animal_object_list[0].weight)
+            # except:
+            #     print('No herb here')
 
             c.animals_reproduce()
             c.animals_migrate()

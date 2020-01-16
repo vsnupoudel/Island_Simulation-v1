@@ -88,6 +88,8 @@ class Cycle:
                     # print('rep')
 
                     # calculate probabilty and new born
+                    print('object_list', cell.animal_object_list)
+                    print('herb_list', cell.herb_list)
                     for animal in cell.herb_list:
                         print(animal)
                         new = animal.herb_reproduce(len(cell.n_herbs))
