@@ -107,7 +107,7 @@ class BioSim:
 
         plt.savefig('Image-{0:03d}.{type}'.format(step, type="png"))
 
-        while step < 19:
+        while step < 100:
 
             c.food_grows()
             c.animals_eat()
@@ -116,16 +116,16 @@ class BioSim:
             c.animals_die()
 
 
-            v.update_graphics(self.herbivore_distribution,
-                              self.carnivore_distribution,
-                              s.num_animals)
-            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
+#            v.update_graphics(self.herbivore_distribution,
+#                              self.carnivore_distribution,
+#                              s.num_animals)
+#            plt.savefig('Image-{0:03d}.{type}'.format(step+1, type="png"))
 
             step += 1
             self.year += 1
 
 
-        v.make_movie()
+  #      v.make_movie()
 
 
     def add_population(self, population):
@@ -276,7 +276,7 @@ if __name__ == "__main__":
     #                         }, )
     # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
     #
-    # s.simulate()
+    s.simulate()
 
 
 

@@ -193,9 +193,10 @@ class Carnivore(Animal):
         amount_eaten = 0
         while amount_eaten >= self.p['F']:
 
-            herb_list = [animal for animal in cell.animal_object_list
-                         if type(animal).__name__ == "Herbivore"]
-            herb_sorted_rev = sorted(herb_list,
+#            herb_list = [animal for animal in cell.animal_object_list
+#                         if type(animal).__name__ == "Herbivore"]
+#            herb_list = cell.herb_list
+            herb_sorted_rev = sorted(cell.herb_list,
                                      key=lambda animal:animal.fitness,
                                      reverse=True)
 

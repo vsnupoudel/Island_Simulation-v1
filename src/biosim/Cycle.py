@@ -3,8 +3,8 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-# from biosim.Geography import Geo
-# from biosim.Mapping import Jungle, Savannah
+#from biosim.Geography import Geo
+from biosim.Mapping import Cell, Jungle, Savannah
 import numpy as np
 
 # from biosim.Herbivore_simulation import HSimulation
@@ -44,10 +44,10 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
-                    herb_list = [animal for animal in cell.animal_object_list
-                                 if type(animal).__name__ == "Herbivore"]
-
-                    herb_sorted = sorted(herb_list,
+#                    herb_list = [animal for animal in cell.animal_object_list
+#                                 if type(animal).__name__ == "Herbivore"]
+#                    herb_list = cell.herb_list
+                    herb_sorted = sorted(cell.herb_list,
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
 
@@ -55,11 +55,11 @@ class Cycle:
                         herb.herb_eat(cell)
 
                     # Carnivores of the cell start eating
-                if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-                    carn_list = [animal for animal in cell.animal_object_list
-                                 if type(animal).__name__ == "Carnivore"]
-
-                    carn_sorted = sorted(carn_list,
+#                if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
+#                    carn_list = [animal for animal in cell.animal_object_list
+#                                 if type(animal).__name__ == "Carnivore"]
+#                    carn_list = cell.carn_list
+                    carn_sorted = sorted(cell.carn_list,
                                          key=lambda animal: animal.fitness,
                                          reverse=True)
 
