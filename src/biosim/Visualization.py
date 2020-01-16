@@ -93,7 +93,7 @@ class Visualization:
 
         if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
-           self._mean_ax.set_ylim(0, 50)
+           self._mean_ax.set_ylim(0, 500)
 
         # needs updating on subsequent calls to simulate()
         self._mean_ax.set_xlim(0, self._final_step + 1)
@@ -168,8 +168,6 @@ class Visualization:
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
-        self._step += 1
-        # plt.show()
         #_____________
         ydata = self._carn_line.get_ydata()
         ydata[self._step] = carn_num
