@@ -12,7 +12,7 @@ import textwrap
 # import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from biosim.Mapping import Jungle, Savannah, Desert, Ocean, Mountain
+from Mapping import Jungle, Savannah, Desert, Ocean, Mountain
 
 
 class Geo:

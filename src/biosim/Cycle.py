@@ -3,12 +3,9 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-# from biosim.Geography import Geo
-# from biosim.Mapping import Jungle, Savannah
+
 import numpy as np
 
-# from biosim.Herbivore_simulation import HSimulation
-# from biosim.Animal import Herbivore, Carnivore
 
 
 class Cycle:

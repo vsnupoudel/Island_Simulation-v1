@@ -3,11 +3,11 @@
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
-from biosim.Cycle import Cycle
-from biosim.Geography import Geo
-from biosim.Visualization import Visualization
-from biosim.Mapping import Savannah, Jungle
-from biosim.Animal import Herbivore, Carnivore
+from Cycle import Cycle
+from Geography import Geo
+from Visualization import Visualization
+from Mapping import Savannah, Jungle
+from Animal import Herbivore, Carnivore
 
 import numpy as np
 import matplotlib.pyplot as plt

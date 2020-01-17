@@ -7,9 +7,9 @@ Tests for Animal class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.simulation import BioSim
-from biosim.Mapping import Cell, Savannah, Jungle
-from biosim.Animal import Herbivore, Carnivore
+from simulation import BioSim
+from Mapping import Cell, Savannah, Jungle
+from Animal import Herbivore, Carnivore
 
 import numpy as np
 

@@ -4,7 +4,7 @@
 __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
-from biosim.Animal import Herbivore, Carnivore
+from Animal import Herbivore, Carnivore
 import numpy as np
 import math
 
@@ -61,6 +61,10 @@ class Cell:
             else:
                 self.animal_object_list.append(Carnivore(age = animal['age'],\
                                                 weight = animal['weight']))
+    # @property
+    # def herb_list(self):
+    #     return [a for a in self.animal_object_list
+    #                       if type(a).__name__ == "Herbivore"]
 
 
         # return self.animal_object_list
