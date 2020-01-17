@@ -3,3 +3,4 @@ tox
 matplotlib
 numpy
 seaborn
+sphinx
