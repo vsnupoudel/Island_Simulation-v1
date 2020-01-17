@@ -48,8 +48,21 @@ def test_set_graphics():
 
 def test_create_map():
     """Map should be created"""
-    v.create_map(s.carnivore_distribution)
+    v._set_graphics()
+    v.create_map(s.island_matrix)
     assert v._img_axis is not None
+
+
+def test_update_herb_ax():
+    pass
+
+
+def test_update_carn_ax():
+    pass
+
+
+def test_update_mean_ax():
+    pass
 
 
 
