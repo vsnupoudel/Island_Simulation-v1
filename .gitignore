@@ -226,3 +226,4 @@ dmypy.json
 *.png
 *.mpeg
 *.mp4
+.idea/
