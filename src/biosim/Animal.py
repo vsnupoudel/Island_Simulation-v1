@@ -192,12 +192,9 @@ class Carnivore(Animal):
         :return:None
         """
         amount_eaten = 0
-        herb_sorted_rev = sorted(cell.herb_list,
-                                 key=lambda animal:animal.fitness,
-                                 reverse=True)
 
         dead_list = []
-        for herb in herb_sorted_rev:
+        for herb in cell.herb_sorted_rev:
             if self.fitness > herb.fitness:
                 if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
                     kill_prob = (self.fitness - herb.fitness) / self.p[

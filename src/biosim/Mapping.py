@@ -61,9 +61,24 @@ class Cell:
                       if type(a).__name__ == "Herbivore"]
 
     @property
+    def herb_sorted(self):
+        return sorted(self.herb_list, key=lambda animal: animal.fitness,
+                         reverse=True)
+
+    @property
+    def herb_sorted_rev(self):
+        return sorted(self.herb_list, key=lambda animal: animal.fitness,
+                             reverse=True)
+
+    @property
     def carn_list(self):
         return [a for a in self.animal_object_list
                       if type(a).__name__ == "Carnivore"]
+
+    @property
+    def carn_sorted(self):
+        return sorted(self.carn_list, key=lambda animal: animal.fitness,
+                         reverse=True)
 
     @property
     def n_herbs(self):

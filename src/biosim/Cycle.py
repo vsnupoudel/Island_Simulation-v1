@@ -44,21 +44,21 @@ class Cycle:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
 
-                    herb_sorted = sorted(cell.herb_list,
-                                         key=lambda animal: animal.fitness,
-                                         reverse=True)
+                    # herb_sorted = sorted(cell.herb_list,
+                    #                      key=lambda animal: animal.fitness,
+                    #                      reverse=True)
 
-                    for herb in herb_sorted:
+                    for herb in cell.herb_sorted:
                         herb.herb_eat(cell)
 
                     # Carnivores of the cell start eating
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
 
-                    carn_sorted = sorted(cell.carn_list,
-                                         key=lambda animal: animal.fitness,
-                                         reverse=True)
+                    # carn_sorted = sorted(cell.carn_list,
+                    #                      key=lambda animal: animal.fitness,
+                    #                      reverse=True)
 
-                    for carn in carn_sorted:
+                    for carn in cell.carn_sorted:
                         # additional logic to be added later
                         # currently the Carnivore eats 1 herbivore only
                         carn.carn_eat(cell)
