@@ -25,13 +25,7 @@ class Cell:
         self.animal_object_list = []
         self.f_ij = f_ij
         self.alpha = alpha
-        self.herb_list = [a for a in self.animal_object_list
-                       if type(a).__name__ == "Herbivore"]
-        self.carn_list = [a for a in self.animal_object_list
-                       if type(a).__name__ == "Carnivore"]
-
-        self.n_herbs = len(self.herb_list)
-        self.n_carns = len(self.carn_list)
+        self.animal_object_list = []
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
@@ -61,13 +55,23 @@ class Cell:
             else:
                 self.animal_object_list.append(Carnivore(age = animal['age'],\
                                                 weight = animal['weight']))
-    # @property
-    # def herb_list(self):
-    #     return [a for a in self.animal_object_list
-    #                       if type(a).__name__ == "Herbivore"]
+    @property
+    def herb_list(self):
+        return [a for a in self.animal_object_list
+                      if type(a).__name__ == "Herbivore"]
 
+    @property
+    def carn_list(self):
+        return [a for a in self.animal_object_list
+                      if type(a).__name__ == "Carnivore"]
 
-        # return self.animal_object_list
+    @property
+    def n_herbs(self):
+        return len(self.herb_list)
+
+    @property
+    def n_carns(self):
+        return len(self.carn_list)
 
     def get_population(self):
         return self.animal_object_list

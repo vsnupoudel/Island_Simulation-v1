@@ -85,14 +85,14 @@ class Cycle:
                     # print('rep')
 
                     # calculate probabilty and new born
-                    print('object_list', cell.animal_object_list)
-                    print('herb_list', cell.herb_list)
+                    # print('object_list', cell.animal_object_list)
+                    # print('herb_list', cell.herb_list)
                     for animal in cell.herb_list:
-                        print(animal)
-                        new = animal.herb_reproduce(len(cell.n_herbs))
-                        print('new')
+                        # print(animal)
+                        new = animal.herb_reproduce(cell.n_herbs)
+                        # print('new')
                         if new:
-                            print('Herb rep')
+                            # print('Herb rep')
                             new_herbs.append(new)
                         # if animal.has_procreated == False:
 
@@ -104,10 +104,10 @@ class Cycle:
                     new_carns = []
                     # calculate probabilty and new born
                     for animal in cell.carn_list:
-                        print('Carn rep')
-                        new = animal.carn_reproduce(cell.n_carn)
+                        # print('Carn rep')
+                        new = animal.carn_reproduce(cell.n_carns)
                         if new:
-                            print('Carn rep')
+                            # print('Carn rep')
                             new_carns.append(new)
                         # if animal.has_procreated == False:
 
@@ -177,6 +177,7 @@ class Cycle:
                                                      proba_list_h)
 
                             if type(animal).__name__ == "Carnivore":
+                                # print('Carn migrates called')
                                 animal.carn_migrates(animal, cell, adj_cells,
                                                      proba_list_c)
 
