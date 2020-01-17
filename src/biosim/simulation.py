@@ -82,7 +82,7 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, num_years=19, vis_years=1, img_years=None, y_lim = 500):
+    def simulate(self, vis_years=1, img_years=None, y_lim = 500):
         """
         Run simulation while visualizing the result.
 
@@ -105,14 +105,10 @@ class BioSim:
 
         plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
 
-        while step < num_years:
+        while step < 20:
 
             c.food_grows()
             c.animals_eat()
-            # try:
-            #     print( self.object_matrix[10][10].animal_object_list[0].weight)
-            # except:
-            #     print('No herb here')
 
             c.animals_reproduce()
             c.animals_migrate()

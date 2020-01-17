@@ -35,7 +35,7 @@ class Visualization:
         """
         self.object_matrix = object_matrix
         self._step = 0
-        self._final_step = 20
+        self._final_step = 100
         self._img_ctr = 0
 
         if img_dir is not None:
