@@ -54,16 +54,34 @@ def test_create_map():
 
 
 def test_update_herb_ax():
-    pass
+    """map of herbivores should be created"""
+    v._set_graphics()
+    ax_1 = v._herb_axis
+    v.update_herb_ax(s.herbivore_distribution)
+    ax_2 = v._herb_axis
+
+    assert v._herb_axis is not None
+    assert ax_1 != ax_2
 
 
 def test_update_carn_ax():
-    pass
+    """map of carnivores should be created"""
+    v._set_graphics()
+    ax_1 = v._carn_axis
+    v.update_carn_ax(s.carnivore_distribution)
+    ax_2 = v._carn_axis
+
+    assert v._carn_axis is not None
+    assert ax_1 != ax_2
 
 
 def test_update_mean_ax():
+    """"""
     pass
 
+
+def test_make_movie():
+    """makes movie"""
 
 
 
