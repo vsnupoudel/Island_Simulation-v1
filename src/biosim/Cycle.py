@@ -194,7 +194,7 @@ class Cycle:
             for col, cell in enumerate(row_of_obj):
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     for animal in cell.animal_object_list:
-                        if animal.fitness == 0:
+                        if animal.fitness == 0:                                 #make method of animals
                             death_list.append(animal)
                         else:
                             death_prob = animal.p['omega']*(1- animal.fitness)

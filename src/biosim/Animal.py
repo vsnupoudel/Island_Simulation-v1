@@ -7,6 +7,7 @@ import numpy as np
 import math
 
 
+
 class Animal:
     """
     SuperClass for Herbivore and Carnivore.
@@ -271,3 +272,4 @@ if __name__ == "__main__":
     c = Carnivore(5,10)
     print(h.fitness)
     print(c.fitness)
+    h.herb_migrates(h,(1,1), (1,2), [1])

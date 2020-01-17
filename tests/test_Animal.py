@@ -10,6 +10,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 from biosim.Animal import Animal, Herbivore, Carnivore
 from Geography import Geo
 from Cycle import Cycle
+from Mapping import Cell
 
 import pytest_mock
 import numpy as np
@@ -66,8 +67,8 @@ def test_herb_eat_weigth_increase():
     assert h.weight > prev_weigth
 
 
-def test_animal_reproduce_weigth_decrease(mocker):
-    """Animals weigtht should decrease when giving birth"""
+def test_animal_reproduce_weight_decrease(mocker):
+    """Animals weight should decrease when giving birth"""
     h = Herbivore(2, 50)
     c = Carnivore(2, 50)
     prev_weight_h = h.weight
@@ -104,7 +105,21 @@ def test_animal_reproduce_baby_weigth_positive(mocker):
     assert new_carn.weight > 0
 
 
-def 
+def test_animals_migrate_adjacent_cell(mocker):
+    """Animals migrate to a adjacent cell"""
+    h = Herbivore(5, 10)
+    c = Carnivore(5,10)
+    cell_1 = Cell(1,2)
+    cell_2 = Cell(0,1)
+    mocker.patch('numpy.random.random', return_value=0)
+    h.herb_migrates(h, (1, 1), [cell_1], [1])
+    c.carn_migrates(c, (0, 0), [cell_2], [1])
+
+    assert len(cell_1.animal_object_list) == 1
+    assert len(cell_2.animal_object_list) == 1
+
+
+
 
 
 

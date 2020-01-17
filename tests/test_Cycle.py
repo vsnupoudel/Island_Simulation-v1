@@ -46,13 +46,3 @@ def test_max_food_Jungle():
             if type(obj).__name__ == "Jungle":
                 c.food_grows()
                 assert obj.f_ij == 800
-
-
-def test_animals_eat():
-    pass
-
-
-
-
-
-
