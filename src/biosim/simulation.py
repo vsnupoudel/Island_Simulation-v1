@@ -102,7 +102,6 @@ class BioSim:
                          self.carnivore_distribution, s.num_animals)
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(step))
-
         while step < 100:
             c.food_grows()
             c.animals_eat()
