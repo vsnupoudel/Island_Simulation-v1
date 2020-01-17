@@ -8,6 +8,15 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from biosim.Animal import Animal, Herbivore, Carnivore
+from Geography import Geo
+from Cycle import Cycle
+
+input_map = ("""\
+                        OOOO
+                        OJSO
+                        OOOO""")
+g = Geo(input_map)
+c = Cycle(g.object_matrix)
 
 
 def test_animal_not_dead():
@@ -46,7 +55,14 @@ def test_up_par():
 
 def test_herb_eat_weigth_increase():
     """Herbevoirs weigth should increase when eating"""
-    pass
+    h = Herbivore(2, 10)
+    prev_weigth = h.weight
+    h.herb_eat(c.object_matrix[1][2])
+
+    assert h.weight > prev_weigth
+
+
+
 
 
 

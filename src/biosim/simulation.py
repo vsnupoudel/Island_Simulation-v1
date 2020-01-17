@@ -10,6 +10,7 @@ from Mapping import Savannah, Jungle
 from Animal import Herbivore, Carnivore
 
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 class BioSim:
@@ -190,11 +191,22 @@ class BioSim:
 
     @property
     def animal_distribution(self):
-        """Pandas DataFrame with animal count for each
-                cell on
-                island."""
-        # to be done later
-        pass
+        """Pandas DataFrame with animal count for each cell on island."""
+
+        cord_list = []
+        herb_list = []
+        carn_list = []
+        for row in self.object_matrix:
+            for el in row:
+                cord_list.append((el.row, el.column))
+                herb_list.append(el.n_herbs)
+                carn_list.append(el.n_carns)
+
+        ani_dist = pd.DataFrame(cord_list)
+        ani_dist['Herbivores'] = herb_list
+        ani_dist['Carnivores'] = carn_list
+        print(ani_dist)
+        return ani_dist
 
     @property
     def island_matrix(self):
@@ -269,7 +281,8 @@ if __name__ == "__main__":
     # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
     # print(Carnivore.p['F'])
 
-    s.simulate()
+ #   s.simulate()
+    s.animal_distribution
 
 
 
