@@ -174,23 +174,27 @@ class Visualization:
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
-        plt.pause(1e-6)
+        # plt.pause(1e-6)
 
     def make_movie(self):
         """
         Makes a movie of a series of images
         :return:
         """
-        subprocess.run(['ffmpeg',
-                                '-f','image2',
-                                '-r','3',
-                                '-i','Images\\Image-%03d.png',
-                                '-vcodec','mpeg4',
-                                '-y', 'movie.mp4'
-                                # To hide the logs
-                                # '-hide_banner',
-                                # '-loglevel', 'panic'
-                               ])
+        try:
+            subprocess.run(['ffmpeg',
+                                    '-f','image2',
+                                    '-r','6',
+                                    '-i','Images\\Image-%03d.png',
+                                    '-vcodec','mpeg4',
+                                    '-y', 'movie.mp4',
+                                    # To hide the logs
+                                    '-hide_banner',
+                                    '-loglevel', 'panic'
+                                   ])
+        except:
+            return RuntimeError('Error in video generation')
+
 
 
 
