@@ -44,18 +44,25 @@ class Animal:
 
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
                                                     self.p['sigma_birth'])
-
+    # _cached_fitness
+    # _cached_fitness_valid = T
 
     @property
     def fitness(self):
         """The fitness of each animal"""
+        # if valid
+        # return cachfit
+        # else go to the code down
         if self.weight <= 0:
             return 0
         else:
+
             return (1 / (1 + math.e ** (self.p['phi_age'] * (
                     self.age - self.p['a_half']))))  \
                    * (1 / (1 + math.e **(- self.p['phi_weight'] * (
                     self.weight - self.p['w_half']))))
+        # cached_fitness = new value
+        # cached _fitness = True
 
     @classmethod
     def up_par(cls, params_dict):
@@ -211,7 +218,7 @@ class Carnivore(Animal):
                     amount_eaten += herb.weight
                     self.weight += self.p['beta']*herb.weight
             # Check if the carnivore is satisfied yet
-            if amount_eaten < self.p['F']:
+            if amount_eaten > self.p['F']:
                 break
         # Delete killed herbivores from list in the cell/update the list
         cell.animal_object_list = [
@@ -233,7 +240,7 @@ class Carnivore(Animal):
 
         # 1. Probability condition is satisfied if random_number <= b_prob
         # 2. check if the weight of parent is greater than threshold
-        print(self.reprod_thresh_weight)
+        # print(self.reprod_thresh_weight)
 
         if (np.random.random() <= b_prob) & \
                 (self.weight >= self.reprod_thresh_weight):

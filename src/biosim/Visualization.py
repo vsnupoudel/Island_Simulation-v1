@@ -35,7 +35,7 @@ class Visualization:
         """
         self.object_matrix = object_matrix
         self._step = 0
-        self._final_step = 100
+        self._final_step = 200
         self._img_ctr = 0
 
         if img_dir is not None:
@@ -174,7 +174,7 @@ class Visualization:
         self.update_herb_ax(herb_pos)
         self.update_carn_ax(carn_pos)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
-        # plt.pause(1e-6)
+        plt.pause(1e-6)
 
     def make_movie(self):
         """

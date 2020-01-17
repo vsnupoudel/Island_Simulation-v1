@@ -82,7 +82,7 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, vis_years=1, img_years=None, y_lim = 500):
+    def simulate(self, vis_years=1, img_years=None, y_lim = 13000):
         """
         Run simulation while visualizing the result.
 
@@ -103,7 +103,7 @@ class BioSim:
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
-        while step < 20:
+        while step < 100:
             c.food_grows()
             c.animals_eat()
 
@@ -249,40 +249,42 @@ if __name__ == "__main__":
         {
             "loc": (10, 10),
             "pop": [
-                {"species": "Herbivore", "age": 0, "weight": 5}
-                for _ in range(20)
-            ],
-        }
-    ]+ [
-        {
-            "loc": (10, 10),
-            "pop": [
-                {"species": "Carnivore", "age": 5, "weight": 70}
-                for _ in range(50)
+                {"species": "Herbivore", "age": 5, "weight": 20}
+                for _ in range(150)
             ],
         }
     ]
 
     s = BioSim(map, ini_herbs, seed = 1)
-    # print( len( s.object_matrix[10][10].animal_object_list) )
 
-    s.add_population(ini_herbs)
 
-    # print( len( s.object_matrix[10][10].animal_object_list) )
+    s.set_animal_parameters("Carnivore",
+                            {
+                                "a_half": 70,
+                                "phi_age": 0.5,
+                                "omega": 0.3,
+                                "F": 65,
+                                "DeltaPhiMax": 9.0,
+                            }, )
+    s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+    s.set_landscape_parameters("J", {"f_max": 700})
 
-    # s.set_animal_parameters("Carnivore",
-    #                         {
-    #                             "a_half": 70,
-    #                             "phi_age": 0.5,
-    #                             "omega": 0.3,
-    #                             "F": 65,
-    #                             "DeltaPhiMax": 9.0,
-    #                         }, )
-    # s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
-    # print(Carnivore.p['F'])
+    s.simulate()
 
- #   s.simulate()
-    s.animal_distribution
+    add_carns = [
+        {
+            "loc": (10, 10),
+            "pop": [
+                {"species": "Carnivore", "age": 5, "weight": 20}
+                for _ in range(40)
+            ],
+        }
+    ]
+
+    s.add_population(add_carns)
+
+    s.simulate()
+
 
 
 
