@@ -82,7 +82,7 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, num_years=1, vis_years=1, img_years=None):
+    def simulate(self, num_years=19, vis_years=1, img_years=None, y_lim = 500):
         """
         Run simulation while visualizing the result.
 
@@ -94,7 +94,7 @@ class BioSim:
         """
         c = Cycle(self.object_matrix)
         v = Visualization(self.object_matrix)
-        v._set_graphics()
+        v._set_graphics(y_lim)
         v.create_map(self.island_matrix)
 
         step = 0
@@ -105,7 +105,7 @@ class BioSim:
 
         plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
 
-        while step < 19:
+        while step < num_years:
 
             c.food_grows()
             c.animals_eat()
@@ -247,15 +247,15 @@ if __name__ == "__main__":
             "loc": (10, 10),
             "pop": [
                 {"species": "Herbivore", "age": 5, "weight": 20}
-                for _ in range(200)
+                for _ in range(20)
             ],
         }
     ]+ [
         {
             "loc": (10, 10),
             "pop": [
-                {"species": "Carnivore", "age": 5, "weight": 100}
-                for _ in range(15)
+                {"species": "Carnivore", "age": 5, "weight": 70}
+                for _ in range(50)
             ],
         }
     ]

@@ -57,7 +57,7 @@ class Visualization:
         self._carn_axis = None
 
 
-    def _set_graphics(self):
+    def _set_graphics(self, y_lim):
         """
         Sets up the graphics with 4 subplots
         :return:
@@ -81,7 +81,7 @@ class Visualization:
 
         if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
-           self._mean_ax.set_ylim(0, 500)
+           self._mean_ax.set_ylim(0, y_lim)
 
         # needs updating on subsequent calls to simulate()
         self._mean_ax.set_xlim(0, self._final_step+1)
