@@ -11,6 +11,10 @@ from biosim.Animal import Animal, Herbivore, Carnivore
 from Geography import Geo
 from Cycle import Cycle
 
+import pytest_mock
+import numpy as np
+import random
+
 input_map = ("""\
                         OOOO
                         OJSO
@@ -60,6 +64,52 @@ def test_herb_eat_weigth_increase():
     h.herb_eat(c.object_matrix[1][2])
 
     assert h.weight > prev_weigth
+
+
+def test_animal_reproduce_weigth_decrease(mocker):
+    """Animals weigtht should decrease when giving birth"""
+    h = Herbivore(2, 50)
+    c = Carnivore(2, 50)
+    prev_weight_h = h.weight
+    prev_weight_c = c.weight
+    mocker.patch('numpy.random.random', return_value=0)
+    h.herb_reproduce(10)
+    c.carn_reproduce(10)
+
+    assert np.random.random() == 0
+
+    assert h.weight < prev_weight_h
+    assert c.weight < prev_weight_c
+
+def test_animal_reproduce_baby_age_zero(mocker):
+    """Age of newborn animal should be zero"""
+    h = Herbivore(2, 50)
+    c = Carnivore(2, 50)
+    mocker.patch('numpy.random.random', return_value=0)
+    new_herb = h.herb_reproduce(10)
+    new_carn = c.carn_reproduce(10)
+
+    assert new_herb.age == 0
+    assert new_carn.age == 0
+
+def test_animal_reproduce_baby_weigth_positive(mocker):
+    """Weigth of newborn animal should be positive"""
+    h = Herbivore(2, 50)
+    c = Carnivore(2, 50)
+    mocker.patch('numpy.random.random', return_value=0)
+    new_herb = h.herb_reproduce(10)
+    new_carn = c.carn_reproduce(10)
+
+    assert new_herb.weight > 0
+    assert new_carn.weight > 0
+
+
+def 
+
+
+
+
+
 
 
 

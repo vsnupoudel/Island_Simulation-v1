@@ -232,6 +232,7 @@ class Carnivore(Animal):
 
         # 1. Probability condition is satisfied if random_number <= b_prob
         # 2. check if the weight of parent is greater than threshold
+        print(self.reprod_thresh_weight)
 
         if (np.random.random() <= b_prob) & \
                 (self.weight >= self.reprod_thresh_weight):
