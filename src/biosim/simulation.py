@@ -214,7 +214,7 @@ class BioSim:
 
         island_matrix = np.zeros((row_num, column_num))
 
-        for row, list_of_obj in enumerate(s.object_matrix):
+        for row, list_of_obj in enumerate(self.object_matrix):
             for col, cell in enumerate(list_of_obj):
                 island_matrix[row][col] = color_dict[type(cell).__name__]
 
