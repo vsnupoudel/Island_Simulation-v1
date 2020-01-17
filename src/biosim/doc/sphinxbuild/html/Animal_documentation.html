@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documentation of animals &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-of-animals">
+<h1>Documentation of animals<a class="headerlink" href="#documentation-of-animals" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-Animal">
+<span id="the-animal-class-and-its-subclasses"></span><h2>The Animal Class and its Subclasses<a class="headerlink" href="#module-Animal" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Animal.Animal">
+<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal" title="Permalink to this definition">¶</a></dt>
+<dd><p>SuperClass for Herbivore and Carnivore.
+Contains methods, properties and variables that are common in both.</p>
+<dl class="attribute">
+<dt id="Animal.Animal.fitness">
+<code class="descname">fitness</code><a class="headerlink" href="#Animal.Animal.fitness" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fitness of each animal</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="Animal.Animal.up_par">
+<em class="property">classmethod </em><code class="descname">up_par</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal.up_par"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal.up_par" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> – Dictionary of parameters to be updated</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Animal.Carnivore">
+<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Carnivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carnivore characteristics</p>
+<dl class="method">
+<dt id="Animal.Carnivore.carn_eat">
+<code class="descname">carn_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_eat" title="Permalink to this definition">¶</a></dt>
+<dd><p>When Carnivores eat: This part should:
+1. delete herbivores from cell after they are eaten.
+2. Update the weight of carnivore (yet to implement ??)</p>
+<p>Conditions for a carnivore eating are:
+1. They eat until they get an amount F (yet to implement ??)
+2. If fitness is less than a herbivore, they can’t kill that herbivore
+3. They kill with certain probability, if they have less than
+DeltaPhiMax fitness
+4. They certainly kill that herbivore otherwise
+:param cell:The cell object where the carnivore resides
+:return:None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Animal.Carnivore.carn_migrates">
+<code class="descname">carn_migrates</code><span class="sig-paren">(</span><em>animal</em>, <em>cell</em>, <em>adj_cells</em>, <em>proba_list_c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_migrates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_migrates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function decides which cell does the chosen animal migrates to
+:param animal: the animal object that is chosen to move
+:param cell: the current cell object
+:param adj_cells: a list consisting adjacent cell objects
+:param proba_list_h: a list with probabilities corresponding to the
+list of adjacent cells
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Animal.Carnivore.carn_reproduce">
+<code class="descname">carn_reproduce</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_reproduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reproduction for carnivores
+:param length: number of total carnivores in the cell where the
+herbivore resides
+:return: A baby carnivores object (with age=0 and weight equal to
+baby weight)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Animal.Herbivore">
+<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Herbivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivore characteristics, subclass of Animal class</p>
+<dl class="method">
+<dt id="Animal.Herbivore.herb_eat">
+<code class="descname">herb_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_eat" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell</strong> – The cell where this animal resides</td>
+</tr>
+</tbody>
+</table>
+<p>Updates amount of food in the cell object
+Updates the weight of the animal (self)
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Animal.Herbivore.herb_migrates">
+<code class="descname">herb_migrates</code><span class="sig-paren">(</span><em>animal</em>, <em>cell</em>, <em>adj_cells</em>, <em>proba_list_h</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_migrates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_migrates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function decides which cell does the chosen animal migrates to
+:param animal: the animal object that is chosen to move
+:param cell: the current cell object
+:param adj_cells: a list consisting adjacent cell objects
+:param proba_list_h: a list with probabilities corresponding to the
+list of adjacent cells
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Animal.Herbivore.herb_reproduce">
+<code class="descname">herb_reproduce</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_reproduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reproduction for herbivores
+:param length: number of total herbivores in the cell where the
+herbivore resides
+:return: A baby herbivore object (with age=0 and weight equal to
+baby weight)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Modelling the Ecosystem of an Island- Group 4</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Anders Huse, Bishnu Poudel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/Animal_documentation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
