@@ -65,7 +65,7 @@ class Visualization:
 
         # create new figure window
         if self._fig is None:
-            self._fig = plt.figure()
+            self._fig = plt.figure(figsize=(8,8))
 
         if self._map_ax is None:
             self._map_ax = self._fig.add_subplot(2, 2, 1)
@@ -83,7 +83,7 @@ class Visualization:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, y_lim)
 
-        # needs updating on subsequent calls to simulate()
+        # setting the x limit, manually for now
         self._mean_ax.set_xlim(0, self._final_step+1)
 
         if self._herb_line is None:
@@ -135,6 +135,8 @@ class Visualization:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
                                                  cmap="Greens")
+            self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax)
+
 
 
     def update_carn_ax(self, carn_data):
@@ -149,6 +151,7 @@ class Visualization:
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
                                                  cmap="OrRd")
+            self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax)
 
 
     def update_mean_ax(self, herb_num, carn_num):
@@ -179,14 +182,14 @@ class Visualization:
         :return:
         """
         subprocess.run(['ffmpeg',
-                               '-f','image2',
-                               '-r','3',
-                               '-i','Images\\Image-%03d.png',
-                               '-vcodec','mpeg4',
-                               '-y', 'movie.mp4',
-                            # To hide the logs
-                            '-hide_banner',
-                            '-loglevel', 'panic'
+                                '-f','image2',
+                                '-r','3',
+                                '-i','Images\\Image-%03d.png',
+                                '-vcodec','mpeg4',
+                                '-y', 'movie.mp4'
+                                # To hide the logs
+                                # '-hide_banner',
+                                # '-loglevel', 'panic'
                                ])
 
 

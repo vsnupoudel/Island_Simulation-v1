@@ -50,7 +50,6 @@ class BioSim:
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
         self.object_matrix = self.island_map.object_matrix
-        self.year = 0
 
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
@@ -98,12 +97,10 @@ class BioSim:
         v.create_map(self.island_matrix)
 
         step = 0
-
         v.update_graphics(self.herbivore_distribution,
-                         self.carnivore_distribution,
-                         s.num_animals)
+                         self.carnivore_distribution, s.num_animals)
 
-        plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
+        plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
         while step < 20:
             c.food_grows()
@@ -115,13 +112,12 @@ class BioSim:
             v.update_graphics(self.herbivore_distribution,
                              self.carnivore_distribution,
                              s.num_animals)
-            plt.savefig('Images\\Image-{0:03d}.png'.format(step+1))
 
             step += 1
-            self.year += 1
-            # v._final_step += 1
+            plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
-#        v.make_movie()
+        # Make movie out of the pictures stored
+        v.make_movie()
 
 
     def add_population(self, population):
@@ -135,9 +131,9 @@ class BioSim:
             self.object_matrix[x][y].set_population(one_location_list)
 
 
-    @property
-    def current_year(self):
-        return self.year
+    # @property
+    # def current_year(self):
+    #     return self.year
 
 
     @property
