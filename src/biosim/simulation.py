@@ -93,17 +93,17 @@ class BioSim:
         Image files will be numbered consecutively.
         """
         c = Cycle(self.object_matrix)
-        v = Visualization(self.object_matrix)
-        v._set_graphics(y_lim)
-        v.create_map(self.island_matrix)
+#        v = Visualization(self.object_matrix)
+#        v._set_graphics(y_lim)
+#        v.create_map(self.island_matrix)
 
         step = 0
 
-        v.update_graphics(self.herbivore_distribution,
-                          self.carnivore_distribution,
-                          s.num_animals)
+#        v.update_graphics(self.herbivore_distribution,
+#                          self.carnivore_distribution,
+#                          s.num_animals)
 
-        plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
+#        plt.savefig('Images\\Image-{0:03d}.{type}'.format(step, type="png"))
 
         while step < 20:
             c.food_grows()
@@ -112,16 +112,16 @@ class BioSim:
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
-            v.update_graphics(self.herbivore_distribution,
-                              self.carnivore_distribution,
-                              s.num_animals)
-            plt.savefig('Images\\Image-{0:03d}.png'.format(step+1))
+#            v.update_graphics(self.herbivore_distribution,
+#                              self.carnivore_distribution,
+#                              s.num_animals)
+#            plt.savefig('Images\\Image-{0:03d}.png'.format(step+1))
 
             step += 1
             self.year += 1
             # v._final_step += 1
 
-        v.make_movie()
+#        v.make_movie()
 
 
     def add_population(self, population):
