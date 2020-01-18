@@ -13,6 +13,22 @@ class Animal:
     """
     SuperClass for Herbivore and Carnivore.
     Contains methods, properties and variables that are common in both.
+
+        Attributes:
+
+        p:                   dict, dictionary of parameters for the
+                                          animal objects. All parameters are
+                                          None by default
+
+        has_procreated:       bool(default, False), whether the animal object
+                                                    has procreated or not
+        has_migrated:         bool(default, False), whether the animal object
+                                                    has migrated or not
+        is_dead:              bool(default, False), whether the animal object
+                                                    is dead or alive
+        age:                  int, the age of the animal
+        weight:               float, the weight of the animal
+        reprod_thresh_weight  float, treshold weight for reproduction
     """
     has_procreated = False
     has_migrated = False
@@ -62,6 +78,7 @@ class Animal:
     @classmethod
     def up_par(cls, params_dict):
         """
+        Updates the animal parameters
         :param params_dict: Dictionary of parameters to be updated
         """
         for k, v in params_dict.items():
@@ -74,7 +91,25 @@ class Animal:
 
 
 class Herbivore(Animal):
-    """Herbivore characteristics, subclass of Animal class"""
+    """Herbivore characteristics, subclass of Animal class
+
+        Attributes:
+
+        p:                   dict, dictionary of parameters for the Herbivore
+                                   objects.
+
+        has_procreated:       bool(default, False), whether the animal object
+                                                    has procreated or not
+        has_migrated:         bool(default, False), whether the animal object
+                                                    has migrated or not
+        is_dead:              bool(default, False), whether the animal object
+                                                    is dead or alive
+        age:                  int, the age of the animal
+        weight:               float, the weight of the animal
+        reprod_thresh_weight  float, treshold weight for reproduction
+    """
+
+
     p = {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
@@ -93,14 +128,17 @@ class Herbivore(Animal):
          "DeltaPhiMax": None}
 
     def __init__(self, age, weight):
+        """
+        :param age:    int, the age of the animal
+        :param weight: float, the weight of the animal
+        """
         super().__init__(age,weight)
 
     def herb_eat(self, cell):
         """
-        :param cell: The cell where this animal resides
-        Updates amount of food in the cell object
-        Updates the weight of the animal (self)
-        :return: None
+        Herbivores eat. This method updates the amount of food in the cell
+        object and the weight of the animal.
+        :param cell:   Cell object, the cell where this animal resides.
         """
         if cell.f_ij >= self.p['F']:
             self.weight += self.p['beta'] * self.p['F']
@@ -111,11 +149,12 @@ class Herbivore(Animal):
 
     def herb_reproduce(self, length):
         """
-        Reproduction for herbivores
-        :param length: number of total herbivores in the cell where the
-        herbivore resides
-        :return: A baby herbivore object (with age=0 and weight equal to
-        baby weight)
+        Reproduction for herbivores. The weight of the mother animal decreases
+        when it gives birth.
+        :param length: int, number of total herbivores in the cell where the
+                            herbivore resides
+        :return: A baby herbivore object with age = 0 and weight equal to
+        baby weight
         """
 
         b_prob = min(1, self.p['gamma'] *
@@ -135,14 +174,17 @@ class Herbivore(Animal):
                 self.weight -= baby_weight * self.p['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
-    def herb_migrates(self,animal, cell, adj_cells, proba_list_h):
+    def herb_migrates(self, animal, cell, adj_cells, proba_list_h):
         """
-        Function decides which cell does the chosen animal migrates to
-        :param animal: the animal object that is chosen to move
-        :param cell: the current cell object
-        :param adj_cells: a list consisting adjacent cell objects
-        :param proba_list_h: a list with probabilities corresponding to the
-        list of adjacent cells
+        Herbivore migrates. This method decides which cell the animal migrates
+        to, of the adjacent cells to the current cell.
+        :param animal:       Herbivore object, the herbivore object that is
+                                               chosen to move
+        :param cell:         Cell object, the current cell
+        :param adj_cells:    list, a list consisting of the adjacent cell
+                                   objects
+        :param proba_list_h: list, a list with probabilities corresponding to
+                                   the list of adjacent cells
         :return: None
         """
         cum_prop = 0
@@ -156,7 +198,23 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    """Carnivore characteristics"""
+    """Carnivore characteristics, subclass of Animal class
+
+        Attributes:
+
+        p:                   dict, dictionary of parameters for the Carnivore
+                                   objects.
+
+        has_procreated:       bool(default, False), whether the animal object
+                                                    has procreated or not
+        has_migrated:         bool(default, False), whether the animal object
+                                                    has migrated or not
+        is_dead:              bool(default, False), whether the animal object
+                                                    is dead or alive
+        age:                  int, the age of the animal
+        weight:               float, the weight of the animal
+        reprod_thresh_weight  float, treshold weight for reproduction
+    """
     p = {
         "w_birth": 6.0,
         "sigma_birth": 1.0,
@@ -177,13 +235,18 @@ class Carnivore(Animal):
     }
 
     def __init__(self, age, weight):
+        """
+        :param age:    int, the age of the animal
+        :param weight: float, the weight of the animal
+        """
         super().__init__(age, weight)
 
     def carn_eat(self, cell):
         """
-        When Carnivores eat: This part should:
-        1. delete herbivores from cell after they are eaten.
-        2. Update the weight of carnivore (yet to implement ??)
+        Carnivores eat
+        When Carnivores eat, this method:
+        - delete herbivores from the cell after they are eaten.
+        - Update the weight of carnivore when they have eaten.
 
         Conditions for a carnivore eating are:
         1. They eat until they get an amount F (yet to implement ??)
@@ -191,8 +254,8 @@ class Carnivore(Animal):
         3. They kill with certain probability, if they have less than
         DeltaPhiMax fitness
         4. They certainly kill that herbivore otherwise
-        :param cell:The cell object where the carnivore resides
-        :return:None
+        :param cell:   Cell object, The cell object where the carnivore resides
+        :return :None
         """
         amount_eaten = 0
 
@@ -212,9 +275,11 @@ class Carnivore(Animal):
                     dead_list.append(herb)
                     amount_eaten += herb.weight
                     self.weight += self.p['beta']*herb.weight
+
             # Check if the carnivore is satisfied yet
             if amount_eaten > self.p['F']:
                 break
+
         # Delete killed herbivores from list in the cell/update the list
         cell.animal_object_list = [
             animal for animal in cell.animal_object_list
@@ -224,18 +289,17 @@ class Carnivore(Animal):
     def carn_reproduce(self, length):
         """
         Reproduction for carnivores
-        :param length: number of total carnivores in the cell where the
-        herbivore resides
-        :return: A baby carnivores object (with age=0 and weight equal to
-        baby weight)
+        :param length:               int, number of total carnivores in the
+                                          cell where the herbivore resides
+        :return: A baby carnivores   Carnivore object (with age=0 and weight
+                                     equal to baby weight)
         """
 
         b_prob = min(1, self.p['gamma'] *
                      self.fitness * (length - 1))
 
-        # 1. Probability condition is satisfied if random_number <= b_prob
-        # 2. check if the weight of parent is greater than threshold
-        # print(self.reprod_thresh_weight)
+        # Probability condition is satisfied if random_number <= b_prob
+        # check if the weight of parent is greater than threshold
 
         if (np.random.random() <= b_prob) & \
                 (self.weight >= self.reprod_thresh_weight):
@@ -250,12 +314,15 @@ class Carnivore(Animal):
 
     def carn_migrates(self, animal, cell, adj_cells, proba_list_c):
         """
-        Function decides which cell does the chosen animal migrates to
-        :param animal: the animal object that is chosen to move
-        :param cell: the current cell object
-        :param adj_cells: a list consisting adjacent cell objects
-        :param proba_list_h: a list with probabilities corresponding to the
-        list of adjacent cells
+        Carnivore migrates. This method decides which cell the animal migrates
+        to, of the adjacent cells to the current cell.
+        :param animal:       Carnivore object, the carnivore object that is
+                                               chosen to move
+        :param cell:         Cell object, the current cell
+        :param adj_cells:    list, a list consisting of the adjacent cell
+                                   objects
+        :param proba_list_h: list, a list with probabilities corresponding to
+                                   the list of adjacent cells
         :return: None
         """
         cum_prop = 0
@@ -267,11 +334,3 @@ class Carnivore(Animal):
                 new_cell = adj_cells[i]
                 new_cell.animal_object_list.append(animal)
                 break
-
-
-if __name__ == "__main__":
-    h = Herbivore(5, 10)
-    c = Carnivore(5,10)
-    print(h.fitness)
-    print(c.fitness)
-    h.herb_migrates(h,(1,1), (1,2), [1])
