@@ -42,24 +42,12 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
-
-                    # herb_sorted = sorted(cell.herb_list,
-                    #                      key=lambda animal: animal.fitness,
-                    #                      reverse=True)
-
                     for herb in cell.herb_sorted:
                         herb.herb_eat(cell)
 
-                    # Carnivores of the cell start eating
+                # Carnivores of the cell eat after herbivores
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-
-                    # carn_sorted = sorted(cell.carn_list,
-                    #                      key=lambda animal: animal.fitness,
-                    #                      reverse=True)
-
                     for carn in cell.carn_sorted:
-                        # additional logic to be added later
-                        # currently the Carnivore eats 1 herbivore only
                         carn.carn_eat(cell)
 
 
@@ -203,14 +191,3 @@ class Cycle:
 
 
 
-
-if __name__ == "__main__":
-    map = ("""\
-        OOOOO
-        OJSDO
-        OJSJO
-        OJSDO
-        OOOOO""")
-    c = Cycle(map)
-
-    c.animals_migrate()

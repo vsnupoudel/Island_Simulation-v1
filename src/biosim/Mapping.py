@@ -287,18 +287,3 @@ class Mountain(Cell):
         """
         super().__init__(row, column)
 
-
-if __name__ == '__main__':
-    j = Jungle(1, 1)
-    a = {'loc': (1, 1),
-         'pop': [{'species': 'Herbivore', 'age': 10, 'weight': 20} \
-             , {'species': 'Herbivore', 'age': 5, 'weight': 20}
-                 , {'species': 'Carnivore', 'age': 10, 'weight': 100}]}
-
-    j.set_population(a)
-
-    print(j.get_population())
-    #
-    # for pop in j.get_population():
-    #     print(pop.position, pop.weight, pop.age)
-    # print(j.get_population())  #This should be list of objects
