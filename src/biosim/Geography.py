@@ -17,21 +17,23 @@ from Mapping import Jungle, Savannah, Desert, Ocean, Mountain
 
 class Geo:
     """
-    - Stores the size/shape of the geography
-    - Converts string input of map into a 2D matrix of Objects
-    - Objects can be only one of the five Landscape types
+    - Stores the size/shape of the geography of the island
+    - Converts string input of map, consisting of letters corresponding to
+    landscape types into a 2D matrix of objects
+    - Objects can only be one of the five Landscape types: Ocean (O), Savannah
+    (S), desert (D), jungle (J) and mountain (M)
     """
     valid_list = ['O', 'S', 'D', 'J', 'M']
 
     def __init__(self, geo_matrix_input_string):
         """
-        - Check if input characters are valid letters
-        - Check if all rows in map have equal length
-        - Check that ocean O is around all edges of map
+        - Checks if input characters are valid letters
+        - Checks if all rows in map have equal length
+        - Checks that ocean ("O") is around all edges of map
         :param geo_matrix_input_string: String with map coordinates
         """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
-        self.lines = self.geo_graph.splitlines()  # string into lines
+        self.lines = self.geo_graph.splitlines()
         self.geo_shape = None
         self.object_matrix = []
 
@@ -46,14 +48,12 @@ class Geo:
         self.geo_shape = np.shape(self.geo_list)
 
         # Check if all rows in map have equal length
-        # No need to check for columns
         self.length_first = len(self.lines[0])
         for line in self.lines:
             if len(line) != self.length_first:
                 raise ValueError("The length of rows not equal")
 
         # check that ocean O is around all edges of map
-
         self.first_row = self.lines[0]
         self.last_row = self.lines[self.geo_shape[0] - 1]
         self.first_column = [list(_)[0] for _ in self.lines]
@@ -69,7 +69,6 @@ class Geo:
                 raise ValueError("Ocean not on the edges")
 
         # Change the letters in Map to corresponding Objects
-
         dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
                      'D': Desert}
         for row_num in range(self.geo_shape[0]):
@@ -77,8 +76,6 @@ class Geo:
                 [dict_maps[self.geo_list[row_num][column]](row_num, column)
                  for column in range(self.geo_shape[1])])
 
-    def get_plot(self):
-        pass
 
 
 if __name__ == "__main__":
