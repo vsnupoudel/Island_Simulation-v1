@@ -6,7 +6,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import math
 # import functools
-# from cached_property import cached_property
+#from cached_property import cached_property
 
 
 class Animal:
