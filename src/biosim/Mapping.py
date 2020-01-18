@@ -11,21 +11,34 @@ import math
 
 class Cell:
     """
-    Super class for the type of Terrain: Jungle,Savannah, Desert,
+    Super class for the type of Terrain: Jungle, Savannah, Desert,
     Ocean or Mountain.
+
+    Attributes:
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+        f_ij:                 float(default=0), food avilable in each cell
+        alpha:                float(default=0.3), parameter
+        animal_object_list:   list, list of animal objects
+        tot_herb_weight:      float, total weigth of all herbivores in a cell
+        rel_ab_carn:          float, relative abundance of fodder for carnivores
+        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
+
     """
 
-    def __init__(self, row, column, f_ij=0,alpha=0.3):
+    def __init__(self, row, column, f_ij=0, alpha=0.3):
         """
-        :param row: row index of the position of the cell
-        :param column: column index of the position of the cell
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
+        :param f_ij:   float(default=0), food avilable in each cell
+        :param alpha:  float(default=0.3), parameter
         """
         self.row = row
         self.column = column
         self.animal_object_list = []
         self.f_ij = f_ij
         self.alpha = alpha
-        self.animal_object_list = []
+        self.animal_object_list = [] #two?
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
@@ -33,19 +46,24 @@ class Cell:
                            Carnivore.p['F']
         self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
 
+
     @property
     def pi_ij_carn(self):
-       return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+        """propensity for a cell object for carnivores"""
+        return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
 
     @property
     def pi_ij_herb(self):
-       return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
+        """propensity for a cell object for herbivores"""
+        return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
 
 
     def set_population(self, input_dict):
         """
-        Sets the animals species, age and weightf
-        :param input_dict: with species,age, weight
+        Sets the population of a cell object
+        :param input_dict: dict, dictionary specifying the population to be
+        set for the cell object, containing:
+        location of cell object, type of animals, age and weight of animals
         """
         (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
@@ -57,42 +75,74 @@ class Cell:
                                                 weight = animal['weight']))
     @property
     def herb_list(self):
+        """List of all herbivore objects in the cell object"""
         return [a for a in self.animal_object_list
                       if type(a).__name__ == "Herbivore"]
 
     @property
     def herb_sorted(self):
+        """Sorted list of all herbivore objects in the cell object"""
         return sorted(self.herb_list, key=lambda animal: animal.fitness,
                          reverse=True)
 
     @property
     def herb_sorted_rev(self):
+        """Reversed-sorted list of all herbivore objects in the cell object"""
         return sorted(self.herb_list, key=lambda animal: animal.fitness,
                              reverse=True)
 
     @property
     def carn_list(self):
+        """List of all carnivore objects in the cell object"""
         return [a for a in self.animal_object_list
                       if type(a).__name__ == "Carnivore"]
 
     @property
     def carn_sorted(self):
+        """Sorted list of all carnivore objects in the cell object"""
         return sorted(self.carn_list, key=lambda animal: animal.fitness,
                          reverse=True)
 
     @property
     def n_herbs(self):
+        """Number of herbivore objects in the cell object"""
         return len(self.herb_list)
 
     @property
     def n_carns(self):
+        """Number of carnivore objects in the cell object"""
         return len(self.carn_list)
 
     def get_population(self):
+        """
+        :return: animal_object_list
+        """
         return self.animal_object_list
 
 
 class Jungle(Cell):
+    """
+    Jungle landscape. Child class of the Cell class.
+
+    Attributes:
+        parameters:           dict, dictionary of Jungle parameters,
+                                    containing:
+                                    f_max: int, maximal available food in
+                                                Jungle object
+                                    alpha: (default, None), parameter
+        is_migratable         bool(default, True), whether the cell is
+                                                   migratable or not for
+                                                   animal objects
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+        f_ij:                 float(default=300), food avilable in each cell
+        alpha:                (default=None), parameter
+        animal_object_list:   list, list of animal objects
+        tot_herb_weight:      float, total weigth of all herbivores in a cell
+        rel_ab_carn:          float, relative abundance of fodder for carnivores
+        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
+
+    """
     parameters = {'f_max': 800.0, 'alpha': None}
     is_migratable = True
 
@@ -106,10 +156,10 @@ class Jungle(Cell):
             alpha=0.3,
     ):
         """
-        :param f_ij: food in cell
-        :param alpha: calculation parameter
-        :param num_carn: number of carnevoirs in cell
-        :param num_herb: number og herbevoirs in cell
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
+        :param f_ij:   float(default=300), food avilable in each cell
+        :param alpha:  float(default=0.3), parameter
         """
         super().__init__(row, column)
         self.f_ij = f_ij
@@ -117,7 +167,28 @@ class Jungle(Cell):
 
 
 class Savannah(Cell):
-#    f_max = 300
+    """
+    Savannah landscape. Child class of the Cell class.
+
+    Attributes:
+        parameters:           dict, dictionary of Jungle parameters,
+                                    containing:
+                                    f_max: int, maximal available food in
+                                                Jungle object
+                                    alpha: (default, None), parameter
+        is_migratable         bool(default, True), whether the cell is
+                                                   migratable or not for
+                                                   animal objects
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+        f_ij:                 float(default=200), food avilable in each cell
+        alpha:                float(default=0.3), parameter
+        animal_object_list:   list, list of animal objects
+        tot_herb_weight:      float, total weigth of all herbivores in a cell
+        rel_ab_carn:          float, relative abundance of fodder for carnivores
+        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
+
+    """
     parameters = {'f_max': 800.0, 'alpha': None}
     is_migratable = True
 
@@ -129,10 +200,10 @@ class Savannah(Cell):
             alpha=0.3,
     ):
         """
-        :param f_ij: food in cell
-        :param alpha: calculation parameter
-        :param num_carn: number of carnevoirs in cell
-        :param num_herb: number og herbevoirs in cell
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
+        :param f_ij:   float(default=200), food avilable in each cell
+        :param alpha:  float(default=0.3), parameter
         """
 
         super().__init__(row, column)
@@ -141,44 +212,79 @@ class Savannah(Cell):
 
 
 class Desert(Cell):
-    """Desert landscape"""
+    """
+    Desert landscape. Child class of the Cell class.
+
+    Attributes:
+        is_migratable         bool(default, True), whether the cell is
+                                                   migratable or not for
+                                                   animal objects
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+        animal_object_list:   list, list of animal objects
+        tot_herb_weight:      float, total weigth of all herbivores in a cell
+        rel_ab_carn:          float, relative abundance of fodder for carnivores
+        self.rel_ab_herb:     float, zero for desert landscape
+
+    """
 
     is_migratable = True
-    f_max = 0
 
     def __init__(
             self,
             row,
-            column,
+            column
             # num_carn=0,
             # num_herb=0,
-            f_ij=f_max,
     ):
         """"
-        :param f_ij: food in cell
-        :param num_carn: number of carnevoirs in cell
-        :param num_herb: number og herbevoirs in cell
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
         """
-
         super().__init__(row, column)
-        self.food = f_ij
 
 
 class Ocean(Cell):
-    """Ocean landscape """
+    """Ocean landscape. Child class of the Cell class.
+
+        Attributes:
+        is_migratable         bool(default, False), whether the cell is
+                                                   migratable or not for
+                                                   animal objects
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+
+    """
     is_migratable = False
-    f_ij = 0
+#    f_ij = 0
 
     def __init__(self, row, column):
+        """"
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
+        """
         super().__init__(row, column)
 
 
 class Mountain(Cell):
-    """Mountianlandscape"""
+    """Mountian landscape.  Child class of the Cell class.
+
+        Attributes:
+        is_migratable         bool(default, False), whether the cell is
+                                                   migratable or not for
+                                                   animal objects
+        row:                  int, row index of the position of the cell
+        column:               int, column index of the position of the cell
+
+    """
     is_migratable = False
-    f_ij = 0
+#    f_ij = 0
 
     def __init__(self, row, column):
+        """"
+        :param row:    int, row index of the position of the cell
+        :param column: int, column index of the position of the cell
+        """
         super().__init__(row, column)
 
 
