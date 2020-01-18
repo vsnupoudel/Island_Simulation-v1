@@ -195,4 +195,3 @@ class Visualization:
                                    ])
         except:
             return RuntimeError('Error in video generation')
-

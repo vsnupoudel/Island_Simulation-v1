@@ -117,7 +117,7 @@ class TestAnimal:
         c = Carnivore(2, 50)
         prev_weight_h = h.weight
         prev_weight_c = c.weight
-        mocker.patch('numpy.random.random', return_value=0)
+        # mocker.patch('numpy.random.random', return_value=0)
         h.herb_reproduce(10)
         c.carn_reproduce(10)
 
@@ -130,7 +130,7 @@ class TestAnimal:
         """Age of newborn animal should be zero"""
         h = Herbivore(2, 50)
         c = Carnivore(2, 50)
-        mocker.patch('numpy.random.random', return_value=0)
+        # mocker.patch('numpy.random.random', return_value=0)
         new_herb = h.herb_reproduce(10)
         new_carn = c.carn_reproduce(10)
 
@@ -141,7 +141,7 @@ class TestAnimal:
         """Weigth of newborn animal should be positive"""
         h = Herbivore(2, 50)
         c = Carnivore(2, 50)
-        mocker.patch('numpy.random.random', return_value=0)
+        # mocker.patch('numpy.random.random', return_value=0)
         new_herb = h.herb_reproduce(10)
         new_carn = c.carn_reproduce(10)
 
@@ -154,7 +154,7 @@ class TestAnimal:
         c = Carnivore(5, 10)
         cell_1 = Cell(1, 2)
         cell_2 = Cell(0, 1)
-        mocker.patch('numpy.random.random', return_value=0)
+        # mocker.patch('numpy.random.random', return_value=0)
         h.herb_migrates(h, (1, 1), [cell_1], [1])
         c.carn_migrates(c, (0, 0), [cell_2], [1])
 

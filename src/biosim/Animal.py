@@ -6,7 +6,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import math
 # import functools
-from cached_property import cached_property
+#from cached_property import cached_property
 
 
 class Animal:
@@ -63,7 +63,7 @@ class Animal:
                                                     self.p['sigma_birth'])
 
 
-    @cached_property
+    @property
     def fitness(self):
         """The fitness of each animal"""
         if self.weight <= 0:
