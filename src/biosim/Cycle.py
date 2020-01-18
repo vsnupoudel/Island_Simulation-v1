@@ -7,7 +7,6 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 
 
-
 class Cycle:
     def __init__(self, object_matrix):
         """
@@ -82,11 +81,7 @@ class Cycle:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     new_herbs = []
-                    # print('rep')
 
-                    # calculate probabilty and new born
-                    # print('object_list', cell.animal_object_list)
-                    # print('herb_list', cell.herb_list)
                     for animal in cell.herb_list:
                         # print(animal)
                         new = animal.herb_reproduce(cell.n_herbs)

@@ -12,13 +12,15 @@ from Animal import Herbivore, Carnivore
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 class BioSim:
     def __init__(
         self,
         island_map,
         ini_pop,
-        seed,
+        seed = 1,
+        num_images = 0,
         ymax_animals=None,
         cmax_animals=None,
         img_base=None,
@@ -47,7 +49,8 @@ class BioSim:
         where img_no are consecutive image numbers starting from 0.
         img_base should contain a path and beginning of a file name.
         """
-        self.seed = 1
+        self.num_images = num_images
+        self.seed = seed
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
         self.object_matrix = self.island_map.object_matrix
@@ -82,39 +85,56 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, vis_years=1, img_years=None, y_lim = 13000):
+    def simulate(self, num_years=20, vis_years=1, img_years=None, y_lim = \
+        12000):
         """
         Run simulation while visualizing the result.
 
         :param num_years: number of years to simulate
         :param vis_years: years between visualization updates
-        :param img_years: years between visualizations saved to files (default: vis_years)
+        :param img_years: years between visualizations saved to files
+        (default: vis_years)
+        :param y_lim : y axis limit of the line graph
 
         Image files will be numbered consecutively.
         """
-        c = Cycle(self.object_matrix)
+
+        # Make a Images directory if it does not exist
+
+        if not os.path.exists('Images'):
+            os.makedirs('Images')
+
+        # Calling the visualization function first to plot the initial state
+        # of the map and population
+
         v = Visualization(self.object_matrix)
-        v._set_graphics(y_lim)
+        v._set_graphics(y_lim, num_years+1)
+
+        # Creates the first plot which is the map
         v.create_map(self.island_matrix)
 
+        # Update the remaining three plots among the subplots
         step = 0
         v.update_graphics(self.herbivore_distribution,
-                         self.carnivore_distribution, s.num_animals)
+                         self.carnivore_distribution, self.num_animals)
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(step))
-        while step < 100:
+
+        # Start the cycle in order
+        c = Cycle(self.object_matrix)
+        while step <= num_years:
             c.food_grows()
             c.animals_eat()
-
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
             v.update_graphics(self.herbivore_distribution,
                              self.carnivore_distribution,
-                             s.num_animals)
+                             self.num_animals)
 
             step += 1
-            plt.savefig('Images\\Image-{0:03d}.png'.format(step))
+            if step % img_years == 0:
+                plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
         # Make movie out of the pictures stored
         v.make_movie()
