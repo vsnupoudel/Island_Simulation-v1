@@ -5,7 +5,8 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import math
-
+# import functools
+from cached_property import cached_property
 
 
 class Animal:
@@ -44,15 +45,11 @@ class Animal:
 
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
                                                     self.p['sigma_birth'])
-    # _cached_fitness
-    # _cached_fitness_valid = T
 
-    @property
+
+    @cached_property
     def fitness(self):
         """The fitness of each animal"""
-        # if valid
-        # return cachfit
-        # else go to the code down
         if self.weight <= 0:
             return 0
         else:
@@ -61,8 +58,6 @@ class Animal:
                     self.age - self.p['a_half']))))  \
                    * (1 / (1 + math.e **(- self.p['phi_weight'] * (
                     self.weight - self.p['w_half']))))
-        # cached_fitness = new value
-        # cached _fitness = True
 
     @classmethod
     def up_par(cls, params_dict):

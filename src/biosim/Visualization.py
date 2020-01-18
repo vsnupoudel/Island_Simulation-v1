@@ -57,7 +57,7 @@ class Visualization:
         self._carn_axis = None
 
 
-    def _set_graphics(self, y_lim):
+    def _set_graphics(self, y_lim, x_lim):
         """
         Sets up the graphics with 4 subplots
         :return:
@@ -84,7 +84,7 @@ class Visualization:
            self._mean_ax.set_ylim(0, y_lim)
 
         # setting the x limit, manually for now
-        self._mean_ax.set_xlim(0, self._final_step+1)
+        self._mean_ax.set_xlim(0, x_lim*3)
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, self._final_step),
@@ -135,7 +135,8 @@ class Visualization:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
                                                  cmap="Greens")
-            self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax)
+            self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax
+                                          , orientation='horizontal')
 
 
 
@@ -151,11 +152,11 @@ class Visualization:
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
                                                  cmap="OrRd")
-            self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax)
+            self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax
+                                          , orientation='horizontal')
 
 
     def update_mean_ax(self, herb_num, carn_num):
-        # self._mean_ax.set_xlim(0, self._final_step + 1)
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
@@ -194,10 +195,4 @@ class Visualization:
                                    ])
         except:
             return RuntimeError('Error in video generation')
-
-
-
-
-
-
 
