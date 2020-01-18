@@ -18,47 +18,46 @@ input_map = ("""\
                 OOOO""")
 ini_herbs = [
     {
-        "loc": (10, 10),
+        "loc": (1, 1),
         "pop": [
             {"species": "Herbivore", "age": 5, "weight": 20}
-            for _ in range(150)
-        ],
+            for _ in range(5)
+        ]
     }
 ]
 
-s = BioSim(input_map, ini_herbs, seed = 1)
+s = BioSim(input_map, ini_herbs, seed=1)
 c = Cycle(s.object_matrix)
-
 
 def test_get_adjacent_migratable_cells():
     """should only get migratable cells"""
     migratable_cells  = [type(cell).__name__ for cell in
                        c.get_adjacent_migratable_cells(1, 1)]
-    print(migratable_cells)
-
-    # assert migratable_cells == ['Savannah']
-
+    assert migratable_cells == ['Savannah']
 
 def test_food_grows_Savannah():
     """Food amount in each Savannah cell should increase"""
-
-    for row_of_obj in c.object_matrix:
-        for obj in row_of_obj:
-            if type(obj).__name__ == "Savannah":
-                prev_food_sav = obj.f_ij
-                c.food_grows()
-                assert obj.f_ij > prev_food_sav
-
+    prev_food_sav = c.object_matrix[1][2].f_ij
+    c.food_grows()
+    assert c.object_matrix[1][2].f_ij > prev_food_sav
 
 def test_max_food_Jungle():
     """When food grows in Jungle cells it should be set to f_max = 800"""
 
-    for row_of_obj in c.object_matrix:
-        for obj in row_of_obj:
-            if type(obj).__name__ == "Jungle":
-                c.food_grows()
-                assert obj.f_ij == 800
+    prev_food_jun = c.object_matrix[1][1].f_ij
+    c.food_grows()
+    assert c.object_matrix[1][1].f_ij >= prev_food_jun
+    assert c.object_matrix[1][1].f_ij == c.object_matrix[1][1].parameters[
+        'f_max']
 
 def test_fitness_increase_after_feeding():
-    pass
+    prev_fitness_array = [ a.fitness for a in c.object_matrix[1][
+        1].animal_object_list ]
+    c.food_grows()
+    c.animals_eat()
+    curr_fitness_array = [a.fitness for a in c.object_matrix[1][
+        1].animal_object_list]
+    # cached property was not working in fitness, so removed it
+    assert curr_fitness_array > prev_fitness_array
+
 

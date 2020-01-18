@@ -4,3 +4,4 @@ matplotlib
 numpy
 seaborn
 sphinx
+pytest_mock
