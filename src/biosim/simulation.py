@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import os
 
 class BioSim:
-    """Not sure what to write here"""
+    """Class takes in map and population, and converts them to objects"""
     def __init__(
         self,
         island_map,
@@ -152,9 +152,8 @@ class BioSim:
         :param population:  list, List of dictionaries specifying population
         """
         for one_location_list in population:
-            x, y = one_location_list['loc'][0], one_location_list['loc'][1]
+            x, y = population['loc'][0], population['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
-
 
     @property
     def current_year(self):

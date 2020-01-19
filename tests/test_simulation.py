@@ -8,61 +8,81 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from simulation import BioSim
-from Mapping import Cell, Savannah, Jungle
+from Mapping import Savannah, Jungle
 from Animal import Herbivore, Carnivore
-
 import numpy as np
+import pytest
+from pytest_mock import mocker
 
-map = """\
-             OOOOOOOOO
-             OSSJJSSOO
-             OOOOOOOOO
-             """
 
-ini_herbs = [
-    {
-        "loc": (2, 2),
-        "pop": [
-            {"species": "Herbivore", "age": 5, "weight": 20}
-            for _ in range(200)
-        ],
-    }
-]
+@pytest.fixture()
+def input_map():
+    """returns map where required in tests below"""
+    map = """\
+                 OOOOOOOOO
+                 OSSJJSSOO
+                 OOOOOOOOO
+                 """
+    return map
 
-ini_carns = [
+@pytest.fixture()
+def ini_herbs():
+    """returns herbivore population where required in tests below"""
+    herbs = [
         {
             "loc": (2, 2),
             "pop": [
+                {"species": "Herbivore", "age": 5, "weight": 20}
+                for _ in range(200)
+            ]+[
                 {"species": "Carnivore", "age": 5, "weight": 20}
-                for _ in range(40)
-            ],
+                for _ in range(200)
+            ]
+        },
+        {
+            "loc": (2, 3),
+            "pop": [
+                {"species": "Herbivore", "age": 5, "weight": 20}
+                for _ in range(200)
+            ]
         }
     ]
+    return herbs
 
-s = BioSim(map, ini_herbs, seed=1)
+@pytest.fixture()
+def ini_carns():
+    carns = [
+            {
+                "loc": (2, 2),
+                "pop": [
+                    {"species": "Carnivore", "age": 5, "weight": 20}
+                    for _ in range(40)
+                ]
+            }
+        ]
+    return carns
 
-def test_current_year():
-    """Tests correctness of current_year propertie"""
+@pytest.fixture()
+def create_s(input_map, ini_herbs):
+    s = BioSim(input_map, ini_herbs, seed=1)
+    return s
 
-    assert s.current_year >= 0
 
-
-def test_set_landscape_parameters():
+def test_set_landscape_parameters(create_s):
     "set_landscape_parameters shold change parameters sucsessfully"
 
-    s.set_landscape_parameters("S", {"f_max": 700})
-    s.set_landscape_parameters("J", {"f_max": 600})
+    create_s.set_landscape_parameters("S", {"f_max": 700})
+    create_s.set_landscape_parameters("J", {"f_max": 600})
 
     assert Savannah.parameters["f_max"] == 700
     assert Jungle.parameters["f_max"] == 600
 
 
-
-def test_set_animal_parameters():
+def test_set_animal_parameters(create_s):
     "set_animal_parameters shold change parameters sucsessfully"
 
-    s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
-    s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
+    create_s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+    create_s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
 
     assert Herbivore.p["zeta"] == 3.2
     assert Herbivore.p["xi"] == 1.8
@@ -70,10 +90,16 @@ def test_set_animal_parameters():
     assert Carnivore.p["xi"] == 2.0
 
 
-def test_num_animals():
+def test_num_animals(input_map, ini_herbs):
     """"""
-    assert s.num_animals['Herbivore'] >= 0
-    assert s.num_animals['Carnivore'] >= 0
+    s = BioSim(input_map, ini_carns, seed=1)
+    print('')
+    print(s.num_animals['Herbivore'])
+    print(s.num_animals['Carnivore'])
+    assert s.num_animals['Herbivore'] > 0
+    # assert s.num_animals['Carnivore'] > 0
+    # s.add_population(ini_carns)
+    # assert create_s.num_animals['Carnivore'] > 0
 
 
 def test_add_population():

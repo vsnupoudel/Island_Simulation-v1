@@ -8,10 +8,10 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 
-from biosim.simulation import BioSim
-from biosim.Mapping import Cell, Savannah, Jungle
-from biosim.Animal import Herbivore, Carnivore
-from biosim.Visualization import Visualization
+from src.biosim.simulation import BioSim
+from src.biosim.Mapping import Cell, Savannah, Jungle
+from src.biosim.Animal import Herbivore, Carnivore
+from src.biosim.Visualization import Visualization
 
 import numpy as np
 import pytest
@@ -29,7 +29,6 @@ class TestVisualization:
                      OSSJJSSOO
                      OOOOOOOOO
                      """
-
         ini_herbs = [
             {
                 "loc": (2, 2),

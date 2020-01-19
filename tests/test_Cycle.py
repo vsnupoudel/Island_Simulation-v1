@@ -44,7 +44,6 @@ def ini_herbs():
                 ]
     return herbs
 
-
 @pytest.fixture()
 def create_s(input_map,ini_herbs):
     s = BioSim(input_map, ini_herbs, seed=1)
