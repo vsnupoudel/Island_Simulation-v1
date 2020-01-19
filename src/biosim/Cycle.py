@@ -161,13 +161,10 @@ class Cycle:
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
-                        # print(cell.row, cell.column, animal, animal.p['mu'] ,
-                        #       animal.fitness)
-                        move_prob = animal.p['mu'] * animal.fitness #should
-                        # be property
                         rand_num = np.random.random()
 
-                        if (rand_num <= move_prob) & (animal.has_migrated == False):
+                        if (rand_num <= animal.move_prob) & (
+                                animal.has_migrated == False):
                             if type(animal).__name__ == "Herbivore":
                                 animal.herb_migrates(animal, cell, adj_cells,
                                                      proba_list_h)
