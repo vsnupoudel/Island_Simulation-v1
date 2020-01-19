@@ -22,7 +22,7 @@ class Cell:
         animal_object_list:   list, list of animal objects
         tot_herb_weight:      float, total weigth of all herbivores in a cell
         rel_ab_carn:          float, relative abundance of fodder for carnivores
-        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
+        rel_ab_herb:          float, relative abundance of fodder for herbivores
 
     """
 
@@ -38,7 +38,7 @@ class Cell:
         self.animal_object_list = []
         self.f_ij = f_ij
         self.alpha = alpha
-        self.animal_object_list = [] #two?
+        self.animal_object_list = []
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
@@ -57,7 +57,6 @@ class Cell:
         """propensity for a cell object for herbivores"""
         return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
 
-
     def set_population(self, input_dict):
         """
         Sets the population of a cell object
@@ -68,11 +67,18 @@ class Cell:
         (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
             if animal['species'] == "Herbivore":
-                self.animal_object_list.append(Herbivore(age = animal['age'],\
-                                                weight = animal['weight']))
+                self.animal_object_list.append(Herbivore(age=animal[
+                    'age'], weight=animal['weight']))
             else:
-                self.animal_object_list.append(Carnivore(age = animal['age'],\
-                                                weight = animal['weight']))
+                self.animal_object_list.append(Carnivore(age=animal[
+                    'age'], weight=animal['weight']))
+
+    def get_population(self):
+        """
+        :return: animal_object_list
+        """
+        return self.animal_object_list
+
     @property
     def herb_list(self):
         """List of all herbivore objects in the cell object"""
@@ -82,8 +88,7 @@ class Cell:
     @property
     def herb_sorted(self):
         """Sorted list of all herbivore objects in the cell object"""
-        return sorted(self.herb_list, key=lambda animal: animal.fitness,
-                         reverse=True)
+        return sorted(self.herb_list, key=lambda animal: animal.fitness)
 
     @property
     def herb_sorted_rev(self):
@@ -112,12 +117,6 @@ class Cell:
     def n_carns(self):
         """Number of carnivore objects in the cell object"""
         return len(self.carn_list)
-
-    def get_population(self):
-        """
-        :return: animal_object_list
-        """
-        return self.animal_object_list
 
 
 class Jungle(Cell):
@@ -227,7 +226,6 @@ class Desert(Cell):
         self.rel_ab_herb:     float, zero for desert landscape
 
     """
-
     is_migratable = True
 
     def __init__(
@@ -256,7 +254,6 @@ class Ocean(Cell):
 
     """
     is_migratable = False
-#    f_ij = 0
 
     def __init__(self, row, column):
         """"
@@ -278,7 +275,6 @@ class Mountain(Cell):
 
     """
     is_migratable = False
-#    f_ij = 0
 
     def __init__(self, row, column):
         """"

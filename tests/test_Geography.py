@@ -7,12 +7,9 @@ Geo class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.Geography import Geo
+from src.biosim.Geography import Geo
 import pytest
 
-
-# class testGeo:
-#     """ Tests for Geo class"""
 
 def test_proper_letters():
     """all letters should either be: = O, M, J, S, D"""
