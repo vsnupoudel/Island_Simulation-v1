@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import os
 
 class BioSim:
+    """Not sure what to write here"""
     def __init__(
         self,
         island_map,
@@ -64,8 +65,8 @@ class BioSim:
         """
         Set parameters for animal species.
 
-        :param species: String, name of animal species
-        :param params: Dict with valid parameter specification for species
+        :param species:  string, name of animal species
+        :param params:   dict, valid parameter specification for species
         """
         if species == 'Herbivore':
             Herbivore.up_par(params)
@@ -77,8 +78,8 @@ class BioSim:
         """
         Set parameters for landscape type.
 
-        :param landscape: String, code letter for landscape
-        :param params: Dict with valid parameter specification for landscape
+        :param landscape:   string, code letter for landscape
+        :param params:      dict, parameter specification for landscape
         """
         if landscape == 'S':
             Savannah.parameters.update(params)
@@ -88,39 +89,45 @@ class BioSim:
     def simulate(self, num_years=20, vis_years=1, img_years=None, y_lim = \
         12000):
         """
-        Run simulation while visualizing the result.
+        Runs simulation while visualizing the result.
+        This method will:
 
-        :param num_years: number of years to simulate
-        :param vis_years: years between visualization updates
-        :param img_years: years between visualizations saved to files
-        (default: vis_years)
-        :param y_lim : y axis limit of the line graph
+        - Make a Images directory if it does not exist
+        - Make a Visualization object to plot the initial state of the
+          map and population
+        - Create the first plot which is the map of the island
+        - Update the remaining three plots among the subplots, which contain
+          Herbivore and Carnivore distribution and line graphs of herbivore
+          and carnivore count
+        - Save the figure as an image (png)
+        - Execute the cycle in fixed order and then update graphics and number
+          of steps (years)
+        - At last, make movie out of the pictures stored
 
         Image files will be numbered consecutively.
-        """
 
-        # Make a Images directory if it does not exist
+        :param num_years:     int, number of years to simulate
+        :param vis_years:     int, years between visualization updates
+        :param img_years:     int, years between visualizations saved to files
+        (default: vis_years)
+        :param y_lim :        float, y axis limit of the line graph
+
+        """
 
         if not os.path.exists('Images'):
             os.makedirs('Images')
 
-        # Calling the visualization function first to plot the initial state
-        # of the map and population
-
         v = Visualization(self.object_matrix)
         v._set_graphics(y_lim, num_years+1)
 
-        # Creates the first plot which is the map
         v.create_map(self.island_matrix)
 
-        # Update the remaining three plots among the subplots
         step = 0
         v.update_graphics(self.herbivore_distribution,
                          self.carnivore_distribution, self.num_animals)
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
-        # Start the cycle in order
         c = Cycle(self.object_matrix)
         while step <= num_years:
             c.food_grows()
@@ -136,29 +143,34 @@ class BioSim:
             if step % img_years == 0:
                 plt.savefig('Images\\Image-{0:03d}.png'.format(step))
 
-        # Make movie out of the pictures stored
         v.make_movie()
 
 
     def add_population(self, population):
         """
         Add a population to the island
-
-        :param population: List of dictionaries specifying population
+        :param population:  list, List of dictionaries specifying population
         """
         for one_location_list in population:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
 
 
-    # @property
-    # def current_year(self):
-    #     return self.year
+    @property
+    def current_year(self):
+        """
+        :return: year    int, current year on island
+        """
+        return self.year
 
 
     @property
     def num_animals(self):
-        """Number of herbivores in island"""
+        """
+        Total number of herbivores and carnivores on island
+        :return: animals_count_dict  dict, dictionary containing number of
+                                           herbivores and carnivores on island
+        """
         h_count = 0
         c_count = 0
         animal_count_dict = {"Herbivore": 0, "Carnivore": 0}
@@ -175,8 +187,7 @@ class BioSim:
 
     @property
     def herbivore_distribution(self):
-        """Pandas DataFrame with herbivore count for each cell on
-        island."""
+        """Pandas DataFrame with herbivore count for each cell on island."""   #not dataframe
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -192,9 +203,7 @@ class BioSim:
 
     @property
     def carnivore_distribution(self):
-        """Pandas DataFrame with carnivore count for each
-        cell on
-        island."""
+        """Pandas DataFrame with carnivore count for each cell on island."""   #not dataframe
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -229,6 +238,9 @@ class BioSim:
 
     @property
     def island_matrix(self):
+        """
+        Creates a color map according to the type of landscape in each cell.
+        """
         color_dict = {"Ocean": 2, "Desert": 11, "Savannah": 8,
                       "Jungle": 6, "Mountain": 16}
         row_num = np.shape(self.object_matrix)[0]
