@@ -82,6 +82,10 @@ class Animal:
     def move_prob(self):
         return self.p['mu'] * self.fitness
 
+    @property
+    def death_prob(self):
+        return self.p['omega'] * (1 - self.fitness)
+
     @classmethod
     def up_par(cls, params_dict):
         """

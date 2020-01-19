@@ -196,12 +196,11 @@ class Cycle:
             for col, cell in enumerate(row_of_obj):
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     for animal in cell.animal_object_list:
-                        if animal.fitness == 0:                                 #make method of animals
+                        if animal.fitness == 0:
                             death_list.append(animal)
                         else:
-                            death_prob = animal.p['omega']*(1- animal.fitness)
                             rand_num = np.random.random()
-                            if rand_num < death_prob:
+                            if rand_num < animal.death_prob:
                                 death_list.append(animal)
 
                 cell.animal_object_list = [animal for animal in

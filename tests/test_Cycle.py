@@ -108,4 +108,28 @@ def test_animals_dont_migrate(mocker):
     assert len(s.object_matrix[1][1].animal_object_list) == 140
     assert len(s.object_matrix[1][2].animal_object_list) == 0
 
+def test_animals_migrate():
+    c.animals_migrate()
+    assert len(s.object_matrix[1][1].animal_object_list) > 0
+    assert len(s.object_matrix[1][1].animal_object_list) < 140
+    assert len(s.object_matrix[1][2].animal_object_list) > 0
+    assert len(s.object_matrix[1][2].animal_object_list) < 140
+
+def test_all_animals_die(mocker):
+    mocker.patch('numpy.random.random', return_value=0)
+    c.animals_die()
+    assert s.object_matrix[1][1].animal_object_list == []
+
+def test_no_animals_die(mocker):
+    mocker.patch('numpy.random.random', return_value=1)
+    old_list = s.object_matrix[1][1].animal_object_list
+    c.animals_die()
+    assert s.object_matrix[1][1].animal_object_list == old_list
+
+def test_animals_die(mocker):
+    mocker.patch('numpy.random.random', return_value=0.001)
+    old_len = len(s.object_matrix[1][1].animal_object_list)
+    c.animals_die()
+    assert len(s.object_matrix[1][1].animal_object_list) < old_len
+
 
