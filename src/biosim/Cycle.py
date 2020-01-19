@@ -8,17 +8,30 @@ import numpy as np
 
 
 class Cycle:
+    """
+    This class contains the componentes of the annual cycle on Rossumaøya. The
+    componentes follows a fixed order:
+
+    1. Food grows on the island
+    2. Animals feed
+    3. Animals procreate
+    4. Animals migrate
+    5. Animals age
+    6. Animals loose weight
+    7. Animals die
+
+    """
     def __init__(self, object_matrix):
         """
-        :param object_matrix: map with population, which is modified by each
-        of the functions in this class in the order of definition
+        :param object_matrix:   list, nested list (map with population)
+        #which is modified by each of the functions in this class in the order of definition
         """
         self.object_matrix = object_matrix
 
     def food_grows(self):
         """
-        Updates/Increases:
-        The amount of food available in Jungle and Savannah
+        Updates/increases the amount of food available in Jungle and Savannah
+        objects.
         """
         for row_of_obj in self.object_matrix:
             for obj in row_of_obj:
@@ -32,10 +45,10 @@ class Cycle:
 
     def animals_eat(self):
         """
-        Herbivores and Carnivores eat once in every cycle
-        This function updates:
-        1. Increases the weight of animal if they eat
-        2. Decreases the food in Savannah and Jungle if animals eat in that
+        Herbivores and Carnivores eat. This happens once in every cycle
+        This method updates:
+        - Increases the weight of animal if they eat
+        - Decreases the food in Savannah and Jungle if animals eat in that
         particular cell
         """
 
@@ -45,7 +58,7 @@ class Cycle:
                     for herb in cell.herb_sorted:
                         herb.herb_eat(cell)
 
-                # Carnivores of the cell eat after herbivores
+                # Carnivores in the cell eat after herbivores
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
                     for carn in cell.carn_sorted:
                         carn.carn_eat(cell)
@@ -53,16 +66,16 @@ class Cycle:
 
     def animals_reproduce(self):
         """
-        Loops through the whole map and makes animals reproduce if they
-        meet the condition in each cell.
-        This function updates:
-        1. The number of animals in the particular cell
-        2. The weight of the parents
+        Animals reproduce in every cell on the island.
+        Animals reproduce if they meet the conditions (for each cell)
+        This method updates:
+        - The number of animals in the particular cell
+        - The weight of the parents
         This function creates:
-        1. New animal objects in the cell
+        - New animal objects in the cell
         -----------------------------------------------------
         Rules for procreation:
-        1. Probability min (1, gamma × F × (N − 1))
+        - Probability for procreation = min (1, gamma × F × (N − 1))
         """
 
         for row_of_obj in self.object_matrix:
@@ -71,33 +84,34 @@ class Cycle:
                     new_herbs = []
 
                     for animal in cell.herb_list:
-                        # print(animal)
                         new = animal.herb_reproduce(cell.n_herbs)
-                        # print('new')
                         if new:
-                            # print('Herb rep')
                             new_herbs.append(new)
-                        # if animal.has_procreated == False:
 
                     for herb in new_herbs:
                         cell.animal_object_list.append(herb)
 
-                    # For carn_reproduce
-
+                    # For carnivore reproduction
                     new_carns = []
-                    # calculate probabilty and new born
                     for animal in cell.carn_list:
-                        # print('Carn rep')
                         new = animal.carn_reproduce(cell.n_carns)
                         if new:
-                            # print('Carn rep')
                             new_carns.append(new)
-                        # if animal.has_procreated == False:
+                        # if animal.has_procreated == False: (do we check this)?
 
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
 
-    def get_adjacent_migratable_cells(self, row, column ):
+    def get_adjacent_migratable_cells(self, row, column):
+        """
+        This method calculates the position of the adjacent migratable cells
+        to the current cell (with position (row, column)). Ocean and Mountain
+        cells are not migratable
+        :param row:            int, row index
+        :param column:         int, column index
+        :return: list_of_adj   list, list of adjacent cells
+        """
+
         list_of_adj = []
         for i in (-1, 1):
             try:
@@ -124,7 +138,6 @@ class Cycle:
         - Add incoming animals to the new cell
 
         :return: None
-
         """
 
         for row, row_of_obj in enumerate(self.object_matrix):
@@ -172,6 +185,15 @@ class Cycle:
                                            animal not in animals_moved_away]
 
     def animals_die(self):
+        """
+        This method makes animals die. Animals die:
+        - With certainty if the animals fitness is equal to zero
+        - with probability
+                           omega*(1 - fitness)
+          otherwise
+
+        :return: None
+        """
         death_list = []
         for row, row_of_obj in enumerate(self.object_matrix):
             for col, cell in enumerate(row_of_obj):
@@ -188,6 +210,3 @@ class Cycle:
                 cell.animal_object_list = [animal for animal in
                                            cell.animal_object_list if
                                            animal not in death_list]
-
-
-
