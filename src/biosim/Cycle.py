@@ -8,6 +8,11 @@ import numpy as np
 
 
 class Cycle:
+    """
+     Class with functions that take the whole island map with animals as
+     input. Each function is linked with its own action like food_grows,
+     animals_eat, animals_reproduce, animals_migrate and animals_die
+     """
     def __init__(self, object_matrix):
         """
         :param object_matrix: map with population, which is modified by each
@@ -148,13 +153,11 @@ class Cycle:
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
-                        # print(cell.row, cell.column, animal, animal.p['mu'] ,
-                        #       animal.fitness)
-                        move_prob = animal.p['mu'] * animal.fitness #should
+                        # move_prob = animal.p['mu'] * animal.fitness #should
                         # be property
                         rand_num = np.random.random()
-
-                        if (rand_num <= move_prob) & (animal.has_migrated == False):
+                        if (rand_num <= animal.move_prob) & (not
+                        animal.has_migrated):
                             if type(animal).__name__ == "Herbivore":
                                 animal.herb_migrates(animal, cell, adj_cells,
                                                      proba_list_h)

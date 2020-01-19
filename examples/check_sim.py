@@ -3,7 +3,6 @@
 import textwrap
 import matplotlib.pyplot as plt
 from src.biosim.simulation import BioSim
-from src.biosim.Animal import Herbivore, Carnivore
 
 """
 Compatibility check for BioSim simulations.

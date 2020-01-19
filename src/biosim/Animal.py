@@ -28,7 +28,7 @@ class Animal:
                                                     is dead or alive
         age:                  int, the age of the animal
         weight:               float, the weight of the animal
-        reprod_thresh_weight  float, treshold weight for reproduction
+        reprod_thresh_weight:  float, treshold weight for reproduction
     """
     has_procreated = False
     has_migrated = False
@@ -62,7 +62,6 @@ class Animal:
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
                                                     self.p['sigma_birth'])
 
-
     @property
     def fitness(self):
         """The fitness of each animal"""
@@ -74,6 +73,10 @@ class Animal:
                     self.age - self.p['a_half']))))  \
                    * (1 / (1 + math.e **(- self.p['phi_weight'] * (
                     self.weight - self.p['w_half']))))
+
+    @property
+    def move_prob(self):
+        return self.p['mu'] * self.fitness
 
     @classmethod
     def up_par(cls, params_dict):

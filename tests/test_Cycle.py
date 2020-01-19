@@ -11,6 +11,9 @@ from Cycle import Cycle
 from Geography import Geo
 # from Mapping import Cell, Savannah, Jungle
 from simulation import BioSim
+import pytest
+from pytest_mock import mocker
+
 
 input_map = ("""\
                 OOOO
@@ -20,8 +23,16 @@ ini_herbs = [
     {
         "loc": (1, 1),
         "pop": [
-            {"species": "Herbivore", "age": 5, "weight": 20}
-            for _ in range(5)
+            {"species": "Herbivore", "age": 5, "weight": 50}
+            for _ in range(120)
+        ]
+    }
+]+[
+    {
+        "loc": (1, 1),
+        "pop": [
+            {"species": "Carnivore", "age": 5, "weight": 50}
+            for _ in range(20)
         ]
     }
 ]
@@ -59,5 +70,42 @@ def test_fitness_increase_after_feeding():
         1].animal_object_list]
     # cached property was not working in fitness, so removed it
     assert curr_fitness_array > prev_fitness_array
+
+@pytest.fixture()
+def h_count():
+    return len([a for a in s.object_matrix[1][1].animal_object_list
+    if type(a).__name__ == "Herbivore"] )
+
+@pytest.fixture()
+def c_count():
+    return len([a for a in s.object_matrix[1][1].animal_object_list
+                   if type(a).__name__ == "Carnivore"])
+
+
+def test_animals_reproduce(h_count, c_count):
+    herb_count_prev = h_count
+    carn_count_prev = c_count
+
+    c.food_grows()
+    c.animals_reproduce()
+    herb_count_curr = len([a for a in s.object_matrix[1][1].animal_object_list
+    if type(a).__name__ == "Herbivore"])
+    carn_count_curr = len([a for a in s.object_matrix[1][1].animal_object_list
+                   if type(a).__name__ == "Carnivore"])
+
+    assert carn_count_curr > carn_count_prev
+    assert herb_count_curr > herb_count_prev
+
+def test_animals_migrate(mocker):
+    mocker.patch('numpy.random.random', return_value=0)
+    c.animals_migrate()
+    assert len(s.object_matrix[1][1].animal_object_list) == 0
+    assert len(s.object_matrix[1][2].animal_object_list) == 140
+
+def test_animals_dont_migrate(mocker):
+    mocker.patch('numpy.random.random', return_value=1)
+    c.animals_migrate()
+    assert len(s.object_matrix[1][1].animal_object_list) == 140
+    assert len(s.object_matrix[1][2].animal_object_list) == 0
 
 

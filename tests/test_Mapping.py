@@ -7,7 +7,7 @@ Geo class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.Mapping import Savannah, Jungle, Desert, Ocean, Mountain, Cell
+from src.biosim.Mapping import Savannah, Jungle, Desert, Ocean, Mountain, Cell
 
 def test_is_instance():
     G = Cell(2, 3)
