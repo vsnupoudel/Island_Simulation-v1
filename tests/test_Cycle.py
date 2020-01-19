@@ -13,6 +13,7 @@ from Geography import Geo
 from simulation import BioSim
 import pytest
 from pytest_mock import mocker
+import numpy
 
 
 input_map = ("""\
@@ -132,4 +133,13 @@ def test_animals_die(mocker):
     c.animals_die()
     assert len(s.object_matrix[1][1].animal_object_list) < old_len
 
-
+def test_death_probability(mocker):
+    mocker.patch('numpy.random.random', return_value=0.001)
+    obj_id = id( s.object_matrix[1][1].animal_object_list[0] )
+    death_prob = s.object_matrix[1][1].animal_object_list[0].death_prob
+    c.animals_die()
+    list_of_obj_id = [id(a) for a in s.object_matrix[1][1].animal_object_list]
+    if numpy.random.random() < death_prob:
+        assert obj_id not in list_of_obj_id
+    else:
+        assert obj_id in list_of_obj_id
