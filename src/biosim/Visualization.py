@@ -20,18 +20,43 @@ _DEFAULT_MOVIE_FORMAT = 'mp4'   # alternatives: mp4, gif
 
 class Visualization:
     """
-    Plotting island map , heatmaps and line graph
+    Plotting island map, heatmaps of herbivore and carnivore distribution
+    and line graph of herbivore and carnivore count.
+
+        Attributes:
+
+        object_matrix:                 array, 2D array of cell objects
+                                              containing herbivores and
+                                              carnivores
+        img_dir(default, None):        image directory
+        img_name:                      str, image name
+        img_fmt(default, png):         str, image fmt
+
+        _fig(default, None):           plt.figure, figure to put subplots in
+        _map_ax(default, None):        plot of the island map
+        _img_axis(default, None):      axis to _map_ax
+        _herb_ax(default, None):       heatmap, plot for herbivore distribution
+        _carn_ax(default, None):       heatmap, plot for carnivore distribution
+        _mean_ax(default, None):       plot for the linegraphs
+        _herb_line(default, None):     herbivore-count line in _mean_ax
+        _carn_line(default, None):     carnivore-count line in _mean_ax
+        _herb_axis(default, None):     axis to _herb_ax
+        _carn_axis(default, None):     axis to _carn_ax
+
     """
 
-    def show(self):
-        plt.show()
+#    def show(self):
+#        plt.show()
 
     def __init__(self, object_matrix, img_dir=None,
                  img_name=_DEFAULT_GRAPHICS_NAME,
                  img_fmt='png'):
         """
-        :param object_matrix: 2D array of cell objects containing herbivores
-        and carnivores
+        :param object_matrix:   array, 2D array of cell objects containing
+                                       herbivores and carnivores
+        :param img_dir(default, None):    image directory
+        :param img_name:                  str, image name
+        :param img_fmt(default, png):     str, image fmt
         """
         self.object_matrix = object_matrix
         self._step = 0
@@ -60,7 +85,9 @@ class Visualization:
     def _set_graphics(self, y_lim, x_lim):
         """
         Sets up the graphics with 4 subplots
-        :return:
+        :param y_lim:       float, y limit of plot
+        :param x_lim:       int, x limit of plot
+        :return: None
         """
 
         # create new figure window
@@ -116,8 +143,9 @@ class Visualization:
 
     def create_map(self, data):
         """
-        Creates map. Called one time at the start of the simuation
-        :return:
+        Creates island map. Called one time at the start of the simuation.
+        :param data:    array, 2D array of map spesifications
+        :return: None
         """
         self._img_axis = self._map_ax.imshow(data, cmap='terrain'
                                              , vmax=20, vmin=1)
@@ -125,8 +153,8 @@ class Visualization:
 
     def update_herb_ax(self, herb_data):
         """
-        Updates herb_ax
-        :return:
+        Updates heatmap for herbivore distribution
+        :return: None
         """
         if self._herb_axis is not None:
             self._herb_axis.set_data(herb_data)
@@ -139,11 +167,10 @@ class Visualization:
                                           , orientation='horizontal')
 
 
-
     def update_carn_ax(self, carn_data):
         """
-        Updates carn_ax
-        :return:
+        Updates heatmap for carnivore distribution
+        :return: None
         """
         if self._carn_axis is not None:
             self._carn_axis.set_data(carn_data)
@@ -157,6 +184,12 @@ class Visualization:
 
 
     def update_mean_ax(self, herb_num, carn_num):
+        """
+        Updates linegraphs for herbivore and carnivore count
+        :param herb_num:    int, total number of herbivores on island
+        :param carn_num:    int, total number of carnivores on island
+        :return: None
+        """
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
@@ -169,7 +202,10 @@ class Visualization:
     def update_graphics(self, herb_pos, carn_pos, num_animals):
         """
         Updates graphics with current data
-        :return:
+        :param herb_pos:     herbivore distribution on the island
+        :param carn_pos:     carnivore distribution on the island
+        :param num_animals:  number of herbivores and carnivores
+        :return: None
         """
         # create_map will be called separately
         self.update_herb_ax(herb_pos)
@@ -178,10 +214,7 @@ class Visualization:
         plt.pause(1e-6)
 
     def make_movie(self):
-        """
-        Makes a movie of a series of images
-        :return:
-        """
+        """Makes a movie of a series of images"""
         try:
             subprocess.run(['ffmpeg',
                                     '-f','image2',
