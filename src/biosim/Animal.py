@@ -50,6 +50,10 @@ class Animal:
          }
 
     def __init__(self, age, weight):
+        """
+        :param age:    int, the age of the animal
+        :param weight: float, the weight of the animal
+        """
         self.weight = weight
         self.age = age
         self.is_dead = False
