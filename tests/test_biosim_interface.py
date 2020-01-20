@@ -244,12 +244,12 @@ def test_set_plot_limits():
 def figfile_root():
     """Provide name for figfile root and delete figfiles after test completes"""
 
-    ffroot = os.path.join(".", "testfigroot")
+    ffroot = os.path.join("Images")
     yield ffroot
     for f in glob.glob(ffroot + "_0*.png"):
         os.remove(f)
 
-# Failing
+# Passed
 def test_figure_saved(figfile_root):
     """Test that figures are saved during simulation"""
 
@@ -260,7 +260,7 @@ def test_figure_saved(figfile_root):
         img_base=figfile_root,
         img_fmt="png",
     )
-    sim.simulate(2, vis_years=1, img_years=1)
+    sim.simulate(num_years=2, vis_years=1, img_years=1)
 
-    assert os.path.isfile(figfile_root + "_00000.png")
-    assert os.path.isfile(figfile_root + "_00001.png")
+    assert os.path.isfile(figfile_root + "\\_00000.png")
+    assert os.path.isfile(figfile_root + "\\_00001.png")
