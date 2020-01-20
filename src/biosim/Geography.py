@@ -76,24 +76,3 @@ class Geo:
                 [dict_maps[self.geo_list[row_num][column]](row_num, column)
                  for column in range(self.geo_shape[1])])
 
-
-
-if __name__ == "__main__":
-    map = ("""\
-        OOOOO
-        OJSDO
-        OJSJO
-        OJSDO
-        OOOOO""")
-    g = Geo(map)
-    # print(g.object_matrix)
-    # print(g.get_adjacent_migratable_cells(2, 2) )
-    # print(g.get_adjacent_cells(2, 2))
-
-    for row, row_of_obj in enumerate(g.object_matrix):
-        for col, cell in enumerate(row_of_obj):
-            print(row,col)
-            adj_cells = g.get_adjacent_migratable_cells(row, col)
-            print(adj_cells)
-
-
