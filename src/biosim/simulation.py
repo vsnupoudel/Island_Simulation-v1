@@ -279,21 +279,18 @@ class BioSim:
     @property
     def animal_distribution(self):
         """Pandas DataFrame with animal count for each cell on island."""
+        herb_flat = self.herbivore_distribution.flatten()
+        carn_flat = self.carnivore_distribution.flatten()
 
-        cord_list = []
-        herb_list = []
-        carn_list = []
-        for row in self.object_matrix:
-            for el in row:
-                cord_list.append((el.row, el.column))
-                herb_list.append(el.n_herbs)
-                carn_list.append(el.n_carns)
+        rows = np.shape(self.object_matrix)[0]
+        columns = np.shape(self.object_matrix)[1]
+        row_nums = [r for r in range(rows) for c in range(columns)]
+        col_nums = [c for r in range(rows) for c in range(columns)]
 
-        ani_dist = pd.DataFrame(cord_list)
-        ani_dist['Herbivores'] = herb_list
-        ani_dist['Carnivores'] = carn_list
-        # print(ani_dist)
-        return ani_dist
+        _df = pd.DataFrame(list(zip(row_nums, col_nums, herb_flat, carn_flat)),
+                          columns=['Row', 'Col', 'Herbivore', 'Carnivore'],
+                          index=None)
+        return _df
 
     @property
     def island_matrix(self):
@@ -328,3 +325,5 @@ class BioSim:
                               '-hide_banner',
                         '-loglevel', 'panic'
                         ])
+
+

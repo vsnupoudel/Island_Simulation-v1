@@ -192,7 +192,7 @@ def test_get_animals_per_species(plain_sim):
         "Carnivore": 0,
     }
 
-# Failing
+
 def test_get_animal_distribution(plain_sim):
     """Test that animal distribution is available as DataFrame"""
     plain_sim.add_population(
@@ -217,16 +217,19 @@ def test_get_animal_distribution(plain_sim):
     data = plain_sim.animal_distribution
     assert isinstance(data, pandas.DataFrame)
     assert len(data) == 12
-    # assert set(data.columns) == {"Row", "Col", "Herbivore", "Carnivore"}
+    print(set(data.columns))
+    print(plain_sim.carnivore_distribution.flatten())
+    print(plain_sim.herbivore_distribution.flatten())
+    assert set(data.columns) == {"Row", "Col", "Herbivore", "Carnivore"}
 
-    # data.set_index(["Row", "Col"], inplace=True)
-    # assert data.loc[(2, 2)].Herbivore == 1
-    # assert data.loc[(2, 2)].Carnivore == 1
-    # assert data.loc[(2, 3)].Herbivore == 2
-    # assert data.loc[(2, 3)].Carnivore == 0
-    #
-    # assert data.Herbivore.sum() == 3
-    # assert data.Carnivore.sum() == 1
+    data.set_index(["Row", "Col"], inplace=True)
+    assert data.loc[(2, 2)].Herbivore == 1
+    assert data.loc[(2, 2)].Carnivore == 1
+    assert data.loc[(2, 3)].Herbivore == 2
+    assert data.loc[(2, 3)].Carnivore == 0
+
+    assert data.Herbivore.sum() == 3
+    assert data.Carnivore.sum() == 1
 
 
 def test_set_plot_limits():

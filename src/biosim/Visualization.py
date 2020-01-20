@@ -44,7 +44,7 @@ class Visualization:
         """
         self.object_matrix = object_matrix
         self._step = 0
-        self._final_step = 200
+        self._final_step = 600
         self._img_ctr = 0
 
         # the following will be initialized by _setup_graphics
