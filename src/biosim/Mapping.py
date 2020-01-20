@@ -14,21 +14,23 @@ class Cell:
     Super class for the type of Terrain: Jungle, Savannah, Desert,
     Ocean or Mountain.
 
-    Attributes:
-
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
-        f_ij:                 float(default=0), food avilable in each cell
-        alpha:                float(default=0.3), parameter
-        animal_object_list:   list, list of animal objects
-        tot_herb_weight:      float, total weigth of all herbivores in a cell
-        rel_ab_carn:          float, relative abundance of fodder for carnivores
-        rel_ab_herb:          float, relative abundance of fodder for herbivores
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
+                            has procreated or not
+    :ivar f_ij:     float(default=0), food avilable in each cell
+    :ivar alpha:    float(default = None), parameter
+    :ivar animal_object_list:   list, list of animal objects
+    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :ivar rel_ab_carn:          float, relative abundance of fodder for
+                                carnivores
+    :ivar rel_ab_herb:          float, relative abundance of fodder for
+                                herbivores
 
     """
 
     def __init__(self, row, column, f_ij=0, alpha=0.3):
         """
+
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         :param f_ij:   float(default=0), food avilable in each cell
@@ -128,6 +130,23 @@ class Jungle(Cell):
     """
     Jungle landscape. Child class of the Cell class.
 
+    :ivar parameters:   dict, dictionary of Jungle parameters, containing:
+                        f_max: int, maximal available food in Jungle object
+                        alpha: (default, None), parameter
+    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+                          or not for animal objects
+
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
+    :ivar f_ij:     float(default=300), food avilable in each cel
+    :ivar alpha:    default=None), parameter
+    :ivar animal_object_list:   list, list of animal objects
+    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :ivar rel_ab_carn:          float, relative abundance of fodder for
+                                carnivores
+    :ivar rel_ab_herb:          float, relative abundance of fodder for
+                                herbivores
+
     Attributes:
 
         parameters:           dict, dictionary of Jungle parameters,
@@ -175,6 +194,23 @@ class Savannah(Cell):
     """
     Savannah landscape. Child class of the Cell class.
 
+    :ivar parameters:   dict, dictionary of Savannah parameters, containing:
+                        f_max: int(default, 300), maximal available food in
+                               Jungle object
+                        alpha: (default, 0.3), parameter
+    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+                          or not for animal objects
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
+    :ivar f_ij:     float(default=200), food avilable in each cel
+    :ivar alpha:    (default=0.3), parameter
+    :ivar animal_object_list:   list, list of animal objects
+    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :ivar rel_ab_carn:          float, relative abundance of fodder for
+                                carnivores
+    :ivar rel_ab_herb:          float, relative abundance of fodder for
+                                herbivores
+
     Attributes:
 
         parameters:           dict, dictionary of Jungle parameters,
@@ -195,7 +231,7 @@ class Savannah(Cell):
         self.rel_ab_herb:     float, relative abundance of fodder for herbivores
 
     """
-    parameters = {'f_max': 800.0, 'alpha': None}
+    parameters = {'f_max': 300.0, 'alpha': 0.3}
     is_migratable = True
 
     def __init__(

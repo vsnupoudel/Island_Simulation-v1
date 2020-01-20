@@ -1,7 +1,7 @@
-Documentation of Simulation
+Documentation of simulation
 ===========================
 
-The Simulation Class and its Subclasses
+The simulation Class and its Subclasses
 -------------------------------------
-.. automodule:: Simulation
+.. automodule:: simulation
    :members:

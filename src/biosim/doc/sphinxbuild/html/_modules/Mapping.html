@@ -48,20 +48,25 @@
 <span class="sd">    Super class for the type of Terrain: Jungle, Savannah, Desert,</span>
 <span class="sd">    Ocean or Mountain.</span>
 
-<span class="sd">    Attributes:</span>
-<span class="sd">        row:                  int, row index of the position of the cell</span>
-<span class="sd">        column:               int, column index of the position of the cell</span>
-<span class="sd">        f_ij:                 float(default=0), food avilable in each cell</span>
-<span class="sd">        alpha:                float(default=0.3), parameter</span>
-<span class="sd">        animal_object_list:   list, list of animal objects</span>
-<span class="sd">        tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
-<span class="sd">        rel_ab_carn:          float, relative abundance of fodder for carnivores</span>
-<span class="sd">        rel_ab_herb:          float, relative abundance of fodder for herbivores</span>
+<span class="sd">    :ivar row:      int, row index of the position of the cell</span>
+<span class="sd">    :ivar column:   int, column index of the position of the cell</span>
+<span class="sd">                            has procreated or not</span>
+<span class="sd">    :ivar f_ij:     float(default=0), food avilable in each cell</span>
+<span class="sd">                            has migrated or not</span>
+<span class="sd">    :ivar alpha:    float(default=0.3), parameter</span>
+<span class="sd">                            is dead or alive</span>
+<span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
+<span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
+<span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
+<span class="sd">                                carnivores</span>
+<span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
+<span class="sd">                                herbivores</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">f_ij</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="sd">        :param row:    int, row index of the position of the cell</span>
 <span class="sd">        :param column: int, column index of the position of the cell</span>
 <span class="sd">        :param f_ij:   float(default=0), food avilable in each cell</span>
@@ -94,8 +99,10 @@
 <div class="viewcode-block" id="Cell.set_population"><a class="viewcode-back" href="../Mapping_documentation.html#Mapping.Cell.set_population">[docs]</a>    <span class="k">def</span> <span class="nf">set_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the population of a cell object</span>
+
 <span class="sd">        :param input_dict: dict, dictionary specifying the population to be</span>
-<span class="sd">        set for the cell object, containing:</span>
+<span class="sd">                           set for the cell object, containing:</span>
+
 <span class="sd">        location of cell object, type of animals, age and weight of animals</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">input_dict</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">]</span>
@@ -109,6 +116,8 @@
 
 <div class="viewcode-block" id="Cell.get_population"><a class="viewcode-back" href="../Mapping_documentation.html#Mapping.Cell.get_population">[docs]</a>    <span class="k">def</span> <span class="nf">get_population</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the population of the cell</span>
+
 <span class="sd">        :return: animal_object_list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">animal_object_list</span></div>
@@ -158,6 +167,7 @@
 <span class="sd">    Jungle landscape. Child class of the Cell class.</span>
 
 <span class="sd">    Attributes:</span>
+
 <span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
 <span class="sd">                                    containing:</span>
 <span class="sd">                                    f_max: int, maximal available food in</span>
@@ -204,6 +214,7 @@
 <span class="sd">    Savannah landscape. Child class of the Cell class.</span>
 
 <span class="sd">    Attributes:</span>
+
 <span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
 <span class="sd">                                    containing:</span>
 <span class="sd">                                    f_max: int, maximal available food in</span>
@@ -249,6 +260,7 @@
 <span class="sd">    Desert landscape. Child class of the Cell class.</span>
 
 <span class="sd">    Attributes:</span>
+
 <span class="sd">        is_migratable         bool(default, True), whether the cell is</span>
 <span class="sd">                                                   migratable or not for</span>
 <span class="sd">                                                   animal objects</span>
@@ -280,6 +292,7 @@
     <span class="sd">&quot;&quot;&quot;Ocean landscape. Child class of the Cell class.</span>
 
 <span class="sd">        Attributes:</span>
+
 <span class="sd">        is_migratable         bool(default, False), whether the cell is</span>
 <span class="sd">                                                   migratable or not for</span>
 <span class="sd">                                                   animal objects</span>
@@ -301,6 +314,7 @@
     <span class="sd">&quot;&quot;&quot;Mountian landscape.  Child class of the Cell class.</span>
 
 <span class="sd">        Attributes:</span>
+
 <span class="sd">        is_migratable         bool(default, False), whether the cell is</span>
 <span class="sd">                                                   migratable or not for</span>
 <span class="sd">                                                   animal objects</span>
@@ -340,7 +354,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of animals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 

@@ -15,7 +15,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of Simulation" href="Simulation_documentation.html" />
+    <link rel="next" title="Documentation of simulation" href="simulation_documentation.html" />
     <link rel="prev" title="Documentation of Geography" href="Geography_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -42,22 +42,28 @@
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Cell</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=0</em>, <em>alpha=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Super class for the type of Terrain: Jungle, Savannah, Desert,
 Ocean or Mountain.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd>row:                  int, row index of the position of the cell
-column:               int, column index of the position of the cell
-f_ij:                 float(default=0), food avilable in each cell
-alpha:                float(default=0.3), parameter
-animal_object_list:   list, list of animal objects
-tot_herb_weight:      float, total weigth of all herbivores in a cell
-rel_ab_carn:          float, relative abundance of fodder for carnivores
-rel_ab_herb:          float, relative abundance of fodder for herbivores</dd>
-</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> – int, row index of the position of the cell</li>
+<li><strong>column</strong> – int, column index of the position of the cell
+has procreated or not</li>
+<li><strong>f_ij</strong> – float(default=0), food avilable in each cell
+has migrated or not</li>
+<li><strong>alpha</strong> – float(default=0.3), parameter
+is dead or alive</li>
+<li><strong>animal_object_list</strong> – list, list of animal objects</li>
+<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
+<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
+carnivores</li>
+<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
+herbivores</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>row</strong> – int, row index of the position of the cell</li>
 <li><strong>column</strong> – int, column index of the position of the cell</li>
 <li><strong>f_ij</strong> – float(default=0), food avilable in each cell</li>
@@ -82,7 +88,8 @@ rel_ab_herb:          float, relative abundance of fodder for herbivores</dd>
 <dl class="method">
 <dt id="Mapping.Cell.get_population">
 <code class="descname">get_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell.get_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell.get_population" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Gets the population of the cell</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -137,10 +144,17 @@ rel_ab_herb:          float, relative abundance of fodder for herbivores</dd>
 <dl class="method">
 <dt id="Mapping.Cell.set_population">
 <code class="descname">set_population</code><span class="sig-paren">(</span><em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell.set_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell.set_population" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the population of a cell object
-:param input_dict: dict, dictionary specifying the population to be
-set for the cell object, containing:
-location of cell object, type of animals, age and weight of animals</p>
+<dd><p>Sets the population of a cell object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_dict</strong> – dict, dictionary specifying the population to be
+set for the cell object, containing:</td>
+</tr>
+</tbody>
+</table>
+<p>location of cell object, type of animals, age and weight of animals</p>
 </dd></dl>
 
 </dd></dl>
@@ -149,21 +163,20 @@ location of cell object, type of animals, age and weight of animals</p>
 <dt id="Mapping.Desert">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Desert</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Desert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Desert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Desert landscape. Child class of the Cell class.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><dl class="first docutils">
+<p>Attributes:</p>
+<blockquote>
+<div><dl class="docutils">
 <dt>is_migratable         bool(default, True), whether the cell is</dt>
 <dd>migratable or not for
 animal objects</dd>
 </dl>
-<p class="last">row:                  int, row index of the position of the cell
+<p>row:                  int, row index of the position of the cell
 column:               int, column index of the position of the cell
 animal_object_list:   list, list of animal objects
 tot_herb_weight:      float, total weigth of all herbivores in a cell
 rel_ab_carn:          float, relative abundance of fodder for carnivores
 self.rel_ab_herb:     float, zero for desert landscape</p>
-</dd>
-</dl>
+</div></blockquote>
 <p>”
 :param row:    int, row index of the position of the cell
 :param column: int, column index of the position of the cell</p>
@@ -173,9 +186,9 @@ self.rel_ab_herb:     float, zero for desert landscape</p>
 <dt id="Mapping.Jungle">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Jungle</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=300</em>, <em>alpha=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Jungle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Jungle landscape. Child class of the Cell class.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><dl class="first docutils">
+<p>Attributes:</p>
+<blockquote>
+<div><dl class="docutils">
 <dt>parameters:           dict, dictionary of Jungle parameters,</dt>
 <dd><p class="first">containing:
 f_max: int, maximal available food in</p>
@@ -187,7 +200,7 @@ f_max: int, maximal available food in</p>
 <dd>migratable or not for
 animal objects</dd>
 </dl>
-<p class="last">row:                  int, row index of the position of the cell
+<p>row:                  int, row index of the position of the cell
 column:               int, column index of the position of the cell
 f_ij:                 float(default=300), food avilable in each cell
 alpha:                (default=None), parameter
@@ -195,8 +208,7 @@ animal_object_list:   list, list of animal objects
 tot_herb_weight:      float, total weigth of all herbivores in a cell
 rel_ab_carn:          float, relative abundance of fodder for carnivores
 self.rel_ab_herb:     float, relative abundance of fodder for herbivores</p>
-</dd>
-</dl>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -217,11 +229,12 @@ self.rel_ab_herb:     float, relative abundance of fodder for herbivores</p>
 <dt id="Mapping.Mountain">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Mountain</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Mountain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Mountain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mountian landscape.  Child class of the Cell class.</p>
-<p>Attributes:
-is_migratable         bool(default, False), whether the cell is</p>
-<blockquote>
-<div>migratable or not for
-animal objects</div></blockquote>
+<p>Attributes:</p>
+<dl class="docutils">
+<dt>is_migratable         bool(default, False), whether the cell is</dt>
+<dd>migratable or not for
+animal objects</dd>
+</dl>
 <p>row:                  int, row index of the position of the cell
 column:               int, column index of the position of the cell</p>
 <p>”
@@ -233,11 +246,12 @@ column:               int, column index of the position of the cell</p>
 <dt id="Mapping.Ocean">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Ocean</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Ocean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Ocean" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ocean landscape. Child class of the Cell class.</p>
-<p>Attributes:
-is_migratable         bool(default, False), whether the cell is</p>
-<blockquote>
-<div>migratable or not for
-animal objects</div></blockquote>
+<p>Attributes:</p>
+<dl class="docutils">
+<dt>is_migratable         bool(default, False), whether the cell is</dt>
+<dd>migratable or not for
+animal objects</dd>
+</dl>
 <p>row:                  int, row index of the position of the cell
 column:               int, column index of the position of the cell</p>
 <p>”
@@ -249,9 +263,9 @@ column:               int, column index of the position of the cell</p>
 <dt id="Mapping.Savannah">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Savannah</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=200</em>, <em>alpha=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Savannah" title="Permalink to this definition">¶</a></dt>
 <dd><p>Savannah landscape. Child class of the Cell class.</p>
-<dl class="docutils">
-<dt>Attributes:</dt>
-<dd><dl class="first docutils">
+<p>Attributes:</p>
+<blockquote>
+<div><dl class="docutils">
 <dt>parameters:           dict, dictionary of Jungle parameters,</dt>
 <dd><p class="first">containing:
 f_max: int, maximal available food in</p>
@@ -263,7 +277,7 @@ f_max: int, maximal available food in</p>
 <dd>migratable or not for
 animal objects</dd>
 </dl>
-<p class="last">row:                  int, row index of the position of the cell
+<p>row:                  int, row index of the position of the cell
 column:               int, column index of the position of the cell
 f_ij:                 float(default=200), food avilable in each cell
 alpha:                float(default=0.3), parameter
@@ -271,8 +285,7 @@ animal_object_list:   list, list of animal objects
 tot_herb_weight:      float, total weigth of all herbivores in a cell
 rel_ab_carn:          float, relative abundance of fodder for carnivores
 self.rel_ab_herb:     float, relative abundance of fodder for herbivores</p>
-</dd>
-</dl>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -317,7 +330,7 @@ self.rel_ab_herb:     float, relative abundance of fodder for herbivores</p>
 <li class="toctree-l2"><a class="reference internal" href="#module-Mapping">The Mapping Class and its Subclasses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Simulation_documentation.html">Documentation of Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
@@ -326,7 +339,7 @@ self.rel_ab_herb:     float, relative abundance of fodder for herbivores</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="Geography_documentation.html" title="previous chapter">Documentation of Geography</a></li>
-      <li>Next: <a href="Simulation_documentation.html" title="next chapter">Documentation of Simulation</a></li>
+      <li>Next: <a href="simulation_documentation.html" title="next chapter">Documentation of simulation</a></li>
   </ul></li>
 </ul>
 </div>

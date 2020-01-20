@@ -47,24 +47,17 @@ Contains methods, properties and variables that are common in both.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary</li>
-<li><strong>var2</strong> – <p>initial value: par2</p>
-<p>Attributes:</p>
-<dl class="docutils">
-<dt>p:                   dict, dictionary of parameters for the</dt>
-<dd>animal objects. All parameters are
-None by default</dd>
-<dt>has_procreated:       bool(default, False), whether the animal object</dt>
-<dd>has procreated or not</dd>
-<dt>has_migrated:         bool(default, False), whether the animal object</dt>
-<dd>has migrated or not</dd>
-<dt>is_dead:              bool(default, False), whether the animal object</dt>
-<dd>is dead or alive</dd>
-</dl>
-<p>age:                  int, the age of the animal
-weight:               float, the weight of the animal
-reprod_thresh_weight:  float, treshold weight for reproduction</p>
-</li>
+<li><strong>p</strong> – dict, dictionary of parameters for the animal objects.
+All parameters are None by default</li>
+<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
+has procreated or not</li>
+<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
+has migrated or not</li>
+<li><strong>is_dead</strong> – bool(default, False), whether the animal object
+is dead or alive</li>
+<li><strong>age</strong> – int, the age of the animal</li>
+<li><strong>weight</strong> – float, the weight of the animal</li>
+<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
 </ul>
 </td>
 </tr>
@@ -102,25 +95,25 @@ reprod_thresh_weight:  float, treshold weight for reproduction</p>
 <dt id="Animal.Carnivore">
 <em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Carnivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Carnivore characteristics, subclass of Animal class</p>
-<p>Attributes:</p>
-<dl class="docutils">
-<dt>p:                   dict, dictionary of parameters for the Carnivore</dt>
-<dd>objects.</dd>
-<dt>has_procreated:       bool(default, False), whether the animal object</dt>
-<dd>has procreated or not</dd>
-<dt>has_migrated:         bool(default, False), whether the animal object</dt>
-<dd>has migrated or not</dd>
-<dt>is_dead:              bool(default, False), whether the animal object</dt>
-<dd>is dead or alive</dd>
-</dl>
-<p>age:                  int, the age of the animal
-weight:               float, the weight of the animal
-reprod_thresh_weight  float, treshold weight for reproduction</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>p</strong> – dict, dictionary of parameters for the Carnivore objects.</li>
+<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
+has procreated or not</li>
+<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
+has migrated or not</li>
+<li><strong>is_dead</strong> – bool(default, False), whether the animal object
+is dead or alive</li>
+<li><strong>age</strong> – int, the age of the animal</li>
+<li><strong>weight</strong> – float, the weight of the animal</li>
+<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>age</strong> – int, the age of the animal</li>
 <li><strong>weight</strong> – float, the weight of the animal</li>
 </ul>
@@ -208,25 +201,25 @@ equal to baby weight)</td>
 <dt id="Animal.Herbivore">
 <em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Herbivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Herbivore characteristics, subclass of Animal class</p>
-<p>Attributes:</p>
-<dl class="docutils">
-<dt>p:                   dict, dictionary of parameters for the Herbivore</dt>
-<dd>objects.</dd>
-<dt>has_procreated:       bool(default, False), whether the animal object</dt>
-<dd>has procreated or not</dd>
-<dt>has_migrated:         bool(default, False), whether the animal object</dt>
-<dd>has migrated or not</dd>
-<dt>is_dead:              bool(default, False), whether the animal object</dt>
-<dd>is dead or alive</dd>
-</dl>
-<p>age:                  int, the age of the animal
-weight:               float, the weight of the animal
-reprod_thresh_weight  float, treshold weight for reproduction</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>p</strong> – dict, dictionary of parameters for the Herbivore objects.</li>
+<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
+has procreated or not</li>
+<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
+has migrated or not</li>
+<li><strong>is_dead</strong> – bool(default, False), whether the animal object
+is dead or alive</li>
+<li><strong>age</strong> – int, the age of the animal</li>
+<li><strong>weight</strong> – float, the weight of the animal</li>
+<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>age</strong> – int, the age of the animal</li>
 <li><strong>weight</strong> – float, the weight of the animal</li>
 </ul>
@@ -323,6 +316,10 @@ baby weight</td>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
 <div class="relations">
