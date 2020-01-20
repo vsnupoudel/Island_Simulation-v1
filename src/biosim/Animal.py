@@ -149,6 +149,7 @@ class Herbivore(Animal):
         """
         Herbivores eat. This method updates the amount of food in the cell
         object and the weight of the animal.
+
         :param cell:   Cell object, the cell where this animal resides.
         """
         if cell.f_ij >= self.p['F']:
@@ -162,6 +163,7 @@ class Herbivore(Animal):
         """
         Reproduction for herbivores. The weight of the mother animal decreases
         when it gives birth.
+
         :param length: int, number of total herbivores in the cell where the
                             herbivore resides
         :return: A baby herbivore object with age = 0 and weight equal to
@@ -189,6 +191,7 @@ class Herbivore(Animal):
         """
         Herbivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
+
         :param animal:       Herbivore object, the herbivore object that is
                                                chosen to move
         :param cell:         Cell object, the current cell
@@ -300,6 +303,7 @@ class Carnivore(Animal):
     def carn_reproduce(self, length):
         """
         Reproduction for carnivores
+
         :param length:               int, number of total carnivores in the
                                           cell where the herbivore resides
         :return: A baby carnivores   Carnivore object (with age=0 and weight
@@ -327,6 +331,7 @@ class Carnivore(Animal):
         """
         Carnivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
+
         :param animal:       Carnivore object, the carnivore object that is
                                                chosen to move
         :param cell:         Cell object, the current cell
