@@ -16,7 +16,31 @@ import os
 import subprocess
 
 class BioSim:
-    """Class takes in map and population, and converts them to objects"""
+    """
+    Initialize and execute simulation. This class takes in map and population,
+    and converts them to objects.
+
+    :ivar island_map:      str, Multi-line string specifying island geography
+    :ivar ini_pop:         list, List of dictionaries specifying initial
+                           population
+    :ivar seed:            int(default, 1), random number seed
+    :ivar ymax_animals:    int(default, 10000), Number specifying y-axis limit
+                           for graph showing animal numbers
+    :ivar cmax_animals:    dict(default, None), Dictionary specifying
+                           color-code limits for animal densities
+    :ivar total_years:     int(default, 60), total number of years for all the
+                           sub-simulations
+    :ivar img_base:
+    :ivar img_fmt:         str(default, png), image fmt
+
+    :ivar num_images:      int(default, 0), number of images
+    :ivar object_matrix:   array, 2D array of cell objects containing
+                           herbivores and carnivores
+
+    :ivar v:                Instance of Visualization class
+    :ivar v.set_graphics:   Graphics are set
+        
+    """
     def __init__(
         self,
         island_map,
@@ -123,7 +147,7 @@ class BioSim:
         (default: vis_years)
         :param y_lim :        float, y axis limit of the line graph
         :param colorbar_limits : vmax for the colorbars for herbivores and
-        carnivores in a dictionary format
+                                 carnivores in a dictionary format
         """
         if colorbar_limits is None:
             colorbar_limits = {"Herbivore":200, "Carnivore":200}
@@ -161,6 +185,7 @@ class BioSim:
     def add_population(self, population):
         """
         Add a population to the island
+
         :param population:  list, List of dictionaries specifying population
         """
         for one_location_list in population:
@@ -179,8 +204,9 @@ class BioSim:
     def num_animals(self):
         """
         Total number of herbivores and carnivores on island
+
         :return: animals_count_dict  dict, dictionary containing number of
-                                           herbivores and carnivores on island
+                                     herbivores and carnivores on island
         """
         h_count = 0
         c_count = 0

@@ -13,7 +13,7 @@ class Visualization:
     and line graph of herbivore and carnivore count.
 
     :ivar object_matrix:    array, 2D array of cell objects containing
-                              herbivores and carnivores
+                            herbivores and carnivores
     :ivar img_dir:          (default, None) image directory
     :ivar img_name:                 str, image name
     :ivar img_fmt:          str(default, png), image fmt
