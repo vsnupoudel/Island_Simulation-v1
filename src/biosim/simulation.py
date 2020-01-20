@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+import subprocess
 
 class BioSim:
     """Class takes in map and population, and converts them to objects"""
@@ -156,8 +157,6 @@ class BioSim:
                     self.num_images))
                 self.num_images += 1
 
-        self.v.make_movie()
-
 
     def add_population(self, population):
         """
@@ -245,7 +244,7 @@ class BioSim:
         ani_dist = pd.DataFrame(cord_list)
         ani_dist['Herbivores'] = herb_list
         ani_dist['Carnivores'] = carn_list
-        print(ani_dist)
+        # print(ani_dist)
         return ani_dist
 
     @property
@@ -266,5 +265,15 @@ class BioSim:
 
         return island_matrix
 
-
-
+    def make_movie(self):
+        """Makes a movie of a series of images"""
+        subprocess.run(['ffmpeg',
+                                '-f','image2',
+                                '-r','3',
+                                '-i','Images\\Image-%03d.png',
+                                '-vcodec','mpeg4',
+                                '-y', 'movie.mp4'
+                                # To hide the logs
+                                '-hide_banner',
+                                '-loglevel', 'panic'
+                               ])

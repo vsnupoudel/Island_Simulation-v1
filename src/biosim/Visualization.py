@@ -4,15 +4,8 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
-import subprocess
 import os
 import matplotlib.pyplot as plt
-
-# update this to the directory and file-name beginning
-# for the graphics files
-_DEFAULT_GRAPHICS_DIR = os.path.join('..', 'data')
-_DEFAULT_GRAPHICS_NAME = 'dv'
-_DEFAULT_MOVIE_FORMAT = 'mp4'   # alternatives: mp4, gif
 
 class Visualization:
     """
@@ -80,7 +73,7 @@ class Visualization:
         # create new figure window
         if self._fig is None:
             self._fig = plt.figure(figsize=(8,8))
-            plt.title("Maximum number of years: "+str(x_lim-1), loc='left')
+            plt.title("Maximum number of years: "+str(x_lim), loc='left')
             plt.axis('off')
 
         if self._map_ax is None:
@@ -202,18 +195,7 @@ class Visualization:
         self.update_herb_ax(herb_pos, herb_limit)
         self.update_carn_ax(carn_pos, carn_limit)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
-        plt.pause(1e-6)
+        plt.pause(1e-12)
 
-    def make_movie(self):
-        """Makes a movie of a series of images"""
-        subprocess.run(['ffmpeg',
-                                '-f','image2',
-                                '-r','6',
-                                '-i','Images\\Image-%03d.png',
-                                '-vcodec','mpeg4',
-                                '-y', 'movie.mp4',
-                                # To hide the logs
-                                '-hide_banner',
-                                '-loglevel', 'panic'
-                               ])
+
 
