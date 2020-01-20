@@ -73,8 +73,7 @@ class Visualization:
         self._herb_axis = None
         self._carn_axis = None
 
-
-    def _set_graphics(self, y_lim, x_lim):
+    def set_graphics(self, y_lim, x_lim):
         """
         Sets up the graphics with 4 subplots
         :param y_lim:       float, y limit of plot
@@ -166,13 +165,15 @@ class Visualization:
         """
         if self._carn_axis is not None:
             self._carn_axis.set_data(carn_data)
-
         else:
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
-                                                 cmap="OrRd")
+                                                 cmap="OrRd", vmin =0,
+                                                   vmax= 200)
             self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax
-                                          , orientation='horizontal')
+                                          , orientation='horizontal'
+                                          )
+
 
 
     def update_mean_ax(self, herb_num, carn_num):

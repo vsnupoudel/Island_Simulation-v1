@@ -21,7 +21,6 @@ class BioSim:
         island_map,
         ini_pop,
         seed = 1,
-        num_images = 0,
         ymax_animals=None,
         cmax_animals=None,
         img_base=None,
@@ -50,7 +49,7 @@ class BioSim:
         where img_no are consecutive image numbers starting from 0.
         img_base should contain a path and beginning of a file name.
         """
-        self.num_images = num_images
+        self.num_images = 0
         self.seed = seed
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
@@ -60,6 +59,9 @@ class BioSim:
         for one_location_list in self.ini_pop:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
+
+        self.v = Visualization(self.object_matrix)
+        self.v.set_graphics(12000, 21) # these 2 are input params
 
     def set_animal_parameters(self, species, params):
         """
@@ -117,16 +119,14 @@ class BioSim:
         if not os.path.exists('Images'):
             os.makedirs('Images')
 
-        v = Visualization(self.object_matrix)
-        v._set_graphics (y_lim, num_years+1)
-
-        v.create_map(self.island_matrix)
+        self.v.create_map(self.island_matrix)
 
         step = 0
-        v.update_graphics(self.herbivore_distribution,
+        self.v.update_graphics(self.herbivore_distribution,
                          self.carnivore_distribution, self.num_animals)
 
-        plt.savefig('Images\\Image-{0:03d}.png'.format(step))
+        plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
+        self.num_images += 1
 
         c = Cycle(self.object_matrix)
         while step <= num_years:
@@ -135,16 +135,17 @@ class BioSim:
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
-            v.update_graphics(self.herbivore_distribution,
+            self.v.update_graphics(self.herbivore_distribution,
                              self.carnivore_distribution,
                              self.num_animals)
 
             step += 1
             if step % img_years == 0:
-                plt.savefig('Images\\Image-{0:03d}.png'.format(step))
+                self.num_images += 1
+                plt.savefig('Images\\Image-{0:03d}.png'.format(
+                    self.num_images))
 
-        v.make_movie()
-
+        self.v.make_movie()
 
     def add_population(self, population):
         """
