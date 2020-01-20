@@ -185,6 +185,7 @@ class Visualization:
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
+
         # Another line for carnivore
         ydata = self._carn_line.get_ydata()
         ydata[self._step] = carn_num
@@ -207,16 +208,14 @@ class Visualization:
 
     def make_movie(self):
         """Makes a movie of a series of images"""
-        try:
-            subprocess.run(['ffmpeg',
-                                    '-f','image2',
-                                    '-r','6',
-                                    '-i','Images\\Image-%03d.png',
-                                    '-vcodec','mpeg4',
-                                    '-y', 'movie.mp4',
-                                    # To hide the logs
-                                    '-hide_banner',
-                                    '-loglevel', 'panic'
-                                   ])
-        except:
-            return RuntimeError('Error in video generation')
+        subprocess.run(['ffmpeg',
+                                '-f','image2',
+                                '-r','6',
+                                '-i','Images\\Image-%03d.png',
+                                '-vcodec','mpeg4',
+                                '-y', 'movie.mp4',
+                                # To hide the logs
+                                '-hide_banner',
+                                '-loglevel', 'panic'
+                               ])
+
