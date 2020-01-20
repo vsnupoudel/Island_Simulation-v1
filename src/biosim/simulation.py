@@ -59,11 +59,11 @@ class BioSim:
         :param ini_pop: List of dictionaries specifying initial population
         :param seed: Integer used as random number seed
         :param ymax_animals: Number specifying y-axis limit for graph
-        showing animal numbers
+        showing total animal numbers, default is ten thousand
         :param cmax_animals: Dict specifying color-code limits for animal
         densities
-        :param total_years: total number of years for all the sub-simulations
-        default number is 60
+        :param total_years: The xlimit of the line graph, should specify total
+        number of year for which the user wants to simulate, default = 60
         :param img_base: Path relative to the code being run, where the user
         intends to store the images. If is none, no image is stored
         :param img_fmt: String with file type for figures, e.g. 'png'
@@ -101,13 +101,12 @@ class BioSim:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
 
-        self.v = Visualization(self.object_matrix)
+        self.v = Visualization()
         self.v.set_graphics(self.ymax_animals, self.total_years)
 
     def set_animal_parameters(self, species, params):
         """
         Set parameters for animal species.
-
         :param species:  string, name of animal species
         :param params:   dict, valid parameter specification for species
         """
@@ -312,18 +311,15 @@ class BioSim:
 
     def make_movie(self):
         """Makes a movie of a series of images"""
-        # Input_image_path = '{}_{:05d}.{}'.format(self.img_base,
-        #                                          self.img_number,
-        #                                          self.img_fmt)
         subprocess.run(['ffmpeg',
                         '-f', 'image2',
                         '-r', '3',
                         '-i', self.img_base+'\\_%05d.png',
                         '-vcodec', 'mpeg4',
-                        '-y', 'Simulation_movie.mp4',
+                        '-y', 'Simulation_movie_2.mp4',
                         # To hide the logs
-                              '-hide_banner'
-                        # '-loglevel', 'panic'
+                              '-hide_banner',
+                        '-loglevel', 'panic'
                         ])
 
 

@@ -12,8 +12,6 @@ class Visualization:
     Plotting island map, heatmaps of herbivore and carnivore distribution
     and line graph of herbivore and carnivore count.
 
-    :ivar object_matrix:    array, 2D array of cell objects containing
-                            herbivores and carnivores
     :ivar img_dir:          (default, None) image directory
     :ivar img_name:                 str, image name
     :ivar img_fmt:          str(default, png), image fmt
@@ -34,30 +32,27 @@ class Visualization:
     """
 
 
-    def __init__(self, object_matrix):
+    def __init__(self):
         """
-        :param object_matrix:   array, 2D array of cell objects containing
-                                       herbivores and carnivores
         :param img_dir(default, None):    image directory
         :param img_name:                  str, image name
         :param img_fmt(default, png):     str, image fmt
         """
-        self.object_matrix = object_matrix
+
         self._step = 0
-        self._final_step = 600
-        self._img_ctr = 0
 
         # the following will be initialized by _setup_graphics
         self._fig = None
         self._map_ax = None
         self._img_axis = None
         self._mean_ax = None
-        self._herb_line = None
-        self._carn_line = None
         self._herb_ax = None
         self._carn_ax = None
         self._herb_axis = None
         self._carn_axis = None
+
+        self._herb_line = None
+        self._carn_line = None
 
     def set_graphics(self, y_lim, x_lim):
         """
@@ -67,7 +62,6 @@ class Visualization:
         :param x_lim:       int, x limit of plot
         :return: None
         """
-
         # create new figure window
         if self._fig is None:
             self._fig = plt.figure(figsize=(8,8))
@@ -89,34 +83,19 @@ class Visualization:
         if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, y_lim)
-           self._mean_ax.set_xlim(0, x_lim )
+           self._mean_ax.set_xlim(0, x_lim)
 
 
         if self._herb_line is None:
-            herb_plot = self._mean_ax.plot(np.arange(0, self._final_step),
-                                           np.full(self._final_step, np.nan))
+            herb_plot = self._mean_ax.plot(np.arange(0, x_lim),
+                                           np.full(x_lim, np.nan))
             self._herb_line = herb_plot[0]
-        else:
-            xdata, ydata = self._herb_line.get_data()
-            xnew = np.arange(xdata[-1] + 1, self._final_step)
-            if len(xnew) > 0:
-                ynew = np.full(xnew.shape, np.nan)
-                self._herb_line.set_data(np.hstack((xdata, xnew)),
-                                         np.hstack((ydata, ynew)))
 
         # Do the same for carn_line
         if self._carn_line is None:
-            carn_plot = self._mean_ax.plot(np.arange(0, self._final_step),
-                                           np.full(self._final_step, np.nan))
+            carn_plot = self._mean_ax.plot(np.arange(0, x_lim),
+                                           np.full(x_lim, np.nan))
             self._carn_line = carn_plot[0]
-
-        else:
-            xdata, ydata = self._carn_line.get_data()
-            xnew = np.arange(xdata[-1] + 1, self._final_step)
-            if len(xnew) > 0:
-                ynew = np.full(xnew.shape, np.nan)
-                self._carn_line.set_data(np.hstack((xdata, xnew)),
-                                         np.hstack((ydata, ynew)))
 
 
     def create_map(self, data):
@@ -129,7 +108,7 @@ class Visualization:
         self._img_axis = self._map_ax.imshow(data, cmap='terrain'
                                              , vmax=20, vmin=1)
 
-    def update_herb_ax(self, herb_data, vmax):
+    def update_herb_ax(self, herb_data, herb_limit):
         """
         Updates heatmap for herbivore distribution
 
@@ -144,11 +123,11 @@ class Visualization:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
                                                  cmap="Greens", vmin =0,
-                                                   vmax= vmax)
+                                                   vmax= herb_limit)
             self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax
                                           , orientation='horizontal')
 
-    def update_carn_ax(self, carn_data, vmax):
+    def update_carn_ax(self, carn_data, carn_limit):
         """
         Updates heatmap for carnivore distribution
 
@@ -163,7 +142,7 @@ class Visualization:
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
                                                  cmap="OrRd", vmin =0,
-                                                   vmax= vmax)
+                                                   vmax= carn_limit)
             self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax
                                           , orientation='horizontal'
                                           )
@@ -206,4 +185,4 @@ class Visualization:
         self.update_carn_ax(carn_pos, carn_limit)
         self.update_mean_ax(num_animals_per_sp["Herbivore"],
                             num_animals_per_sp["Carnivore"])
-        plt.pause(1e-12)
+        plt.pause(1e-9)
