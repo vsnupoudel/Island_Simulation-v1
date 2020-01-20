@@ -8,10 +8,6 @@ import subprocess
 import os
 import matplotlib.pyplot as plt
 
-# update these variables to point to your ffmpeg and convert binaries
-_FFMPEG_BINARY = 'ffmpeg'
-_CONVERT_BINARY = 'magick'
-
 # update this to the directory and file-name beginning
 # for the graphics files
 _DEFAULT_GRAPHICS_DIR = os.path.join('..', 'data')
@@ -84,7 +80,7 @@ class Visualization:
         # create new figure window
         if self._fig is None:
             self._fig = plt.figure(figsize=(8,8))
-            plt.title("Number of years: "+str(x_lim-1))
+            plt.title("Maximum number of years: "+str(x_lim-1), loc='left')
             plt.axis('off')
 
         if self._map_ax is None:
@@ -102,7 +98,7 @@ class Visualization:
         if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, y_lim)
-           self._mean_ax.set_xlim(0, x_lim * 3)
+           self._mean_ax.set_xlim(0, x_lim )
 
 
         if self._herb_line is None:
@@ -142,8 +138,7 @@ class Visualization:
         self._img_axis = self._map_ax.imshow(data, cmap='terrain'
                                              , vmax=20, vmin=1)
 
-
-    def update_herb_ax(self, herb_data):
+    def update_herb_ax(self, herb_data, vmax):
         """
         Updates heatmap for herbivore distribution
         :return: None
@@ -153,12 +148,12 @@ class Visualization:
         else:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
-                                                 cmap="Greens")
+                                                 cmap="Greens", vmin =0,
+                                                   vmax= vmax)
             self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax
                                           , orientation='horizontal')
 
-
-    def update_carn_ax(self, carn_data):
+    def update_carn_ax(self, carn_data, vmax):
         """
         Updates heatmap for carnivore distribution
         :return: None
@@ -169,12 +164,10 @@ class Visualization:
             self._carn_axis = self._carn_ax.imshow(carn_data,
                                                  interpolation='nearest',
                                                  cmap="OrRd", vmin =0,
-                                                   vmax= 200)
+                                                   vmax= vmax)
             self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax
                                           , orientation='horizontal'
                                           )
-
-
 
     def update_mean_ax(self, herb_num, carn_num):
         """
@@ -193,17 +186,21 @@ class Visualization:
         self._carn_line.set_ydata(ydata)
         self._step += 1
 
-    def update_graphics(self, herb_pos, carn_pos, num_animals):
+    def update_graphics(self, herb_pos, carn_pos, num_animals, col_limits):
         """
         Updates graphics with current data
+        :param col_limits: limits of colorbars of herbivores and carnivores
+        in a dictionary format
         :param herb_pos:     herbivore distribution on the island
         :param carn_pos:     carnivore distribution on the island
         :param num_animals:  number of herbivores and carnivores
         :return: None
         """
         # create_map will be called separately
-        self.update_herb_ax(herb_pos)
-        self.update_carn_ax(carn_pos)
+        herb_limit = col_limits['Herbivore']
+        carn_limit = col_limits['Carnivore']
+        self.update_herb_ax(herb_pos, herb_limit)
+        self.update_carn_ax(carn_pos, carn_limit)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
         plt.pause(1e-6)
 

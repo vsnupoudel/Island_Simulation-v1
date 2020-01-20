@@ -21,22 +21,28 @@ class BioSim:
         island_map,
         ini_pop,
         seed = 1,
-        ymax_animals=None,
-        cmax_animals=None,
-        img_base=None,
-        img_fmt="png",
+        ymax_animals = 10000,  # logic to be added when this is none
+        cmax_animals = None,
+        total_years = 60
+        # img_base=None,
+        # img_fmt="png",
     ):
         """
         :param island_map: Multi-line string specifying island geography
         :param ini_pop: List of dictionaries specifying initial population
         :param seed: Integer used as random number seed
-        :param ymax_animals: Number specifying y-axis limit for graph showing animal numbers
-        :param cmax_animals: Dict specifying color-code limits for animal densities
-        :param img_base: String with beginning of file name for figures, including path
-        :param img_fmt: String with file type for figures, e.g. 'png'
+        :param ymax_animals: Number specifying y-axis limit for graph
+        showing animal numbers
+        :param cmax_animals: Dict specifying color-code limits for animal
+        densities
+        :param total_years: total number of years for all the sub-simulations
+        default number is 60
 
-        If ymax_animals is None, the y-axis limit should be adjusted automatically.
+        total_years should be greater than the sum of individual years of
+        simulations.
 
+        If ymax_animals is None, the y-axis limit should be adjusted
+        automatically.
         If cmax_animals is None, sensible, fixed default values should be used.
         cmax_animals is a dict mapping species names to numbers, e.g.,
            {'Herbivore': 50, 'Carnivore': 20}
@@ -54,6 +60,8 @@ class BioSim:
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
         self.object_matrix = self.island_map.object_matrix
+        self.ymax_animals = ymax_animals
+        self.total_years = total_years
 
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
@@ -61,7 +69,7 @@ class BioSim:
             self.object_matrix[x][y].set_population(one_location_list)
 
         self.v = Visualization(self.object_matrix)
-        self.v.set_graphics(12000, 21) # these 2 are input params
+        self.v.set_graphics(self.ymax_animals, self.total_years)
 
     def set_animal_parameters(self, species, params):
         """
@@ -72,7 +80,6 @@ class BioSim:
         """
         if species == 'Herbivore':
             Herbivore.up_par(params)
-
         else:
             Carnivore.up_par(params)
 
@@ -88,8 +95,8 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, num_years=20, vis_years=1, img_years=None, y_lim = \
-        12000):
+    def simulate(self, num_years=20, vis_years=1, img_years=None,
+                 colorbar_limits=None ):
         """
         Runs simulation while visualizing the result.
         This method will:
@@ -108,13 +115,17 @@ class BioSim:
 
         Image files will be numbered consecutively.
 
-        :param num_years:     int, number of years to simulate
+        :param num_years:     int, number of years to simulate, default
+        number is 20
         :param vis_years:     int, years between visualization updates
         :param img_years:     int, years between visualizations saved to files
         (default: vis_years)
         :param y_lim :        float, y axis limit of the line graph
-
+        :param colorbar_limits : vmax for the colorbars for herbivores and
+        carnivores in a dictionary format
         """
+        if colorbar_limits is None:
+            colorbar_limits = {"Herbivore":200, "Carnivore":200}
 
         if not os.path.exists('Images'):
             os.makedirs('Images')
@@ -123,10 +134,10 @@ class BioSim:
 
         step = 0
         self.v.update_graphics(self.herbivore_distribution,
-                         self.carnivore_distribution, self.num_animals)
+                         self.carnivore_distribution, self.num_animals
+                        ,colorbar_limits)
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
-        self.num_images += 1
 
         c = Cycle(self.object_matrix)
         while step <= num_years:
@@ -137,13 +148,13 @@ class BioSim:
             c.animals_die()
             self.v.update_graphics(self.herbivore_distribution,
                              self.carnivore_distribution,
-                             self.num_animals)
+                             self.num_animals,colorbar_limits)
 
             step += 1
             if step % img_years == 0:
-                self.num_images += 1
                 plt.savefig('Images\\Image-{0:03d}.png'.format(
                     self.num_images))
+                self.num_images += 1
 
         self.v.make_movie()
 
@@ -255,8 +266,5 @@ class BioSim:
 
         return island_matrix
 
-    def make_movie(self):
-        pass
-        """Create MPEG4 movie from visualization images saved."""
 
 
