@@ -52,9 +52,7 @@
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
 <span class="sd">                            has procreated or not</span>
 <span class="sd">    :ivar f_ij:     float(default=0), food avilable in each cell</span>
-<span class="sd">                            has migrated or not</span>
-<span class="sd">    :ivar alpha:    float(default=0.3), parameter</span>
-<span class="sd">                            is dead or alive</span>
+<span class="sd">    :ivar alpha:    float(default = None), parameter</span>
 <span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
 <span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
 <span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
@@ -166,6 +164,23 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Jungle landscape. Child class of the Cell class.</span>
 
+<span class="sd">    :ivar parameters:   dict, dictionary of Jungle parameters, containing:</span>
+<span class="sd">                        f_max: int, maximal available food in Jungle object</span>
+<span class="sd">                        alpha: (default, None), parameter</span>
+<span class="sd">    :ivar is_migratable:  bool(default, True), whether the cell is migratable</span>
+<span class="sd">                          or not for animal objects</span>
+
+<span class="sd">    :ivar row:      int, row index of the position of the cell</span>
+<span class="sd">    :ivar column:   int, column index of the position of the cell</span>
+<span class="sd">    :ivar f_ij:     float(default=300), food avilable in each cel</span>
+<span class="sd">    :ivar alpha:    default=None), parameter</span>
+<span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
+<span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
+<span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
+<span class="sd">                                carnivores</span>
+<span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
+<span class="sd">                                herbivores</span>
+
 <span class="sd">    Attributes:</span>
 
 <span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
@@ -213,6 +228,23 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Savannah landscape. Child class of the Cell class.</span>
 
+<span class="sd">    :ivar parameters:   dict, dictionary of Savannah parameters, containing:</span>
+<span class="sd">                        f_max: int(default, 300), maximal available food in</span>
+<span class="sd">                               Jungle object</span>
+<span class="sd">                        alpha: (default, 0.3), parameter</span>
+<span class="sd">    :ivar is_migratable:  bool(default, True), whether the cell is migratable</span>
+<span class="sd">                          or not for animal objects</span>
+<span class="sd">    :ivar row:      int, row index of the position of the cell</span>
+<span class="sd">    :ivar column:   int, column index of the position of the cell</span>
+<span class="sd">    :ivar f_ij:     float(default=200), food avilable in each cel</span>
+<span class="sd">    :ivar alpha:    (default=0.3), parameter</span>
+<span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
+<span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
+<span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
+<span class="sd">                                carnivores</span>
+<span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
+<span class="sd">                                herbivores</span>
+
 <span class="sd">    Attributes:</span>
 
 <span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
@@ -233,7 +265,7 @@
 <span class="sd">        self.rel_ab_herb:     float, relative abundance of fodder for herbivores</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_max&#39;</span><span class="p">:</span> <span class="mf">800.0</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_max&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">}</span>
     <span class="n">is_migratable</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>

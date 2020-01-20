@@ -50,10 +50,8 @@ Ocean or Mountain.</p>
 <li><strong>row</strong> – int, row index of the position of the cell</li>
 <li><strong>column</strong> – int, column index of the position of the cell
 has procreated or not</li>
-<li><strong>f_ij</strong> – float(default=0), food avilable in each cell
-has migrated or not</li>
-<li><strong>alpha</strong> – float(default=0.3), parameter
-is dead or alive</li>
+<li><strong>f_ij</strong> – float(default=0), food avilable in each cell</li>
+<li><strong>alpha</strong> – float(default = None), parameter</li>
 <li><strong>animal_object_list</strong> – list, list of animal objects</li>
 <li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
 <li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
@@ -186,6 +184,31 @@ self.rel_ab_herb:     float, zero for desert landscape</p>
 <dt id="Mapping.Jungle">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Jungle</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=300</em>, <em>alpha=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Jungle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Jungle landscape. Child class of the Cell class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameters</strong> – dict, dictionary of Jungle parameters, containing:
+f_max: int, maximal available food in Jungle object
+alpha: (default, None), parameter</li>
+<li><strong>is_migratable</strong> – bool(default, True), whether the cell is migratable
+or not for animal objects</li>
+<li><strong>row</strong> – int, row index of the position of the cell</li>
+<li><strong>column</strong> – int, column index of the position of the cell</li>
+<li><strong>f_ij</strong> – float(default=300), food avilable in each cel</li>
+<li><strong>alpha</strong> – default=None), parameter</li>
+<li><strong>animal_object_list</strong> – list, list of animal objects</li>
+<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
+<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
+carnivores</li>
+<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
+herbivores</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Attributes:</p>
 <blockquote>
 <div><dl class="docutils">
@@ -263,6 +286,34 @@ column:               int, column index of the position of the cell</p>
 <dt id="Mapping.Savannah">
 <em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Savannah</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=200</em>, <em>alpha=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Savannah" title="Permalink to this definition">¶</a></dt>
 <dd><p>Savannah landscape. Child class of the Cell class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parameters</strong> – <p>dict, dictionary of Savannah parameters, containing:
+f_max: int(default, 300), maximal available food in</p>
+<blockquote>
+<div>Jungle object</div></blockquote>
+<p>alpha: (default, 0.3), parameter</p>
+</li>
+<li><strong>is_migratable</strong> – bool(default, True), whether the cell is migratable
+or not for animal objects</li>
+<li><strong>row</strong> – int, row index of the position of the cell</li>
+<li><strong>column</strong> – int, column index of the position of the cell</li>
+<li><strong>f_ij</strong> – float(default=200), food avilable in each cel</li>
+<li><strong>alpha</strong> – (default=0.3), parameter</li>
+<li><strong>animal_object_list</strong> – list, list of animal objects</li>
+<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
+<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
+carnivores</li>
+<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
+herbivores</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 <p>Attributes:</p>
 <blockquote>
 <div><dl class="docutils">
