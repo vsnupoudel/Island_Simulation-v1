@@ -111,25 +111,18 @@ def test_shape_herbivore_distributin(create_s):
     np.shape(create_s.object_matrix)
 
 
-def test_shape_carnivore_distributin():
+def test_shape_carnivore_distributin(create_s):
     """shape of carnivore_distribution should be the same as for
      the object_matrix"""
-    np.shape(s.carnivore_distribution.shape) == np.shape(s.object_matrix)
-    pass
-#
-#
-# def test_carnivore_distributin():
-#     """test for carnivore_distribution property"""
-#     s.carnivore_distribution
-#     pass
-#
-#
-# def test_animal_distributin():
-#     """test for animal_distribution property"""
-#     s.animal_distribution
-#     pass
-#
-#
+    assert np.shape(create_s.carnivore_distribution) == \
+    np.shape(create_s.object_matrix)
+
+def test_carnivore_distributin(create_s):
+    """test for carnivore_distribution property"""
+    print('')
+    assert 200 in create_s.carnivore_distribution
+
+
 # def test_island_matrix_shape():
 #     """test island_matrix property"""
 #     assert np.shape(s.island_matrix) == np.shape(s.object_matrix)
@@ -144,7 +137,8 @@ def test_shape_carnivore_distributin():
 #     """test for simulation method"""
 #     pass
 
-#
+# Put all tests in a class maybe
+
 # class TestSimulation:
 #     """
 #     Several tests for the Simulation class
