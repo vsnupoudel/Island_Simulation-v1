@@ -48,9 +48,7 @@ class Visualization:
 #    def show(self):
 #        plt.show()
 
-    def __init__(self, object_matrix, img_dir=None,
-                 img_name=_DEFAULT_GRAPHICS_NAME,
-                 img_fmt='png'):
+    def __init__(self, object_matrix):
         """
         :param object_matrix:   array, 2D array of cell objects containing
                                        herbivores and carnivores
@@ -62,12 +60,6 @@ class Visualization:
         self._step = 0
         self._final_step = 200
         self._img_ctr = 0
-
-        if img_dir is not None:
-            self._img_base = os.path.join(img_dir, img_name)
-        else:
-            self._img_base = None
-        self._img_fmt = img_fmt
 
         # the following will be initialized by _setup_graphics
         self._fig = None
@@ -93,6 +85,8 @@ class Visualization:
         # create new figure window
         if self._fig is None:
             self._fig = plt.figure(figsize=(8,8))
+            plt.title("Number of years: "+str(x_lim-1))
+            plt.axis('off')
 
         if self._map_ax is None:
             self._map_ax = self._fig.add_subplot(2, 2, 1)
@@ -109,9 +103,8 @@ class Visualization:
         if self._mean_ax is None:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, y_lim)
+           self._mean_ax.set_xlim(0, x_lim * 3)
 
-        # setting the x limit, manually for now
-        self._mean_ax.set_xlim(0, x_lim*3)
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, self._final_step),
@@ -158,7 +151,6 @@ class Visualization:
         """
         if self._herb_axis is not None:
             self._herb_axis.set_data(herb_data)
-
         else:
             self._herb_axis = self._herb_ax.imshow(herb_data,
                                                  interpolation='nearest',
