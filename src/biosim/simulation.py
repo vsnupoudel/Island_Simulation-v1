@@ -147,6 +147,7 @@ class BioSim:
 
         self.v.make_movie()
 
+
     def add_population(self, population):
         """
         Add a population to the island
