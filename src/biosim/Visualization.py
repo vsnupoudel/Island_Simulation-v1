@@ -12,30 +12,27 @@ class Visualization:
     Plotting island map, heatmaps of herbivore and carnivore distribution
     and line graph of herbivore and carnivore count.
 
-        Attributes:
+    :ivar object_matrix:    array, 2D array of cell objects containing
+                              herbivores and carnivores
+    :ivar img_dir:          (default, None) image directory
+    :ivar img_name:                 str, image name
+    :ivar img_fmt:          str(default, png), image fmt
 
-        object_matrix:                 array, 2D array of cell objects
-                                              containing herbivores and
-                                              carnivores
-        img_dir(default, None):        image directory
-        img_name:                      str, image name
-        img_fmt(default, png):         str, image fmt
-
-        _fig(default, None):           plt.figure, figure to put subplots in
-        _map_ax(default, None):        plot of the island map
-        _img_axis(default, None):      axis to _map_ax
-        _herb_ax(default, None):       heatmap, plot for herbivore distribution
-        _carn_ax(default, None):       heatmap, plot for carnivore distribution
-        _mean_ax(default, None):       plot for the linegraphs
-        _herb_line(default, None):     herbivore-count line in _mean_ax
-        _carn_line(default, None):     carnivore-count line in _mean_ax
-        _herb_axis(default, None):     axis to _herb_ax
-        _carn_axis(default, None):     axis to _carn_ax
+    :ivar _fig:             plt.figure(default, None), figure to put subplots in
+    :ivar _map_ax:          (default, None) plot of the island map
+    :ivar _img_axis:        (default, None) axis to _map_ax
+    :ivar _herb_ax:         heatmap(default, None), plot for herbivore
+                                         distribution
+    :ivar _carn_ax:         heatmap(default, None), plot for carnivore
+                                         distribution
+    :ivar _mean_ax:         (default, None) plot for the linegraphs
+    :ivar _herb_line:       (default, None) herbivore-count line in _mean_ax
+    :ivar _carn_line:       (default, None) carnivore-count line in _mean_ax
+    :ivar _herb_axis:       (default, None) axis to _herb_ax
+    :ivar _carn_axis:       (default, None) axis to _carn_ax
 
     """
 
-#    def show(self):
-#        plt.show()
 
     def __init__(self, object_matrix):
         """
@@ -65,6 +62,7 @@ class Visualization:
     def set_graphics(self, y_lim, x_lim):
         """
         Sets up the graphics with 4 subplots
+
         :param y_lim:       float, y limit of plot
         :param x_lim:       int, x limit of plot
         :return: None
@@ -107,7 +105,6 @@ class Visualization:
                                          np.hstack((ydata, ynew)))
 
         # Do the same for carn_line
-
         if self._carn_line is None:
             carn_plot = self._mean_ax.plot(np.arange(0, self._final_step),
                                            np.full(self._final_step, np.nan))
@@ -125,6 +122,7 @@ class Visualization:
     def create_map(self, data):
         """
         Creates island map. Called one time at the start of the simuation.
+
         :param data:    array, 2D array of map spesifications
         :return: None
         """
@@ -134,6 +132,10 @@ class Visualization:
     def update_herb_ax(self, herb_data, vmax):
         """
         Updates heatmap for herbivore distribution
+
+        :param herb_data:   array, 2D array with number of herbivores in each
+                            cell
+        :param vmax:        int, upper limit for colourbar
         :return: None
         """
         if self._herb_axis is not None:
@@ -149,6 +151,10 @@ class Visualization:
     def update_carn_ax(self, carn_data, vmax):
         """
         Updates heatmap for carnivore distribution
+
+        :param carn_data:    array, 2D array with number of carnivores in each
+                             cell
+        :param vmax:         int, upper limit for colourbar
         :return: None
         """
         if self._carn_axis is not None:
@@ -165,6 +171,7 @@ class Visualization:
     def update_mean_ax(self, herb_num, carn_num):
         """
         Updates linegraphs for herbivore and carnivore count
+
         :param herb_num:    int, total number of herbivores on island
         :param carn_num:    int, total number of carnivores on island
         :return: None
@@ -182,10 +189,13 @@ class Visualization:
     def update_graphics(self, herb_pos, carn_pos, num_animals, col_limits):
         """
         Updates graphics with current data
-        :param col_limits: limits of colorbars of herbivores and carnivores
-        in a dictionary format
-        :param herb_pos:     herbivore distribution on the island
-        :param carn_pos:     carnivore distribution on the island
+
+        :param col_limits: limits of colourbars for herbivores and carnivores
+                           in a dictionary format
+        :param herb_pos:     array, 2D array containing herbivore distribution
+                             on the island
+        :param carn_pos:     array, 2D array containing carnivore distribution
+                             on the island
         :param num_animals:  number of herbivores and carnivores
         :return: None
         """
@@ -196,6 +206,3 @@ class Visualization:
         self.update_carn_ax(carn_pos, carn_limit)
         self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
         plt.pause(1e-12)
-
-
-

@@ -38,45 +38,35 @@
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;anhuse@nmbu.no; bipo@nmbu.no&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># update this to the directory and file-name beginning</span>
-<span class="c1"># for the graphics files</span>
-<span class="n">_DEFAULT_GRAPHICS_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">_DEFAULT_GRAPHICS_NAME</span> <span class="o">=</span> <span class="s1">&#39;dv&#39;</span>
-<span class="n">_DEFAULT_MOVIE_FORMAT</span> <span class="o">=</span> <span class="s1">&#39;mp4&#39;</span>   <span class="c1"># alternatives: mp4, gif</span>
 
 <div class="viewcode-block" id="Visualization"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization">[docs]</a><span class="k">class</span> <span class="nc">Visualization</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plotting island map, heatmaps of herbivore and carnivore distribution</span>
 <span class="sd">    and line graph of herbivore and carnivore count.</span>
 
-<span class="sd">        Attributes:</span>
+<span class="sd">    :ivar object_matrix:    array, 2D array of cell objects containing</span>
+<span class="sd">                              herbivores and carnivores</span>
+<span class="sd">    :ivar img_dir:          (default, None) image directory</span>
+<span class="sd">    :ivar img_name:                 str, image name</span>
+<span class="sd">    :ivar img_fmt:          str(default, png), image fmt</span>
 
-<span class="sd">        object_matrix:                 array, 2D array of cell objects</span>
-<span class="sd">                                              containing herbivores and</span>
-<span class="sd">                                              carnivores</span>
-<span class="sd">        img_dir(default, None):        image directory</span>
-<span class="sd">        img_name:                      str, image name</span>
-<span class="sd">        img_fmt(default, png):         str, image fmt</span>
-
-<span class="sd">        _fig(default, None):           plt.figure, figure to put subplots in</span>
-<span class="sd">        _map_ax(default, None):        plot of the island map</span>
-<span class="sd">        _img_axis(default, None):      axis to _map_ax</span>
-<span class="sd">        _herb_ax(default, None):       heatmap, plot for herbivore distribution</span>
-<span class="sd">        _carn_ax(default, None):       heatmap, plot for carnivore distribution</span>
-<span class="sd">        _mean_ax(default, None):       plot for the linegraphs</span>
-<span class="sd">        _herb_line(default, None):     herbivore-count line in _mean_ax</span>
-<span class="sd">        _carn_line(default, None):     carnivore-count line in _mean_ax</span>
-<span class="sd">        _herb_axis(default, None):     axis to _herb_ax</span>
-<span class="sd">        _carn_axis(default, None):     axis to _carn_ax</span>
+<span class="sd">    :ivar _fig:             plt.figure(default, None), figure to put subplots in</span>
+<span class="sd">    :ivar _map_ax:          (default, None) plot of the island map</span>
+<span class="sd">    :ivar _img_axis:        (default, None) axis to _map_ax</span>
+<span class="sd">    :ivar _herb_ax:         heatmap(default, None), plot for herbivore</span>
+<span class="sd">                                         distribution</span>
+<span class="sd">    :ivar _carn_ax:         heatmap(default, None), plot for carnivore</span>
+<span class="sd">                                         distribution</span>
+<span class="sd">    :ivar _mean_ax:         (default, None) plot for the linegraphs</span>
+<span class="sd">    :ivar _herb_line:       (default, None) herbivore-count line in _mean_ax</span>
+<span class="sd">    :ivar _carn_line:       (default, None) carnivore-count line in _mean_ax</span>
+<span class="sd">    :ivar _herb_axis:       (default, None) axis to _herb_ax</span>
+<span class="sd">    :ivar _carn_axis:       (default, None) axis to _carn_ax</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<span class="c1">#    def show(self):</span>
-<span class="c1">#        plt.show()</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_matrix</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -106,6 +96,7 @@
 <div class="viewcode-block" id="Visualization.set_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.set_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">x_lim</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets up the graphics with 4 subplots</span>
+
 <span class="sd">        :param y_lim:       float, y limit of plot</span>
 <span class="sd">        :param x_lim:       int, x limit of plot</span>
 <span class="sd">        :return: None</span>
@@ -114,7 +105,7 @@
         <span class="c1"># create new figure window</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fig</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Maximum number of years: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x_lim</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Maximum number of years: &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x_lim</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -148,7 +139,6 @@
                                          <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">ydata</span><span class="p">,</span> <span class="n">ynew</span><span class="p">)))</span>
 
         <span class="c1"># Do the same for carn_line</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carn_line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">carn_plot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_step</span><span class="p">),</span>
                                            <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_final_step</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
@@ -166,6 +156,7 @@
 <div class="viewcode-block" id="Visualization.create_map"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.create_map">[docs]</a>    <span class="k">def</span> <span class="nf">create_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates island map. Called one time at the start of the simuation.</span>
+
 <span class="sd">        :param data:    array, 2D array of map spesifications</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -175,6 +166,10 @@
 <div class="viewcode-block" id="Visualization.update_herb_ax"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.update_herb_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_herb_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_data</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates heatmap for herbivore distribution</span>
+
+<span class="sd">        :param herb_data:   array, 2D array with number of herbivores in each</span>
+<span class="sd">                            cell</span>
+<span class="sd">        :param vmax:        int, upper limit for colourbar</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_herb_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -190,6 +185,10 @@
 <div class="viewcode-block" id="Visualization.update_carn_ax"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.update_carn_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_carn_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">carn_data</span><span class="p">,</span> <span class="n">vmax</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates heatmap for carnivore distribution</span>
+
+<span class="sd">        :param carn_data:    array, 2D array with number of carnivores in each</span>
+<span class="sd">                             cell</span>
+<span class="sd">        :param vmax:         int, upper limit for colourbar</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carn_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -206,6 +205,7 @@
 <div class="viewcode-block" id="Visualization.update_mean_ax"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.update_mean_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_mean_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_num</span><span class="p">,</span> <span class="n">carn_num</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates linegraphs for herbivore and carnivore count</span>
+
 <span class="sd">        :param herb_num:    int, total number of herbivores on island</span>
 <span class="sd">        :param carn_num:    int, total number of carnivores on island</span>
 <span class="sd">        :return: None</span>
@@ -223,10 +223,13 @@
 <div class="viewcode-block" id="Visualization.update_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.update_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_pos</span><span class="p">,</span> <span class="n">carn_pos</span><span class="p">,</span> <span class="n">num_animals</span><span class="p">,</span> <span class="n">col_limits</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates graphics with current data</span>
-<span class="sd">        :param col_limits: limits of colorbars of herbivores and carnivores</span>
-<span class="sd">        in a dictionary format</span>
-<span class="sd">        :param herb_pos:     herbivore distribution on the island</span>
-<span class="sd">        :param carn_pos:     carnivore distribution on the island</span>
+
+<span class="sd">        :param col_limits: limits of colourbars for herbivores and carnivores</span>
+<span class="sd">                           in a dictionary format</span>
+<span class="sd">        :param herb_pos:     array, 2D array containing herbivore distribution</span>
+<span class="sd">                             on the island</span>
+<span class="sd">        :param carn_pos:     array, 2D array containing carnivore distribution</span>
+<span class="sd">                             on the island</span>
 <span class="sd">        :param num_animals:  number of herbivores and carnivores</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -236,21 +239,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update_herb_ax</span><span class="p">(</span><span class="n">herb_pos</span><span class="p">,</span> <span class="n">herb_limit</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_carn_ax</span><span class="p">(</span><span class="n">carn_pos</span><span class="p">,</span> <span class="n">carn_limit</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_mean_ax</span><span class="p">(</span><span class="n">num_animals</span><span class="p">[</span><span class="s2">&quot;Herbivore&quot;</span><span class="p">],</span> <span class="n">num_animals</span><span class="p">[</span><span class="s2">&quot;Carnivore&quot;</span><span class="p">])</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Visualization.make_movie"><a class="viewcode-back" href="../Visualization_documentation.html#Visualization.Visualization.make_movie">[docs]</a>    <span class="k">def</span> <span class="nf">make_movie</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Makes a movie of a series of images&quot;&quot;&quot;</span>
-        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;ffmpeg&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-f&#39;</span><span class="p">,</span><span class="s1">&#39;image2&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-i&#39;</span><span class="p">,</span><span class="s1">&#39;Images</span><span class="se">\\</span><span class="s1">Image-</span><span class="si">%03d</span><span class="s1">.png&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-vcodec&#39;</span><span class="p">,</span><span class="s1">&#39;mpeg4&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-y&#39;</span><span class="p">,</span> <span class="s1">&#39;movie.mp4&#39;</span><span class="p">,</span>
-                                <span class="c1"># To hide the logs</span>
-                                <span class="s1">&#39;-hide_banner&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;-loglevel&#39;</span><span class="p">,</span> <span class="s1">&#39;panic&#39;</span>
-                               <span class="p">])</span></div></div>
-
+        <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
