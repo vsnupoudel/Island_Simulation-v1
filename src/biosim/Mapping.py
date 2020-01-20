@@ -28,13 +28,13 @@ class Cell:
 
     """
 
-    def __init__(self, row, column, f_ij=0, alpha=0.3):
+    def __init__(self, row, column, f_ij=0, alpha=None):
         """
 
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         :param f_ij:   float(default=0), food avilable in each cell
-        :param alpha:  float(default=0.3), parameter
+        :param alpha:  float(default=None), parameter
         """
         self.row = row
         self.column = column
@@ -227,8 +227,10 @@ class Savannah(Cell):
         alpha:                float(default=0.3), parameter
         animal_object_list:   list, list of animal objects
         tot_herb_weight:      float, total weigth of all herbivores in a cell
-        rel_ab_carn:          float, relative abundance of fodder for carnivores
-        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
+        rel_ab_carn:          float, relative abundance of fodder for
+                              carnivores
+        rel_ab_herb:          float, relative abundance of fodder for
+                              herbivores
 
     """
     parameters = {'f_max': 300.0, 'alpha': 0.3}
@@ -257,17 +259,16 @@ class Desert(Cell):
     """
     Desert landscape. Child class of the Cell class.
 
-    Attributes:
-
-        is_migratable         bool(default, True), whether the cell is
-                                                   migratable or not for
-                                                   animal objects
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
-        animal_object_list:   list, list of animal objects
-        tot_herb_weight:      float, total weigth of all herbivores in a cell
-        rel_ab_carn:          float, relative abundance of fodder for carnivores
-        self.rel_ab_herb:     float, zero for desert landscape
+    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+                          or not for animal objects
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
+    :ivar animal_object_list:   list, list of animal objects
+    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :ivar rel_ab_carn:          float, relative abundance of fodder for
+                                carnivores
+    :ivar rel_ab_herb:          float, relative abundance of fodder for
+                                herbivores
 
     """
     is_migratable = True
@@ -289,15 +290,13 @@ class Desert(Cell):
 class Ocean(Cell):
     """Ocean landscape. Child class of the Cell class.
 
-        Attributes:
-
-        is_migratable         bool(default, False), whether the cell is
-                                                   migratable or not for
-                                                   animal objects
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
+    :ivar is_migratable:  bool(default, False), whether the cell is migratable
+                          or not for animal objects
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
 
     """
+
     is_migratable = False
 
     def __init__(self, row, column):
@@ -311,13 +310,10 @@ class Ocean(Cell):
 class Mountain(Cell):
     """Mountian landscape.  Child class of the Cell class.
 
-        Attributes:
-
-        is_migratable         bool(default, False), whether the cell is
-                                                   migratable or not for
-                                                   animal objects
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
+    :ivar is_migratable:  bool(default, False), whether the cell is migratable
+                          or not for animal objects
+    :ivar row:      int, row index of the position of the cell
+    :ivar column:   int, column index of the position of the cell
 
     """
     is_migratable = False
@@ -328,4 +324,3 @@ class Mountain(Cell):
         :param column: int, column index of the position of the cell
         """
         super().__init__(row, column)
-
