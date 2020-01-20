@@ -118,7 +118,7 @@ class BioSim:
             os.makedirs('Images')
 
         v = Visualization(self.object_matrix)
-        v._set_graphics(y_lim, num_years+1)
+        v._set_graphics (y_lim, num_years+1)
 
         v.create_map(self.island_matrix)
 

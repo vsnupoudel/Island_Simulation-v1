@@ -73,7 +73,6 @@ def test_set_landscape_parameters(create_s):
 
     create_s.set_landscape_parameters("S", {"f_max": 700})
     create_s.set_landscape_parameters("J", {"f_max": 600})
-
     assert Savannah.parameters["f_max"] == 700
     assert Jungle.parameters["f_max"] == 600
 
