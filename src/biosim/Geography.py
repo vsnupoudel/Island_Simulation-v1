@@ -17,11 +17,13 @@ from Mapping import Jungle, Savannah, Desert, Ocean, Mountain
 
 class Geo:
     """
+    Class for the islands geography. This class:
+
     - Stores the size/shape of the geography of the island
     - Converts string input of map, consisting of letters corresponding to
-    landscape types into a 2D matrix of objects
+      landscape types into a 2D matrix of objects
     - Objects can only be one of the five Landscape types: Ocean (O), Savannah
-    (S), desert (D), jungle (J) and mountain (M)
+      (S), desert (D), jungle (J) and mountain (M)
     """
     valid_list = ['O', 'S', 'D', 'J', 'M']
 
@@ -30,7 +32,8 @@ class Geo:
         - Checks if input characters are valid letters
         - Checks if all rows in map have equal length
         - Checks that ocean ("O") is around all edges of map
-        :param geo_matrix_input_string: String with map coordinates
+
+        :param geo_matrix_input_string:   str, String with map coordinates
         """
         self.geo_graph = textwrap.dedent(geo_matrix_input_string)
         self.lines = self.geo_graph.splitlines()

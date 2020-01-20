@@ -51,11 +51,13 @@
 
 <div class="viewcode-block" id="Geo"><a class="viewcode-back" href="../Geography_documentation.html#Geography.Geo">[docs]</a><span class="k">class</span> <span class="nc">Geo</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for the islands geography. This class:</span>
+
 <span class="sd">    - Stores the size/shape of the geography of the island</span>
 <span class="sd">    - Converts string input of map, consisting of letters corresponding to</span>
-<span class="sd">    landscape types into a 2D matrix of objects</span>
+<span class="sd">      landscape types into a 2D matrix of objects</span>
 <span class="sd">    - Objects can only be one of the five Landscape types: Ocean (O), Savannah</span>
-<span class="sd">    (S), desert (D), jungle (J) and mountain (M)</span>
+<span class="sd">      (S), desert (D), jungle (J) and mountain (M)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">valid_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">]</span>
 
@@ -64,7 +66,8 @@
 <span class="sd">        - Checks if input characters are valid letters</span>
 <span class="sd">        - Checks if all rows in map have equal length</span>
 <span class="sd">        - Checks that ocean (&quot;O&quot;) is around all edges of map</span>
-<span class="sd">        :param geo_matrix_input_string: String with map coordinates</span>
+
+<span class="sd">        :param geo_matrix_input_string:   str, String with map coordinates</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">geo_graph</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">geo_matrix_input_string</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lines</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo_graph</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
@@ -132,6 +135,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of animals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
 <div class="relations">

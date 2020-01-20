@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documentation of Visualization &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Documentation of Simulation" href="Simulation_documentation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-of-visualization">
+<h1>Documentation of Visualization<a class="headerlink" href="#documentation-of-visualization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-visualization-class-and-its-subclasses">
+<h2>The Visualization Class and its Subclasses<a class="headerlink" href="#the-visualization-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-Visualization"></span><dl class="class">
+<dt id="Visualization.Visualization">
+<em class="property">class </em><code class="descclassname">Visualization.</code><code class="descname">Visualization</code><span class="sig-paren">(</span><em>object_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plotting island map, heatmaps of herbivore and carnivore distribution
+and line graph of herbivore and carnivore count.</p>
+<blockquote>
+<div><p>Attributes:</p>
+<dl class="docutils">
+<dt>object_matrix:                 array, 2D array of cell objects</dt>
+<dd>containing herbivores and
+carnivores</dd>
+</dl>
+<p>img_dir(default, None):        image directory
+img_name:                      str, image name
+img_fmt(default, png):         str, image fmt</p>
+<p>_fig(default, None):           plt.figure, figure to put subplots in
+_map_ax(default, None):        plot of the island map
+_img_axis(default, None):      axis to _map_ax
+_herb_ax(default, None):       heatmap, plot for herbivore distribution
+_carn_ax(default, None):       heatmap, plot for carnivore distribution
+_mean_ax(default, None):       plot for the linegraphs
+_herb_line(default, None):     herbivore-count line in _mean_ax
+_carn_line(default, None):     carnivore-count line in _mean_ax
+_herb_axis(default, None):     axis to _herb_ax
+_carn_axis(default, None):     axis to _carn_ax</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
+herbivores and carnivores</li>
+<li><strong>None</strong><strong>)</strong> (<em>img_dir</em><em>(</em><em>default</em><em>,</em>) – image directory</li>
+<li><strong>img_name</strong> – str, image name</li>
+<li><strong>png</strong><strong>)</strong> (<em>img_fmt</em><em>(</em><em>default</em><em>,</em>) – str, image fmt</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Visualization.Visualization.create_map">
+<code class="descname">create_map</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.create_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.create_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates island map. Called one time at the start of the simuation.
+:param data:    array, 2D array of map spesifications
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.make_movie">
+<code class="descname">make_movie</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.make_movie"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.make_movie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a movie of a series of images</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.set_graphics">
+<code class="descname">set_graphics</code><span class="sig-paren">(</span><em>y_lim</em>, <em>x_lim</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.set_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.set_graphics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up the graphics with 4 subplots
+:param y_lim:       float, y limit of plot
+:param x_lim:       int, x limit of plot
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.update_carn_ax">
+<code class="descname">update_carn_ax</code><span class="sig-paren">(</span><em>carn_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_carn_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_carn_ax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates heatmap for carnivore distribution
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.update_graphics">
+<code class="descname">update_graphics</code><span class="sig-paren">(</span><em>herb_pos</em>, <em>carn_pos</em>, <em>num_animals</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_graphics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates graphics with current data
+:param herb_pos:     herbivore distribution on the island
+:param carn_pos:     carnivore distribution on the island
+:param num_animals:  number of herbivores and carnivores
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.update_herb_ax">
+<code class="descname">update_herb_ax</code><span class="sig-paren">(</span><em>herb_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_herb_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_herb_ax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates heatmap for herbivore distribution
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Visualization.Visualization.update_mean_ax">
+<code class="descname">update_mean_ax</code><span class="sig-paren">(</span><em>herb_num</em>, <em>carn_num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_mean_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_mean_ax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates linegraphs for herbivore and carnivore count
+:param herb_num:    int, total number of herbivores on island
+:param carn_num:    int, total number of carnivores on island
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Modelling the Ecosystem of an Island- Group 4</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Simulation_documentation.html">Documentation of Simulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-visualization-class-and-its-subclasses">The Visualization Class and its Subclasses</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Simulation_documentation.html" title="previous chapter">Documentation of Simulation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Anders Huse, Bishnu Poudel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Visualization_documentation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

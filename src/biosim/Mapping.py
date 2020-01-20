@@ -15,6 +15,7 @@ class Cell:
     Ocean or Mountain.
 
     Attributes:
+
         row:                  int, row index of the position of the cell
         column:               int, column index of the position of the cell
         f_ij:                 float(default=0), food avilable in each cell
@@ -60,8 +61,10 @@ class Cell:
     def set_population(self, input_dict):
         """
         Sets the population of a cell object
+
         :param input_dict: dict, dictionary specifying the population to be
-        set for the cell object, containing:
+                           set for the cell object, containing:
+
         location of cell object, type of animals, age and weight of animals
         """
         (x, y) = input_dict['loc']
@@ -75,6 +78,8 @@ class Cell:
 
     def get_population(self):
         """
+        Gets the population of the cell
+
         :return: animal_object_list
         """
         return self.animal_object_list
@@ -124,6 +129,7 @@ class Jungle(Cell):
     Jungle landscape. Child class of the Cell class.
 
     Attributes:
+
         parameters:           dict, dictionary of Jungle parameters,
                                     containing:
                                     f_max: int, maximal available food in
@@ -170,6 +176,7 @@ class Savannah(Cell):
     Savannah landscape. Child class of the Cell class.
 
     Attributes:
+
         parameters:           dict, dictionary of Jungle parameters,
                                     containing:
                                     f_max: int, maximal available food in
@@ -215,6 +222,7 @@ class Desert(Cell):
     Desert landscape. Child class of the Cell class.
 
     Attributes:
+
         is_migratable         bool(default, True), whether the cell is
                                                    migratable or not for
                                                    animal objects
@@ -246,6 +254,7 @@ class Ocean(Cell):
     """Ocean landscape. Child class of the Cell class.
 
         Attributes:
+
         is_migratable         bool(default, False), whether the cell is
                                                    migratable or not for
                                                    animal objects
@@ -267,6 +276,7 @@ class Mountain(Cell):
     """Mountian landscape.  Child class of the Cell class.
 
         Attributes:
+
         is_migratable         bool(default, False), whether the cell is
                                                    migratable or not for
                                                    animal objects
