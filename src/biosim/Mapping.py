@@ -269,7 +269,6 @@ class Desert(Cell):
                                 carnivores
     :ivar rel_ab_herb:          float, relative abundance of fodder for
                                 herbivores
-
     """
     is_migratable = True
 
@@ -280,7 +279,8 @@ class Desert(Cell):
             # num_carn=0,
             # num_herb=0,
     ):
-        """"
+        """
+
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         """
@@ -300,7 +300,8 @@ class Ocean(Cell):
     is_migratable = False
 
     def __init__(self, row, column):
-        """"
+        """
+
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         """
@@ -319,7 +320,8 @@ class Mountain(Cell):
     is_migratable = False
 
     def __init__(self, row, column):
-        """"
+        """
+
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         """

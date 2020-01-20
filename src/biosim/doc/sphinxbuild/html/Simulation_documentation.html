@@ -39,7 +39,7 @@
 <h2>The simulation Class and its Subclasses<a class="headerlink" href="#the-simulation-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-simulation"></span><dl class="class">
 <dt id="simulation.BioSim">
-<em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=None</em>, <em>cmax_animals=None</em>, <em>img_base=None</em>, <em>img_fmt='png'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=10000</em>, <em>cmax_animals=None</em>, <em>total_years=60</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class takes in map and population, and converts them to objects</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -49,17 +49,22 @@
 <li><strong>island_map</strong> – Multi-line string specifying island geography</li>
 <li><strong>ini_pop</strong> – List of dictionaries specifying initial population</li>
 <li><strong>seed</strong> – Integer used as random number seed</li>
-<li><strong>ymax_animals</strong> – Number specifying y-axis limit for graph showing animal numbers</li>
-<li><strong>cmax_animals</strong> – Dict specifying color-code limits for animal densities</li>
-<li><strong>img_base</strong> – String with beginning of file name for figures, including path</li>
-<li><strong>img_fmt</strong> – String with file type for figures, e.g. ‘png’</li>
+<li><strong>ymax_animals</strong> – Number specifying y-axis limit for graph</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<p>If ymax_animals is None, the y-axis limit should be adjusted automatically.</p>
-<p>If cmax_animals is None, sensible, fixed default values should be used.
+<p>showing animal numbers
+:param cmax_animals: Dict specifying color-code limits for animal
+densities
+:param total_years: total number of years for all the sub-simulations
+default number is 60</p>
+<p>total_years should be greater than the sum of individual years of
+simulations.</p>
+<p>If ymax_animals is None, the y-axis limit should be adjusted
+automatically.
+If cmax_animals is None, sensible, fixed default values should be used.
 cmax_animals is a dict mapping species names to numbers, e.g.,</p>
 <blockquote>
 <div>{‘Herbivore’: 50, ‘Carnivore’: 20}</div></blockquote>
@@ -160,7 +165,7 @@ img_base should contain a path and beginning of a file name.</p>
 
 <dl class="method">
 <dt id="simulation.BioSim.simulate">
-<code class="descname">simulate</code><span class="sig-paren">(</span><em>num_years=20</em>, <em>vis_years=1</em>, <em>img_years=None</em>, <em>y_lim=12000</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.simulate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>num_years=20</em>, <em>vis_years=1</em>, <em>img_years=None</em>, <em>colorbar_limits=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.simulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs simulation while visualizing the result.
 This method will:</p>
 <ul class="simple">
@@ -181,17 +186,17 @@ of steps (years)</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>num_years</strong> – int, number of years to simulate</li>
-<li><strong>vis_years</strong> – int, years between visualization updates</li>
-<li><strong>img_years</strong> – int, years between visualizations saved to files</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_years</strong> – int, number of years to simulate, default</td>
 </tr>
 </tbody>
 </table>
-<p>(default: vis_years)
-:param y_lim :        float, y axis limit of the line graph</p>
+<p>number is 20
+:param vis_years:     int, years between visualization updates
+:param img_years:     int, years between visualizations saved to files
+(default: vis_years)
+:param y_lim :        float, y axis limit of the line graph
+:param colorbar_limits : vmax for the colorbars for herbivores and
+carnivores in a dictionary format</p>
 </dd></dl>
 
 </dd></dl>

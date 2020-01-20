@@ -15,7 +15,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Documentation of Simulation" href="Simulation_documentation.html" />
+    <link rel="prev" title="Documentation of simulation" href="simulation_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -102,15 +102,17 @@ herbivores and carnivores</li>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_carn_ax">
-<code class="descname">update_carn_ax</code><span class="sig-paren">(</span><em>carn_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_carn_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_carn_ax" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_carn_ax</code><span class="sig-paren">(</span><em>carn_data</em>, <em>vmax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_carn_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_carn_ax" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates heatmap for carnivore distribution
 :return: None</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_graphics">
-<code class="descname">update_graphics</code><span class="sig-paren">(</span><em>herb_pos</em>, <em>carn_pos</em>, <em>num_animals</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_graphics" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_graphics</code><span class="sig-paren">(</span><em>herb_pos</em>, <em>carn_pos</em>, <em>num_animals</em>, <em>col_limits</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_graphics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates graphics with current data
+:param col_limits: limits of colorbars of herbivores and carnivores
+in a dictionary format
 :param herb_pos:     herbivore distribution on the island
 :param carn_pos:     carnivore distribution on the island
 :param num_animals:  number of herbivores and carnivores
@@ -119,7 +121,7 @@ herbivores and carnivores</li>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_herb_ax">
-<code class="descname">update_herb_ax</code><span class="sig-paren">(</span><em>herb_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_herb_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_herb_ax" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_herb_ax</code><span class="sig-paren">(</span><em>herb_data</em>, <em>vmax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_herb_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_herb_ax" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates heatmap for herbivore distribution
 :return: None</p>
 </dd></dl>
@@ -160,7 +162,7 @@ herbivores and carnivores</li>
 <li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of animals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Simulation_documentation.html">Documentation of Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Visualization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-visualization-class-and-its-subclasses">The Visualization Class and its Subclasses</a></li>
 </ul>
@@ -171,7 +173,7 @@ herbivores and carnivores</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Simulation_documentation.html" title="previous chapter">Documentation of Simulation</a></li>
+      <li>Previous: <a href="simulation_documentation.html" title="previous chapter">Documentation of simulation</a></li>
   </ul></li>
 </ul>
 </div>
