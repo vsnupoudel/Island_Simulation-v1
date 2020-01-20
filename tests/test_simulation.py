@@ -29,7 +29,7 @@ class TestSimulation:
         """returns herbivore population where required in tests below"""
         herbs = [
             {
-                "loc": (2, 2),
+                "loc": (1, 2),
                 "pop": [
                     {"species": "Herbivore", "age": 5, "weight": 20}
                     for _ in range(200)
@@ -39,7 +39,7 @@ class TestSimulation:
                 ]
             },
             {
-                "loc": (2, 3),
+                "loc": (1, 3),
                 "pop": [
                     {"species": "Herbivore", "age": 5, "weight": 20}
                     for _ in range(200)
@@ -92,13 +92,13 @@ class TestSimulation:
         """"""
         s = BioSim(input_map, ini_pop, seed=1)
         print('')
-        print(s.num_animals['Herbivore'])
-        print(s.num_animals['Carnivore'])
-        assert s.num_animals['Herbivore'] > 0
-        assert s.num_animals['Carnivore'] > 0
-        prev_carns = s.num_animals['Carnivore']
+        print(s.num_animals_per_species['Herbivore'])
+        print(s.num_animals_per_species['Carnivore'])
+        assert s.num_animals_per_species['Herbivore'] > 0
+        assert s.num_animals_per_species['Carnivore'] > 0
+        prev_carns = s.num_animals_per_species['Carnivore']
         s.add_population(add_carns)
-        assert s.num_animals['Carnivore'] > prev_carns
+        assert s.num_animals_per_species['Carnivore'] > prev_carns
 
     def test_shape_herbivore_distributin(self, create_s):
         """shape of herbivore_distribution should be the same as for
@@ -121,9 +121,14 @@ class TestSimulation:
         assert np.shape(create_s.island_matrix) == np.shape(
             create_s.object_matrix)
 
-    def test_simulate_function(self, create_s):
-        create_s.simulate()
-        pass
+    def test_simulate_function(self, input_map, ini_pop):
+        s = BioSim(input_map, ini_pop, seed=123)
+        prev_number_of_animals = s.num_animals_per_species
+        s.simulate()
+        assert s.num_animals_per_species['Herbivore'] != prev_number_of_animals[
+            'Herbivore']
+        assert s.num_animals_per_species['Carnivore'] != prev_number_of_animals[
+            'Carnivore']
 
     def test_make_movie(self, create_s):
         pass

@@ -81,6 +81,7 @@ class BioSim:
         img_base should contain a path and beginning of a file name.
         """
         self.num_images = 0
+        self.current_year = 0
         self.seed = seed
         self.ini_pop = ini_pop
         self.island_map = Geo(island_map)
@@ -120,7 +121,7 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, num_years=20, vis_years=1, img_years=None,
+    def simulate(self, num_years=20, vis_years=1, img_years=1,
                  colorbar_limits=None ):
         """
         Runs simulation while visualizing the result.
@@ -159,7 +160,7 @@ class BioSim:
 
         step = 0
         self.v.update_graphics(self.herbivore_distribution,
-                         self.carnivore_distribution, self.num_animals
+                         self.carnivore_distribution, self.num_animals_per_species
                         ,colorbar_limits)
 
         plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
@@ -172,14 +173,18 @@ class BioSim:
             c.animals_migrate()
             c.animals_die()
             self.v.update_graphics(self.herbivore_distribution,
-                             self.carnivore_distribution,
-                             self.num_animals,colorbar_limits)
+                                   self.carnivore_distribution,
+                                   self.num_animals_per_species, colorbar_limits)
 
             step += 1
+            self.current_year += 1
+
             if step % img_years == 0:
                 plt.savefig('Images\\Image-{0:03d}.png'.format(
                     self.num_images))
                 self.num_images += 1
+
+        self.current_year = self.current_year-1
 
 
     def add_population(self, population):
@@ -193,15 +198,15 @@ class BioSim:
             self.object_matrix[x][y].set_population(one_location_list)
 
     @property
-    def current_year(self):
+    def year(self):
         """
         :return: year    int, current year on island
         """
-        return self.year
+        return self.current_year
 
 
     @property
-    def num_animals(self):
+    def num_animals_per_species(self):
         """
         Total number of herbivores and carnivores on island
 
@@ -221,6 +226,11 @@ class BioSim:
                         animal_count_dict['Carnivore'] += 1
 
         return animal_count_dict
+
+    @property
+    def num_animals(self):
+        return (self.num_animals_per_species['Herbivore'] +
+                self.num_animals_per_species['Carnivore'])
 
     @property
     def herbivore_distribution(self):
