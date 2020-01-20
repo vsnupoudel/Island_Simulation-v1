@@ -318,12 +318,12 @@ class BioSim:
         subprocess.run(['ffmpeg',
                         '-f', 'image2',
                         '-r', '3',
-                        '-i', 'Images\\_%05d.png',
+                        '-i', self.img_base+'\\_%05d.png',
                         '-vcodec', 'mpeg4',
-                        '-y', 'movie.mp4'
+                        '-y', 'Simulation_movie.mp4',
                         # To hide the logs
-                              '-hide_banner',
-                        '-loglevel', 'panic'
+                              '-hide_banner'
+                        # '-loglevel', 'panic'
                         ])
 
 
