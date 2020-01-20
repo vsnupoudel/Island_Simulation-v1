@@ -81,9 +81,10 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Herbivores and Carnivores eat. This happens once in every cycle</span>
 <span class="sd">        This method updates:</span>
+
 <span class="sd">        - Increases the weight of animal if they eat</span>
 <span class="sd">        - Decreases the food in Savannah and Jungle if animals eat in that</span>
-<span class="sd">        particular cell</span>
+<span class="sd">          particular cell</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">row_of_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span><span class="p">:</span>
@@ -103,12 +104,16 @@
 <span class="sd">        Animals reproduce in every cell on the island.</span>
 <span class="sd">        Animals reproduce if they meet the conditions (for each cell)</span>
 <span class="sd">        This method updates:</span>
+
 <span class="sd">        - The number of animals in the particular cell</span>
 <span class="sd">        - The weight of the parents</span>
-<span class="sd">        This function creates:</span>
+
+<span class="sd">        This method creates:</span>
+
 <span class="sd">        - New animal objects in the cell</span>
 <span class="sd">        -----------------------------------------------------</span>
 <span class="sd">        Rules for procreation:</span>
+
 <span class="sd">        - Probability for procreation = min (1, gamma × F × (N − 1))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -141,6 +146,7 @@
 <span class="sd">        This method calculates the position of the adjacent migratable cells</span>
 <span class="sd">        to the current cell (with position (row, column)). Ocean and Mountain</span>
 <span class="sd">        cells are not migratable</span>
+
 <span class="sd">        :param row:            int, row index</span>
 <span class="sd">        :param column:         int, column index</span>
 <span class="sd">        :return: list_of_adj   list, list of adjacent cells</span>
@@ -166,8 +172,12 @@
 
 <div class="viewcode-block" id="Cycle.animals_migrate"><a class="viewcode-back" href="../Cycle_documentation.html#Cycle.Cycle.animals_migrate">[docs]</a>    <span class="k">def</span> <span class="nf">animals_migrate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param : self, the map object with all the cells and all the animals</span>
-<span class="sd">        This function accomplishes the following</span>
+<span class="sd">        Animals migrate</span>
+
+<span class="sd">        :param self: the map object with all the cells and all the animals</span>
+
+<span class="sd">        This method accomplishes the following:</span>
+
 <span class="sd">        - Delete migrated animals from current cell</span>
 <span class="sd">        - Add incoming animals to the new cell</span>
 
@@ -218,6 +228,7 @@
 <div class="viewcode-block" id="Cycle.animals_die"><a class="viewcode-back" href="../Cycle_documentation.html#Cycle.Cycle.animals_die">[docs]</a>    <span class="k">def</span> <span class="nf">animals_die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method makes animals die. Animals die:</span>
+
 <span class="sd">        - With certainty if the animals fitness is equal to zero</span>
 <span class="sd">        - with probability</span>
 <span class="sd">                           omega*(1 - fitness)</span>

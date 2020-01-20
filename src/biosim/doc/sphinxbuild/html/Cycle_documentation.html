@@ -62,14 +62,18 @@ componentes follows a fixed order:</p>
 <dl class="method">
 <dt id="Cycle.Cycle.animals_die">
 <code class="descname">animals_die</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Cycle.html#Cycle.animals_die"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Cycle.Cycle.animals_die" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method makes animals die. Animals die:
-- With certainty if the animals fitness is equal to zero
-- with probability</p>
-<blockquote>
-<div><blockquote>
-<div>omega*(1 - fitness)</div></blockquote>
+<dd><p>This method makes animals die. Animals die:</p>
+<ul>
+<li><p class="first">With certainty if the animals fitness is equal to zero</p>
+</li>
+<li><dl class="first docutils">
+<dt>with probability</dt>
+<dd><p class="first last">omega*(1 - fitness)</p>
+</dd>
+</dl>
 <p>otherwise</p>
-</div></blockquote>
+</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -84,19 +88,31 @@ componentes follows a fixed order:</p>
 <dt id="Cycle.Cycle.animals_eat">
 <code class="descname">animals_eat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Cycle.html#Cycle.animals_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Cycle.Cycle.animals_eat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Herbivores and Carnivores eat. This happens once in every cycle
-This method updates:
-- Increases the weight of animal if they eat
-- Decreases the food in Savannah and Jungle if animals eat in that
-particular cell</p>
+This method updates:</p>
+<ul class="simple">
+<li>Increases the weight of animal if they eat</li>
+<li>Decreases the food in Savannah and Jungle if animals eat in that
+particular cell</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="Cycle.Cycle.animals_migrate">
 <code class="descname">animals_migrate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Cycle.html#Cycle.animals_migrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Cycle.Cycle.animals_migrate" title="Permalink to this definition">¶</a></dt>
-<dd><p>:param : self, the map object with all the cells and all the animals
-This function accomplishes the following
-- Delete migrated animals from current cell
-- Add incoming animals to the new cell</p>
+<dd><p>Animals migrate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>self</strong> – the map object with all the cells and all the animals</td>
+</tr>
+</tbody>
+</table>
+<p>This method accomplishes the following:</p>
+<ul class="simple">
+<li>Delete migrated animals from current cell</li>
+<li>Add incoming animals to the new cell</li>
+</ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -112,14 +128,19 @@ This function accomplishes the following
 <code class="descname">animals_reproduce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Cycle.html#Cycle.animals_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Cycle.Cycle.animals_reproduce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animals reproduce in every cell on the island.
 Animals reproduce if they meet the conditions (for each cell)
-This method updates:
-- The number of animals in the particular cell
-- The weight of the parents
-This function creates:
-- New animal objects in the cell
-—————————————————–
-Rules for procreation:
-- Probability for procreation = min (1, gamma × F × (N − 1))</p>
+This method updates:</p>
+<ul class="simple">
+<li>The number of animals in the particular cell</li>
+<li>The weight of the parents</li>
+</ul>
+<p>This method creates:</p>
+<ul class="simple">
+<li>New animal objects in the cell</li>
+</ul>
+<p>Rules for procreation:</p>
+<ul class="simple">
+<li>Probability for procreation = min (1, gamma × F × (N − 1))</li>
+</ul>
 </dd></dl>
 
 <dl class="method">
@@ -134,10 +155,22 @@ objects.</p>
 <code class="descname">get_adjacent_migratable_cells</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Cycle.html#Cycle.get_adjacent_migratable_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Cycle.Cycle.get_adjacent_migratable_cells" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method calculates the position of the adjacent migratable cells
 to the current cell (with position (row, column)). Ocean and Mountain
-cells are not migratable
-:param row:            int, row index
-:param column:         int, column index
-:return: list_of_adj   list, list of adjacent cells</p>
+cells are not migratable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> – int, row index</li>
+<li><strong>column</strong> – int, column index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list_of_adj   list, list of adjacent cells</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

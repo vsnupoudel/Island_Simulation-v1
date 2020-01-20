@@ -14,6 +14,9 @@ class Animal:
     SuperClass for Herbivore and Carnivore.
     Contains methods, properties and variables that are common in both.
 
+    :ivar p:     dict, dictionary
+    :ivar var2: initial value: par2
+
         Attributes:
 
         p:                   dict, dictionary of parameters for the
@@ -90,6 +93,7 @@ class Animal:
     def up_par(cls, params_dict):
         """
         Updates the animal parameters
+
         :param params_dict: Dictionary of parameters to be updated
         """
         for k, v in params_dict.items():
@@ -167,7 +171,7 @@ class Herbivore(Animal):
         :param length: int, number of total herbivores in the cell where the
                             herbivore resides
         :return: A baby herbivore object with age = 0 and weight equal to
-        baby weight
+                 baby weight
         """
 
         b_prob = min(1, self.p['gamma'] *
@@ -259,17 +263,21 @@ class Carnivore(Animal):
         """
         Carnivores eat
         When Carnivores eat, this method:
+
         - delete herbivores from the cell after they are eaten.
         - Update the weight of carnivore when they have eaten.
 
         Conditions for a carnivore eating are:
+
         1. They eat until they get an amount F (yet to implement ??)
         2. If fitness is less than a herbivore, they can't kill that herbivore
         3. They kill with certain probability, if they have less than
-        DeltaPhiMax fitness
+           DeltaPhiMax fitness
         4. They certainly kill that herbivore otherwise
+
         :param cell:   Cell object, The cell object where the carnivore resides
-        :return :None
+
+        :return: None
         """
         amount_eaten = 0
 

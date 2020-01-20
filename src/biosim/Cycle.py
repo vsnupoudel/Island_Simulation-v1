@@ -47,9 +47,10 @@ class Cycle:
         """
         Herbivores and Carnivores eat. This happens once in every cycle
         This method updates:
+
         - Increases the weight of animal if they eat
         - Decreases the food in Savannah and Jungle if animals eat in that
-        particular cell
+          particular cell
         """
 
         for row_of_obj in self.object_matrix:
@@ -69,12 +70,16 @@ class Cycle:
         Animals reproduce in every cell on the island.
         Animals reproduce if they meet the conditions (for each cell)
         This method updates:
+
         - The number of animals in the particular cell
         - The weight of the parents
-        This function creates:
+
+        This method creates:
+
         - New animal objects in the cell
         -----------------------------------------------------
         Rules for procreation:
+
         - Probability for procreation = min (1, gamma × F × (N − 1))
         """
 
@@ -107,6 +112,7 @@ class Cycle:
         This method calculates the position of the adjacent migratable cells
         to the current cell (with position (row, column)). Ocean and Mountain
         cells are not migratable
+
         :param row:            int, row index
         :param column:         int, column index
         :return: list_of_adj   list, list of adjacent cells
@@ -132,8 +138,12 @@ class Cycle:
 
     def animals_migrate(self):
         """
-        :param : self, the map object with all the cells and all the animals
-        This function accomplishes the following
+        Animals migrate
+
+        :param self: the map object with all the cells and all the animals
+
+        This method accomplishes the following:
+
         - Delete migrated animals from current cell
         - Add incoming animals to the new cell
 
@@ -184,6 +194,7 @@ class Cycle:
     def animals_die(self):
         """
         This method makes animals die. Animals die:
+
         - With certainty if the animals fitness is equal to zero
         - with probability
                            omega*(1 - fitness)

@@ -42,8 +42,14 @@
 <em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal" title="Permalink to this definition">¶</a></dt>
 <dd><p>SuperClass for Herbivore and Carnivore.
 Contains methods, properties and variables that are common in both.</p>
-<blockquote>
-<div><p>Attributes:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>p</strong> – dict, dictionary</li>
+<li><strong>var2</strong> – <p>initial value: par2</p>
+<p>Attributes:</p>
 <dl class="docutils">
 <dt>p:                   dict, dictionary of parameters for the</dt>
 <dd>animal objects. All parameters are
@@ -58,12 +64,11 @@ None by default</dd>
 <p>age:                  int, the age of the animal
 weight:               float, the weight of the animal
 reprod_thresh_weight:  float, treshold weight for reproduction</p>
-</div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>age</strong> – int, the age of the animal</li>
 <li><strong>weight</strong> – float, the weight of the animal</li>
 </ul>
@@ -80,8 +85,15 @@ reprod_thresh_weight:  float, treshold weight for reproduction</p>
 <dl class="classmethod">
 <dt id="Animal.Animal.up_par">
 <em class="property">classmethod </em><code class="descname">up_par</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal.up_par"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal.up_par" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the animal parameters
-:param params_dict: Dictionary of parameters to be updated</p>
+<dd><p>Updates the animal parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> – Dictionary of parameters to be updated</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -120,17 +132,29 @@ reprod_thresh_weight  float, treshold weight for reproduction</p>
 <dt id="Animal.Carnivore.carn_eat">
 <code class="descname">carn_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_eat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Carnivores eat
-When Carnivores eat, this method:
-- delete herbivores from the cell after they are eaten.
-- Update the weight of carnivore when they have eaten.</p>
-<p>Conditions for a carnivore eating are:
-1. They eat until they get an amount F (yet to implement ??)
-2. If fitness is less than a herbivore, they can’t kill that herbivore
-3. They kill with certain probability, if they have less than
-DeltaPhiMax fitness
-4. They certainly kill that herbivore otherwise
-:param cell:   Cell object, The cell object where the carnivore resides
-:return :None</p>
+When Carnivores eat, this method:</p>
+<ul class="simple">
+<li>delete herbivores from the cell after they are eaten.</li>
+<li>Update the weight of carnivore when they have eaten.</li>
+</ul>
+<p>Conditions for a carnivore eating are:</p>
+<ol class="arabic simple">
+<li>They eat until they get an amount F (yet to implement ??)</li>
+<li>If fitness is less than a herbivore, they can’t kill that herbivore</li>
+<li>They kill with certain probability, if they have less than
+DeltaPhiMax fitness</li>
+<li>They certainly kill that herbivore otherwise</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell</strong> – Cell object, The cell object where the carnivore resides</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -214,23 +238,29 @@ reprod_thresh_weight  float, treshold weight for reproduction</p>
 <dt id="Animal.Herbivore.herb_eat">
 <code class="descname">herb_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_eat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Herbivores eat. This method updates the amount of food in the cell
-object and the weight of the animal.
-:param cell:   Cell object, the cell where this animal resides.</p>
+object and the weight of the animal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell</strong> – Cell object, the cell where this animal resides.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="Animal.Herbivore.herb_migrates">
 <code class="descname">herb_migrates</code><span class="sig-paren">(</span><em>animal</em>, <em>cell</em>, <em>adj_cells</em>, <em>proba_list_h</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_migrates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_migrates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Herbivore migrates. This method decides which cell the animal migrates
-to, of the adjacent cells to the current cell.
-:param animal:       Herbivore object, the herbivore object that is</p>
-<blockquote>
-<div>chosen to move</div></blockquote>
+to, of the adjacent cells to the current cell.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>animal</strong> – Herbivore object, the herbivore object that is
+chosen to move</li>
 <li><strong>cell</strong> – Cell object, the current cell</li>
 <li><strong>adj_cells</strong> – list, a list consisting of the adjacent cell
 objects</li>
@@ -250,19 +280,19 @@ the list of adjacent cells</li>
 <dt id="Animal.Herbivore.herb_reproduce">
 <code class="descname">herb_reproduce</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_reproduce" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reproduction for herbivores. The weight of the mother animal decreases
-when it gives birth.
-:param length: int, number of total herbivores in the cell where the</p>
-<blockquote>
-<div>herbivore resides</div></blockquote>
+when it gives birth.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A baby herbivore object with age = 0 and weight equal to</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>length</strong> – int, number of total herbivores in the cell where the
+herbivore resides</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A baby herbivore object with age = 0 and weight equal to
+baby weight</td>
 </tr>
 </tbody>
 </table>
-<p>baby weight</p>
 </dd></dl>
 
 </dd></dl>
