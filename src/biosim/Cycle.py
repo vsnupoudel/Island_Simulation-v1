@@ -217,3 +217,10 @@ class Cycle:
                 cell.animal_object_list = [animal for animal in
                                            cell.animal_object_list if
                                            animal not in death_list]
+
+    def animals_age(self):
+        """Increases the age of every animal at the end of the cycle"""
+        for  list_of_obj in self.object_matrix:
+            for  cell in list_of_obj:
+                for animal in cell.animal_object_list:
+                    animal.age += 1

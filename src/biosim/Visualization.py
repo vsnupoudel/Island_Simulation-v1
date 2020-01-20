@@ -179,14 +179,14 @@ class Visualization:
         ydata = self._herb_line.get_ydata()
         ydata[self._step] = herb_num
         self._herb_line.set_ydata(ydata)
-
         # Another line for carnivore
         ydata = self._carn_line.get_ydata()
         ydata[self._step] = carn_num
         self._carn_line.set_ydata(ydata)
         self._step += 1
 
-    def update_graphics(self, herb_pos, carn_pos, num_animals, col_limits):
+    def update_graphics(self, herb_pos, carn_pos, num_animals_per_sp,
+                        col_limits):
         """
         Updates graphics with current data
 
@@ -204,5 +204,6 @@ class Visualization:
         carn_limit = col_limits['Carnivore']
         self.update_herb_ax(herb_pos, herb_limit)
         self.update_carn_ax(carn_pos, carn_limit)
-        self.update_mean_ax(num_animals["Herbivore"], num_animals["Carnivore"])
+        self.update_mean_ax(num_animals_per_sp["Herbivore"],
+                            num_animals_per_sp["Carnivore"])
         plt.pause(1e-12)

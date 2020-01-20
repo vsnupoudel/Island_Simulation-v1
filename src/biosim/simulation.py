@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import os
 import subprocess
 
+
 class BioSim:
     """
     Initialize and execute simulation. This class takes in map and population,
@@ -41,16 +42,17 @@ class BioSim:
     :ivar v.set_graphics:   Graphics are set
 
     """
+
     def __init__(
-        self,
-        island_map,
-        ini_pop,
-        seed = 1,
-        ymax_animals = 10000,  # logic to be added when this is none
-        cmax_animals = None,
-        total_years = 60
-        # img_base=None,
-        # img_fmt="png",
+            self,
+            island_map,
+            ini_pop,
+            seed=1,
+            ymax_animals=10000,  # logic to be added when this is none
+            cmax_animals=None,
+            total_years=60,
+            img_base=None,
+            img_fmt="png"
     ):
         """
         :param island_map: Multi-line string specifying island geography
@@ -62,6 +64,9 @@ class BioSim:
         densities
         :param total_years: total number of years for all the sub-simulations
         default number is 60
+        :param img_base: Path relative to the code being run, where the user
+        intends to store the images. If is none, no image is stored
+        :param img_fmt: String with file type for figures, e.g. 'png'
 
         total_years should be greater than the sum of individual years of
         simulations.
@@ -75,7 +80,7 @@ class BioSim:
         If img_base is None, no figures are written to file.
         Filenames are formed as
 
-            '{}_{:05d}.{}'.format(img_base, img_no, img_fmt)
+            '{}\\_{:05d}.{}'.format(img_base, img_no, img_fmt)
 
         where img_no are consecutive image numbers starting from 0.
         img_base should contain a path and beginning of a file name.
@@ -88,6 +93,8 @@ class BioSim:
         self.object_matrix = self.island_map.object_matrix
         self.ymax_animals = ymax_animals
         self.total_years = total_years
+        self.img_fmt = img_fmt
+        self.img_base = img_base
 
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
@@ -122,7 +129,7 @@ class BioSim:
             Jungle.parameters.update(params)
 
     def simulate(self, num_years=20, vis_years=1, img_years=1,
-                 colorbar_limits=None ):
+                 colorbar_limits=None):
         """
         Runs simulation while visualizing the result.
         This method will:
@@ -151,19 +158,22 @@ class BioSim:
                                   and carnivores
         """
         if colorbar_limits is None:
-            colorbar_limits = {"Herbivore":200, "Carnivore":200}
-
-        if not os.path.exists('Images'):
-            os.makedirs('Images')
+            colorbar_limits = {"Herbivore": 200, "Carnivore": 200}
 
         self.v.create_map(self.island_matrix)
 
         step = 0
         self.v.update_graphics(self.herbivore_distribution,
-                         self.carnivore_distribution, self.num_animals_per_species
-                        ,colorbar_limits)
+                               self.carnivore_distribution,
+                               self.num_animals_per_species
+                               , colorbar_limits)
+        if self.img_base:
+            if not os.path.exists(self.img_base):
+                os.makedirs(self.img_base)
+            plt.savefig('{}\\_{:05d}.{}'.format(self.img_base, self.num_images,
+                                                self.img_fmt))
 
-        plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
+        # plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
 
         c = Cycle(self.object_matrix)
         while step <= num_years:
@@ -172,20 +182,23 @@ class BioSim:
             c.animals_reproduce()
             c.animals_migrate()
             c.animals_die()
+            c.animals_age()
             self.v.update_graphics(self.herbivore_distribution,
                                    self.carnivore_distribution,
-                                   self.num_animals_per_species, colorbar_limits)
+                                   self.num_animals_per_species,
+                                   colorbar_limits)
 
             step += 1
             self.current_year += 1
 
-            if step % img_years == 0:
-                plt.savefig('Images\\Image-{0:03d}.png'.format(
-                    self.num_images))
+            if (step % img_years == 0) & (self.img_base is not None):
+                plt.savefig('{}\\_{:05d}.{}'.format(self.img_base
+                                                    , self.num_images,
+                                                    self.img_fmt))
+
                 self.num_images += 1
 
-        self.current_year = self.current_year-1
-
+        self.current_year = self.current_year - 1
 
     def add_population(self, population):
         """
@@ -203,7 +216,6 @@ class BioSim:
         :return: year    int, current year on island
         """
         return self.current_year
-
 
     @property
     def num_animals_per_species(self):
@@ -234,7 +246,7 @@ class BioSim:
 
     @property
     def herbivore_distribution(self):
-        """Pandas DataFrame with herbivore count for each cell on island."""   #not dataframe
+        """Pandas DataFrame with herbivore count for each cell on island."""  # not dataframe
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -250,7 +262,7 @@ class BioSim:
 
     @property
     def carnivore_distribution(self):
-        """Pandas DataFrame with carnivore count for each cell on island."""   #not dataframe
+        """Pandas 2D matrix with carnivore count for each cell on island."""
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -303,13 +315,16 @@ class BioSim:
 
     def make_movie(self):
         """Makes a movie of a series of images"""
+        # Input_image_path = '{}_{:05d}.{}'.format(self.img_base,
+        #                                          self.img_number,
+        #                                          self.img_fmt)
         subprocess.run(['ffmpeg',
-                                '-f','image2',
-                                '-r','3',
-                                '-i','Images\\Image-%03d.png',
-                                '-vcodec','mpeg4',
-                                '-y', 'movie.mp4'
-                                # To hide the logs
-                                '-hide_banner',
-                                '-loglevel', 'panic'
-                               ])
+                        '-f', 'image2',
+                        '-r', '3',
+                        '-i', 'Images\\_%05d.png',
+                        '-vcodec', 'mpeg4',
+                        '-y', 'movie.mp4'
+                        # To hide the logs
+                              '-hide_banner',
+                        '-loglevel', 'panic'
+                        ])
