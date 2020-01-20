@@ -39,7 +39,7 @@ class BioSim:
 
     :ivar v:                Instance of Visualization class
     :ivar v.set_graphics:   Graphics are set
-        
+
     """
     def __init__(
         self,
@@ -141,13 +141,13 @@ class BioSim:
         Image files will be numbered consecutively.
 
         :param num_years:     int, number of years to simulate, default
-        number is 20
+                              number is 20
         :param vis_years:     int, years between visualization updates
-        :param img_years:     int, years between visualizations saved to files
-        (default: vis_years)
-        :param y_lim :        float, y axis limit of the line graph
-        :param colorbar_limits : vmax for the colorbars for herbivores and
-                                 carnivores in a dictionary format
+        :param img_years:     int(default: None), years between visualizations
+                              saved to files
+        :param y_lim:         float, y axis limit of the line graph
+        :param colorbar_limits:  dict, vmax for the colorbars for herbivores
+                                  and carnivores
         """
         if colorbar_limits is None:
             colorbar_limits = {"Herbivore":200, "Carnivore":200}

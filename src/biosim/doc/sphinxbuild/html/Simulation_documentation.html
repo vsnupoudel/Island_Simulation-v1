@@ -40,12 +40,34 @@
 <span class="target" id="module-simulation"></span><dl class="class">
 <dt id="simulation.BioSim">
 <em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=10000</em>, <em>cmax_animals=None</em>, <em>total_years=60</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class takes in map and population, and converts them to objects</p>
+<dd><p>Initialize and execute simulation. This class takes in map and population,
+and converts them to objects.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>island_map</strong> – str, Multi-line string specifying island geography</li>
+<li><strong>ini_pop</strong> – list, List of dictionaries specifying initial
+population</li>
+<li><strong>seed</strong> – int(default, 1), random number seed</li>
+<li><strong>ymax_animals</strong> – int(default, 10000), Number specifying y-axis limit
+for graph showing animal numbers</li>
+<li><strong>cmax_animals</strong> – dict(default, None), Dictionary specifying
+color-code limits for animal densities</li>
+<li><strong>total_years</strong> – int(default, 60), total number of years for all the
+sub-simulations</li>
+<li><strong>img_base</strong> – </li>
+<li><strong>img_fmt</strong> – str(default, png), image fmt</li>
+<li><strong>num_images</strong> – int(default, 0), number of images</li>
+<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
+herbivores and carnivores</li>
+<li><strong>v</strong> – Instance of Visualization class</li>
+<li><strong>v.set_graphics</strong> – Graphics are set</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>island_map</strong> – Multi-line string specifying island geography</li>
 <li><strong>ini_pop</strong> – List of dictionaries specifying initial population</li>
 <li><strong>seed</strong> – Integer used as random number seed</li>
@@ -77,8 +99,15 @@ img_base should contain a path and beginning of a file name.</p>
 <dl class="method">
 <dt id="simulation.BioSim.add_population">
 <code class="descname">add_population</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.add_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.add_population" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a population to the island
-:param population:  list, List of dictionaries specifying population</p>
+<dd><p>Add a population to the island</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> – list, List of dictionaries specifying population</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
@@ -127,10 +156,16 @@ img_base should contain a path and beginning of a file name.</p>
 <dl class="attribute">
 <dt id="simulation.BioSim.num_animals">
 <code class="descname">num_animals</code><a class="headerlink" href="#simulation.BioSim.num_animals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Total number of herbivores and carnivores on island
-:return: animals_count_dict  dict, dictionary containing number of</p>
-<blockquote>
-<div>herbivores and carnivores on island</div></blockquote>
+<dd><p>Total number of herbivores and carnivores on island</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">animals_count_dict  dict, dictionary containing number of
+herbivores and carnivores on island</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -192,17 +227,20 @@ of steps (years)</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_years</strong> – int, number of years to simulate, default</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>num_years</strong> – int, number of years to simulate, default
+number is 20</li>
+<li><strong>vis_years</strong> – int, years between visualization updates</li>
+<li><strong>img_years</strong> – int(default: None), years between visualizations
+saved to files</li>
+<li><strong>y_lim</strong> – float, y axis limit of the line graph</li>
+<li><strong>colorbar_limits</strong> – dict, vmax for the colorbars for herbivores
+and carnivores</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
-<p>number is 20
-:param vis_years:     int, years between visualization updates
-:param img_years:     int, years between visualizations saved to files
-(default: vis_years)
-:param y_lim :        float, y axis limit of the line graph
-:param colorbar_limits : vmax for the colorbars for herbivores and
-carnivores in a dictionary format</p>
 </dd></dl>
 
 </dd></dl>

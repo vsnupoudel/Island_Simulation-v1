@@ -50,7 +50,31 @@
 <span class="kn">import</span> <span class="nn">subprocess</span>
 
 <div class="viewcode-block" id="BioSim"><a class="viewcode-back" href="../simulation_documentation.html#simulation.BioSim">[docs]</a><span class="k">class</span> <span class="nc">BioSim</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Class takes in map and population, and converts them to objects&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initialize and execute simulation. This class takes in map and population,</span>
+<span class="sd">    and converts them to objects.</span>
+
+<span class="sd">    :ivar island_map:      str, Multi-line string specifying island geography</span>
+<span class="sd">    :ivar ini_pop:         list, List of dictionaries specifying initial</span>
+<span class="sd">                           population</span>
+<span class="sd">    :ivar seed:            int(default, 1), random number seed</span>
+<span class="sd">    :ivar ymax_animals:    int(default, 10000), Number specifying y-axis limit</span>
+<span class="sd">                           for graph showing animal numbers</span>
+<span class="sd">    :ivar cmax_animals:    dict(default, None), Dictionary specifying</span>
+<span class="sd">                           color-code limits for animal densities</span>
+<span class="sd">    :ivar total_years:     int(default, 60), total number of years for all the</span>
+<span class="sd">                           sub-simulations</span>
+<span class="sd">    :ivar img_base:</span>
+<span class="sd">    :ivar img_fmt:         str(default, png), image fmt</span>
+
+<span class="sd">    :ivar num_images:      int(default, 0), number of images</span>
+<span class="sd">    :ivar object_matrix:   array, 2D array of cell objects containing</span>
+<span class="sd">                           herbivores and carnivores</span>
+
+<span class="sd">    :ivar v:                Instance of Visualization class</span>
+<span class="sd">    :ivar v.set_graphics:   Graphics are set</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">island_map</span><span class="p">,</span>
@@ -151,13 +175,13 @@
 <span class="sd">        Image files will be numbered consecutively.</span>
 
 <span class="sd">        :param num_years:     int, number of years to simulate, default</span>
-<span class="sd">        number is 20</span>
+<span class="sd">                              number is 20</span>
 <span class="sd">        :param vis_years:     int, years between visualization updates</span>
-<span class="sd">        :param img_years:     int, years between visualizations saved to files</span>
-<span class="sd">        (default: vis_years)</span>
-<span class="sd">        :param y_lim :        float, y axis limit of the line graph</span>
-<span class="sd">        :param colorbar_limits : vmax for the colorbars for herbivores and</span>
-<span class="sd">        carnivores in a dictionary format</span>
+<span class="sd">        :param img_years:     int(default: None), years between visualizations</span>
+<span class="sd">                              saved to files</span>
+<span class="sd">        :param y_lim:         float, y axis limit of the line graph</span>
+<span class="sd">        :param colorbar_limits:  dict, vmax for the colorbars for herbivores</span>
+<span class="sd">                                  and carnivores</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">colorbar_limits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">colorbar_limits</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Herbivore&quot;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;Carnivore&quot;</span><span class="p">:</span><span class="mi">200</span><span class="p">}</span>
@@ -195,6 +219,7 @@
 <div class="viewcode-block" id="BioSim.add_population"><a class="viewcode-back" href="../simulation_documentation.html#simulation.BioSim.add_population">[docs]</a>    <span class="k">def</span> <span class="nf">add_population</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a population to the island</span>
+
 <span class="sd">        :param population:  list, List of dictionaries specifying population</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">one_location_list</span> <span class="ow">in</span> <span class="n">population</span><span class="p">:</span>
@@ -213,8 +238,9 @@
     <span class="k">def</span> <span class="nf">num_animals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Total number of herbivores and carnivores on island</span>
+
 <span class="sd">        :return: animals_count_dict  dict, dictionary containing number of</span>
-<span class="sd">                                           herbivores and carnivores on island</span>
+<span class="sd">                                     herbivores and carnivores on island</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">h_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">c_count</span> <span class="o">=</span> <span class="mi">0</span>
