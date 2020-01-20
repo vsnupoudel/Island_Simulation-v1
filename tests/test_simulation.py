@@ -10,11 +10,12 @@ import numpy as np
 import pytest
 from pytest_mock import mocker
 
+
 class TestSimulation:
     """Tests for the Biosim class"""
 
     @pytest.fixture()
-    def input_map():
+    def input_map(self):
         """returns map where required in tests below"""
         map = """\
                      OOOOOOOOO
@@ -24,7 +25,7 @@ class TestSimulation:
         return map
 
     @pytest.fixture()
-    def ini_pop():
+    def ini_pop(self):
         """returns herbivore population where required in tests below"""
         herbs = [
             {
@@ -48,7 +49,7 @@ class TestSimulation:
         return herbs
 
     @pytest.fixture()
-    def add_carns():
+    def add_carns(self):
         """
         Returns carnivore population where required in tests below
         Population should be an iterable
@@ -65,10 +66,9 @@ class TestSimulation:
         return carns
 
     @pytest.fixture()
-    def create_s(input_map, ini_pop):
+    def create_s(self, input_map, ini_pop):
         s = BioSim(input_map, ini_pop, seed=1)
         return s
-
 
     def test_set_landscape_parameters(self, create_s):
         "set_landscape_parameters shold change parameters sucsessfully"
@@ -77,20 +77,18 @@ class TestSimulation:
         assert Savannah.parameters["f_max"] == 700
         assert Jungle.parameters["f_max"] == 600
 
-
-    def test_set_animal_parameters(create_s):
+    def test_set_animal_parameters(self, create_s):
         "set_animal_parameters shold change parameters sucsessfully"
 
         create_s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
         create_s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
-
         assert Herbivore.p["zeta"] == 3.2
         assert Herbivore.p["xi"] == 1.8
         assert Carnivore.p["zeta"] == 5.0
         assert Carnivore.p["xi"] == 2.0
 
-
-    def test_num_animals_and_add_population(input_map, ini_pop, add_carns):
+    def test_num_animals_and_add_population(self, input_map, ini_pop,
+                                            add_carns):
         """"""
         s = BioSim(input_map, ini_pop, seed=1)
         print('')
@@ -102,26 +100,33 @@ class TestSimulation:
         s.add_population(add_carns)
         assert s.num_animals['Carnivore'] > prev_carns
 
-
-    def test_shape_herbivore_distributin(create_s):
+    def test_shape_herbivore_distributin(self, create_s):
         """shape of herbivore_distribution should be the same as for
         the object_matrix"""
         assert np.shape(create_s.herbivore_distribution) ==\
         np.shape(create_s.object_matrix)
 
-
-    def test_shape_carnivore_distributin(create_s):
+    def test_shape_carnivore_distributin(self, create_s):
         """shape of carnivore_distribution should be the same as for
          the object_matrix"""
         assert np.shape(create_s.carnivore_distribution) == \
         np.shape(create_s.object_matrix)
 
-    def test_carnivore_distributin(create_s):
+    def test_carnivore_distributin(self, create_s):
         """test for carnivore_distribution property"""
         assert 200 in create_s.carnivore_distribution
 
-
-    def test_island_matrix_shape(create_s):
+    def test_island_matrix_shape(self, create_s):
         """test island_matrix property"""
-        assert np.shape(create_s.island_matrix) == np.shape(create_s.object_matrix)
+        assert np.shape(create_s.island_matrix) == np.shape(
+            create_s.object_matrix)
+
+    def test_simulate_function(self, create_s):
+        create_s.simulate()
+        pass
+
+    def test_make_movie(self, create_s):
+        pass
+
+
 
