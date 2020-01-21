@@ -24,7 +24,6 @@ class Cycle:
     def __init__(self, object_matrix):
         """
         :param object_matrix:   list, nested list (map with population)
-        #which is modified by each of the functions in this class in the order of definition
         """
         self.object_matrix = object_matrix
 
@@ -37,7 +36,7 @@ class Cycle:
             for obj in row_of_obj:
                 if type(obj).__name__ == "Savannah":
                     # print('food grow in Savannah')
-                    obj.f_ij += obj.alpha * (obj.parameters['f_max'] -
+                    obj.f_ij += obj.parameters['alpha'] * (obj.parameters['f_max'] -
                                              obj.f_ij)
                 elif type(obj).__name__ == "Jungle":
                     obj.f_ij = obj.parameters['f_max']

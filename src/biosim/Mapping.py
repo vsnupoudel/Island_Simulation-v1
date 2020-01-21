@@ -18,7 +18,6 @@ class Cell:
     :ivar column:   int, column index of the position of the cell
                             has procreated or not
     :ivar f_ij:     float(default=0), food avilable in each cell
-    :ivar alpha:    float(default = None), parameter
     :ivar animal_object_list:   list, list of animal objects
     :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
     :ivar rel_ab_carn:          float, relative abundance of fodder for
@@ -28,19 +27,17 @@ class Cell:
 
     """
 
-    def __init__(self, row, column, f_ij=0, alpha=None):
+    def __init__(self, row, column, f_ij=0):
         """
 
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         :param f_ij:   float(default=0), food avilable in each cell
-        :param alpha:  float(default=None), parameter
         """
         self.row = row
         self.column = column
         self.animal_object_list = []
         self.f_ij = f_ij
-        self.alpha = alpha
         self.animal_object_list = []
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
@@ -139,32 +136,12 @@ class Jungle(Cell):
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
     :ivar f_ij:     float(default=300), food avilable in each cel
-    :ivar alpha:    default=None), parameter
     :ivar animal_object_list:   list, list of animal objects
     :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
     :ivar rel_ab_carn:          float, relative abundance of fodder for
                                 carnivores
     :ivar rel_ab_herb:          float, relative abundance of fodder for
                                 herbivores
-
-    Attributes:
-
-        parameters:           dict, dictionary of Jungle parameters,
-                                    containing:
-                                    f_max: int, maximal available food in
-                                                Jungle object
-                                    alpha: (default, None), parameter
-        is_migratable         bool(default, True), whether the cell is
-                                                   migratable or not for
-                                                   animal objects
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
-        f_ij:                 float(default=300), food avilable in each cell
-        alpha:                (default=None), parameter
-        animal_object_list:   list, list of animal objects
-        tot_herb_weight:      float, total weigth of all herbivores in a cell
-        rel_ab_carn:          float, relative abundance of fodder for carnivores
-        self.rel_ab_herb:     float, relative abundance of fodder for herbivores
 
     """
     parameters = {'f_max': 800.0, 'alpha': None}
@@ -174,20 +151,15 @@ class Jungle(Cell):
             self,
             row,
             column,
-            # num_carn=0,
-            # num_herb=0,
-            f_ij=300,
-            alpha=0.3,
+            f_ij=300
     ):
         """
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         :param f_ij:   float(default=300), food avilable in each cell
-        :param alpha:  float(default=0.3), parameter
         """
         super().__init__(row, column)
         self.f_ij = f_ij
-        self.alpha = alpha
 
 
 class Savannah(Cell):
@@ -203,34 +175,12 @@ class Savannah(Cell):
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
     :ivar f_ij:     float(default=200), food avilable in each cel
-    :ivar alpha:    (default=0.3), parameter
     :ivar animal_object_list:   list, list of animal objects
     :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
     :ivar rel_ab_carn:          float, relative abundance of fodder for
                                 carnivores
     :ivar rel_ab_herb:          float, relative abundance of fodder for
                                 herbivores
-
-    Attributes:
-
-        parameters:           dict, dictionary of Jungle parameters,
-                                    containing:
-                                    f_max: int, maximal available food in
-                                                Jungle object
-                                    alpha: (default, None), parameter
-        is_migratable         bool(default, True), whether the cell is
-                                                   migratable or not for
-                                                   animal objects
-        row:                  int, row index of the position of the cell
-        column:               int, column index of the position of the cell
-        f_ij:                 float(default=200), food avilable in each cell
-        alpha:                float(default=0.3), parameter
-        animal_object_list:   list, list of animal objects
-        tot_herb_weight:      float, total weigth of all herbivores in a cell
-        rel_ab_carn:          float, relative abundance of fodder for
-                              carnivores
-        rel_ab_herb:          float, relative abundance of fodder for
-                              herbivores
 
     """
     parameters = {'f_max': 300.0, 'alpha': 0.3}
@@ -240,19 +190,16 @@ class Savannah(Cell):
             self,
             row,
             column,
-            f_ij=200,
-            alpha=0.3,
+            f_ij=200
     ):
         """
         :param row:    int, row index of the position of the cell
         :param column: int, column index of the position of the cell
         :param f_ij:   float(default=200), food avilable in each cell
-        :param alpha:  float(default=0.3), parameter
         """
 
         super().__init__(row, column)
         self.f_ij = f_ij
-        self.alpha = alpha
 
 
 class Desert(Cell):
@@ -276,8 +223,6 @@ class Desert(Cell):
             self,
             row,
             column
-            # num_carn=0,
-            # num_herb=0,
     ):
         """
 
