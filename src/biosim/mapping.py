@@ -18,11 +18,11 @@ class Cell:
     :var column:   int, column index of the position of the cell
                             has procreated or not
     :var f_ij:     float(default=0), food avilable in each cell
-    :var animal_object_list:   list, list of animal objects
-    :var tot_herb_weight:      float, total weigth of all herbivores in a cell
-    :var rel_ab_carn:          float, relative abundance of fodder for
+    :ivar animal_object_list:   list, list of animal objects
+    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :ivar rel_ab_carn:          float, relative abundance of fodder for
                                 carnivores
-    :var rel_ab_herb:          float, relative abundance of fodder for
+    :ivar rel_ab_herb:          float, relative abundance of fodder for
                                 herbivores
 
     """
@@ -128,7 +128,7 @@ class Jungle(Cell):
     :cvar parameters:   dict, dictionary of Jungle parameters, containing:
                         f_max: int, maximal available food in Jungle object
                         alpha: (default, None), parameter
-    :var is_migratable:  bool(default, True), whether the cell is migratable
+    :cvar is_migratable:  bool(default, True), whether the cell is migratable
                           or not for animal objects
 
     :ivar row:      int, row index of the position of the cell
@@ -158,11 +158,11 @@ class Savannah(Cell):
     """
     Savannah landscape. Child class of the Cell class.
 
-    :ivar parameters:   dict, dictionary of Savannah parameters, containing:
+    :cvar parameters:   dict, dictionary of Savannah parameters, containing:
                         f_max: int(default, 300), maximal available food in
                                Jungle object
                         alpha: (default, 0.3), parameter
-    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+    :cvar is_migratable:  bool(default, True), whether the cell is migratable
                           or not for animal objects
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
