@@ -192,7 +192,7 @@ class Desert(Cell):
     """
     Desert landscape. Child class of the Cell class.
 
-    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+    :cvar is_migratable:  bool(default, True), whether the cell is migratable
                           or not for animal objects
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
@@ -216,7 +216,7 @@ class Desert(Cell):
 class Ocean(Cell):
     """Ocean landscape. Child class of the Cell class.
 
-    :ivar is_migratable:  bool(default, False), whether the cell is migratable
+    :cvar is_migratable:  bool(default, False), whether the cell is migratable
                           or not for animal objects
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
@@ -237,7 +237,7 @@ class Ocean(Cell):
 class Mountain(Cell):
     """Mountian landscape.  Child class of the Cell class.
 
-    :ivar is_migratable:  bool(default, False), whether the cell is migratable
+    :cvar is_migratable:  bool(default, False), whether the cell is migratable
                           or not for animal objects
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
