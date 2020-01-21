@@ -103,23 +103,22 @@ class BioSim:
         :param species:  string, name of animal species
         :param params:   dict, valid parameter specification for species
         """
-        if species == 'Herbivore':
+        if species == "Herbivore":
             Herbivore.up_par(params)
-        else:
+        elif species == "Carnivore":
             Carnivore.up_par(params)
 
-    @staticmethod
-    def set_landscape_parameters(landscape, params):
+    def set_landscape_parameters(self, landscape, params):
         """
         Set parameters for landscape type.
 
         :param landscape:   string, code letter for landscape
         :param params:      dict, parameter specification for landscape
         """
-        if landscape == 'S':
-            Savannah.parameters.update(params)
-        else:
-            Jungle.parameters.update(params)
+        if landscape == "S":
+            Savannah.update_par(params)
+        elif landscape == "J":
+            Jungle.update_par(params)
 
     def simulate(self, num_years=20, vis_years=1, img_years=1):
         """

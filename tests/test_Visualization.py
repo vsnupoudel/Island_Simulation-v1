@@ -8,8 +8,8 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 
-from biosim.simulation import BioSim
-from biosim.visualization import Visualization
+from src.biosim.simulation import BioSim
+from src.biosim.visualization import Visualization
 
 import pytest
 

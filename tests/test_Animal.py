@@ -7,10 +7,10 @@ Tests for Animal class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.animal import Herbivore, Carnivore
-from biosim.geography import Geo
-from biosim.cycle import Cycle
-from biosim.mapping import Cell
+from src.biosim.animal import Herbivore, Carnivore
+from src.biosim.geography import Geo
+from src.biosim.cycle import Cycle
+from src.biosim.mapping import Cell
 
 import pytest
 

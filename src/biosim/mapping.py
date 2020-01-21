@@ -137,8 +137,9 @@ class Jungle(Cell):
     :ivar f_ij:     float(default=300), food avilable in each cel
 
     """
-    parameters = {'f_max': 800.0, 'alpha': None}
+
     is_migratable = True
+    parameters = {'f_max': 800, 'alpha': None}
 
     def __init__(
             self,
@@ -153,6 +154,23 @@ class Jungle(Cell):
         """
         super().__init__(row, column)
         self.f_ij = f_ij
+
+    @classmethod
+    def update_par(cls, params_dict):
+        """
+        Updates the landscape parameters
+
+        :param cls: class method
+        :param params_dict: Dictionary of parameters to be updated
+        """
+        for k, v in params_dict.items():
+            if k not in cls.parameters:
+                raise ValueError(k, ' is an invalid Key')
+            if v <= 0:
+                raise ValueError(k, v, ' Param value must be positive')
+
+        print(params_dict)
+        cls.parameters.update(params_dict)
 
 
 class Savannah(Cell):
@@ -170,8 +188,9 @@ class Savannah(Cell):
     :ivar f_ij:     float(default=200), food avilable in each cel
 
     """
-    parameters = {'f_max': 300.0, 'alpha': 0.3}
+
     is_migratable = True
+    parameters = {'f_max': 300, 'alpha': 0.3}
 
     def __init__(
             self,
@@ -187,6 +206,23 @@ class Savannah(Cell):
 
         super().__init__(row, column)
         self.f_ij = f_ij
+
+    @classmethod
+    def update_par(cls, params_dict):
+        """
+        Updates the landscape parameters
+
+        :param cls: class method
+        :param params_dict: Dictionary of parameters to be updated
+        """
+        for k, v in params_dict.items():
+            if k not in cls.parameters:
+                raise ValueError(k, ' is an invalid Key')
+            if v <= 0:
+                raise ValueError(k, v, ' Param value must be positive')
+        cls.parameters.update(params_dict)
+
+
 
 
 class Desert(Cell):

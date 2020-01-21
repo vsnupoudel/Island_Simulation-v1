@@ -3,9 +3,9 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from biosim.simulation import BioSim
-from biosim.mapping import Savannah, Jungle
-from biosim.animal import Herbivore, Carnivore
+from src.biosim.simulation import BioSim
+from src.biosim.simulation import Savannah, Jungle
+from src.biosim.simulation import Herbivore, Carnivore
 import numpy as np
 import pytest
 
@@ -70,17 +70,20 @@ class TestSimulation:
         return BioSim(input_map, ini_pop, seed=1)
 
     def test_set_landscape_parameters(self, create_s):
-        """set_landscape_parameters shold change parameters sucsessfully"""
+        """set_landscape_parameters should change parameters successfully"""
+        print(Savannah.parameters)
         create_s.set_landscape_parameters("S", {"f_max": 700})
         create_s.set_landscape_parameters("J", {"f_max": 600})
+        # print(Savannah.parameters)
         assert Savannah.parameters["f_max"] == 700
         assert Jungle.parameters["f_max"] == 600
 
-    def test_set_animal_parameters(self, create_s):
-        """set_animal_parameters shold change parameters sucsessfully"""
+    def test_set_animal_parameters(self, input_map, ini_pop):
+        """set_animal_parameters should change parameters successfully"""
+        s = BioSim(island_map=input_map, ini_pop=ini_pop, seed=1)
 
-        create_s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
-        create_s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
+        s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
+        s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
         assert Herbivore.animal_params["zeta"] == 3.2
         assert Herbivore.animal_params["xi"] == 1.8
         assert Carnivore.animal_params["zeta"] == 5.0
