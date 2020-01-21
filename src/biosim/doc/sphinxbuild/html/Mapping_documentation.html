@@ -15,8 +15,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of simulation" href="simulation_documentation.html" />
-    <link rel="prev" title="Documentation of Geography" href="Geography_documentation.html" />
+    <link rel="next" title="Documentation of animals" href="Animal_documentation.html" />
+    <link rel="prev" title="Documentation of Cycle" href="Cycle_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,287 +35,8 @@
             
   <div class="section" id="documentation-of-mapping">
 <h1>Documentation of Mapping<a class="headerlink" href="#documentation-of-mapping" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-Mapping">
-<span id="the-mapping-class-and-its-subclasses"></span><h2>The Mapping Class and its Subclasses<a class="headerlink" href="#module-Mapping" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Mapping.Cell">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Cell</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell" title="Permalink to this definition">¶</a></dt>
-<dd><p>Super class for the type of Terrain: Jungle, Savannah, Desert,
-Ocean or Mountain.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell
-has procreated or not</li>
-<li><strong>f_ij</strong> – float(default=0), food avilable in each cell</li>
-<li><strong>animal_object_list</strong> – list, list of animal objects</li>
-<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
-<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
-carnivores</li>
-<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
-herbivores</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>f_ij</strong> – float(default=0), food avilable in each cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="Mapping.Cell.carn_list">
-<code class="descname">carn_list</code><a class="headerlink" href="#Mapping.Cell.carn_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of all carnivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.carn_sorted_rev">
-<code class="descname">carn_sorted_rev</code><a class="headerlink" href="#Mapping.Cell.carn_sorted_rev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sorted list of all carnivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="Mapping.Cell.get_population">
-<code class="descname">get_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell.get_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell.get_population" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the population of the cell</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">animal_object_list</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.herb_list">
-<code class="descname">herb_list</code><a class="headerlink" href="#Mapping.Cell.herb_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of all herbivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.herb_sorted">
-<code class="descname">herb_sorted</code><a class="headerlink" href="#Mapping.Cell.herb_sorted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sorted list of all herbivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.herb_sorted_rev">
-<code class="descname">herb_sorted_rev</code><a class="headerlink" href="#Mapping.Cell.herb_sorted_rev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reversed-sorted list of all herbivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.n_carns">
-<code class="descname">n_carns</code><a class="headerlink" href="#Mapping.Cell.n_carns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of carnivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.n_herbs">
-<code class="descname">n_herbs</code><a class="headerlink" href="#Mapping.Cell.n_herbs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of herbivore objects in the cell object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.pi_ij_carn">
-<code class="descname">pi_ij_carn</code><a class="headerlink" href="#Mapping.Cell.pi_ij_carn" title="Permalink to this definition">¶</a></dt>
-<dd><p>propensity for a cell object for carnivores</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Mapping.Cell.pi_ij_herb">
-<code class="descname">pi_ij_herb</code><a class="headerlink" href="#Mapping.Cell.pi_ij_herb" title="Permalink to this definition">¶</a></dt>
-<dd><p>propensity for a cell object for herbivores</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="Mapping.Cell.set_population">
-<code class="descname">set_population</code><span class="sig-paren">(</span><em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Cell.set_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Cell.set_population" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the population of a cell object</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>input_dict</strong> – dict, dictionary specifying the population to be
-set for the cell object, containing:</td>
-</tr>
-</tbody>
-</table>
-<p>location of cell object, type of animals, age and weight of animals</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="Mapping.Desert">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Desert</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Desert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Desert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Desert landscape. Child class of the Cell class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>is_migratable</strong> – bool(default, True), whether the cell is migratable
-or not for animal objects</li>
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>animal_object_list</strong> – list, list of animal objects</li>
-<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
-<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
-carnivores</li>
-<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
-herbivores</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Mapping.Jungle">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Jungle</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=300</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Jungle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Jungle landscape. Child class of the Cell class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>parameters</strong> – dict, dictionary of Jungle parameters, containing:
-f_max: int, maximal available food in Jungle object
-alpha: (default, None), parameter</li>
-<li><strong>is_migratable</strong> – bool(default, True), whether the cell is migratable
-or not for animal objects</li>
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>f_ij</strong> – float(default=300), food avilable in each cel</li>
-<li><strong>animal_object_list</strong> – list, list of animal objects</li>
-<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
-<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
-carnivores</li>
-<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
-herbivores</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>f_ij</strong> – float(default=300), food avilable in each cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Mapping.Mountain">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Mountain</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Mountain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Mountain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mountian landscape.  Child class of the Cell class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>is_migratable</strong> – bool(default, False), whether the cell is migratable
-or not for animal objects</li>
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Mapping.Ocean">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Ocean</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Ocean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Ocean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ocean landscape. Child class of the Cell class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>is_migratable</strong> – bool(default, False), whether the cell is migratable
-or not for animal objects</li>
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="class">
-<dt id="Mapping.Savannah">
-<em class="property">class </em><code class="descclassname">Mapping.</code><code class="descname">Savannah</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=200</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Mapping.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Mapping.Savannah" title="Permalink to this definition">¶</a></dt>
-<dd><p>Savannah landscape. Child class of the Cell class.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>parameters</strong> – <p>dict, dictionary of Savannah parameters, containing:
-f_max: int(default, 300), maximal available food in</p>
-<blockquote>
-<div>Jungle object</div></blockquote>
-<p>alpha: (default, 0.3), parameter</p>
-</li>
-<li><strong>is_migratable</strong> – bool(default, True), whether the cell is migratable
-or not for animal objects</li>
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>f_ij</strong> – float(default=200), food avilable in each cel</li>
-<li><strong>animal_object_list</strong> – list, list of animal objects</li>
-<li><strong>tot_herb_weight</strong> – float, total weigth of all herbivores in a cell</li>
-<li><strong>rel_ab_carn</strong> – float, relative abundance of fodder for
-carnivores</li>
-<li><strong>rel_ab_herb</strong> – float, relative abundance of fodder for
-herbivores</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>row</strong> – int, row index of the position of the cell</li>
-<li><strong>column</strong> – int, column index of the position of the cell</li>
-<li><strong>f_ij</strong> – float(default=200), food avilable in each cell</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="the-mapping-class-and-its-subclasses">
+<h2>The Mapping Class and its Subclasses<a class="headerlink" href="#the-mapping-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -337,14 +58,14 @@ herbivores</li>
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of Cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Mapping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-Mapping">The Mapping Class and its Subclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-mapping-class-and-its-subclasses">The Mapping Class and its Subclasses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
@@ -352,8 +73,8 @@ herbivores</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Geography_documentation.html" title="previous chapter">Documentation of Geography</a></li>
-      <li>Next: <a href="simulation_documentation.html" title="next chapter">Documentation of simulation</a></li>
+      <li>Previous: <a href="Cycle_documentation.html" title="previous chapter">Documentation of Cycle</a></li>
+      <li>Next: <a href="Animal_documentation.html" title="next chapter">Documentation of animals</a></li>
   </ul></li>
 </ul>
 </div>

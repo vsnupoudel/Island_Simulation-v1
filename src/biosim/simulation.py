@@ -68,19 +68,6 @@ class BioSim:
         total_years should be greater than the sum of individual years of
         simulations.
 
-        If ymax_animals is None, the y-axis limit should be adjusted
-        automatically.
-        If cmax_animals is None, sensible, fixed default values should be used.
-        cmax_animals is a dict mapping species names to numbers, e.g.,
-           {'Herbivore': 50, 'Carnivore': 20}
-
-        If img_base is None, no figures are written to file.
-        Filenames are formed as
-
-            '{}\\_{:05d}.{}'.format(img_base, img_no, img_fmt)
-
-        where img_no are consecutive image numbers starting from 0.
-        img_base should contain a path and beginning of a file name.
         """
         self.num_images = 0
         self.current_year = 0
@@ -242,7 +229,7 @@ class BioSim:
 
     @property
     def herbivore_distribution(self):
-        """Herbivore count matrix of the island."""
+        """2D matrix with herbivore count for each cell on the island."""
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -258,7 +245,7 @@ class BioSim:
 
     @property
     def carnivore_distribution(self):
-        """Pandas 2D matrix with carnivore count for each cell on island."""
+        """2D matrix with carnivore count for each cell on the island."""
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 

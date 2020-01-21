@@ -134,12 +134,6 @@ class Jungle(Cell):
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
     :ivar f_ij:     float(default=300), food avilable in each cel
-    :ivar animal_object_list:   list, list of animal objects
-    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
-    :ivar rel_ab_carn:          float, relative abundance of fodder for
-                                carnivores
-    :ivar rel_ab_herb:          float, relative abundance of fodder for
-                                herbivores
 
     """
     parameters = {'f_max': 800.0, 'alpha': None}
@@ -173,12 +167,6 @@ class Savannah(Cell):
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
     :ivar f_ij:     float(default=200), food avilable in each cel
-    :ivar animal_object_list:   list, list of animal objects
-    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
-    :ivar rel_ab_carn:          float, relative abundance of fodder for
-                                carnivores
-    :ivar rel_ab_herb:          float, relative abundance of fodder for
-                                herbivores
 
     """
     parameters = {'f_max': 300.0, 'alpha': 0.3}
@@ -208,12 +196,7 @@ class Desert(Cell):
                           or not for animal objects
     :ivar row:      int, row index of the position of the cell
     :ivar column:   int, column index of the position of the cell
-    :ivar animal_object_list:   list, list of animal objects
-    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
-    :ivar rel_ab_carn:          float, relative abundance of fodder for
-                                carnivores
-    :ivar rel_ab_herb:          float, relative abundance of fodder for
-                                herbivores
+
     """
     is_migratable = True
 

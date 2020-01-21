@@ -15,8 +15,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of Mapping" href="Mapping_documentation.html" />
-    <link rel="prev" title="Documentation of Cycle" href="Cycle_documentation.html" />
+    <link rel="next" title="Documentation of Visualization" href="Visualization_documentation.html" />
+    <link rel="prev" title="Documentation of animals" href="Animal_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,69 +37,6 @@
 <h1>Documentation of Geography<a class="headerlink" href="#documentation-of-geography" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-geography-class-and-its-subclasses">
 <h2>The Geography Class and its Subclasses<a class="headerlink" href="#the-geography-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
-<span class="target" id="module-Geography"></span><p>Geo class</p>
-<dl class="class">
-<dt id="Geography.Geo">
-<em class="property">class </em><code class="descclassname">Geography.</code><code class="descname">Geo</code><span class="sig-paren">(</span><em>geo_matrix_input_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Geography.html#Geo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Geography.Geo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class for the islands geography. This class:</p>
-<ul class="simple">
-<li>Stores the size/shape of the geography of the island</li>
-<li>Converts string input of map, consisting of letters corresponding to
-landscape types into a 2D matrix of objects</li>
-<li>Objects can only be one of the five Landscape types: Ocean (O), Savannah
-(S), desert (D), jungle (J) and mountain (M)</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>geo_matrix_input_string</strong> – str, String with map coordinates</li>
-<li><strong>geo_graph</strong> – str, input string without whitespace</li>
-<li><strong>lines</strong> – list, list of each line of the input
-string</li>
-<li><strong>geo_shape</strong> – tuple(default, None), Shape of the
-geography</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>:ivar object_matrix
-:ivar geo_list:                  list, 2D list of string characters
-:ivar first_row:                 str, characters of the first row of the</p>
-<blockquote>
-<div>map</div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>last_row</strong> – str, characters of the last row of the map</li>
-<li><strong>first_column</strong> – list, characters of the first column of
-the map</li>
-<li><strong>last_column</strong> – list, characters of the last column of
-the map</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<ul class="simple">
-<li>Checks if input characters are valid letters</li>
-<li>Checks if all rows in map have equal length</li>
-<li>Checks that ocean (“O”) is around all edges of map</li>
-</ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>geo_matrix_input_string</strong> – str, String with map coordinates</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
 </div>
 
@@ -121,14 +58,14 @@ the map</li>
 
 <h3>Navigation</h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Geography</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-geography-class-and-its-subclasses">The Geography Class and its Subclasses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
@@ -136,8 +73,8 @@ the map</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Cycle_documentation.html" title="previous chapter">Documentation of Cycle</a></li>
-      <li>Next: <a href="Mapping_documentation.html" title="next chapter">Documentation of Mapping</a></li>
+      <li>Previous: <a href="Animal_documentation.html" title="previous chapter">Documentation of animals</a></li>
+      <li>Next: <a href="Visualization_documentation.html" title="next chapter">Documentation of Visualization</a></li>
   </ul></li>
 </ul>
 </div>

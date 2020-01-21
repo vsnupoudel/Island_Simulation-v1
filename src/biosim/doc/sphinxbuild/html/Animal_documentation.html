@@ -15,8 +15,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of Cycle" href="Cycle_documentation.html" />
-    <link rel="prev" title="Welcome to Modelling the Ecosystem of an Island- Group 4’s documentation!" href="index.html" />
+    <link rel="next" title="Documentation of Geography" href="Geography_documentation.html" />
+    <link rel="prev" title="Documentation of Mapping" href="Mapping_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,262 +35,8 @@
             
   <div class="section" id="documentation-of-animals">
 <h1>Documentation of animals<a class="headerlink" href="#documentation-of-animals" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-Animal">
-<span id="the-animal-class-and-its-subclasses"></span><h2>The Animal Class and its Subclasses<a class="headerlink" href="#module-Animal" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="Animal.Animal">
-<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal" title="Permalink to this definition">¶</a></dt>
-<dd><p>SuperClass for Herbivore and Carnivore.
-Contains methods, properties and variables that are common in both.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary of parameters for the animal objects.
-All parameters are None by default</li>
-<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
-has procreated or not</li>
-<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
-has migrated or not</li>
-<li><strong>is_dead</strong> – bool(default, False), whether the animal object
-is dead or alive</li>
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="attribute">
-<dt id="Animal.Animal.fitness">
-<code class="descname">fitness</code><a class="headerlink" href="#Animal.Animal.fitness" title="Permalink to this definition">¶</a></dt>
-<dd><p>The fitness of each animal</p>
-</dd></dl>
-
-<dl class="classmethod">
-<dt id="Animal.Animal.up_par">
-<em class="property">classmethod </em><code class="descname">up_par</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Animal.up_par"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Animal.up_par" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the animal parameters</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> – Dictionary of parameters to be updated</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="Animal.Carnivore">
-<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Carnivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Carnivore characteristics, subclass of Animal class</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary of parameters for the Carnivore objects.</li>
-<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
-has procreated or not</li>
-<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
-has migrated or not</li>
-<li><strong>is_dead</strong> – bool(default, False), whether the animal object
-is dead or alive</li>
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="Animal.Carnivore.carn_eat">
-<code class="descname">carn_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_eat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Carnivores eat
-When Carnivores eat, this method:</p>
-<ul class="simple">
-<li>delete herbivores from the cell after they are eaten.</li>
-<li>Update the weight of carnivore when they have eaten.</li>
-</ul>
-<p>Conditions for a carnivore eating are:</p>
-<ol class="arabic simple">
-<li>They eat until they get an amount F (yet to implement ??)</li>
-<li>If fitness is less than a herbivore, they can’t kill that herbivore</li>
-<li>They kill with certain probability, if they have less than
-DeltaPhiMax fitness</li>
-<li>They certainly kill that herbivore otherwise</li>
-</ol>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell</strong> – Cell object, The cell object where the carnivore resides</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="Animal.Carnivore.carn_migrates">
-<code class="descname">carn_migrates</code><span class="sig-paren">(</span><em>animal</em>, <em>cell</em>, <em>adj_cells</em>, <em>proba_list_c</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_migrates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_migrates" title="Permalink to this definition">¶</a></dt>
-<dd><p>Carnivore migrates. This method decides which cell the animal migrates
-to, of the adjacent cells to the current cell.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>animal</strong> – Carnivore object, the carnivore object that is
-chosen to move</li>
-<li><strong>cell</strong> – Cell object, the current cell</li>
-<li><strong>adj_cells</strong> – list, a list consisting of the adjacent cell
-objects</li>
-<li><strong>proba_list_h</strong> – list, a list with probabilities corresponding to
-the list of adjacent cells</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="Animal.Carnivore.carn_reproduce">
-<code class="descname">carn_reproduce</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Carnivore.carn_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Carnivore.carn_reproduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reproduction for carnivores</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>length</strong> – int, number of total carnivores in the
-cell where the herbivore resides</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A baby carnivores   Carnivore object (with age=0 and weight
-equal to baby weight)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="Animal.Herbivore">
-<em class="property">class </em><code class="descclassname">Animal.</code><code class="descname">Herbivore</code><span class="sig-paren">(</span><em>age</em>, <em>weight</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore" title="Permalink to this definition">¶</a></dt>
-<dd><p>Herbivore characteristics, subclass of Animal class</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary of parameters for the Herbivore
-objects.</li>
-<li><strong>has_procreated</strong> – bool(default, False), whether the animal object
-has procreated or not</li>
-<li><strong>has_migrated</strong> – bool(default, False), whether the animal object
-has migrated or not</li>
-<li><strong>is_dead</strong> – bool(default, False), whether the animal object
-is dead or alive</li>
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-<li><strong>reprod_thresh_weight</strong> – float, treshold weight for reproduction</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>age</strong> – int, the age of the animal</li>
-<li><strong>weight</strong> – float, the weight of the animal</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="Animal.Herbivore.herb_eat">
-<code class="descname">herb_eat</code><span class="sig-paren">(</span><em>cell</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_eat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Herbivores eat. This method updates the amount of food in the cell
-object and the weight of the animal.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cell</strong> – Cell object, the cell where this animal resides.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="Animal.Herbivore.herb_migrates">
-<code class="descname">herb_migrates</code><span class="sig-paren">(</span><em>animal</em>, <em>cell</em>, <em>adj_cells</em>, <em>proba_list_h</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_migrates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_migrates" title="Permalink to this definition">¶</a></dt>
-<dd><p>Herbivore migrates. This method decides which cell the animal migrates
-to, of the adjacent cells to the current cell.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>animal</strong> – Herbivore object, the herbivore object that is
-chosen to move</li>
-<li><strong>cell</strong> – Cell object, the current cell</li>
-<li><strong>adj_cells</strong> – list, a list consisting of the adjacent cell
-objects</li>
-<li><strong>proba_list_h</strong> – list, a list with probabilities corresponding to
-the list of adjacent cells</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="Animal.Herbivore.herb_reproduce">
-<code class="descname">herb_reproduce</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Animal.html#Herbivore.herb_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Animal.Herbivore.herb_reproduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reproduction for herbivores. The weight of the mother animal decreases
-when it gives birth.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>length</strong> – int, number of total herbivores in the cell where the
-herbivore resides</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A baby herbivore object with age = 0 and weight equal to
-baby weight</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="the-animal-class-and-its-subclasses">
+<h2>The Animal Class and its Subclasses<a class="headerlink" href="#the-animal-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -312,14 +58,14 @@ baby weight</td>
 
 <h3>Navigation</h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of animals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-Animal">The Animal Class and its Subclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-animal-class-and-its-subclasses">The Animal Class and its Subclasses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
@@ -327,8 +73,8 @@ baby weight</td>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Modelling the Ecosystem of an Island- Group 4’s documentation!</a></li>
-      <li>Next: <a href="Cycle_documentation.html" title="next chapter">Documentation of Cycle</a></li>
+      <li>Previous: <a href="Mapping_documentation.html" title="previous chapter">Documentation of Mapping</a></li>
+      <li>Next: <a href="Geography_documentation.html" title="next chapter">Documentation of Geography</a></li>
   </ul></li>
 </ul>
 </div>
