@@ -41,7 +41,7 @@ class Cycle:
                                              obj.f_ij)
                 elif type(obj).__name__ == "Jungle":
                     obj.f_ij = obj.parameters['f_max']
-                    # print('food grow in Jungle')
+
 
     def animals_eat(self):
         """
@@ -56,12 +56,12 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
-                    for herb in cell.herb_sorted:
+                    for herb in cell.herb_sorted_rev:
                         herb.herb_eat(cell)
 
                 # Carnivores in the cell eat after herbivores
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
-                    for carn in cell.carn_sorted:
+                    for carn in cell.carn_sorted_rev:
                         carn.carn_eat(cell)
 
 

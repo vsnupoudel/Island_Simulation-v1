@@ -110,7 +110,7 @@ class Cell:
                       if type(a).__name__ == "Carnivore"]
 
     @property
-    def carn_sorted(self):
+    def carn_sorted_rev(self):
         """Sorted list of all carnivore objects in the cell object"""
         return sorted(self.carn_list, key=lambda animal: animal.fitness,
                          reverse=True)
