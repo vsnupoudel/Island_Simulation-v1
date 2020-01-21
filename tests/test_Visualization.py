@@ -89,9 +89,3 @@ class TestVisualization:
     def test_make_movie(self):
         """makes movie"""
         pass
-
-
-
-
-
-
