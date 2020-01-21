@@ -5,8 +5,6 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import math
-# import functools
-#from cached_property import cached_property
 
 
 class Animal:
@@ -61,7 +59,7 @@ class Animal:
         self.has_migrated = False
 
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
-                                                    self.p['sigma_birth'])
+                                                      self.p['sigma_birth'])
 
     @property
     def fitness(self):
@@ -72,7 +70,7 @@ class Animal:
 
             return (1 / (1 + math.e ** (self.p['phi_age'] * (
                     self.age - self.p['a_half']))))  \
-                   * (1 / (1 + math.e **(- self.p['phi_weight'] * (
+                   * (1 / (1 + math.e ** (- self.p['phi_weight'] * (
                     self.weight - self.p['w_half']))))
 
     @property
@@ -102,7 +100,8 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class
 
-    :ivar p:     dict, dictionary of parameters for the Herbivore objects.
+    :ivar p:     dict, dictionary of parameters for the Herbivore
+                              objects.
     :ivar has_procreated:   bool(default, False), whether the animal object
                             has procreated or not
     :ivar has_migrated:     bool(default, False), whether the animal object
