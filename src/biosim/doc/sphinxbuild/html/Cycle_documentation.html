@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Documentation of Cycle &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
+    <title>Documentation of cycle &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,6 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of Mapping" href="Mapping_documentation.html" />
-    <link rel="prev" title="Documentation of simulation" href="simulation_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,9 +32,155 @@
           <div class="body" role="main">
             
   <div class="section" id="documentation-of-cycle">
-<h1>Documentation of Cycle<a class="headerlink" href="#documentation-of-cycle" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="the-cycle-class-and-its-subclasses">
-<h2>The Cycle Class and its Subclasses<a class="headerlink" href="#the-cycle-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
+<h1>Documentation of cycle<a class="headerlink" href="#documentation-of-cycle" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-cycle">
+<span id="the-cycle-class-and-its-subclasses"></span><h2>The cycle Class and its Subclasses<a class="headerlink" href="#module-cycle" title="Permalink to this headline">¶</a></h2>
+<p>File has the cycle class and annual cycle methods in it</p>
+<dl class="class">
+<dt id="cycle.Cycle">
+<em class="property">class </em><code class="descclassname">cycle.</code><code class="descname">Cycle</code><span class="sig-paren">(</span><em>object_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class contains the componentes of the annual cycle on Rossumaøya. The
+componentes follows a fixed order:</p>
+<ol class="arabic simple">
+<li>Food grows on the island</li>
+<li>Animals feed</li>
+<li>Animals procreate</li>
+<li>Animals migrate</li>
+<li>Animals age</li>
+<li>Animals loose weight</li>
+<li>Animals die</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>object_matrix</strong> – list, nested list (map with population)</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="cycle.Cycle.animals_age">
+<code class="descname">animals_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.animals_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.animals_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Increases the age of every animal at the end of the cycle
+Decreases the weight of animal by eta*weight of animal</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.animals_die">
+<code class="descname">animals_die</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.animals_die"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.animals_die" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method makes animals die. Animals die:</p>
+<ul>
+<li><p class="first">With certainty if the animals fitness is equal to zero</p>
+</li>
+<li><dl class="first docutils">
+<dt>with probability</dt>
+<dd><p class="first last">omega*(1 - fitness)</p>
+</dd>
+</dl>
+<p>otherwise</p>
+</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.animals_eat">
+<code class="descname">animals_eat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.animals_eat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.animals_eat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Herbivores and Carnivores eat. This happens once in every cycle
+This method updates:</p>
+<ul class="simple">
+<li>Increases the weight of animal if they eat</li>
+<li>Decreases the food in Savannah and Jungle if animals eat in that
+particular cell</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.animals_migrate">
+<code class="descname">animals_migrate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.animals_migrate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.animals_migrate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animals migrate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>self</strong> – the map object with all the cells and all the animals</td>
+</tr>
+</tbody>
+</table>
+<p>This method accomplishes the following:</p>
+<ul class="simple">
+<li>Delete migrated animals from current cell</li>
+<li>Add incoming animals to the new cell</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.animals_reproduce">
+<code class="descname">animals_reproduce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.animals_reproduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.animals_reproduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animals reproduce in every cell on the island.
+Animals reproduce if they meet the conditions (for each cell)
+This method updates:</p>
+<ul class="simple">
+<li>The number of animals in the particular cell</li>
+<li>The weight of the parents</li>
+</ul>
+<p>This method creates:</p>
+<ul class="simple">
+<li>New animal objects in the cell</li>
+</ul>
+<p>Rules for procreation:</p>
+<ul class="simple">
+<li>Probability for procreation = min (1, gamma × F × (N − 1))</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.food_grows">
+<code class="descname">food_grows</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.food_grows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.food_grows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates/increases the amount of food available in Jungle and Savannah
+objects.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cycle.Cycle.get_adjacent_migratable_cells">
+<code class="descname">get_adjacent_migratable_cells</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cycle.html#Cycle.get_adjacent_migratable_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cycle.Cycle.get_adjacent_migratable_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method calculates the position of the adjacent migratable cells
+to the current cell (with position (row, column)). Ocean and Mountain
+cells are not migratable</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> – int, row index</li>
+<li><strong>column</strong> – int, column index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list_of_adj   list, list of adjacent cells</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -57,24 +201,14 @@
 
 
 <h3>Navigation</h3>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Cycle</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-cycle-class-and-its-subclasses">The Cycle Class and its Subclasses</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of Mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of Geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="simulation_documentation.html" title="previous chapter">Documentation of simulation</a></li>
-      <li>Next: <a href="Mapping_documentation.html" title="next chapter">Documentation of Mapping</a></li>
   </ul></li>
 </ul>
 </div>
@@ -110,7 +244,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/Cycle_documentation.rst.txt"
+      <a href="_sources/cycle_documentation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

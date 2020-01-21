@@ -1,7 +1,7 @@
-Documentation of Visualization
+Documentation of visualization
 ===========================
 
-The Visualization Class and its Subclasses
+The visualization Class and its Subclasses
 -------------------------------------
-.. automodule:: Visualization
+.. automodule:: visualization
    :members:

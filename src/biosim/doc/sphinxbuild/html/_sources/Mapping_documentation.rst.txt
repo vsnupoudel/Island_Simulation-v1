@@ -1,7 +1,7 @@
-Documentation of Mapping
+Documentation of mapping
 ===========================
 
-The Mapping Class and its Subclasses
+The mapping Class and its Subclasses
 -------------------------------------
-.. automodule:: Mapping
+.. automodule:: mapping
    :members:

@@ -1,7 +1,7 @@
-Documentation of Geography
+Documentation of geography
 ===========================
 
-The Geography Class and its Subclasses
+The geography Class and its Subclasses
 -------------------------------------
-.. automodule:: Geography
+.. automodule:: geography
    :members:

@@ -125,10 +125,10 @@ class Jungle(Cell):
     """
     Jungle landscape. Child class of the Cell class.
 
-    :ivar parameters:   dict, dictionary of Jungle parameters, containing:
+    :cvar parameters:   dict, dictionary of Jungle parameters, containing:
                         f_max: int, maximal available food in Jungle object
                         alpha: (default, None), parameter
-    :ivar is_migratable:  bool(default, True), whether the cell is migratable
+    :var is_migratable:  bool(default, True), whether the cell is migratable
                           or not for animal objects
 
     :ivar row:      int, row index of the position of the cell
