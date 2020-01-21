@@ -6,12 +6,14 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class Visualization:
     """
     Plotting island map, heatmaps of herbivore and carnivore distribution
     and line graph of herbivore and carnivore count.
 
-    :ivar _fig:             plt.figure(default, None), figure to put subplots in
+    :ivar _fig:             plt.figure(default, None), figure to put
+                            subplots in
     :ivar _map_ax:          (default, None) plot of the island map
     :ivar _img_axis:        (default, None) axis to _map_ax
     :ivar _herb_ax:         heatmap(default, None), plot for herbivore
@@ -25,7 +27,6 @@ class Visualization:
     :ivar _carn_axis:       (default, None) axis to _carn_ax
 
     """
-
 
     def __init__(self):
         self._step = 0
@@ -52,7 +53,7 @@ class Visualization:
         """
         # create new figure window
         if self._fig is None:
-            self._fig = plt.figure(figsize=(8,8))
+            self._fig = plt.figure(figsize=(8, 8))
             plt.title("Maximum number of years: "+str(x_lim), loc='left')
             plt.axis('off')
 
@@ -69,12 +70,11 @@ class Visualization:
             self._carn_axis = None
 
         if self._mean_ax is None:
-           self._mean_ax = self._fig.add_subplot(2, 2, 4)
-           self._mean_ax.set_ylim(0, y_lim)
-           self._mean_ax.set_xlim(0, x_lim)
-           self._mean_ax.set_xlabel('Years')
-           self._mean_ax.set_ylabel('Number of Species')
-
+            self._mean_ax = self._fig.add_subplot(2, 2, 4)
+            self._mean_ax.set_ylim(0, y_lim)
+            self._mean_ax.set_xlim(0, x_lim)
+            self._mean_ax.set_xlabel('Years')
+            self._mean_ax.set_ylabel('Number of Species')
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, x_lim),
@@ -87,7 +87,6 @@ class Visualization:
                                            np.full(x_lim, np.nan))
             self._carn_line = carn_plot[0]
 
-
     def create_map(self, data):
         """
         Creates island map. Called one time at the start of the simuation.
@@ -95,8 +94,8 @@ class Visualization:
         :param data:    array, 2D array of map spesifications
         :return: None
         """
-        self._img_axis = self._map_ax.imshow(data, cmap='terrain'
-                                             , vmax=20, vmin=1)
+        self._img_axis = self._map_ax.imshow(data, cmap='terrain',
+                                             vmax=20, vmin=1)
 
     def update_herb_ax(self, herb_data, herb_limit):
         """
@@ -104,18 +103,18 @@ class Visualization:
 
         :param herb_data:   array, 2D array with number of herbivores in each
                             cell
-        :param vmax:        int, upper limit for colourbar
+        :param herb_limit:  int, upper limit for colourbar
         :return: None
         """
         if self._herb_axis is not None:
             self._herb_axis.set_data(herb_data)
         else:
             self._herb_axis = self._herb_ax.imshow(herb_data,
-                                                 interpolation='nearest',
-                                                 cmap="Greens", vmin =0,
-                                                   vmax= herb_limit)
-            self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax
-                                          , orientation='horizontal')
+                                                   interpolation='nearest',
+                                                   cmap="Greens", vmin=0,
+                                                   vmax=herb_limit)
+            self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax,
+                                          orientation='horizontal')
 
     def update_carn_ax(self, carn_data, carn_limit):
         """
@@ -123,18 +122,18 @@ class Visualization:
 
         :param carn_data:    array, 2D array with number of carnivores in each
                              cell
-        :param vmax:         int, upper limit for colourbar
+        :param carn_limit:   int, upper limit for colourbar
         :return: None
         """
         if self._carn_axis is not None:
             self._carn_axis.set_data(carn_data)
         else:
             self._carn_axis = self._carn_ax.imshow(carn_data,
-                                                 interpolation='nearest',
-                                                 cmap="OrRd", vmin =0,
-                                                   vmax= carn_limit)
-            self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax
-                                          , orientation='horizontal'
+                                                   interpolation='nearest',
+                                                   cmap="OrRd", vmin=0,
+                                                   vmax=carn_limit)
+            self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax,
+                                          orientation='horizontal'
                                           )
 
     def update_mean_ax(self, herb_num, carn_num):
@@ -165,7 +164,8 @@ class Visualization:
                              on the island
         :param carn_pos:     array, 2D array containing carnivore distribution
                              on the island
-        :param num_animals:  number of herbivores and carnivores
+        :param num_animals_per_sp:  number of herbivores and carnivores
+
         :return: None
         """
         # create_map will be called separately

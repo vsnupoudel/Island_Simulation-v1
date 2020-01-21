@@ -36,11 +36,10 @@ class Cycle:
             for obj in row_of_obj:
                 if type(obj).__name__ == "Savannah":
                     # print('food grow in Savannah')
-                    obj.f_ij += obj.parameters['alpha'] * (obj.parameters['f_max'] -
-                                             obj.f_ij)
+                    obj.f_ij += obj.parameters['alpha'] *\
+                                (obj.parameters['f_max'] - obj.f_ij)
                 elif type(obj).__name__ == "Jungle":
                     obj.f_ij = obj.parameters['f_max']
-
 
     def animals_eat(self):
         """
@@ -62,7 +61,6 @@ class Cycle:
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
                     for carn in cell.carn_sorted_rev:
                         carn.carn_eat(cell)
-
 
     def animals_reproduce(self):
         """
@@ -100,7 +98,6 @@ class Cycle:
                         new = animal.carn_reproduce(cell.n_carns)
                         if new:
                             new_carns.append(new)
-                        # if animal.has_procreated == False: (do we check this)?
 
                     for carn in new_carns:
                         cell.animal_object_list.append(carn)
@@ -151,7 +148,7 @@ class Cycle:
         for row, row_of_obj in enumerate(self.object_matrix):
             for col, cell in enumerate(row_of_obj):
                 animals_moved_away = []
-                if type(cell).__name__  in ["Desert","Savannah", "Jungle"]:
+                if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     adj_cells = self.get_adjacent_migratable_cells(row, col)
                     # Propensity calculation for each adjacent cell
                     propen_list_h = []
@@ -163,16 +160,18 @@ class Cycle:
                         propen_list_c.append(_c.pi_ij_carn)
 
                     # propability calculation for each adjacent cell
-                    proba_list_h = np.array(propen_list_h) / np.sum(propen_list_h)
-                    proba_list_c = np.array(propen_list_c) / np.sum(propen_list_c)
+                    proba_list_h = np.array(propen_list_h
+                                            ) / np.sum(propen_list_h)
+                    proba_list_c = np.array(propen_list_c
+                                            ) / np.sum(propen_list_c)
 
                     # Animal migrates only if it passes probability
 
                     for animal in cell.animal_object_list:
                         rand_num = np.random.random()
 
-                        if (rand_num <= animal.move_prob) & (
-                                animal.has_migrated == False):
+                        if (rand_num <= animal.move_prob) & \
+                                (not animal.has_migrated):
                             if type(animal).__name__ == "Herbivore":
                                 animal.herb_migrates(animal, adj_cells,
                                                      proba_list_h)
@@ -220,8 +219,8 @@ class Cycle:
         """
         Increases the age of every animal at the end of the cycle
         Decreases the weight of animal by eta*weight of animal"""
-        for  list_of_obj in self.object_matrix:
-            for  cell in list_of_obj:
+        for list_of_obj in self.object_matrix:
+            for cell in list_of_obj:
                 for animal in cell.animal_object_list:
                     animal.age += 1
                     animal.weight -= animal.p['eta']*animal.weight

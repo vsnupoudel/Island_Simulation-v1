@@ -27,7 +27,6 @@ class BioSim:
     :ivar seed:            int(default, 1), random number seed
     :ivar ymax_animals:    int(default, 10000), Number specifying y-axis limit
                            for graph showing animal numbers
-    :ivar cmax_animals:    dict(default, None), Dictionary specifying
                            color-code limits for animal densities
     :ivar total_years:     int(default, 60), total number of years for all the
                            sub-simulations
@@ -49,7 +48,6 @@ class BioSim:
             ini_pop,
             seed=1,
             ymax_animals=12000,
-            cmax_animals=None,
             total_years=500,
             img_base=None,
             img_fmt="png"
@@ -60,8 +58,6 @@ class BioSim:
         :param seed: Integer used as random number seed
         :param ymax_animals: Number specifying y-axis limit for graph
         showing total animal numbers, default is ten thousand
-        :param cmax_animals: Dict specifying color-code limits for animal
-        densities
         :param total_years: The xlimit of the line graph, should specify total
         number of year for which the user wants to simulate, default = 60
         :param img_base: Path relative to the code being run, where the user
@@ -152,7 +148,6 @@ class BioSim:
         :param vis_years:     int, years between visualization updates
         :param img_years:     int(default: None), years between visualizations
                               saved to files
-        :param y_lim:         float, y axis limit of the line graph
         :param colorbar_limits:  dict, vmax for the colorbars for herbivores
                                  and carnivores
         """
@@ -164,8 +159,8 @@ class BioSim:
         step = 0
         self.v.update_graphics(self.herbivore_distribution,
                                self.carnivore_distribution,
-                               self.num_animals_per_species
-                               , colorbar_limits)
+                               self.num_animals_per_species,
+                               colorbar_limits)
         if self.img_base:
             if not os.path.exists(self.img_base):
                 os.makedirs(self.img_base)
@@ -191,8 +186,8 @@ class BioSim:
             self.current_year += 1
 
             if (step % img_years == 0) & (self.img_base is not None):
-                plt.savefig('{}\\_{:05d}.{}'.format(self.img_base
-                                                    , self.num_images,
+                plt.savefig('{}\\_{:05d}.{}'.format(self.img_base,
+                                                    self.num_images,
                                                     self.img_fmt))
 
                 self.num_images += 1
@@ -224,8 +219,6 @@ class BioSim:
         :return: animals_count_dict  dict, dictionary containing number of
                                      herbivores and carnivores on island
         """
-        h_count = 0
-        c_count = 0
         animal_count_dict = {"Herbivore": 0, "Carnivore": 0}
 
         for row, list_of_obj in enumerate(self.object_matrix):
@@ -245,7 +238,7 @@ class BioSim:
 
     @property
     def herbivore_distribution(self):
-        """Pandas DataFrame with herbivore count for each cell on island."""  # not dataframe
+        """Herbivore count matrix of the island."""
         row_num = np.shape(self.object_matrix)[0]
         column_num = np.shape(self.object_matrix)[1]
 
@@ -287,8 +280,8 @@ class BioSim:
         col_nums = [c for r in range(rows) for c in range(columns)]
 
         _df = pd.DataFrame(list(zip(row_nums, col_nums, herb_flat, carn_flat)),
-                          columns=['Row', 'Col', 'Herbivore', 'Carnivore'],
-                          index=None)
+                           columns=['Row', 'Col', 'Herbivore', 'Carnivore'],
+                           index=None)
         return _df
 
     @property
@@ -321,5 +314,3 @@ class BioSim:
                               '-hide_banner',
                         '-loglevel', 'panic'
                         ])
-
-
