@@ -73,6 +73,8 @@ class Visualization:
            self._mean_ax = self._fig.add_subplot(2, 2, 4)
            self._mean_ax.set_ylim(0, y_lim)
            self._mean_ax.set_xlim(0, x_lim)
+           self._mean_ax.set_xlabel('Years')
+           self._mean_ax.set_ylabel('Number of Species')
 
 
         if self._herb_line is None:
