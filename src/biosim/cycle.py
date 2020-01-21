@@ -174,12 +174,12 @@ class Cycle:
                         if (rand_num <= animal.move_prob) & (
                                 animal.has_migrated == False):
                             if type(animal).__name__ == "Herbivore":
-                                animal.herb_migrates(animal, cell, adj_cells,
+                                animal.herb_migrates(animal, adj_cells,
                                                      proba_list_h)
 
                             if type(animal).__name__ == "Carnivore":
                                 # print('Carn migrates called')
-                                animal.carn_migrates(animal, cell, adj_cells,
+                                animal.carn_migrates(animal, adj_cells,
                                                      proba_list_c)
 
                             animal.has_migrated = True

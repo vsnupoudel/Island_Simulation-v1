@@ -54,8 +54,8 @@ class Animal:
         self.is_dead = False
 
         if self.weight is None:
-            self.weight = np.random.normal(self.p['w_birth']
-                                           , self.p['sigma_birth'])
+            self.weight = np.random.normal(self.p['w_birth'],
+                                           self.p['sigma_birth'])
         self.has_migrated = False
 
         self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
@@ -114,7 +114,6 @@ class Herbivore(Animal):
 
     """
 
-
     p = {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
@@ -137,7 +136,7 @@ class Herbivore(Animal):
         :param age:    int, the age of the animal
         :param weight: float, the weight of the animal
         """
-        super().__init__(age,weight)
+        super().__init__(age, weight)
 
     def herb_eat(self, cell):
         """
@@ -183,14 +182,13 @@ class Herbivore(Animal):
                 self.weight -= baby_weight * self.p['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
-    def herb_migrates(self, animal, cell, adj_cells, proba_list_h):
+    def herb_migrates(self, animal, adj_cells, proba_list_h):
         """
         Herbivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
 
         :param animal:       Herbivore object, the herbivore object that is
                                                chosen to move
-        :param cell:         Cell object, the current cell
         :param adj_cells:    list, a list consisting of the adjacent cell
                                    objects
         :param proba_list_h: list, a list with probabilities corresponding to
@@ -295,7 +293,6 @@ class Carnivore(Animal):
             animal for animal in cell.animal_object_list
             if animal not in dead_list]
 
-
     def carn_reproduce(self, length):
         """
         Reproduction for carnivores
@@ -323,17 +320,16 @@ class Carnivore(Animal):
                 self.weight -= baby_weight * self.p['xi']
                 return Carnivore(age=0, weight=baby_weight)
 
-    def carn_migrates(self, animal, cell, adj_cells, proba_list_c):
+    def carn_migrates(self, animal, adj_cells, proba_list_c):
         """
         Carnivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
 
         :param animal:       Carnivore object, the carnivore object that is
                                                chosen to move
-        :param cell:         Cell object, the current cell
         :param adj_cells:    list, a list consisting of the adjacent cell
                                    objects
-        :param proba_list_h: list, a list with probabilities corresponding to
+        :param proba_list_c: list, a list with probabilities corresponding to
                                    the list of adjacent cells
         :return: None
         """
