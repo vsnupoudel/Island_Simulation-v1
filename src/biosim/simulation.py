@@ -48,9 +48,9 @@ class BioSim:
             island_map,
             ini_pop,
             seed=1,
-            ymax_animals=10000,  # logic to be added when this is none
+            ymax_animals=12000,
             cmax_animals=None,
-            total_years=60,
+            total_years=500,
             img_base=None,
             img_fmt="png"
     ):
