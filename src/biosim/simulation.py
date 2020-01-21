@@ -154,7 +154,7 @@ class BioSim:
                               saved to files
         :param y_lim:         float, y axis limit of the line graph
         :param colorbar_limits:  dict, vmax for the colorbars for herbivores
-                                  and carnivores
+                                 and carnivores
         """
         if colorbar_limits is None:
             colorbar_limits = {"Herbivore": 200, "Carnivore": 200}

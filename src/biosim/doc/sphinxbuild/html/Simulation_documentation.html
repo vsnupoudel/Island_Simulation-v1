@@ -39,7 +39,7 @@
 <h2>The simulation Class and its Subclasses<a class="headerlink" href="#the-simulation-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-simulation"></span><dl class="class">
 <dt id="simulation.BioSim">
-<em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=10000</em>, <em>cmax_animals=None</em>, <em>total_years=60</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=10000</em>, <em>cmax_animals=None</em>, <em>total_years=60</em>, <em>img_base=None</em>, <em>img_fmt='png'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize and execute simulation. This class takes in map and population,
 and converts them to objects.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -77,11 +77,14 @@ herbivores and carnivores</li>
 </tr>
 </tbody>
 </table>
-<p>showing animal numbers
+<p>showing total animal numbers, default is ten thousand
 :param cmax_animals: Dict specifying color-code limits for animal
 densities
-:param total_years: total number of years for all the sub-simulations
-default number is 60</p>
+:param total_years: The xlimit of the line graph, should specify total
+number of year for which the user wants to simulate, default = 60
+:param img_base: Path relative to the code being run, where the user
+intends to store the images. If is none, no image is stored
+:param img_fmt: String with file type for figures, e.g. ‘png’</p>
 <p>total_years should be greater than the sum of individual years of
 simulations.</p>
 <p>If ymax_animals is None, the y-axis limit should be adjusted
@@ -119,20 +122,7 @@ img_base should contain a path and beginning of a file name.</p>
 <dl class="attribute">
 <dt id="simulation.BioSim.carnivore_distribution">
 <code class="descname">carnivore_distribution</code><a class="headerlink" href="#simulation.BioSim.carnivore_distribution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pandas DataFrame with carnivore count for each cell on island.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="simulation.BioSim.current_year">
-<code class="descname">current_year</code><a class="headerlink" href="#simulation.BioSim.current_year" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">year    int, current year on island</td>
-</tr>
-</tbody>
-</table>
+<dd><p>Pandas 2D matrix with carnivore count for each cell on island.</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -154,8 +144,8 @@ img_base should contain a path and beginning of a file name.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="simulation.BioSim.num_animals">
-<code class="descname">num_animals</code><a class="headerlink" href="#simulation.BioSim.num_animals" title="Permalink to this definition">¶</a></dt>
+<dt id="simulation.BioSim.num_animals_per_species">
+<code class="descname">num_animals_per_species</code><a class="headerlink" href="#simulation.BioSim.num_animals_per_species" title="Permalink to this definition">¶</a></dt>
 <dd><p>Total number of herbivores and carnivores on island</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -171,19 +161,9 @@ herbivores and carnivores on island</td>
 <dl class="method">
 <dt id="simulation.BioSim.set_animal_parameters">
 <code class="descname">set_animal_parameters</code><span class="sig-paren">(</span><em>species</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.set_animal_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.set_animal_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set parameters for animal species.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>species</strong> – string, name of animal species</li>
-<li><strong>params</strong> – dict, valid parameter specification for species</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<dd><p>Set parameters for animal species.
+:param species:  string, name of animal species
+:param params:   dict, valid parameter specification for species</p>
 </dd></dl>
 
 <dl class="method">
@@ -206,7 +186,7 @@ herbivores and carnivores on island</td>
 
 <dl class="method">
 <dt id="simulation.BioSim.simulate">
-<code class="descname">simulate</code><span class="sig-paren">(</span><em>num_years=20</em>, <em>vis_years=1</em>, <em>img_years=None</em>, <em>colorbar_limits=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.simulate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>num_years=20</em>, <em>vis_years=1</em>, <em>img_years=1</em>, <em>colorbar_limits=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.simulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs simulation while visualizing the result.
 This method will:</p>
 <ul class="simple">
@@ -238,6 +218,19 @@ saved to files</li>
 and carnivores</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.year">
+<code class="descname">year</code><a class="headerlink" href="#simulation.BioSim.year" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">year    int, current year on island</td>
 </tr>
 </tbody>
 </table>

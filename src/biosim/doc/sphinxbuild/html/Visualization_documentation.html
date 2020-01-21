@@ -38,7 +38,7 @@
 <h2>The Visualization Class and its Subclasses<a class="headerlink" href="#the-visualization-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-Visualization"></span><dl class="class">
 <dt id="Visualization.Visualization">
-<em class="property">class </em><code class="descclassname">Visualization.</code><code class="descname">Visualization</code><span class="sig-paren">(</span><em>object_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">Visualization.</code><code class="descname">Visualization</code><a class="reference internal" href="_modules/Visualization.html#Visualization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plotting island map, heatmaps of herbivore and carnivore distribution
 and line graph of herbivore and carnivore count.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -46,8 +46,6 @@ and line graph of herbivore and carnivore count.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
-herbivores and carnivores</li>
 <li><strong>img_dir</strong> – (default, None) image directory</li>
 <li><strong>img_name</strong> – str, image name</li>
 <li><strong>img_fmt</strong> – str(default, png), image fmt</li>
@@ -67,8 +65,6 @@ distribution</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
-herbivores and carnivores</li>
 <li><strong>None</strong><strong>)</strong> (<em>img_dir</em><em>(</em><em>default</em><em>,</em>) – image directory</li>
 <li><strong>img_name</strong> – str, image name</li>
 <li><strong>png</strong><strong>)</strong> (<em>img_fmt</em><em>(</em><em>default</em><em>,</em>) – str, image fmt</li>
@@ -116,7 +112,7 @@ herbivores and carnivores</li>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_carn_ax">
-<code class="descname">update_carn_ax</code><span class="sig-paren">(</span><em>carn_data</em>, <em>vmax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_carn_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_carn_ax" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_carn_ax</code><span class="sig-paren">(</span><em>carn_data</em>, <em>carn_limit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_carn_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_carn_ax" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates heatmap for carnivore distribution</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -138,7 +134,7 @@ cell</li>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_graphics">
-<code class="descname">update_graphics</code><span class="sig-paren">(</span><em>herb_pos</em>, <em>carn_pos</em>, <em>num_animals</em>, <em>col_limits</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_graphics" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_graphics</code><span class="sig-paren">(</span><em>herb_pos</em>, <em>carn_pos</em>, <em>num_animals_per_sp</em>, <em>col_limits</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_graphics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_graphics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates graphics with current data</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -164,7 +160,7 @@ on the island</li>
 
 <dl class="method">
 <dt id="Visualization.Visualization.update_herb_ax">
-<code class="descname">update_herb_ax</code><span class="sig-paren">(</span><em>herb_data</em>, <em>vmax</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_herb_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_herb_ax" title="Permalink to this definition">¶</a></dt>
+<code class="descname">update_herb_ax</code><span class="sig-paren">(</span><em>herb_data</em>, <em>herb_limit</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Visualization.html#Visualization.update_herb_ax"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Visualization.Visualization.update_herb_ax" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates heatmap for herbivore distribution</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

@@ -1,4 +1,4 @@
-Documentation of animals
+Documentation of Cycle
 ===========================
 
 The Cycle Class and its Subclasses
