@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -42,7 +43,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="Cycle"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle">[docs]</a><span class="k">class</span> <span class="nc">Cycle</span><span class="p">:</span>
+<div class="viewcode-block" id="Cycle"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle">[docs]</a><span class="k">class</span> <span class="nc">Cycle</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This class contains the componentes of the annual cycle on Rossumaøya. The</span>
 <span class="sd">    componentes follows a fixed order:</span>
@@ -62,7 +63,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span> <span class="o">=</span> <span class="n">object_matrix</span>
 
-<div class="viewcode-block" id="Cycle.food_grows"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.food_grows">[docs]</a>    <span class="k">def</span> <span class="nf">food_grows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.food_grows"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.food_grows">[docs]</a>    <span class="k">def</span> <span class="nf">food_grows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates/increases the amount of food available in Jungle and Savannah</span>
 <span class="sd">        objects.</span>
@@ -76,7 +77,7 @@
                 <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;Jungle&quot;</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Cycle.animals_eat"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.animals_eat">[docs]</a>    <span class="k">def</span> <span class="nf">animals_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.animals_eat"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_eat">[docs]</a>    <span class="k">def</span> <span class="nf">animals_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Herbivores and Carnivores eat. This happens once in every cycle</span>
 <span class="sd">        This method updates:</span>
@@ -97,7 +98,7 @@
                     <span class="k">for</span> <span class="n">carn</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">carn_sorted_rev</span><span class="p">:</span>
                         <span class="n">carn</span><span class="o">.</span><span class="n">carn_eat</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Cycle.animals_reproduce"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.animals_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">animals_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.animals_reproduce"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">animals_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Animals reproduce in every cell on the island.</span>
 <span class="sd">        Animals reproduce if they meet the conditions (for each cell)</span>
@@ -137,7 +138,7 @@
                     <span class="k">for</span> <span class="n">carn</span> <span class="ow">in</span> <span class="n">new_carns</span><span class="p">:</span>
                         <span class="n">cell</span><span class="o">.</span><span class="n">animal_object_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">carn</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Cycle.get_adjacent_migratable_cells"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.get_adjacent_migratable_cells">[docs]</a>    <span class="k">def</span> <span class="nf">get_adjacent_migratable_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.get_adjacent_migratable_cells"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.get_adjacent_migratable_cells">[docs]</a>    <span class="k">def</span> <span class="nf">get_adjacent_migratable_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method calculates the position of the adjacent migratable cells</span>
 <span class="sd">        to the current cell (with position (row, column)). Ocean and Mountain</span>
@@ -166,7 +167,7 @@
                     <span class="n">list_of_adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_t</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">list_of_adj</span></div>
 
-<div class="viewcode-block" id="Cycle.animals_migrate"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.animals_migrate">[docs]</a>    <span class="k">def</span> <span class="nf">animals_migrate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.animals_migrate"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_migrate">[docs]</a>    <span class="k">def</span> <span class="nf">animals_migrate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Animals migrate</span>
 
@@ -223,7 +224,7 @@
                                            <span class="n">cell</span><span class="o">.</span><span class="n">animal_object_list</span> <span class="k">if</span>
                                            <span class="n">animal</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">animals_moved_away</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Cycle.animals_die"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.animals_die">[docs]</a>    <span class="k">def</span> <span class="nf">animals_die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.animals_die"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_die">[docs]</a>    <span class="k">def</span> <span class="nf">animals_die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This method makes animals die. Animals die:</span>
 
@@ -250,7 +251,7 @@
                                            <span class="n">cell</span><span class="o">.</span><span class="n">animal_object_list</span> <span class="k">if</span>
                                            <span class="n">animal</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">death_list</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Cycle.animals_age"><a class="viewcode-back" href="../cycle_documentation.html#cycle.Cycle.animals_age">[docs]</a>    <span class="k">def</span> <span class="nf">animals_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Cycle.animals_age"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_age">[docs]</a>    <span class="k">def</span> <span class="nf">animals_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Increases the age of every animal at the end of the cycle</span>
 <span class="sd">        Decreases the weight of animal by eta*weight of animal&quot;&quot;&quot;</span>
@@ -278,12 +279,8 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mapping_documentation.html">Documentation of mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../geography_documentation.html">Documentation of geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization_documentation.html">Documentation of visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of mapping</a></li>
 </ul>
 
 <div class="relations">
@@ -307,14 +304,6 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -323,8 +312,8 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
     </div>
 

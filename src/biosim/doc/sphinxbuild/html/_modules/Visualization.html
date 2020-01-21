@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -41,7 +42,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 
-<div class="viewcode-block" id="Visualization"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization">[docs]</a><span class="k">class</span> <span class="nc">Visualization</span><span class="p">:</span>
+<div class="viewcode-block" id="Visualization"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization">[docs]</a><span class="k">class</span> <span class="nc">Visualization</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plotting island map, heatmaps of herbivore and carnivore distribution</span>
 <span class="sd">    and line graph of herbivore and carnivore count.</span>
@@ -77,7 +78,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_herb_line</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_carn_line</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="Visualization.set_graphics"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.set_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">x_lim</span><span class="p">):</span>
+<div class="viewcode-block" id="Visualization.set_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.set_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">x_lim</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets up the graphics with 4 subplots</span>
 
@@ -121,7 +122,7 @@
                                            <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">x_lim</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_carn_line</span> <span class="o">=</span> <span class="n">carn_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Visualization.create_map"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.create_map">[docs]</a>    <span class="k">def</span> <span class="nf">create_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Visualization.create_map"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.create_map">[docs]</a>    <span class="k">def</span> <span class="nf">create_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates island map. Called one time at the start of the simuation.</span>
 
@@ -131,7 +132,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_img_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span>
                                              <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Visualization.update_herb_ax"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.update_herb_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_herb_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_data</span><span class="p">,</span> <span class="n">herb_limit</span><span class="p">):</span>
+<div class="viewcode-block" id="Visualization.update_herb_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_herb_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_herb_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_data</span><span class="p">,</span> <span class="n">herb_limit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates heatmap for herbivore distribution</span>
 
@@ -150,7 +151,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_herb_ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_herb_axis</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_herb_ax</span><span class="p">,</span>
                                           <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Visualization.update_carn_ax"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.update_carn_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_carn_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">carn_data</span><span class="p">,</span> <span class="n">carn_limit</span><span class="p">):</span>
+<div class="viewcode-block" id="Visualization.update_carn_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_carn_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_carn_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">carn_data</span><span class="p">,</span> <span class="n">carn_limit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates heatmap for carnivore distribution</span>
 
@@ -170,7 +171,7 @@
                                           <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span>
                                           <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Visualization.update_mean_ax"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.update_mean_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_mean_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_num</span><span class="p">,</span> <span class="n">carn_num</span><span class="p">):</span>
+<div class="viewcode-block" id="Visualization.update_mean_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_mean_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_mean_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_num</span><span class="p">,</span> <span class="n">carn_num</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates linegraphs for herbivore and carnivore count</span>
 
@@ -187,7 +188,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_carn_line</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">ydata</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_step</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="Visualization.update_graphics"><a class="viewcode-back" href="../visualization_documentation.html#visualization.Visualization.update_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_pos</span><span class="p">,</span> <span class="n">carn_pos</span><span class="p">,</span> <span class="n">num_animals_per_sp</span><span class="p">,</span>
+<div class="viewcode-block" id="Visualization.update_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_pos</span><span class="p">,</span> <span class="n">carn_pos</span><span class="p">,</span> <span class="n">num_animals_per_sp</span><span class="p">,</span>
                         <span class="n">col_limits</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates graphics with current data</span>
@@ -229,12 +230,8 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mapping_documentation.html">Documentation of mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../geography_documentation.html">Documentation of geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization_documentation.html">Documentation of visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of mapping</a></li>
 </ul>
 
 <div class="relations">
@@ -258,14 +255,6 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -274,8 +263,8 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
     </div>
 

@@ -4,7 +4,7 @@
 __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
 
-from .animal import Herbivore, Carnivore
+from animal import Herbivore, Carnivore
 import numpy as np
 import math
 
