@@ -157,7 +157,7 @@ class BioSim:
                                  and carnivores
         """
         if colorbar_limits is None:
-            colorbar_limits = {"Herbivore": 200, "Carnivore": 200}
+            colorbar_limits = {"Herbivore": 50, "Carnivore": 50}
 
         self.v.create_map(self.island_matrix)
 
