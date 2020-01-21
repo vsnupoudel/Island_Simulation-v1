@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""User facing class! Has simulate function and several useful properties"""
 
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
@@ -233,6 +234,9 @@ class BioSim:
 
     @property
     def num_animals(self):
+        """
+        :return: the sum of total animals in the entire island
+        """
         return (self.num_animals_per_species['Herbivore'] +
                 self.num_animals_per_species['Carnivore'])
 
@@ -276,8 +280,8 @@ class BioSim:
 
         rows = np.shape(self.object_matrix)[0]
         columns = np.shape(self.object_matrix)[1]
-        row_nums = [r for r in range(rows) for c in range(columns)]
-        col_nums = [c for r in range(rows) for c in range(columns)]
+        row_nums = [_ for _ in range(rows) for __ in range(columns)]
+        col_nums = [_ for _ in range(rows) for __ in range(columns)]
 
         _df = pd.DataFrame(list(zip(row_nums, col_nums, herb_flat, carn_flat)),
                            columns=['Row', 'Col', 'Herbivore', 'Carnivore'],

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""File has the Animal class and its subclasses"""
 
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
@@ -75,10 +76,12 @@ class Animal:
 
     @property
     def move_prob(self):
+        """probability for the animal to migrate"""
         return self.p['mu'] * self.fitness
 
     @property
     def death_prob(self):
+        """Probability of the animal to die"""
         return self.p['omega'] * (1 - self.fitness)
 
     @classmethod
@@ -338,7 +341,7 @@ class Carnivore(Animal):
 
         for i, prob in enumerate(proba_list_c):
             cum_prop += prob
-            if val <= cum_prop:
+            if val < cum_prop:
                 new_cell = adj_cells[i]
                 new_cell.animal_object_list.append(animal)
                 break

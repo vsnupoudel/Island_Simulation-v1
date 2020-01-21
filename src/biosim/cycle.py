@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""File has the cycle class and annual cycle methods in it"""
 
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
@@ -117,14 +118,14 @@ class Cycle:
         for i in (-1, 1):
             try:
                 _t = self.object_matrix[row][column+i]
-            except:
+            except IndexError:
                 pass
             else:
                 if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:
                     list_of_adj.append(_t)
             try:
                 _t = self.object_matrix[row+i][column]
-            except:
+            except IndexError:
                 pass
             else:
                 if type(_t).__name__ in ["Desert", "Savannah", "Jungle"]:

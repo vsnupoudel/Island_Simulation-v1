@@ -39,7 +39,7 @@ if __name__ == "__main__":
             "loc": (10, 10),
             "pop": [
                 {"species": "Herbivore", "age": 5, "weight": 20}
-                for _ in range(10)
+                for _ in range(100)
             ],
         }
     ]
@@ -48,7 +48,7 @@ if __name__ == "__main__":
             "loc": (10, 10),
             "pop": [
                 {"species": "Carnivore", "age": 5, "weight": 20}
-                for _ in range(10)
+                for _ in range(100)
             ],
         }
     ]
@@ -69,9 +69,9 @@ if __name__ == "__main__":
     )
     sim.set_landscape_parameters("J", {"f_max": 700})
 
-    sim.simulate(num_years=20, vis_years=1, img_years=1)
+    sim.simulate(num_years=10, vis_years=1, img_years=1)
     sim.add_population(population=ini_carns)
-    sim.simulate(num_years=350, vis_years=1, img_years=1)
+    sim.simulate(num_years=20, vis_years=1, img_years=1)
     sim.make_movie()
 
     # plt.savefig("check_sim.pdf")

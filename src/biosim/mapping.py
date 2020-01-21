@@ -1,5 +1,5 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""File has the Cell class and its subclasses, type of terrain"""
 
 __author__ = 'Anders Huse, Bishnu Poudel'
 __email__ = 'anhuse@nmbu.no; bipo@nmbu.no'
@@ -42,8 +42,8 @@ class Cell:
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
-        self.rel_ab_carn = self.tot_herb_weight / (self.n_carns + 1) * \
-                           Carnivore.p['F']
+        self.rel_ab_carn = self.tot_herb_weight / (self.n_carns + 1
+                                                   ) * Carnivore.p['F']
         self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
 
     @property
