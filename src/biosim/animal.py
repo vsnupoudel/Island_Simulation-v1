@@ -13,11 +13,11 @@ class Animal:
     SuperClass for Herbivore and Carnivore.
     Contains methods, properties and variables that are common in both.
 
-    :ivar p:     dict, dictionary of parameters for the animal objects.
+    :cvar p:     dict, dictionary of parameters for the animal objects.
                  All parameters are None by default
-    :ivar has_procreated:   bool(default, False), whether the animal object
+    :cvar has_procreated:   bool(default, False), whether the animal object
                             has procreated or not
-    :ivar has_migrated:     bool(default, False), whether the animal object
+    :cvar has_migrated:     bool(default, False), whether the animal object
                             has migrated or not
     :ivar is_dead:          bool(default, False), whether the animal object
                             is dead or alive
@@ -103,17 +103,9 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class
 
-    :ivar p:     dict, dictionary of parameters for the Herbivore
-                              objects.
-    :ivar has_procreated:   bool(default, False), whether the animal object
-                            has procreated or not
-    :ivar has_migrated:     bool(default, False), whether the animal object
-                            has migrated or not
-    :ivar is_dead:          bool(default, False), whether the animal object
-                            is dead or alive
-    :ivar age:              int, the age of the animal
-    :ivar weight:           float, the weight of the animal
-    :ivar reprod_thresh_weight:  float, treshold weight for reproduction
+    :cvar p:         dict, dictionary of parameters for the Herbivore objects.
+    :ivar age:       int, the age of the animal
+    :ivar weight:    float, the weight of the animal
 
     """
 
@@ -145,8 +137,6 @@ class Herbivore(Animal):
         """
         Herbivores eat. This method updates the amount of food in the cell
         object and the weight of the animal.
-
-
 
         :param cell:   Cell object, the cell where this animal resides.
         """
@@ -211,16 +201,9 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     """Carnivore characteristics, subclass of Animal class
 
-    :ivar p:     dict, dictionary of parameters for the Carnivore objects.
-    :ivar has_procreated:   bool(default, False), whether the animal object
-                            has procreated or not
-    :ivar has_migrated:     bool(default, False), whether the animal object
-                            has migrated or not
-    :ivar is_dead:          bool(default, False), whether the animal object
-                            is dead or alive
-    :ivar age:              int, the age of the animal
-    :ivar weight:           float, the weight of the animal
-    :ivar reprod_thresh_weight:  float, treshold weight for reproduction
+    :cvar p:        dict, dictionary of parameters for the Carnivore objects.
+    :ivar age:      int, the age of the animal
+    :ivar weight:   float, the weight of the animal
 
     """
     p = {

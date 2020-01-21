@@ -89,8 +89,6 @@ class BioSim:
         if self.cmax_animals is None:
             self.cmax_animals = {'Herbivore': 50, 'Carnivore': 50}
 
-
-
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
@@ -146,8 +144,6 @@ class BioSim:
         :param vis_years:     int, years between visualization updates
         :param img_years:     int(default: None), years between visualizations
                               saved to files
-        :param colorbar_limits:  dict, vmax for the colorbars for herbivores
-                                 and carnivores
         """
 
         self.v.create_map(self.island_matrix)
