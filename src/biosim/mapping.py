@@ -46,7 +46,6 @@ class Cell:
                            Carnivore.p['F']
         self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
 
-
     @property
     def pi_ij_carn(self):
         """propensity for a cell object for carnivores"""
@@ -66,7 +65,6 @@ class Cell:
 
         location of cell object, type of animals, age and weight of animals
         """
-        (x, y) = input_dict['loc']
         for animal in input_dict['pop']:
             if animal['species'] == "Herbivore":
                 self.animal_object_list.append(Herbivore(age=animal[
@@ -87,7 +85,7 @@ class Cell:
     def herb_list(self):
         """List of all herbivore objects in the cell object"""
         return [a for a in self.animal_object_list
-                      if type(a).__name__ == "Herbivore"]
+                if type(a).__name__ == "Herbivore"]
 
     @property
     def herb_sorted(self):
@@ -98,19 +96,19 @@ class Cell:
     def herb_sorted_rev(self):
         """Reversed-sorted list of all herbivore objects in the cell object"""
         return sorted(self.herb_list, key=lambda animal: animal.fitness,
-                             reverse=True)
+                      reverse=True)
 
     @property
     def carn_list(self):
         """List of all carnivore objects in the cell object"""
         return [a for a in self.animal_object_list
-                      if type(a).__name__ == "Carnivore"]
+                if type(a).__name__ == "Carnivore"]
 
     @property
     def carn_sorted_rev(self):
         """Sorted list of all carnivore objects in the cell object"""
         return sorted(self.carn_list, key=lambda animal: animal.fitness,
-                         reverse=True)
+                      reverse=True)
 
     @property
     def n_herbs(self):
