@@ -12,10 +12,6 @@ class Visualization:
     Plotting island map, heatmaps of herbivore and carnivore distribution
     and line graph of herbivore and carnivore count.
 
-    :ivar img_dir:          (default, None) image directory
-    :ivar img_name:                 str, image name
-    :ivar img_fmt:          str(default, png), image fmt
-
     :ivar _fig:             plt.figure(default, None), figure to put subplots in
     :ivar _map_ax:          (default, None) plot of the island map
     :ivar _img_axis:        (default, None) axis to _map_ax
@@ -33,14 +29,7 @@ class Visualization:
 
 
     def __init__(self):
-        """
-        :param img_dir(default, None):    image directory
-        :param img_name:                  str, image name
-        :param img_fmt(default, png):     str, image fmt
-        """
-
         self._step = 0
-
         # the following will be initialized by _setup_graphics
         self._fig = None
         self._map_ax = None
