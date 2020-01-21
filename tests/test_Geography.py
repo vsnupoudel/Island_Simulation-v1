@@ -24,13 +24,14 @@ class TestGeo:
             OOO""")
 
     def test_map_gives_object_output(self, create_map):
-
+        """create_map method should give cell objects as output"""
         empty_list = []
         for row in create_map.object_matrix:
             empty_list.append([type(obj).__name__ for obj in row])
         assert empty_list == [['Ocean', 'Ocean', 'Ocean'],
                               ['Ocean', 'Jungle', 'Ocean'],
-                              ['Ocean', 'Ocean', 'Ocean']]
+                              ['Ocean', 'Ocean', 'Ocean']], \
+            "Map not created properly"
 
     def test_proper_letters(self):
         """all letters should either be: = O, M, J, S, D"""
@@ -45,6 +46,7 @@ class TestGeo:
                     JJJJJ""")
 
     def test_ocean_edges(self):
+        """There should only be ocean around the edges of the map"""
         with pytest.raises(ValueError):
             Geo(""""\
                     OOOOO
