@@ -7,15 +7,12 @@ Tests for Animal class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from animal import Animal, Herbivore, Carnivore
-from geography import Geo
-from cycle import Cycle
-from mapping import Cell, Jungle
+from biosim.animal import Herbivore, Carnivore
+from biosim.geography import Geo
+from biosim.cycle import Cycle
+from biosim.mapping import Cell
 
 import pytest
-import pytest_mock
-import numpy as np
-import random
 
 
 class TestAnimal:
@@ -97,8 +94,8 @@ class TestAnimal:
         prev_weigth = create_herb.weight
         create_herb.herb_eat(create_cycle.object_matrix[1][2])
 
-        assert create_herb.weight > prev_weigth,  \
-             "Herbivores weigth should increase after eating"
+        assert create_herb.weight > prev_weigth, \
+            "Herbivores weigth should increase after eating"
 
     def test_herb_eat_weight_increase_right_amount(self, create_herb,
                                                    create_cycle):
@@ -108,8 +105,8 @@ class TestAnimal:
         create_herb.herb_eat(create_cycle.object_matrix[1][1])
 
         assert create_herb.weight - prev_weight == \
-               create_herb.p['beta'] * create_herb.p['F'],  \
-             "Herbivores weigth increase with wrong amount"
+               create_herb.p['beta'] * create_herb.p['F'], \
+            "Herbivores weight increase with wrong amount"
 
     def test_animal_reproduce_weight_decrease(self, mocker):
         """Animals weight should decrease when giving birth"""
@@ -154,10 +151,11 @@ class TestAnimal:
         c = Carnivore(5, 10)
         cell_1 = Cell(1, 2)
         cell_2 = Cell(0, 1)
-        # mocker.patch('numpy.random.random', return_value=0)
-        h.herb_migrates(h, (1, 1), [cell_1], [1])
-        c.carn_migrates(c, (0, 0), [cell_2], [1])
+        cell_1.animal_object_list.append(h)
+        cell_2.animal_object_list.append(c)
+        mocker.patch('numpy.random.random', return_value=0)
+        h.herb_migrates(h, [Cell(1, 1)], [1])
+        c.carn_migrates(c, [Cell(0, 0)], [1])
 
         assert len(cell_1.animal_object_list) == 1, "Migration unsucsessfull"
         assert len(cell_2.animal_object_list) == 1, "Migration unsucsessfull"
-
