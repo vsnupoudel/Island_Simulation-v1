@@ -4,11 +4,13 @@
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
-from cycle import Cycle
-from geography import Geo
-from visualization import Visualization
-from mapping import Savannah, Jungle
-from animal import Herbivore, Carnivore
+import shutil
+
+from .cycle import Cycle
+from .geography import Geo
+from .visualization import Visualization
+from .mapping import Savannah, Jungle
+from .animal import Herbivore, Carnivore
 
 import numpy as np
 import pandas as pd
@@ -65,8 +67,9 @@ class BioSim:
                             number of year for which the user wants to
                             simulate, default = 60
         :param img_base: Path relative to the code being run, where the user
-                         intends to store the images. If is none,
-                         no image is stored
+                         intends to store the images. Also can specify the
+                         whole path of the computer. If is none,
+                         no image is stored.
         :param img_fmt: String with file type for figures, e.g. 'png'
         :param cmax_animals: Dict specifying color-code limits for animal
                              densities
@@ -96,6 +99,12 @@ class BioSim:
 
         self.v = Visualization()
         self.v.set_graphics(self.ymax_animals, self.total_years)
+
+        if self.img_base:
+            if os.path.exists(self.img_base):
+                for root, dirs, files in os.walk(self.img_base, topdown=False):
+                    for name in files:
+                        os.remove(os.path.join(root, name))
 
     def set_animal_parameters(self, species, params):
         """
@@ -146,6 +155,9 @@ class BioSim:
                               saved to files
         """
 
+
+
+
         self.v.create_map(self.island_matrix)
 
         step = 0
@@ -159,7 +171,6 @@ class BioSim:
             plt.savefig('{}\\_{:05d}.{}'.format(self.img_base, self.num_images,
                                                 self.img_fmt))
 
-        # plt.savefig('Images\\Image-{0:03d}.png'.format(self.num_images))
 
         c = Cycle(self.object_matrix)
         while step <= num_years:
@@ -297,9 +308,17 @@ class BioSim:
 
         return island_matrix
 
-    def make_movie(self):
-        """Makes a movie of a series of images"""
-        subprocess.run(['ffmpeg',
+    def make_movie(self, full_path_and_file = None):
+        """
+        Makes a movie of a series of images
+
+        :param full_path_and_file: full path, including filename of
+                                    the ffmpeg.exe file
+         """
+        if full_path_and_file is None:
+            full_path_and_file = r'.\ffmpeg'
+
+        subprocess.run([full_path_and_file,
                         '-f', 'image2',
                         '-r', '3',
                         '-i', self.img_base+'\\_%05d.png',
