@@ -3,12 +3,11 @@
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from simulation import BioSim
-from mapping import Savannah, Jungle
-from animal import Herbivore, Carnivore
+from biosim.simulation import BioSim
+from biosim.mapping import Savannah, Jungle
+from biosim.animal import Herbivore, Carnivore
 import numpy as np
 import pytest
-from pytest_mock import mocker
 
 
 class TestSimulation:
@@ -17,12 +16,12 @@ class TestSimulation:
     @pytest.fixture()
     def input_map(self):
         """returns map where required in tests below"""
-        map = """\
+
+        return """\
                      OOOOOOOOO
                      OSSJJSSOO
                      OOOOOOOOO
                      """
-        return map
 
     @pytest.fixture()
     def ini_pop(self):
@@ -67,18 +66,18 @@ class TestSimulation:
 
     @pytest.fixture()
     def create_s(self, input_map, ini_pop):
-        s = BioSim(input_map, ini_pop, seed=1)
-        return s
+        """Makes BioSim object"""
+        return BioSim(input_map, ini_pop, seed=1)
 
     def test_set_landscape_parameters(self, create_s):
-        "set_landscape_parameters shold change parameters sucsessfully"
+        """set_landscape_parameters shold change parameters sucsessfully"""
         create_s.set_landscape_parameters("S", {"f_max": 700})
         create_s.set_landscape_parameters("J", {"f_max": 600})
         assert Savannah.parameters["f_max"] == 700
         assert Jungle.parameters["f_max"] == 600
 
     def test_set_animal_parameters(self, create_s):
-        "set_animal_parameters shold change parameters sucsessfully"
+        """set_animal_parameters shold change parameters sucsessfully"""
 
         create_s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
         create_s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
@@ -104,13 +103,13 @@ class TestSimulation:
         """shape of herbivore_distribution should be the same as for
         the object_matrix"""
         assert np.shape(create_s.herbivore_distribution) ==\
-        np.shape(create_s.object_matrix)
+            np.shape(create_s.object_matrix)
 
     def test_shape_carnivore_distributin(self, create_s):
         """shape of carnivore_distribution should be the same as for
          the object_matrix"""
-        assert np.shape(create_s.carnivore_distribution) == \
-        np.shape(create_s.object_matrix)
+        assert np.shape(create_s.carnivore_distribution) ==\
+            np.shape(create_s.object_matrix)
 
     def test_carnivore_distributin(self, create_s):
         """test for carnivore_distribution property"""
@@ -125,13 +124,10 @@ class TestSimulation:
         s = BioSim(input_map, ini_pop, seed=123)
         prev_number_of_animals = s.num_animals_per_species
         s.simulate()
-        assert s.num_animals_per_species['Herbivore'] != prev_number_of_animals[
-            'Herbivore']
-        assert s.num_animals_per_species['Carnivore'] != prev_number_of_animals[
-            'Carnivore']
+        assert s.num_animals_per_species['Herbivore'] !=\
+            prev_number_of_animals['Herbivore']
+        assert s.num_animals_per_species['Carnivore'] !=\
+            prev_number_of_animals['Carnivore']
 
     def test_make_movie(self, create_s):
         pass
-
-
-

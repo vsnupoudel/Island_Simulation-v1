@@ -8,12 +8,9 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 
-from src.biosim.simulation import BioSim
-from src.biosim.mapping import Cell, Savannah, Jungle
-from src.biosim.animal import Herbivore, Carnivore
-from src.biosim.visualization import Visualization
+from biosim.simulation import BioSim
+from biosim.visualization import Visualization
 
-import numpy as np
 import pytest
 
 
