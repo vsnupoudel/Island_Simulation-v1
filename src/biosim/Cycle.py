@@ -86,7 +86,6 @@ class Cycle:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     new_herbs = []
-
                     for animal in cell.herb_list:
                         new = animal.herb_reproduce(cell.n_herbs)
                         if new:
@@ -218,8 +217,11 @@ class Cycle:
                                            animal not in death_list]
 
     def animals_age(self):
-        """Increases the age of every animal at the end of the cycle"""
+        """
+        Increases the age of every animal at the end of the cycle
+        Decreases the weight of animal by eta*weight of animal"""
         for  list_of_obj in self.object_matrix:
             for  cell in list_of_obj:
                 for animal in cell.animal_object_list:
                     animal.age += 1
+                    animal.weight -= animal.p['eta']*animal.weight

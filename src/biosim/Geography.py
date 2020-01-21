@@ -54,7 +54,6 @@ class Geo:
         self.geo_shape = None
         self.object_matrix = []
 
-
         # check if input characters are valid letters
         for line in self.lines:
             for letter in line:
