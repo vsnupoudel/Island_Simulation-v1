@@ -9,8 +9,12 @@ Welcome to Modelling the Ecosystem of an Island- Group 4's documentation!
 .. toctree::
    :maxdepth: 3
    
-   Cycle_documentation   
-   Mapping_documentation
+   simulation_documentation
+   cycle_documentation   
+   mapping_documentation
+   animal_documentation
+   geography_documentation
+   visualization_documentation
    
 
 

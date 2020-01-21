@@ -14,15 +14,15 @@ class Cell:
     Super class for the type of Terrain: Jungle, Savannah, Desert,
     Ocean or Mountain.
 
-    :ivar row:      int, row index of the position of the cell
-    :ivar column:   int, column index of the position of the cell
+    :var row:      int, row index of the position of the cell
+    :var column:   int, column index of the position of the cell
                             has procreated or not
-    :ivar f_ij:     float(default=0), food avilable in each cell
-    :ivar animal_object_list:   list, list of animal objects
-    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell
-    :ivar rel_ab_carn:          float, relative abundance of fodder for
+    :var f_ij:     float(default=0), food avilable in each cell
+    :var animal_object_list:   list, list of animal objects
+    :var tot_herb_weight:      float, total weigth of all herbivores in a cell
+    :var rel_ab_carn:          float, relative abundance of fodder for
                                 carnivores
-    :ivar rel_ab_herb:          float, relative abundance of fodder for
+    :var rel_ab_herb:          float, relative abundance of fodder for
                                 herbivores
 
     """

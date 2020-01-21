@@ -13,7 +13,6 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -36,6 +35,69 @@
 <h1>Documentation of geography<a class="headerlink" href="#documentation-of-geography" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-geography-class-and-its-subclasses">
 <h2>The geography Class and its Subclasses<a class="headerlink" href="#the-geography-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-geography"></span><p>Geo class</p>
+<dl class="class">
+<dt id="geography.Geo">
+<em class="property">class </em><code class="descclassname">geography.</code><code class="descname">Geo</code><span class="sig-paren">(</span><em>geo_matrix_input_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/geography.html#Geo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#geography.Geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for the islands geography. This class:</p>
+<ul class="simple">
+<li>Stores the size/shape of the geography of the island</li>
+<li>Converts string input of map, consisting of letters corresponding to
+landscape types into a 2D matrix of objects</li>
+<li>Objects can only be one of the five Landscape types: Ocean (O), Savannah
+(S), desert (D), jungle (J) and mountain (M)</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>geo_matrix_input_string</strong> – str, String with map coordinates</li>
+<li><strong>geo_graph</strong> – str, input string without whitespace</li>
+<li><strong>lines</strong> – list, list of each line of the input
+string</li>
+<li><strong>geo_shape</strong> – tuple(default, None), Shape of the
+geography</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:ivar object_matrix
+:ivar geo_list:                  list, 2D list of string characters
+:ivar first_row:                 str, characters of the first row of the</p>
+<blockquote>
+<div>map</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>last_row</strong> – str, characters of the last row of the map</li>
+<li><strong>first_column</strong> – list, characters of the first column of
+the map</li>
+<li><strong>last_column</strong> – list, characters of the last column of
+the map</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Checks if input characters are valid letters</li>
+<li>Checks if all rows in map have equal length</li>
+<li>Checks that ocean (“O”) is around all edges of map</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>geo_matrix_input_string</strong> – str, String with map coordinates</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 </div>
 
@@ -56,10 +118,6 @@
 
 
 <h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of mapping</a></li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
@@ -80,6 +138,14 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -88,11 +154,11 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="_sources/Geography_documentation.rst.txt"
+      <a href="_sources/geography_documentation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

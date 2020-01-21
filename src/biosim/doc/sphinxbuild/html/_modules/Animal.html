@@ -13,7 +13,6 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -43,7 +42,7 @@
 <span class="kn">import</span> <span class="nn">math</span>
 
 
-<div class="viewcode-block" id="Animal"><a class="viewcode-back" href="../Animal_documentation.html#animal.Animal">[docs]</a><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+<div class="viewcode-block" id="Animal"><a class="viewcode-back" href="../animal_documentation.html#animal.Animal">[docs]</a><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SuperClass for Herbivore and Carnivore.</span>
 <span class="sd">    Contains methods, properties and variables that are common in both.</span>
@@ -119,7 +118,7 @@
         <span class="sd">&quot;&quot;&quot;Probability of the animal to die&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;omega&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Animal.up_par"><a class="viewcode-back" href="../Animal_documentation.html#animal.Animal.up_par">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Animal.up_par"><a class="viewcode-back" href="../animal_documentation.html#animal.Animal.up_par">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">up_par</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">params_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates the animal parameters</span>
@@ -135,7 +134,7 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params_dict</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Herbivore"><a class="viewcode-back" href="../Animal_documentation.html#animal.Herbivore">[docs]</a><span class="k">class</span> <span class="nc">Herbivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<div class="viewcode-block" id="Herbivore"><a class="viewcode-back" href="../animal_documentation.html#animal.Herbivore">[docs]</a><span class="k">class</span> <span class="nc">Herbivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Herbivore characteristics, subclass of Animal class</span>
 
 <span class="sd">    :ivar p:     dict, dictionary of parameters for the Herbivore</span>
@@ -176,7 +175,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Herbivore.herb_eat"><a class="viewcode-back" href="../Animal_documentation.html#animal.Herbivore.herb_eat">[docs]</a>    <span class="k">def</span> <span class="nf">herb_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="Herbivore.herb_eat"><a class="viewcode-back" href="../animal_documentation.html#animal.Herbivore.herb_eat">[docs]</a>    <span class="k">def</span> <span class="nf">herb_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Herbivores eat. This method updates the amount of food in the cell</span>
 <span class="sd">        object and the weight of the animal.</span>
@@ -192,7 +191,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">cell</span><span class="o">.</span><span class="n">f_ij</span>
             <span class="n">cell</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="Herbivore.herb_reproduce"><a class="viewcode-back" href="../Animal_documentation.html#animal.Herbivore.herb_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">herb_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<div class="viewcode-block" id="Herbivore.herb_reproduce"><a class="viewcode-back" href="../animal_documentation.html#animal.Herbivore.herb_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">herb_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reproduction for herbivores. The weight of the mother animal decreases</span>
 <span class="sd">        when it gives birth.</span>
@@ -220,7 +219,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="n">baby_weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;xi&#39;</span><span class="p">]</span>
                 <span class="k">return</span> <span class="n">Herbivore</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">baby_weight</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Herbivore.herb_migrates"><a class="viewcode-back" href="../Animal_documentation.html#animal.Herbivore.herb_migrates">[docs]</a>    <span class="k">def</span> <span class="nf">herb_migrates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">animal</span><span class="p">,</span> <span class="n">adj_cells</span><span class="p">,</span> <span class="n">proba_list_h</span><span class="p">):</span>
+<div class="viewcode-block" id="Herbivore.herb_migrates"><a class="viewcode-back" href="../animal_documentation.html#animal.Herbivore.herb_migrates">[docs]</a>    <span class="k">def</span> <span class="nf">herb_migrates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">animal</span><span class="p">,</span> <span class="n">adj_cells</span><span class="p">,</span> <span class="n">proba_list_h</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Herbivore migrates. This method decides which cell the animal migrates</span>
 <span class="sd">        to, of the adjacent cells to the current cell.</span>
@@ -243,7 +242,7 @@
                 <span class="k">break</span></div></div>
 
 
-<div class="viewcode-block" id="Carnivore"><a class="viewcode-back" href="../Animal_documentation.html#animal.Carnivore">[docs]</a><span class="k">class</span> <span class="nc">Carnivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<div class="viewcode-block" id="Carnivore"><a class="viewcode-back" href="../animal_documentation.html#animal.Carnivore">[docs]</a><span class="k">class</span> <span class="nc">Carnivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Carnivore characteristics, subclass of Animal class</span>
 
 <span class="sd">    :ivar p:     dict, dictionary of parameters for the Carnivore objects.</span>
@@ -284,7 +283,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Carnivore.carn_eat"><a class="viewcode-back" href="../Animal_documentation.html#animal.Carnivore.carn_eat">[docs]</a>    <span class="k">def</span> <span class="nf">carn_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+<div class="viewcode-block" id="Carnivore.carn_eat"><a class="viewcode-back" href="../animal_documentation.html#animal.Carnivore.carn_eat">[docs]</a>    <span class="k">def</span> <span class="nf">carn_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Carnivores eat.</span>
 <span class="sd">        When Carnivores eat, this method:</span>
@@ -331,7 +330,7 @@
             <span class="n">animal</span> <span class="k">for</span> <span class="n">animal</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">animal_object_list</span>
             <span class="k">if</span> <span class="n">animal</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dead_list</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="Carnivore.carn_reproduce"><a class="viewcode-back" href="../Animal_documentation.html#animal.Carnivore.carn_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">carn_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<div class="viewcode-block" id="Carnivore.carn_reproduce"><a class="viewcode-back" href="../animal_documentation.html#animal.Carnivore.carn_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">carn_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reproduction for carnivores</span>
 
@@ -358,7 +357,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="n">baby_weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;xi&#39;</span><span class="p">]</span>
                 <span class="k">return</span> <span class="n">Carnivore</span><span class="p">(</span><span class="n">age</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">baby_weight</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Carnivore.carn_migrates"><a class="viewcode-back" href="../Animal_documentation.html#animal.Carnivore.carn_migrates">[docs]</a>    <span class="k">def</span> <span class="nf">carn_migrates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">animal</span><span class="p">,</span> <span class="n">adj_cells</span><span class="p">,</span> <span class="n">proba_list_c</span><span class="p">):</span>
+<div class="viewcode-block" id="Carnivore.carn_migrates"><a class="viewcode-back" href="../animal_documentation.html#animal.Carnivore.carn_migrates">[docs]</a>    <span class="k">def</span> <span class="nf">carn_migrates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">animal</span><span class="p">,</span> <span class="n">adj_cells</span><span class="p">,</span> <span class="n">proba_list_c</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Carnivore migrates. This method decides which cell the animal migrates</span>
 <span class="sd">        to, of the adjacent cells to the current cell.</span>
@@ -399,8 +398,12 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cycle_documentation.html">Documentation of cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mapping_documentation.html">Documentation of mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geography_documentation.html">Documentation of geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization_documentation.html">Documentation of visualization</a></li>
 </ul>
 
 <div class="relations">
@@ -424,6 +427,14 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -432,8 +443,8 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 

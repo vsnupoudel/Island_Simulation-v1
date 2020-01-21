@@ -59,21 +59,20 @@ class BioSim:
         :param ini_pop: List of dictionaries specifying initial population
         :param seed: Integer used as random number seed
         :param ymax_animals: Number specifying y-axis limit for graph
-        showing total animal numbers, default is ten thousand
+                             showing total animal numbers, default is
+                             ten thousand
         :param total_years: The xlimit of the line graph, should specify total
-        number of year for which the user wants to simulate, default = 60
+                            number of year for which the user wants to
+                            simulate, default = 60
         :param img_base: Path relative to the code being run, where the user
-        intends to store the images. If is none, no image is stored
+                         intends to store the images. If is none,
+                         no image is stored
         :param img_fmt: String with file type for figures, e.g. 'png'
         :param cmax_animals: Dict specifying color-code limits for animal
-         densities
+                             densities
 
         total_years should be greater than the sum of individual years of
         simulations.
-
-        If cmax_animals is None, sensible, fixed default values should be used.
-        cmax_animals is a dict mapping species names to numbers, e.g.,
-           {'Herbivore': 50, 'Carnivore': 20}
 
         """
         self.num_images = 0

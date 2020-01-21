@@ -13,9 +13,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation of cycle" href="cycle_documentation.html" />
+    <link rel="prev" title="Welcome to Modelling the Ecosystem of an Island- Group 4’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -36,6 +37,210 @@
 <h1>Documentation of simulation<a class="headerlink" href="#documentation-of-simulation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-simulation-class-and-its-subclasses">
 <h2>The simulation Class and its Subclasses<a class="headerlink" href="#the-simulation-class-and-its-subclasses" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-simulation"></span><p>User facing class! Has simulate function and several useful properties</p>
+<dl class="class">
+<dt id="simulation.BioSim">
+<em class="property">class </em><code class="descclassname">simulation.</code><code class="descname">BioSim</code><span class="sig-paren">(</span><em>island_map</em>, <em>ini_pop</em>, <em>seed=1</em>, <em>ymax_animals=12000</em>, <em>total_years=500</em>, <em>img_base=None</em>, <em>img_fmt='png'</em>, <em>cmax_animals=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize and execute simulation. This class takes in map and population,
+and converts them to objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
+<li><strong>island_map</strong> – str, Multi-line string specifying island geography</li>
+<li><strong>ini_pop</strong> – list, List of dictionaries specifying initial
+population</li>
+<li><strong>seed</strong> – int(default, 1), random number seed</li>
+<li><strong>ymax_animals</strong> – int(default, 10000), Number specifying y-axis limit
+for graph showing animal numbers
+color-code limits for animal densities</li>
+<li><strong>total_years</strong> – int(default, 60), total number of years for all the
+sub-simulations</li>
+<li><strong>img_base</strong> – </li>
+<li><strong>img_fmt</strong> – str(default, png), image fmt</li>
+<li><strong>num_images</strong> – int(default, 0), number of images</li>
+<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
+herbivores and carnivores</li>
+<li><strong>v</strong> – Instance of Visualization class</li>
+<li><strong>v.set_graphics</strong> – Graphics are set</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>island_map</strong> – Multi-line string specifying island geography</li>
+<li><strong>ini_pop</strong> – List of dictionaries specifying initial population</li>
+<li><strong>seed</strong> – Integer used as random number seed</li>
+<li><strong>ymax_animals</strong> – Number specifying y-axis limit for graph
+showing total animal numbers, default is
+ten thousand</li>
+<li><strong>total_years</strong> – The xlimit of the line graph, should specify total
+number of year for which the user wants to
+simulate, default = 60</li>
+<li><strong>img_base</strong> – Path relative to the code being run, where the user
+intends to store the images. If is none,
+no image is stored</li>
+<li><strong>img_fmt</strong> – String with file type for figures, e.g. ‘png’</li>
+<li><strong>cmax_animals</strong> – Dict specifying color-code limits for animal
+densities</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>total_years should be greater than the sum of individual years of
+simulations.</p>
+<dl class="method">
+<dt id="simulation.BioSim.add_population">
+<code class="descname">add_population</code><span class="sig-paren">(</span><em>population</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.add_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.add_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a population to the island</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>population</strong> – list, List of dictionaries specifying population</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.animal_distribution">
+<code class="descname">animal_distribution</code><a class="headerlink" href="#simulation.BioSim.animal_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pandas DataFrame with animal count for each cell on island.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.carnivore_distribution">
+<code class="descname">carnivore_distribution</code><a class="headerlink" href="#simulation.BioSim.carnivore_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D matrix with carnivore count for each cell on the island.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.herbivore_distribution">
+<code class="descname">herbivore_distribution</code><a class="headerlink" href="#simulation.BioSim.herbivore_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D matrix with herbivore count for each cell on the island.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.island_matrix">
+<code class="descname">island_matrix</code><a class="headerlink" href="#simulation.BioSim.island_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a color map according to the type of landscape in each cell.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="simulation.BioSim.make_movie">
+<code class="descname">make_movie</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.make_movie"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.make_movie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a movie of a series of images</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.num_animals">
+<code class="descname">num_animals</code><a class="headerlink" href="#simulation.BioSim.num_animals" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the sum of total animals in the entire island</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.num_animals_per_species">
+<code class="descname">num_animals_per_species</code><a class="headerlink" href="#simulation.BioSim.num_animals_per_species" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of herbivores and carnivores on island</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">animals_count_dict  dict, dictionary containing number of
+herbivores and carnivores on island</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simulation.BioSim.set_animal_parameters">
+<code class="descname">set_animal_parameters</code><span class="sig-paren">(</span><em>species</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.set_animal_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.set_animal_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parameters for animal species.
+:param species:  string, name of animal species
+:param params:   dict, valid parameter specification for species</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="simulation.BioSim.set_landscape_parameters">
+<code class="descname">set_landscape_parameters</code><span class="sig-paren">(</span><em>landscape</em>, <em>params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.set_landscape_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.set_landscape_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set parameters for landscape type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>landscape</strong> – string, code letter for landscape</li>
+<li><strong>params</strong> – dict, parameter specification for landscape</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="simulation.BioSim.simulate">
+<code class="descname">simulate</code><span class="sig-paren">(</span><em>num_years=20</em>, <em>vis_years=1</em>, <em>img_years=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/simulation.html#BioSim.simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#simulation.BioSim.simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs simulation while visualizing the result.
+This method will:</p>
+<ul class="simple">
+<li>Make a Images directory if it does not exist</li>
+<li>Make a Visualization object to plot the initial state of the
+map and population</li>
+<li>Create the first plot which is the map of the island</li>
+<li>Update the remaining three plots among the subplots, which contain
+Herbivore and Carnivore distribution and line graphs of herbivore
+and carnivore count</li>
+<li>Save the figure as an image (png)</li>
+<li>Execute the cycle in fixed order and then update graphics and number
+of steps (years)</li>
+<li>At last, make movie out of the pictures stored</li>
+</ul>
+<p>Image files will be numbered consecutively.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>num_years</strong> – int, number of years to simulate, default
+number is 20</li>
+<li><strong>vis_years</strong> – int, years between visualization updates</li>
+<li><strong>img_years</strong> – int(default: None), years between visualizations
+saved to files</li>
+<li><strong>colorbar_limits</strong> – dict, vmax for the colorbars for herbivores
+and carnivores</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="simulation.BioSim.year">
+<code class="descname">year</code><a class="headerlink" href="#simulation.BioSim.year" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">year    int, current year on island</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -56,15 +261,20 @@
 
 
 <h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Mapping_documentation.html">Documentation of mapping</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-simulation-class-and-its-subclasses">The simulation Class and its Subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cycle_documentation.html">Documentation of cycle</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Modelling the Ecosystem of an Island- Group 4’s documentation!</a></li>
+      <li>Next: <a href="cycle_documentation.html" title="next chapter">Documentation of cycle</a></li>
   </ul></li>
 </ul>
 </div>
@@ -80,6 +290,14 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -88,8 +306,8 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/simulation_documentation.rst.txt"
