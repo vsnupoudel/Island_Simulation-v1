@@ -47,11 +47,11 @@
 <span class="sd">    SuperClass for Herbivore and Carnivore.</span>
 <span class="sd">    Contains methods, properties and variables that are common in both.</span>
 
-<span class="sd">    :ivar p:     dict, dictionary of parameters for the animal objects.</span>
+<span class="sd">    :cvar p:     dict, dictionary of parameters for the animal objects.</span>
 <span class="sd">                 All parameters are None by default</span>
-<span class="sd">    :ivar has_procreated:   bool(default, False), whether the animal object</span>
+<span class="sd">    :cvar has_procreated:   bool(default, False), whether the animal object</span>
 <span class="sd">                            has procreated or not</span>
-<span class="sd">    :ivar has_migrated:     bool(default, False), whether the animal object</span>
+<span class="sd">    :cvar has_migrated:     bool(default, False), whether the animal object</span>
 <span class="sd">                            has migrated or not</span>
 <span class="sd">    :ivar is_dead:          bool(default, False), whether the animal object</span>
 <span class="sd">                            is dead or alive</span>
@@ -137,17 +137,9 @@
 <div class="viewcode-block" id="Herbivore"><a class="viewcode-back" href="../animal_documentation.html#animal.Herbivore">[docs]</a><span class="k">class</span> <span class="nc">Herbivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Herbivore characteristics, subclass of Animal class</span>
 
-<span class="sd">    :ivar p:     dict, dictionary of parameters for the Herbivore</span>
-<span class="sd">                              objects.</span>
-<span class="sd">    :ivar has_procreated:   bool(default, False), whether the animal object</span>
-<span class="sd">                            has procreated or not</span>
-<span class="sd">    :ivar has_migrated:     bool(default, False), whether the animal object</span>
-<span class="sd">                            has migrated or not</span>
-<span class="sd">    :ivar is_dead:          bool(default, False), whether the animal object</span>
-<span class="sd">                            is dead or alive</span>
-<span class="sd">    :ivar age:              int, the age of the animal</span>
-<span class="sd">    :ivar weight:           float, the weight of the animal</span>
-<span class="sd">    :ivar reprod_thresh_weight:  float, treshold weight for reproduction</span>
+<span class="sd">    :cvar p:         dict, dictionary of parameters for the Herbivore objects.</span>
+<span class="sd">    :ivar age:       int, the age of the animal</span>
+<span class="sd">    :ivar weight:    float, the weight of the animal</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -179,8 +171,6 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Herbivores eat. This method updates the amount of food in the cell</span>
 <span class="sd">        object and the weight of the animal.</span>
-
-
 
 <span class="sd">        :param cell:   Cell object, the cell where this animal resides.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -245,16 +235,9 @@
 <div class="viewcode-block" id="Carnivore"><a class="viewcode-back" href="../animal_documentation.html#animal.Carnivore">[docs]</a><span class="k">class</span> <span class="nc">Carnivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Carnivore characteristics, subclass of Animal class</span>
 
-<span class="sd">    :ivar p:     dict, dictionary of parameters for the Carnivore objects.</span>
-<span class="sd">    :ivar has_procreated:   bool(default, False), whether the animal object</span>
-<span class="sd">                            has procreated or not</span>
-<span class="sd">    :ivar has_migrated:     bool(default, False), whether the animal object</span>
-<span class="sd">                            has migrated or not</span>
-<span class="sd">    :ivar is_dead:          bool(default, False), whether the animal object</span>
-<span class="sd">                            is dead or alive</span>
-<span class="sd">    :ivar age:              int, the age of the animal</span>
-<span class="sd">    :ivar weight:           float, the weight of the animal</span>
-<span class="sd">    :ivar reprod_thresh_weight:  float, treshold weight for reproduction</span>
+<span class="sd">    :cvar p:        dict, dictionary of parameters for the Carnivore objects.</span>
+<span class="sd">    :ivar age:      int, the age of the animal</span>
+<span class="sd">    :ivar weight:   float, the weight of the animal</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">p</span> <span class="o">=</span> <span class="p">{</span>

@@ -28,7 +28,7 @@ class Geo:
                                      string
     :ivar geo_shape:                 tuple(default, None), Shape of the
                                      geography
-    :ivar object_matrix
+    :ivar object_matrix:             list, 2D list of cell objects
     :ivar geo_list:                  list, 2D list of string characters
     :ivar first_row:                 str, characters of the first row of the
                                      map

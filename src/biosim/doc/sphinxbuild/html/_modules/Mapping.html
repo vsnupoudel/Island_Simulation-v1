@@ -48,15 +48,15 @@
 <span class="sd">    Super class for the type of Terrain: Jungle, Savannah, Desert,</span>
 <span class="sd">    Ocean or Mountain.</span>
 
-<span class="sd">    :cvar row:      int, row index of the position of the cell</span>
-<span class="sd">    :cvar column:   int, column index of the position of the cell</span>
+<span class="sd">    :var row:      int, row index of the position of the cell</span>
+<span class="sd">    :var column:   int, column index of the position of the cell</span>
 <span class="sd">                            has procreated or not</span>
-<span class="sd">    :cvar f_ij:     float(default=0), food avilable in each cell</span>
-<span class="sd">    :cvar animal_object_list:   list, list of animal objects</span>
-<span class="sd">    :cvar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
-<span class="sd">    :cvar rel_ab_carn:          float, relative abundance of fodder for</span>
+<span class="sd">    :var f_ij:     float(default=0), food avilable in each cell</span>
+<span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
+<span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
+<span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
 <span class="sd">                                carnivores</span>
-<span class="sd">    :cvar rel_ab_herb:          float, relative abundance of fodder for</span>
+<span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
 <span class="sd">                                herbivores</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -162,7 +162,7 @@
 <span class="sd">    :cvar parameters:   dict, dictionary of Jungle parameters, containing:</span>
 <span class="sd">                        f_max: int, maximal available food in Jungle object</span>
 <span class="sd">                        alpha: (default, None), parameter</span>
-<span class="sd">    :var is_migratable:  bool(default, True), whether the cell is migratable</span>
+<span class="sd">    :cvar is_migratable:  bool(default, True), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
 
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
@@ -192,11 +192,11 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Savannah landscape. Child class of the Cell class.</span>
 
-<span class="sd">    :ivar parameters:   dict, dictionary of Savannah parameters, containing:</span>
+<span class="sd">    :cvar parameters:   dict, dictionary of Savannah parameters, containing:</span>
 <span class="sd">                        f_max: int(default, 300), maximal available food in</span>
 <span class="sd">                               Jungle object</span>
 <span class="sd">                        alpha: (default, 0.3), parameter</span>
-<span class="sd">    :ivar is_migratable:  bool(default, True), whether the cell is migratable</span>
+<span class="sd">    :cvar is_migratable:  bool(default, True), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
@@ -226,7 +226,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Desert landscape. Child class of the Cell class.</span>
 
-<span class="sd">    :ivar is_migratable:  bool(default, True), whether the cell is migratable</span>
+<span class="sd">    :cvar is_migratable:  bool(default, True), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
@@ -250,7 +250,7 @@
 <div class="viewcode-block" id="Ocean"><a class="viewcode-back" href="../mapping_documentation.html#mapping.Ocean">[docs]</a><span class="k">class</span> <span class="nc">Ocean</span><span class="p">(</span><span class="n">Cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Ocean landscape. Child class of the Cell class.</span>
 
-<span class="sd">    :ivar is_migratable:  bool(default, False), whether the cell is migratable</span>
+<span class="sd">    :cvar is_migratable:  bool(default, False), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
@@ -271,7 +271,7 @@
 <div class="viewcode-block" id="Mountain"><a class="viewcode-back" href="../mapping_documentation.html#mapping.Mountain">[docs]</a><span class="k">class</span> <span class="nc">Mountain</span><span class="p">(</span><span class="n">Cell</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mountian landscape.  Child class of the Cell class.</span>
 
-<span class="sd">    :ivar is_migratable:  bool(default, False), whether the cell is migratable</span>
+<span class="sd">    :cvar is_migratable:  bool(default, False), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>

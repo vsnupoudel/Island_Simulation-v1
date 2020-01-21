@@ -123,8 +123,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Herbivore&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;Carnivore&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
 
-
-
         <span class="c1"># Set the population in respective cell in the matrix</span>
         <span class="k">for</span> <span class="n">one_location_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ini_pop</span><span class="p">:</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">one_location_list</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">one_location_list</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -180,8 +178,6 @@
 <span class="sd">        :param vis_years:     int, years between visualization updates</span>
 <span class="sd">        :param img_years:     int(default: None), years between visualizations</span>
 <span class="sd">                              saved to files</span>
-<span class="sd">        :param colorbar_limits:  dict, vmax for the colorbars for herbivores</span>
-<span class="sd">                                 and carnivores</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">create_map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_matrix</span><span class="p">)</span>
