@@ -28,7 +28,7 @@ class Animal:
     """
     has_procreated = False
     has_migrated = False
-    p = {"w_birth": None,
+    animal_params = {"w_birth": None,
          "sigma_birth": None,
          "beta": None,
          "eta": None,
@@ -55,12 +55,12 @@ class Animal:
         self.is_dead = False
 
         if self.weight is None:
-            self.weight = np.random.normal(self.p['w_birth'],
-                                           self.p['sigma_birth'])
+            self.weight = np.random.normal(self.animal_params['w_birth'],
+                                           self.animal_params['sigma_birth'])
         self.has_migrated = False
 
-        self.reprod_thresh_weight = self.p['zeta'] * (self.p['w_birth'] +
-                                                      self.p['sigma_birth'])
+        self.reprod_thresh_weight = self.animal_params['zeta'] * (self.animal_params['w_birth'] +
+                                                      self.animal_params['sigma_birth'])
 
     @property
     def fitness(self):
@@ -69,20 +69,20 @@ class Animal:
             return 0
         else:
 
-            return (1 / (1 + math.e ** (self.p['phi_age'] * (
-                    self.age - self.p['a_half']))))  \
-                   * (1 / (1 + math.e ** (- self.p['phi_weight'] * (
-                    self.weight - self.p['w_half']))))
+            return (1 / (1 + math.e ** (self.animal_params['phi_age'] * (
+                    self.age - self.animal_params['a_half']))))  \
+                   * (1 / (1 + math.e ** (- self.animal_params['phi_weight'] * (
+                    self.weight - self.animal_params['w_half']))))
 
     @property
     def move_prob(self):
         """probability for the animal to migrate"""
-        return self.p['mu'] * self.fitness
+        return self.animal_params['mu'] * self.fitness
 
     @property
     def death_prob(self):
         """Probability of the animal to die"""
-        return self.p['omega'] * (1 - self.fitness)
+        return self.animal_params['omega'] * (1 - self.fitness)
 
     @classmethod
     def up_par(cls, params_dict):
@@ -92,12 +92,12 @@ class Animal:
         :param params_dict: Dictionary of parameters to be updated
         """
         for k, v in params_dict.items():
-            if k not in cls.p:
+            if k not in cls.animal_params:
                 raise ValueError(k, ' is an invalid Key')
             if v <= 0:
                 raise ValueError(k, v, ' Param value must be positive')
 
-        cls.p.update(params_dict)
+        cls.animal_params.update(params_dict)
 
 
 class Herbivore(Animal):
@@ -109,7 +109,7 @@ class Herbivore(Animal):
 
     """
 
-    p = {"w_birth": 8.0,
+    animal_params = {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
          "eta": 0.05,
@@ -140,11 +140,11 @@ class Herbivore(Animal):
 
         :param cell:   Cell object, the cell where this animal resides.
         """
-        if cell.f_ij >= self.p['F']:
-            self.weight += self.p['beta'] * self.p['F']
-            cell.f_ij -= self.p['F']
-        elif cell.f_ij < self.p['F']:
-            self.weight += self.p['beta'] * cell.f_ij
+        if cell.f_ij >= self.animal_params['F']:
+            self.weight += self.animal_params['beta'] * self.animal_params['F']
+            cell.f_ij -= self.animal_params['F']
+        elif cell.f_ij < self.animal_params['F']:
+            self.weight += self.animal_params['beta'] * cell.f_ij
             cell.f_ij = 0
 
     def herb_reproduce(self, length):
@@ -158,7 +158,7 @@ class Herbivore(Animal):
                  baby weight
         """
 
-        b_prob = min(1, self.p['gamma'] *
+        b_prob = min(1, self.animal_params['gamma'] *
                      self.fitness * (length - 1))
 
         # 1. Probability condition is satisfied if random_number <= b_prob
@@ -168,11 +168,11 @@ class Herbivore(Animal):
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
-                self.p['w_birth'], self.p['sigma_birth'])
+                self.animal_params['w_birth'], self.animal_params['sigma_birth'])
 
             # 3. check if animal loses more than the baby's weight
-            if self.weight >= baby_weight * self.p['xi']:
-                self.weight -= baby_weight * self.p['xi']
+            if self.weight >= baby_weight * self.animal_params['xi']:
+                self.weight -= baby_weight * self.animal_params['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
     def herb_migrates(self, animal, adj_cells, proba_list_h):
@@ -206,7 +206,7 @@ class Carnivore(Animal):
     :ivar weight:   float, the weight of the animal
 
     """
-    p = {
+    animal_params = {
         "w_birth": 6.0,
         "sigma_birth": 1.0,
         "beta": 0.75,
@@ -257,21 +257,22 @@ class Carnivore(Animal):
         dead_list = []
         for herb in cell.herb_sorted:
             if self.fitness > herb.fitness:
-                if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
-                    kill_prob = (self.fitness - herb.fitness) / self.p[
+                if self.fitness - herb.fitness < self.animal_params['DeltaPhiMax']:
+                    kill_prob = (self.fitness - herb.fitness) / \
+                                self.animal_params[
                         'DeltaPhiMax']
                     rand_prob = np.random.random()
                     if rand_prob < kill_prob:
                         dead_list.append(herb)
                         amount_eaten += herb.weight
-                        self.weight += self.p['beta']*herb.weight
+                        self.weight += self.animal_params['beta']*herb.weight
                 else:
                     dead_list.append(herb)
                     amount_eaten += herb.weight
-                    self.weight += self.p['beta']*herb.weight
+                    self.weight += self.animal_params['beta']*herb.weight
 
             # Check if the carnivore is satisfied yet
-            if amount_eaten > self.p['F']:
+            if amount_eaten > self.animal_params['F']:
                 break
 
         # Delete killed herbivores from list in the cell/update the list
@@ -289,7 +290,7 @@ class Carnivore(Animal):
                                      equal to baby weight)
         """
 
-        b_prob = min(1, self.p['gamma'] *
+        b_prob = min(1, self.animal_params['gamma'] *
                      self.fitness * (length - 1))
 
         # Probability condition is satisfied if random_number <= b_prob
@@ -299,11 +300,11 @@ class Carnivore(Animal):
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
-                self.p['w_birth'], self.p['sigma_birth'])
+                self.animal_params['w_birth'], self.animal_params['sigma_birth'])
 
             # 3. check if animal loses more than the baby's weight
-            if self.weight >= baby_weight * self.p['xi']:
-                self.weight -= baby_weight * self.p['xi']
+            if self.weight >= baby_weight * self.animal_params['xi']:
+                self.weight -= baby_weight * self.animal_params['xi']
                 return Carnivore(age=0, weight=baby_weight)
 
     def carn_migrates(self, animal, adj_cells, proba_list_c):

@@ -224,4 +224,4 @@ class Cycle:
             for cell in list_of_obj:
                 for animal in cell.animal_object_list:
                     animal.age += 1
-                    animal.weight -= animal.p['eta']*animal.weight
+                    animal.weight -= animal.animal_params['eta']*animal.weight

@@ -43,18 +43,18 @@ class Cell:
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
         self.rel_ab_carn = self.tot_herb_weight / (self.n_carns + 1
-                                                   ) * Carnivore.p['F']
-        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.p['F']
+                                                   ) * Carnivore.animal_params['F']
+        self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) * Herbivore.animal_params['F']
 
     @property
     def pi_ij_carn(self):
         """propensity for a cell object for carnivores"""
-        return math.e ** (Carnivore.p['lambda'] * self.rel_ab_carn)
+        return math.e ** (Carnivore.animal_params['lambda'] * self.rel_ab_carn)
 
     @property
     def pi_ij_herb(self):
         """propensity for a cell object for herbivores"""
-        return math.e ** (Herbivore.p['lambda'] * self.rel_ab_herb)
+        return math.e ** (Herbivore.animal_params['lambda'] * self.rel_ab_herb)
 
     def set_population(self, input_dict):
         """
