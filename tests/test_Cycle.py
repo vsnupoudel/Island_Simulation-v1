@@ -7,7 +7,7 @@ Test for Cycle class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from Cycle import Cycle
+from cycle import Cycle
 from simulation import BioSim
 from pytest_mock import mocker
 import pytest

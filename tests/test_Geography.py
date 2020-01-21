@@ -7,7 +7,7 @@ Geo class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from src.biosim.Geography import Geo
+from src.biosim.geography import Geo
 import pytest
 
 

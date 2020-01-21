@@ -4,8 +4,8 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from simulation import BioSim
-from Mapping import Savannah, Jungle
-from Animal import Herbivore, Carnivore
+from mapping import Savannah, Jungle
+from animal import Herbivore, Carnivore
 import numpy as np
 import pytest
 from pytest_mock import mocker

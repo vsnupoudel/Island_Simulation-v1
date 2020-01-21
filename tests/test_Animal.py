@@ -7,10 +7,10 @@ Tests for Animal class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from Animal import Animal, Herbivore, Carnivore
-from Geography import Geo
-from Cycle import Cycle
-from Mapping import Cell, Jungle
+from animal import Animal, Herbivore, Carnivore
+from geography import Geo
+from cycle import Cycle
+from mapping import Cell, Jungle
 
 import pytest
 import pytest_mock

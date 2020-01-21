@@ -9,9 +9,9 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 
 from src.biosim.simulation import BioSim
-from src.biosim.Mapping import Cell, Savannah, Jungle
-from src.biosim.Animal import Herbivore, Carnivore
-from src.biosim.Visualization import Visualization
+from src.biosim.mapping import Cell, Savannah, Jungle
+from src.biosim.animal import Herbivore, Carnivore
+from src.biosim.visualization import Visualization
 
 import numpy as np
 import pytest
