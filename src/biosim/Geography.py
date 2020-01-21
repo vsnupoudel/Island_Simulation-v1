@@ -9,7 +9,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import textwrap
-from Mapping import Jungle, Savannah, Desert, Ocean, Mountain
+from .Mapping import Jungle, Savannah, Desert, Ocean, Mountain
 
 
 class Geo:

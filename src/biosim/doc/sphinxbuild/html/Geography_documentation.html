@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Documentation of Mapping" href="Mapping_documentation.html" />
-    <link rel="prev" title="Documentation of animals" href="Cycle_documentation.html" />
+    <link rel="prev" title="Documentation of Cycle" href="Cycle_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -48,6 +48,44 @@
 landscape types into a 2D matrix of objects</li>
 <li>Objects can only be one of the five Landscape types: Ocean (O), Savannah
 (S), desert (D), jungle (J) and mountain (M)</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>geo_matrix_input_string</strong> – str, String with map coordinates</li>
+<li><strong>geo_graph</strong> – str, input string without whitespace</li>
+<li><strong>lines</strong> – list, list of each line of the input
+string</li>
+<li><strong>geo_shape</strong> – tuple(default, None), Shape of the
+geography</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:ivar object_matrix
+:ivar geo_list:                  list, 2D list of string characters
+:ivar first_row:                 str, characters of the first row of the</p>
+<blockquote>
+<div>map</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>last_row</strong> – str, characters of the last row of the map</li>
+<li><strong>first_column</strong> – list, characters of the first column of
+the map</li>
+<li><strong>last_column</strong> – list, characters of the last column of
+the map</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
 <li>Checks if input characters are valid letters</li>
 <li>Checks if all rows in map have equal length</li>
 <li>Checks that ocean (“O”) is around all edges of map</li>
@@ -84,7 +122,7 @@ landscape types into a 2D matrix of objects</li>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of Cycle</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of Geography</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-geography-class-and-its-subclasses">The Geography Class and its Subclasses</a></li>
 </ul>
@@ -98,7 +136,7 @@ landscape types into a 2D matrix of objects</li>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Cycle_documentation.html" title="previous chapter">Documentation of animals</a></li>
+      <li>Previous: <a href="Cycle_documentation.html" title="previous chapter">Documentation of Cycle</a></li>
       <li>Next: <a href="Mapping_documentation.html" title="next chapter">Documentation of Mapping</a></li>
   </ul></li>
 </ul>

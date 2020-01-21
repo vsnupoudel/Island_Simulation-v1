@@ -52,7 +52,6 @@
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
 <span class="sd">                            has procreated or not</span>
 <span class="sd">    :ivar f_ij:     float(default=0), food avilable in each cell</span>
-<span class="sd">    :ivar alpha:    float(default = None), parameter</span>
 <span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
 <span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
 <span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
@@ -62,19 +61,17 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">f_ij</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">f_ij</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param row:    int, row index of the position of the cell</span>
 <span class="sd">        :param column: int, column index of the position of the cell</span>
 <span class="sd">        :param f_ij:   float(default=0), food avilable in each cell</span>
-<span class="sd">        :param alpha:  float(default=None), parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row</span> <span class="o">=</span> <span class="n">row</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">=</span> <span class="n">column</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animal_object_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">f_ij</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animal_object_list</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tot_herb_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">herb_list</span><span class="p">])</span>
@@ -144,7 +141,7 @@
                       <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;Carnivore&quot;</span><span class="p">]</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">carn_sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">carn_sorted_rev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sorted list of all carnivore objects in the cell object&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">carn_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">animal</span><span class="p">:</span> <span class="n">animal</span><span class="o">.</span><span class="n">fitness</span><span class="p">,</span>
                          <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -173,32 +170,12 @@
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
 <span class="sd">    :ivar f_ij:     float(default=300), food avilable in each cel</span>
-<span class="sd">    :ivar alpha:    default=None), parameter</span>
 <span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
 <span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
 <span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
 <span class="sd">                                carnivores</span>
 <span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
 <span class="sd">                                herbivores</span>
-
-<span class="sd">    Attributes:</span>
-
-<span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
-<span class="sd">                                    containing:</span>
-<span class="sd">                                    f_max: int, maximal available food in</span>
-<span class="sd">                                                Jungle object</span>
-<span class="sd">                                    alpha: (default, None), parameter</span>
-<span class="sd">        is_migratable         bool(default, True), whether the cell is</span>
-<span class="sd">                                                   migratable or not for</span>
-<span class="sd">                                                   animal objects</span>
-<span class="sd">        row:                  int, row index of the position of the cell</span>
-<span class="sd">        column:               int, column index of the position of the cell</span>
-<span class="sd">        f_ij:                 float(default=300), food avilable in each cell</span>
-<span class="sd">        alpha:                (default=None), parameter</span>
-<span class="sd">        animal_object_list:   list, list of animal objects</span>
-<span class="sd">        tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
-<span class="sd">        rel_ab_carn:          float, relative abundance of fodder for carnivores</span>
-<span class="sd">        self.rel_ab_herb:     float, relative abundance of fodder for herbivores</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_max&#39;</span><span class="p">:</span> <span class="mf">800.0</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
@@ -208,20 +185,15 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">row</span><span class="p">,</span>
             <span class="n">column</span><span class="p">,</span>
-            <span class="c1"># num_carn=0,</span>
-            <span class="c1"># num_herb=0,</span>
-            <span class="n">f_ij</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">f_ij</span><span class="o">=</span><span class="mi">300</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param row:    int, row index of the position of the cell</span>
 <span class="sd">        :param column: int, column index of the position of the cell</span>
 <span class="sd">        :param f_ij:   float(default=300), food avilable in each cell</span>
-<span class="sd">        :param alpha:  float(default=0.3), parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">f_ij</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">f_ij</span></div>
 
 
 <div class="viewcode-block" id="Savannah"><a class="viewcode-back" href="../Mapping_documentation.html#Mapping.Savannah">[docs]</a><span class="k">class</span> <span class="nc">Savannah</span><span class="p">(</span><span class="n">Cell</span><span class="p">):</span>
@@ -237,34 +209,12 @@
 <span class="sd">    :ivar row:      int, row index of the position of the cell</span>
 <span class="sd">    :ivar column:   int, column index of the position of the cell</span>
 <span class="sd">    :ivar f_ij:     float(default=200), food avilable in each cel</span>
-<span class="sd">    :ivar alpha:    (default=0.3), parameter</span>
 <span class="sd">    :ivar animal_object_list:   list, list of animal objects</span>
 <span class="sd">    :ivar tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
 <span class="sd">    :ivar rel_ab_carn:          float, relative abundance of fodder for</span>
 <span class="sd">                                carnivores</span>
 <span class="sd">    :ivar rel_ab_herb:          float, relative abundance of fodder for</span>
 <span class="sd">                                herbivores</span>
-
-<span class="sd">    Attributes:</span>
-
-<span class="sd">        parameters:           dict, dictionary of Jungle parameters,</span>
-<span class="sd">                                    containing:</span>
-<span class="sd">                                    f_max: int, maximal available food in</span>
-<span class="sd">                                                Jungle object</span>
-<span class="sd">                                    alpha: (default, None), parameter</span>
-<span class="sd">        is_migratable         bool(default, True), whether the cell is</span>
-<span class="sd">                                                   migratable or not for</span>
-<span class="sd">                                                   animal objects</span>
-<span class="sd">        row:                  int, row index of the position of the cell</span>
-<span class="sd">        column:               int, column index of the position of the cell</span>
-<span class="sd">        f_ij:                 float(default=200), food avilable in each cell</span>
-<span class="sd">        alpha:                float(default=0.3), parameter</span>
-<span class="sd">        animal_object_list:   list, list of animal objects</span>
-<span class="sd">        tot_herb_weight:      float, total weigth of all herbivores in a cell</span>
-<span class="sd">        rel_ab_carn:          float, relative abundance of fodder for</span>
-<span class="sd">                              carnivores</span>
-<span class="sd">        rel_ab_herb:          float, relative abundance of fodder for</span>
-<span class="sd">                              herbivores</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;f_max&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">}</span>
@@ -274,19 +224,16 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">row</span><span class="p">,</span>
             <span class="n">column</span><span class="p">,</span>
-            <span class="n">f_ij</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">f_ij</span><span class="o">=</span><span class="mi">200</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param row:    int, row index of the position of the cell</span>
 <span class="sd">        :param column: int, column index of the position of the cell</span>
 <span class="sd">        :param f_ij:   float(default=200), food avilable in each cell</span>
-<span class="sd">        :param alpha:  float(default=0.3), parameter</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">f_ij</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">f_ij</span></div>
 
 
 <div class="viewcode-block" id="Desert"><a class="viewcode-back" href="../Mapping_documentation.html#Mapping.Desert">[docs]</a><span class="k">class</span> <span class="nc">Desert</span><span class="p">(</span><span class="n">Cell</span><span class="p">):</span>
@@ -310,8 +257,6 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">row</span><span class="p">,</span>
             <span class="n">column</span>
-            <span class="c1"># num_carn=0,</span>
-            <span class="c1"># num_herb=0,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -379,11 +324,11 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 

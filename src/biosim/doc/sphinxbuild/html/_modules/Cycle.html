@@ -58,7 +58,6 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_matrix</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        :param object_matrix:   list, nested list (map with population)</span>
-<span class="sd">        #which is modified by each of the functions in this class in the order of definition</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span> <span class="o">=</span> <span class="n">object_matrix</span>
 
@@ -71,11 +70,11 @@
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">row_of_obj</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;Savannah&quot;</span><span class="p">:</span>
                     <span class="c1"># print(&#39;food grow in Savannah&#39;)</span>
-                    <span class="n">obj</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">+=</span> <span class="n">obj</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span> <span class="o">-</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">+=</span> <span class="n">obj</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span> <span class="o">-</span>
                                              <span class="n">obj</span><span class="o">.</span><span class="n">f_ij</span><span class="p">)</span>
                 <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;Jungle&quot;</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">f_ij</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s1">&#39;f_max&#39;</span><span class="p">]</span></div>
-                    <span class="c1"># print(&#39;food grow in Jungle&#39;)</span>
+
 
 <div class="viewcode-block" id="Cycle.animals_eat"><a class="viewcode-back" href="../Cycle_documentation.html#Cycle.Cycle.animals_eat">[docs]</a>    <span class="k">def</span> <span class="nf">animals_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -90,12 +89,12 @@
         <span class="k">for</span> <span class="n">row_of_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row_of_obj</span><span class="p">:</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Savannah&quot;</span><span class="p">,</span> <span class="s2">&quot;Jungle&quot;</span><span class="p">]:</span>
-                    <span class="k">for</span> <span class="n">herb</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">herb_sorted</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">herb</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">herb_sorted_rev</span><span class="p">:</span>
                         <span class="n">herb</span><span class="o">.</span><span class="n">herb_eat</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
 
                 <span class="c1"># Carnivores in the cell eat after herbivores</span>
                 <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Savannah&quot;</span><span class="p">,</span> <span class="s2">&quot;Jungle&quot;</span><span class="p">,</span> <span class="s2">&quot;Desert&quot;</span><span class="p">]:</span>
-                    <span class="k">for</span> <span class="n">carn</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">carn_sorted</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">carn</span> <span class="ow">in</span> <span class="n">cell</span><span class="o">.</span><span class="n">carn_sorted_rev</span><span class="p">:</span>
                         <span class="n">carn</span><span class="o">.</span><span class="n">carn_eat</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span></div>
 
 
@@ -277,11 +276,11 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 

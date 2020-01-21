@@ -39,8 +39,6 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="c1"># import functools</span>
-<span class="c1">#from cached_property import cached_property</span>
 
 
 <div class="viewcode-block" id="Animal"><a class="viewcode-back" href="../Animal_documentation.html#Animal.Animal">[docs]</a><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
@@ -95,7 +93,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">has_migrated</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">reprod_thresh_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;zeta&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;w_birth&#39;</span><span class="p">]</span> <span class="o">+</span>
-                                                    <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;sigma_birth&#39;</span><span class="p">])</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;sigma_birth&#39;</span><span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -106,7 +104,7 @@
 
             <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;phi_age&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;a_half&#39;</span><span class="p">]))))</span>  \
-                   <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span><span class="p">(</span><span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;phi_weight&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                   <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;phi_weight&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;w_half&#39;</span><span class="p">]))))</span>
 
     <span class="nd">@property</span>
@@ -136,7 +134,8 @@
 <div class="viewcode-block" id="Herbivore"><a class="viewcode-back" href="../Animal_documentation.html#Animal.Herbivore">[docs]</a><span class="k">class</span> <span class="nc">Herbivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Herbivore characteristics, subclass of Animal class</span>
 
-<span class="sd">    :ivar p:     dict, dictionary of parameters for the Herbivore objects.</span>
+<span class="sd">    :ivar p:     dict, dictionary of parameters for the Herbivore</span>
+<span class="sd">                              objects.</span>
 <span class="sd">    :ivar has_procreated:   bool(default, False), whether the animal object</span>
 <span class="sd">                            has procreated or not</span>
 <span class="sd">    :ivar has_migrated:     bool(default, False), whether the animal object</span>
@@ -399,11 +398,11 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Documentation of Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Mapping_documentation.html">Documentation of Mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">Documentation of Geography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Documentation of Visualization</a></li>
 </ul>
 
