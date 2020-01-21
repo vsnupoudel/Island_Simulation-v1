@@ -144,6 +144,8 @@ class Herbivore(Animal):
         Herbivores eat. This method updates the amount of food in the cell
         object and the weight of the animal.
 
+
+
         :param cell:   Cell object, the cell where this animal resides.
         """
         if cell.f_ij >= self.p['F']:
@@ -170,7 +172,7 @@ class Herbivore(Animal):
         # 1. Probability condition is satisfied if random_number <= b_prob
         # 2. check if the weight of parent is greater than threshold
 
-        if (np.random.random() <= b_prob) & \
+        if (np.random.random() < b_prob) & \
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
@@ -248,7 +250,7 @@ class Carnivore(Animal):
 
     def carn_eat(self, cell):
         """
-        Carnivores eat
+        Carnivores eat.
         When Carnivores eat, this method:
 
         - delete herbivores from the cell after they are eaten.
@@ -269,13 +271,12 @@ class Carnivore(Animal):
         amount_eaten = 0
 
         dead_list = []
-        for herb in cell.herb_sorted_rev:
+        for herb in cell.herb_sorted:
             if self.fitness > herb.fitness:
                 if self.fitness - herb.fitness < self.p['DeltaPhiMax']:
                     kill_prob = (self.fitness - herb.fitness) / self.p[
                         'DeltaPhiMax']
                     rand_prob = np.random.random()
-
                     if rand_prob < kill_prob:
                         dead_list.append(herb)
                         amount_eaten += herb.weight
@@ -311,7 +312,7 @@ class Carnivore(Animal):
         # Probability condition is satisfied if random_number <= b_prob
         # check if the weight of parent is greater than threshold
 
-        if (np.random.random() <= b_prob) & \
+        if (np.random.random() < b_prob) & \
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
