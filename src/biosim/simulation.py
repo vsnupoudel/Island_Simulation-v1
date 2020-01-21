@@ -51,7 +51,8 @@ class BioSim:
             ymax_animals=12000,
             total_years=500,
             img_base=None,
-            img_fmt="png"
+            img_fmt="png",
+            cmax_animals=None
     ):
         """
         :param island_map: Multi-line string specifying island geography
@@ -64,9 +65,15 @@ class BioSim:
         :param img_base: Path relative to the code being run, where the user
         intends to store the images. If is none, no image is stored
         :param img_fmt: String with file type for figures, e.g. 'png'
+        :param cmax_animals: Dict specifying color-code limits for animal
+         densities
 
         total_years should be greater than the sum of individual years of
         simulations.
+
+        If cmax_animals is None, sensible, fixed default values should be used.
+        cmax_animals is a dict mapping species names to numbers, e.g.,
+           {'Herbivore': 50, 'Carnivore': 20}
 
         """
         self.num_images = 0
@@ -79,6 +86,11 @@ class BioSim:
         self.total_years = total_years
         self.img_fmt = img_fmt
         self.img_base = img_base
+        self.cmax_animals = cmax_animals
+        if self.cmax_animals is None:
+            self.cmax_animals = {'Herbivore': 50, 'Carnivore': 50}
+
+
 
         # Set the population in respective cell in the matrix
         for one_location_list in self.ini_pop:
@@ -111,8 +123,7 @@ class BioSim:
         else:
             Jungle.parameters.update(params)
 
-    def simulate(self, num_years=20, vis_years=1, img_years=1,
-                 colorbar_limits=None):
+    def simulate(self, num_years=20, vis_years=1, img_years=1):
         """
         Runs simulation while visualizing the result.
         This method will:
@@ -139,8 +150,6 @@ class BioSim:
         :param colorbar_limits:  dict, vmax for the colorbars for herbivores
                                  and carnivores
         """
-        if colorbar_limits is None:
-            colorbar_limits = {"Herbivore": 50, "Carnivore": 50}
 
         self.v.create_map(self.island_matrix)
 
@@ -148,7 +157,7 @@ class BioSim:
         self.v.update_graphics(self.herbivore_distribution,
                                self.carnivore_distribution,
                                self.num_animals_per_species,
-                               colorbar_limits)
+                               self.cmax_animals)
         if self.img_base:
             if not os.path.exists(self.img_base):
                 os.makedirs(self.img_base)
@@ -168,7 +177,7 @@ class BioSim:
             self.v.update_graphics(self.herbivore_distribution,
                                    self.carnivore_distribution,
                                    self.num_animals_per_species,
-                                   colorbar_limits)
+                                   self.cmax_animals)
 
             step += 1
             self.current_year += 1
@@ -262,13 +271,13 @@ class BioSim:
     @property
     def animal_distribution(self):
         """Pandas DataFrame with animal count for each cell on island."""
-        herb_flat = self.herbivore_distribution.flatten()
-        carn_flat = self.carnivore_distribution.flatten()
+        herb_flat = self.herbivore_distribution.flatten().astype(int)
+        carn_flat = self.carnivore_distribution.flatten().astype(int)
 
         rows = np.shape(self.object_matrix)[0]
         columns = np.shape(self.object_matrix)[1]
-        row_nums = [_ for _ in range(rows) for __ in range(columns)]
-        col_nums = [_ for _ in range(rows) for __ in range(columns)]
+        row_nums = [r for r in range(rows) for c in range(columns)]
+        col_nums = [c for r in range(rows) for c in range(columns)]
 
         _df = pd.DataFrame(list(zip(row_nums, col_nums, herb_flat, carn_flat)),
                            columns=['Row', 'Col', 'Herbivore', 'Carnivore'],

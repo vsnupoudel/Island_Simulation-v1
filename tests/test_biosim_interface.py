@@ -217,12 +217,11 @@ def test_get_animal_distribution(plain_sim):
     data = plain_sim.animal_distribution
     assert isinstance(data, pandas.DataFrame)
     assert len(data) == 12
-    print(set(data.columns))
-    print(plain_sim.carnivore_distribution.flatten())
-    print(plain_sim.herbivore_distribution.flatten())
     assert set(data.columns) == {"Row", "Col", "Herbivore", "Carnivore"}
-
+    print('')
+    print(data)
     data.set_index(["Row", "Col"], inplace=True)
+    print(data)
     assert data.loc[(2, 2)].Herbivore == 1
     assert data.loc[(2, 2)].Carnivore == 1
     assert data.loc[(2, 3)].Herbivore == 2
@@ -238,8 +237,8 @@ def test_set_plot_limits():
         island_map="O",
         ini_pop=[],
         seed=1,
-        ymax_animals=20,
-        cmax_animals={"Herbivore": 10, "Carnivore": 20},
+        ymax_animals=20
+        ,cmax_animals={"Herbivore": 10, "Carnivore": 20},
     )
 
 
