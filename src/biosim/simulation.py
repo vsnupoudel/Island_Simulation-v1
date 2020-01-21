@@ -108,7 +108,8 @@ class BioSim:
         else:
             Carnivore.up_par(params)
 
-    def set_landscape_parameters(self, landscape, params):
+    @staticmethod
+    def set_landscape_parameters(landscape, params):
         """
         Set parameters for landscape type.
 

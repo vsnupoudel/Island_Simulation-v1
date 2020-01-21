@@ -50,7 +50,7 @@ class TestAnimal:
     def herb_zeta_3(self, create_herb):
         """sets zeta parameter of herbivores to 3"""
         create_herb.up_par({"zeta": 3.0})
-        yield create_herb.p["zeta"]
+        yield create_herb.animal_params["zeta"]
         create_herb.up_par({"zeta": 3.5})
 
     def test_update_zeta_herbs(self, create_herb, herb_zeta_3):
@@ -61,7 +61,7 @@ class TestAnimal:
     def carn_xi_2(self, create_carn):
         """sets xi parameter of carnivores to 2"""
         create_carn.up_par({"xi": 2.0})
-        yield create_carn.p["xi"]
+        yield create_carn.animal_params["xi"]
         create_carn.up_par({"xi": 3.5})
 
     def test_update_xi_carns(self, create_carn, carn_xi_2):
@@ -99,13 +99,17 @@ class TestAnimal:
 
     def test_herb_eat_weight_increase_right_amount(self, create_herb,
                                                    create_cycle):
-        """Herbivores weight should increase with (animal_params['beta'] * animal_params['F'])
-        when eating and food avilable is more than appetite"""
+        """
+        Herbivores weight should increase with (animal_params['beta'] *
+        animal_params['F']) when eating and food available is more that
+        appetite
+        """
         prev_weight = create_herb.weight
         create_herb.herb_eat(create_cycle.object_matrix[1][1])
 
         assert create_herb.weight - prev_weight == \
-               create_herb.animal_params['beta'] * create_herb.animal_params['F'], \
+            create_herb.animal_params['beta'] *\
+            create_herb.animal_params['F'], \
             "Herbivores weight increase with wrong amount"
 
     def test_animal_reproduce_weight_decrease(self, mocker):

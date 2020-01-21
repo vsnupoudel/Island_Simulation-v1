@@ -81,18 +81,15 @@ class TestSimulation:
 
         create_s.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
         create_s.set_animal_parameters("Carnivore", {"zeta": 5.0, "xi": 2.0})
-        assert Herbivore.p["zeta"] == 3.2
-        assert Herbivore.p["xi"] == 1.8
-        assert Carnivore.p["zeta"] == 5.0
-        assert Carnivore.p["xi"] == 2.0
+        assert Herbivore.animal_params["zeta"] == 3.2
+        assert Herbivore.animal_params["xi"] == 1.8
+        assert Carnivore.animal_params["zeta"] == 5.0
+        assert Carnivore.animal_params["xi"] == 2.0
 
     def test_num_animals_and_add_population(self, input_map, ini_pop,
                                             add_carns):
         """"""
         s = BioSim(input_map, ini_pop, seed=1)
-        print('')
-        print(s.num_animals_per_species['Herbivore'])
-        print(s.num_animals_per_species['Carnivore'])
         assert s.num_animals_per_species['Herbivore'] > 0
         assert s.num_animals_per_species['Carnivore'] > 0
         prev_carns = s.num_animals_per_species['Carnivore']

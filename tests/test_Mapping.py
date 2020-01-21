@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Geo class
+Tests for the mapping file
 """
 
 __author__ = "Anders Huse, Bishnu Poudel"

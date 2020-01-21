@@ -13,7 +13,8 @@ class Animal:
     SuperClass for Herbivore and Carnivore.
     Contains methods, properties and variables that are common in both.
 
-    :cvar p:     dict, dictionary of parameters for the animal objects.
+    :cvar animal_params:     dict, dictionary of parameters for the animal
+                             objects.
                  All parameters are None by default
     :cvar has_procreated:   bool(default, False), whether the animal object
                             has procreated or not
@@ -28,7 +29,8 @@ class Animal:
     """
     has_procreated = False
     has_migrated = False
-    animal_params = {"w_birth": None,
+    animal_params = \
+        {"w_birth": None,
          "sigma_birth": None,
          "beta": None,
          "eta": None,
@@ -59,8 +61,9 @@ class Animal:
                                            self.animal_params['sigma_birth'])
         self.has_migrated = False
 
-        self.reprod_thresh_weight = self.animal_params['zeta'] * (self.animal_params['w_birth'] +
-                                                      self.animal_params['sigma_birth'])
+        self.reprod_thresh_weight = self.animal_params['zeta'] *\
+            (self.animal_params['w_birth'] +
+             self.animal_params['sigma_birth'])
 
     @property
     def fitness(self):
@@ -69,10 +72,12 @@ class Animal:
             return 0
         else:
 
-            return (1 / (1 + math.e ** (self.animal_params['phi_age'] * (
-                    self.age - self.animal_params['a_half']))))  \
-                   * (1 / (1 + math.e ** (- self.animal_params['phi_weight'] * (
-                    self.weight - self.animal_params['w_half']))))
+            return (1 / (1 + math.e ** (self.animal_params['phi_age'] *
+                                        (self.age -
+                                         self.animal_params['a_half'])))) *\
+                 (1 / (1 + math.e ** (- self.animal_params['phi_weight'] *
+                                      (self.weight -
+                                       self.animal_params['w_half']))))
 
     @property
     def move_prob(self):
@@ -103,13 +108,15 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class
 
-    :cvar p:         dict, dictionary of parameters for the Herbivore objects.
+    :cvar animal_params:         dict, dictionary of parameters for the
+                                 Herbivore objects.
     :ivar age:       int, the age of the animal
     :ivar weight:    float, the weight of the animal
 
     """
 
-    animal_params = {"w_birth": 8.0,
+    animal_params = \
+        {"w_birth": 8.0,
          "sigma_birth": 1.5,
          "beta": 0.9,
          "eta": 0.05,
@@ -168,14 +175,16 @@ class Herbivore(Animal):
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
-                self.animal_params['w_birth'], self.animal_params['sigma_birth'])
+                self.animal_params['w_birth'],
+                self.animal_params['sigma_birth'])
 
             # 3. check if animal loses more than the baby's weight
             if self.weight >= baby_weight * self.animal_params['xi']:
                 self.weight -= baby_weight * self.animal_params['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
-    def herb_migrates(self, animal, adj_cells, proba_list_h):
+    @staticmethod
+    def herb_migrates(animal, adj_cells, proba_list_h):
         """
         Herbivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
@@ -201,7 +210,8 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     """Carnivore characteristics, subclass of Animal class
 
-    :cvar p:        dict, dictionary of parameters for the Carnivore objects.
+    :cvar animal_params:        dict, dictionary of parameters for the
+                                Carnivore objects.
     :ivar age:      int, the age of the animal
     :ivar weight:   float, the weight of the animal
 
@@ -257,7 +267,8 @@ class Carnivore(Animal):
         dead_list = []
         for herb in cell.herb_sorted:
             if self.fitness > herb.fitness:
-                if self.fitness - herb.fitness < self.animal_params['DeltaPhiMax']:
+                if self.fitness - herb.fitness < \
+                        self.animal_params['DeltaPhiMax']:
                     kill_prob = (self.fitness - herb.fitness) / \
                                 self.animal_params[
                         'DeltaPhiMax']
@@ -300,14 +311,16 @@ class Carnivore(Animal):
                 (self.weight >= self.reprod_thresh_weight):
 
             baby_weight = np.random.normal(
-                self.animal_params['w_birth'], self.animal_params['sigma_birth'])
+                self.animal_params['w_birth'],
+                self.animal_params['sigma_birth'])
 
             # 3. check if animal loses more than the baby's weight
             if self.weight >= baby_weight * self.animal_params['xi']:
                 self.weight -= baby_weight * self.animal_params['xi']
                 return Carnivore(age=0, weight=baby_weight)
 
-    def carn_migrates(self, animal, adj_cells, proba_list_c):
+    @staticmethod
+    def carn_migrates(animal, adj_cells, proba_list_c):
         """
         Carnivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.

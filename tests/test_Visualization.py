@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Tests for Animal class
+Tests for Visualization class
 """
 
 __author__ = "Anders Huse, Bishnu Poudel"
