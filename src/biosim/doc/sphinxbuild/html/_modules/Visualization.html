@@ -46,10 +46,6 @@
 <span class="sd">    Plotting island map, heatmaps of herbivore and carnivore distribution</span>
 <span class="sd">    and line graph of herbivore and carnivore count.</span>
 
-<span class="sd">    :ivar img_dir:          (default, None) image directory</span>
-<span class="sd">    :ivar img_name:                 str, image name</span>
-<span class="sd">    :ivar img_fmt:          str(default, png), image fmt</span>
-
 <span class="sd">    :ivar _fig:             plt.figure(default, None), figure to put subplots in</span>
 <span class="sd">    :ivar _map_ax:          (default, None) plot of the island map</span>
 <span class="sd">    :ivar _img_axis:        (default, None) axis to _map_ax</span>
@@ -67,14 +63,7 @@
 
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param img_dir(default, None):    image directory</span>
-<span class="sd">        :param img_name:                  str, image name</span>
-<span class="sd">        :param img_fmt(default, png):     str, image fmt</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_step</span> <span class="o">=</span> <span class="mi">0</span>
-
         <span class="c1"># the following will be initialized by _setup_graphics</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fig</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_map_ax</span> <span class="o">=</span> <span class="kc">None</span>
@@ -118,6 +107,8 @@
            <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
            <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">)</span>
            <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_lim</span><span class="p">)</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+           <span class="bp">self</span><span class="o">.</span><span class="n">_mean_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Species&#39;</span><span class="p">)</span>
 
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_herb_line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

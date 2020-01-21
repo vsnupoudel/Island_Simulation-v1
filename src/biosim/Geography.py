@@ -9,9 +9,6 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import textwrap
-# import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from Mapping import Jungle, Savannah, Desert, Ocean, Mountain
 
 
@@ -24,8 +21,25 @@ class Geo:
       landscape types into a 2D matrix of objects
     - Objects can only be one of the five Landscape types: Ocean (O), Savannah
       (S), desert (D), jungle (J) and mountain (M)
+
+    :ivar geo_matrix_input_string:    str, String with map coordinates
+    :ivar geo_graph:                  str, input string without whitespace
+    :ivar lines:                     list, list of each line of the input
+                                     string
+    :ivar geo_shape:                 tuple(default, None), Shape of the
+                                     geography
+    :ivar object_matrix
+    :ivar geo_list:                  list, 2D list of string characters
+    :ivar first_row:                 str, characters of the first row of the
+                                     map
+    :ivar last_row:                  str, characters of the last row of the map
+    :ivar first_column:              list, characters of the first column of
+                                     the map
+    :ivar last_column:               list, characters of the last column of
+                                     the map
+
     """
-    valid_list = ['O', 'S', 'D', 'J', 'M']
+    valid_landscape_list = ['O', 'S', 'D', 'J', 'M']
 
     def __init__(self, geo_matrix_input_string):
         """
@@ -44,7 +58,7 @@ class Geo:
         # check if input characters are valid letters
         for line in self.lines:
             for letter in line:
-                if letter not in self.valid_list:
+                if letter not in self.valid_landscape_list:
                     raise ValueError(" Invalid Letters in the Input map ")
 
         self.geo_list = [list(_) for _ in self.lines]  # each letter separated
@@ -78,4 +92,3 @@ class Geo:
             self.object_matrix.append(
                 [dict_maps[self.geo_list[row_num][column]](row_num, column)
                  for column in range(self.geo_shape[1])])
-
