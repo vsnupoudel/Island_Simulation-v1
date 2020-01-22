@@ -51,11 +51,11 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for the islands geography. This class:</span>
 
-<span class="sd">    - Stores the size/shape of the geography of the island</span>
+<span class="sd">    - Stores the size/shape of the geography of the island.</span>
 <span class="sd">    - Converts string input of map, consisting of letters corresponding to</span>
-<span class="sd">      landscape types into a 2D matrix of objects</span>
+<span class="sd">      landscape types into a 2D matrix of objects.</span>
 <span class="sd">    - Objects can only be one of the five Landscape types: Ocean (O), Savannah</span>
-<span class="sd">      (S), desert (D), jungle (J) and mountain (M)</span>
+<span class="sd">      (S), desert (D), jungle (J) and mountain (M).</span>
 
 <span class="sd">    :ivar geo_matrix_input_string:    str, String with map coordinates</span>
 <span class="sd">    :ivar geo_graph:                  str, input string without whitespace</span>
@@ -78,9 +78,11 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo_matrix_input_string</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When instantiated, this class:</span>
+
 <span class="sd">        - Checks if input characters are valid letters</span>
 <span class="sd">        - Checks if all rows in map have equal length</span>
-<span class="sd">        - Checks that ocean (&quot;O&quot;) is around all edges of map</span>
+<span class="sd">        - Checks that ocean (&quot;O&quot;) is around all edges of the map</span>
 
 <span class="sd">        :param geo_matrix_input_string:   str, String with map coordinates</span>
 <span class="sd">        &quot;&quot;&quot;</span>

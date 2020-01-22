@@ -16,7 +16,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Geography" href="Geography_documentation.html" />
+    <link rel="next" title="CreateMap" href="Geography_documentation.html" />
     <link rel="prev" title="Cell" href="Terrain_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -95,7 +95,7 @@ is dead or alive</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> – Dictionary of parameters to be updated</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>params_dict</strong> – dict, Dictionary of parameters to be updated</td>
 </tr>
 </tbody>
 </table>
@@ -112,7 +112,8 @@ is dead or alive</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary of parameters for the Carnivore objects.</li>
+<li><strong>animal_params</strong> – dict, dictionary of parameters for the
+Carnivore objects.</li>
 <li><strong>age</strong> – int, the age of the animal</li>
 <li><strong>weight</strong> – float, the weight of the animal</li>
 </ul>
@@ -132,13 +133,13 @@ is dead or alive</li>
 <dd><p>Carnivores eat.
 When Carnivores eat, this method:</p>
 <ul class="simple">
-<li>delete herbivores from the cell after they are eaten.</li>
-<li>Update the weight of carnivore when they have eaten.</li>
+<li>Deletes herbivores from the cell after they are eaten.</li>
+<li>Updates the weight of carnivore when they have eaten.</li>
 </ul>
 <p>Conditions for a carnivore eating are:</p>
 <ol class="arabic simple">
-<li>They eat until they get an amount F (yet to implement ??)</li>
-<li>If fitness is less than a herbivore, they can’t kill that herbivore</li>
+<li>They eat until they get an amount F</li>
+<li>If fitness is less than the herbivore’s fitness, they can’t kill it.</li>
 <li>They kill with certain probability, if they have less than
 DeltaPhiMax fitness</li>
 <li>They certainly kill that herbivore otherwise</li>
@@ -190,9 +191,10 @@ the list of adjacent cells</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>length</strong> – int, number of total carnivores in the
-cell where the herbivore resides</td>
+cell where the carnivore resides</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A baby carnivores   Carnivore object (with age=0 and weight
+<tr class="field-even field"><th class="field-name" colspan="2">Return A baby carnivores:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">Carnivore object (with age=0 and weight
 equal to baby weight)</td>
 </tr>
 </tbody>
@@ -210,7 +212,8 @@ equal to baby weight)</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first simple">
-<li><strong>p</strong> – dict, dictionary of parameters for the Herbivore objects.</li>
+<li><strong>animal_params</strong> – dict, dictionary of parameters for the
+Herbivore objects.</li>
 <li><strong>age</strong> – int, the age of the animal</li>
 <li><strong>weight</strong> – float, the weight of the animal</li>
 </ul>
@@ -310,7 +313,7 @@ baby weight</td>
 <li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Cycle</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Terrain_documentation.html">Cell</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Animal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">CreateMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Visualization</a></li>
 </ul>
 
@@ -319,7 +322,7 @@ baby weight</td>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="Terrain_documentation.html" title="previous chapter">Cell</a></li>
-      <li>Next: <a href="Geography_documentation.html" title="next chapter">Geography</a></li>
+      <li>Next: <a href="Geography_documentation.html" title="next chapter">CreateMap</a></li>
   </ul></li>
 </ul>
 </div>

@@ -16,14 +16,14 @@ class Cycle:
     2. Animals feed
     3. Animals procreate
     4. Animals migrate
-    5. Animals age
-    6. Animals loose weight
-    7. Animals die
+    5. Animals die
+    6. Animals age and lose weight
 
     """
     def __init__(self, object_matrix):
         """
-        :param object_matrix:   list, nested list (map with population)
+        :param object_matrix: list, 2D list of cell objects containing
+                               herbivores and carnivores
         """
         self.object_matrix = object_matrix
 
@@ -43,7 +43,8 @@ class Cycle:
 
     def animals_eat(self):
         """
-        Herbivores and Carnivores eat. This happens once in every cycle
+        Herbivores and Carnivores eat. This happens once in every cycle.
+
         This method updates:
 
         - Increases the weight of animal if they eat
@@ -65,7 +66,8 @@ class Cycle:
     def animals_reproduce(self):
         """
         Animals reproduce in every cell on the island.
-        Animals reproduce if they meet the conditions (for each cell)
+        Animals reproduce if they meet the conditions (for each cell).
+
         This method updates:
 
         - The number of animals in the particular cell
@@ -190,7 +192,9 @@ class Cycle:
 
     def animals_die(self):
         """
-        This method makes animals die. Animals die:
+        This method makes animals die.
+
+        Animals die:
 
         - With certainty if the animals fitness is equal to zero
         - with probability

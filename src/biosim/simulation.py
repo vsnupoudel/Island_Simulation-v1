@@ -31,15 +31,18 @@ class BioSim:
                            color-code limits for animal densities
     :ivar total_years:     int(default, 60), total number of years for all the
                            sub-simulations
-    :ivar img_base:
+    :ivar img_base:         Path relative to the code being run, where the user
+                            intends to store the images. Also can specify the
+                            whole path of the computer. If is none,
+                            no image is stored.
     :ivar img_fmt:         str(default, png), image fmt
 
     :ivar num_images:      int(default, 0), number of images
-    :ivar object_matrix:   array, 2D array of cell objects containing
+    :ivar object_matrix:   list, 2D list of cell objects containing
                            herbivores and carnivores
 
-    :ivar v:                Instance of Visualization class
-    :ivar v.set_graphics:   Graphics are set
+    :ivar viz:              Instance of Visualization class
+    :ivar viz.set_graphics:   Graphics are set
 
     """
 
@@ -95,8 +98,8 @@ class BioSim:
             x, y = one_location_list['loc'][0], one_location_list['loc'][1]
             self.object_matrix[x][y].set_population(one_location_list)
 
-        self.v = Visualization()
-        self.v.set_graphics(self.ymax_animals, self.total_years)
+        self.viz = Visualization()
+        self.viz.set_graphics(self.ymax_animals, self.total_years)
 
         if self.img_base:
             if os.path.exists(self.img_base):
@@ -155,10 +158,10 @@ class BioSim:
                               saved to files
         """
 
-        self.v.create_map(self.island_matrix)
+        self.viz.create_map(self.island_matrix)
 
         step = 0
-        self.v.update_graphics(self.herbivore_distribution,
+        self.viz.update_graphics(self.herbivore_distribution,
                                self.carnivore_distribution,
                                self.num_animals_per_species,
                                self.cmax_animals)
@@ -176,7 +179,7 @@ class BioSim:
             c.animals_migrate()
             c.animals_die()
             c.animals_age()
-            self.v.update_graphics(self.herbivore_distribution,
+            self.viz.update_graphics(self.herbivore_distribution,
                                    self.carnivore_distribution,
                                    self.num_animals_per_species,
                                    self.cmax_animals)
@@ -206,7 +209,9 @@ class BioSim:
     @property
     def year(self):
         """
-        :return: year    int, current year on island
+        current year on the simuation island
+
+        :return:  current year, int
         """
         return self.current_year
 

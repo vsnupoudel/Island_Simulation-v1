@@ -214,7 +214,8 @@
 
 <span class="sd">    :cvar parameters:   dict, dictionary of Savannah parameters, containing:</span>
 <span class="sd">                        f_max: int(default, 300), maximal available food in</span>
-<span class="sd">                               Jungle object</span>
+<span class="sd">                        Savannah object</span>
+
 <span class="sd">                        alpha: (default, 0.3), parameter</span>
 <span class="sd">    :cvar is_migratable:  bool(default, True), whether the cell is migratable</span>
 <span class="sd">                          or not for animal objects</span>
@@ -248,7 +249,7 @@
 <span class="sd">        Updates the landscape parameters</span>
 
 <span class="sd">        :param cls: class method</span>
-<span class="sd">        :param params_dict: Dictionary of parameters to be updated</span>
+<span class="sd">        :param params_dict: dict, Dictionary of parameters to be updated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">parameters</span><span class="p">:</span>

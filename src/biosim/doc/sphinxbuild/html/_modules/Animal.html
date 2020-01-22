@@ -124,7 +124,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Updates the animal parameters</span>
 
-<span class="sd">        :param params_dict: Dictionary of parameters to be updated</span>
+<span class="sd">        :param params_dict: dict, Dictionary of parameters to be updated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">animal_params</span><span class="p">:</span>
@@ -138,7 +138,8 @@
 <div class="viewcode-block" id="Herbivore"><a class="viewcode-back" href="../Animal_documentation.html#animal.Herbivore">[docs]</a><span class="k">class</span> <span class="nc">Herbivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Herbivore characteristics, subclass of Animal class</span>
 
-<span class="sd">    :cvar p:         dict, dictionary of parameters for the Herbivore objects.</span>
+<span class="sd">    :cvar animal_params:    dict, dictionary of parameters for the</span>
+<span class="sd">                            Herbivore objects.</span>
 <span class="sd">    :ivar age:       int, the age of the animal</span>
 <span class="sd">    :ivar weight:    float, the weight of the animal</span>
 
@@ -238,7 +239,8 @@
 <div class="viewcode-block" id="Carnivore"><a class="viewcode-back" href="../Animal_documentation.html#animal.Carnivore">[docs]</a><span class="k">class</span> <span class="nc">Carnivore</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Carnivore characteristics, subclass of Animal class</span>
 
-<span class="sd">    :cvar p:        dict, dictionary of parameters for the Carnivore objects.</span>
+<span class="sd">    :cvar animal_params:    dict, dictionary of parameters for the</span>
+<span class="sd">                            Carnivore objects.</span>
 <span class="sd">    :ivar age:      int, the age of the animal</span>
 <span class="sd">    :ivar weight:   float, the weight of the animal</span>
 
@@ -274,13 +276,13 @@
 <span class="sd">        Carnivores eat.</span>
 <span class="sd">        When Carnivores eat, this method:</span>
 
-<span class="sd">        - delete herbivores from the cell after they are eaten.</span>
-<span class="sd">        - Update the weight of carnivore when they have eaten.</span>
+<span class="sd">        - Deletes herbivores from the cell after they are eaten.</span>
+<span class="sd">        - Updates the weight of carnivore when they have eaten.</span>
 
 <span class="sd">        Conditions for a carnivore eating are:</span>
 
-<span class="sd">        1. They eat until they get an amount F (yet to implement ??)</span>
-<span class="sd">        2. If fitness is less than a herbivore, they can&#39;t kill that herbivore</span>
+<span class="sd">        1. They eat until they get an amount F</span>
+<span class="sd">        2. If fitness is less than the herbivore&#39;s fitness, they can&#39;t kill it.</span>
 <span class="sd">        3. They kill with certain probability, if they have less than</span>
 <span class="sd">           DeltaPhiMax fitness</span>
 <span class="sd">        4. They certainly kill that herbivore otherwise</span>
@@ -323,8 +325,8 @@
 <span class="sd">        Reproduction for carnivores</span>
 
 <span class="sd">        :param length:               int, number of total carnivores in the</span>
-<span class="sd">                                          cell where the herbivore resides</span>
-<span class="sd">        :return: A baby carnivores   Carnivore object (with age=0 and weight</span>
+<span class="sd">                                          cell where the carnivore resides</span>
+<span class="sd">        :return A baby carnivores:   Carnivore object (with age=0 and weight</span>
 <span class="sd">                                     equal to baby weight)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 

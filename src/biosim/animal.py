@@ -89,7 +89,7 @@ class Animal:
         """
         Updates the animal parameters
 
-        :param params_dict: Dictionary of parameters to be updated
+        :param params_dict: dict, Dictionary of parameters to be updated
         """
         for k, v in params_dict.items():
             if k not in cls.animal_params:
@@ -103,7 +103,8 @@ class Animal:
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class
 
-    :cvar p:         dict, dictionary of parameters for the Herbivore objects.
+    :cvar animal_params:    dict, dictionary of parameters for the
+                            Herbivore objects.
     :ivar age:       int, the age of the animal
     :ivar weight:    float, the weight of the animal
 
@@ -203,7 +204,8 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     """Carnivore characteristics, subclass of Animal class
 
-    :cvar p:        dict, dictionary of parameters for the Carnivore objects.
+    :cvar animal_params:    dict, dictionary of parameters for the
+                            Carnivore objects.
     :ivar age:      int, the age of the animal
     :ivar weight:   float, the weight of the animal
 
@@ -239,13 +241,13 @@ class Carnivore(Animal):
         Carnivores eat.
         When Carnivores eat, this method:
 
-        - delete herbivores from the cell after they are eaten.
-        - Update the weight of carnivore when they have eaten.
+        - Deletes herbivores from the cell after they are eaten.
+        - Updates the weight of carnivore when they have eaten.
 
         Conditions for a carnivore eating are:
 
-        1. They eat until they get an amount F (yet to implement ??)
-        2. If fitness is less than a herbivore, they can't kill that herbivore
+        1. They eat until they get an amount F
+        2. If fitness is less than the herbivore's fitness, they can't kill it.
         3. They kill with certain probability, if they have less than
            DeltaPhiMax fitness
         4. They certainly kill that herbivore otherwise
@@ -288,8 +290,8 @@ class Carnivore(Animal):
         Reproduction for carnivores
 
         :param length:               int, number of total carnivores in the
-                                          cell where the herbivore resides
-        :return: A baby carnivores   Carnivore object (with age=0 and weight
+                                          cell where the carnivore resides
+        :return A baby carnivores:   Carnivore object (with age=0 and weight
                                      equal to baby weight)
         """
 

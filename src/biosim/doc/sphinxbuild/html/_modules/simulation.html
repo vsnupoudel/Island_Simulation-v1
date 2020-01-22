@@ -66,15 +66,18 @@
 <span class="sd">                           color-code limits for animal densities</span>
 <span class="sd">    :ivar total_years:     int(default, 60), total number of years for all the</span>
 <span class="sd">                           sub-simulations</span>
-<span class="sd">    :ivar img_base:</span>
+<span class="sd">    :ivar img_base:         Path relative to the code being run, where the user</span>
+<span class="sd">                            intends to store the images. Also can specify the</span>
+<span class="sd">                            whole path of the computer. If is none,</span>
+<span class="sd">                            no image is stored.</span>
 <span class="sd">    :ivar img_fmt:         str(default, png), image fmt</span>
 
 <span class="sd">    :ivar num_images:      int(default, 0), number of images</span>
-<span class="sd">    :ivar object_matrix:   array, 2D array of cell objects containing</span>
+<span class="sd">    :ivar object_matrix:   list, 2D list of cell objects containing</span>
 <span class="sd">                           herbivores and carnivores</span>
 
-<span class="sd">    :ivar v:                Instance of Visualization class</span>
-<span class="sd">    :ivar v.set_graphics:   Graphics are set</span>
+<span class="sd">    :ivar viz:              Instance of Visualization class</span>
+<span class="sd">    :ivar viz.set_graphics:   Graphics are set</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -130,8 +133,8 @@
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">one_location_list</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">one_location_list</span><span class="p">[</span><span class="s1">&#39;loc&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="o">.</span><span class="n">set_population</span><span class="p">(</span><span class="n">one_location_list</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">Visualization</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ymax_animals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_years</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz</span> <span class="o">=</span> <span class="n">Visualization</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ymax_animals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_years</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_base</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img_base</span><span class="p">):</span>
@@ -190,10 +193,10 @@
 <span class="sd">                              saved to files</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">create_map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_matrix</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">create_map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">island_matrix</span><span class="p">)</span>
 
         <span class="n">step</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">herbivore_distribution</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">herbivore_distribution</span><span class="p">,</span>
                                <span class="bp">self</span><span class="o">.</span><span class="n">carnivore_distribution</span><span class="p">,</span>
                                <span class="bp">self</span><span class="o">.</span><span class="n">num_animals_per_species</span><span class="p">,</span>
                                <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span><span class="p">)</span>
@@ -211,7 +214,7 @@
             <span class="n">c</span><span class="o">.</span><span class="n">animals_migrate</span><span class="p">()</span>
             <span class="n">c</span><span class="o">.</span><span class="n">animals_die</span><span class="p">()</span>
             <span class="n">c</span><span class="o">.</span><span class="n">animals_age</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">herbivore_distribution</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">viz</span><span class="o">.</span><span class="n">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">herbivore_distribution</span><span class="p">,</span>
                                    <span class="bp">self</span><span class="o">.</span><span class="n">carnivore_distribution</span><span class="p">,</span>
                                    <span class="bp">self</span><span class="o">.</span><span class="n">num_animals_per_species</span><span class="p">,</span>
                                    <span class="bp">self</span><span class="o">.</span><span class="n">cmax_animals</span><span class="p">)</span>
@@ -241,7 +244,9 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :return: year    int, current year on island</span>
+<span class="sd">        current year on the simuation island</span>
+
+<span class="sd">        :return:  current year, int</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_year</span>
 

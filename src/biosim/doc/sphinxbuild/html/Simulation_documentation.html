@@ -56,13 +56,16 @@ for graph showing animal numbers
 color-code limits for animal densities</li>
 <li><strong>total_years</strong> – int(default, 60), total number of years for all the
 sub-simulations</li>
-<li><strong>img_base</strong> – </li>
+<li><strong>img_base</strong> – Path relative to the code being run, where the user
+intends to store the images. Also can specify the
+whole path of the computer. If is none,
+no image is stored.</li>
 <li><strong>img_fmt</strong> – str(default, png), image fmt</li>
 <li><strong>num_images</strong> – int(default, 0), number of images</li>
-<li><strong>object_matrix</strong> – array, 2D array of cell objects containing
+<li><strong>object_matrix</strong> – list, 2D list of cell objects containing
 herbivores and carnivores</li>
-<li><strong>v</strong> – Instance of Visualization class</li>
-<li><strong>v.set_graphics</strong> – Graphics are set</li>
+<li><strong>viz</strong> – Instance of Visualization class</li>
+<li><strong>viz.set_graphics</strong> – Graphics are set</li>
 </ul>
 </td>
 </tr>
@@ -236,11 +239,12 @@ saved to files</li>
 <dl class="attribute">
 <dt id="simulation.BioSim.year">
 <code class="descname">year</code><a class="headerlink" href="#simulation.BioSim.year" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>current year on the simuation island</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">year    int, current year on island</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">current year, int</td>
 </tr>
 </tbody>
 </table>

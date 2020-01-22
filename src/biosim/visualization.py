@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Class with plotting functions"""
+"""Class with plotting methods"""
 
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
@@ -46,10 +46,10 @@ class Visualization:
 
     def set_graphics(self, y_lim, x_lim):
         """
-        Sets up the graphics with 4 subplots
+        Sets up the graphics with 4 subplots.
 
-        :param y_lim:       float, y limit of plot
-        :param x_lim:       int, x limit of plot
+        :param y_lim:       float, y limit of the line plot
+        :param x_lim:       int, x limit of the line plot
         :return: None
         """
         # create new figure window
@@ -96,9 +96,9 @@ class Visualization:
 
     def create_map(self, data):
         """
-        Creates island map. Called one time at the start of the simuation.
+        Creates island map. Called one time at the start of the simulation.
 
-        :param data:    array, 2D array of map spesifications
+        :param data:    array, 2D array of map specifications
         :return: None
         """
         self._img_axis = self._map_ax.imshow(data, cmap='terrain',
@@ -106,11 +106,11 @@ class Visualization:
 
     def update_herb_ax(self, herb_data, herb_limit):
         """
-        Updates heatmap for herbivore distribution
+        Updates heatmap for herbivore distribution.
 
         :param herb_data:   array, 2D array with number of herbivores in each
                             cell
-        :param herb_limit:  int, upper limit for colourbar
+        :param herb_limit:  int, upper limit for color bar
         :return: None
         """
         if self._herb_axis is not None:
@@ -126,11 +126,11 @@ class Visualization:
 
     def update_carn_ax(self, carn_data, carn_limit):
         """
-        Updates heatmap for carnivore distribution
+        Updates heatmap for carnivore distribution.
 
         :param carn_data:    array, 2D array with number of carnivores in each
                              cell
-        :param carn_limit:   int, upper limit for colourbar
+        :param carn_limit:   int, upper limit for color bar
         :return: None
         """
         if self._carn_axis is not None:
@@ -146,7 +146,7 @@ class Visualization:
 
     def update_mean_ax(self, herb_num, carn_num):
         """
-        Updates linegraphs for herbivore and carnivore count
+        Updates linegraphs for herbivore and carnivore count.
 
         :param herb_num:    int, total number of herbivores on island
         :param carn_num:    int, total number of carnivores on island
@@ -164,9 +164,9 @@ class Visualization:
     def update_graphics(self, herb_pos, carn_pos, num_animals_per_sp,
                         col_limits):
         """
-        Updates graphics with current data
+        Updates graphics with current data.
 
-        :param col_limits: limits of colourbars for herbivores and carnivores
+        :param col_limits: limits of color bars for herbivores and carnivores
                            in a dictionary format
         :param herb_pos:     array, 2D array containing herbivore distribution
                              on the island

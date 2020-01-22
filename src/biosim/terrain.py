@@ -179,7 +179,8 @@ class Savannah(Cell):
 
     :cvar parameters:   dict, dictionary of Savannah parameters, containing:
                         f_max: int(default, 300), maximal available food in
-                               Jungle object
+                        Savannah object
+
                         alpha: (default, 0.3), parameter
     :cvar is_migratable:  bool(default, True), whether the cell is migratable
                           or not for animal objects
@@ -213,7 +214,7 @@ class Savannah(Cell):
         Updates the landscape parameters
 
         :param cls: class method
-        :param params_dict: Dictionary of parameters to be updated
+        :param params_dict: dict, Dictionary of parameters to be updated
         """
         for k, v in params_dict.items():
             if k not in cls.parameters:

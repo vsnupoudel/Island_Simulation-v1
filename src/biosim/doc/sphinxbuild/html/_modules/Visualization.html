@@ -34,7 +34,7 @@
             
   <h1>Source code for visualization</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;Class with plotting functions&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Class with plotting methods&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Anders Huse, Bishnu Poudel&quot;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;anhuse@nmbu.no; bipo@nmbu.no&quot;</span>
@@ -81,10 +81,10 @@
 
 <div class="viewcode-block" id="Visualization.set_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.set_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">set_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_lim</span><span class="p">,</span> <span class="n">x_lim</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sets up the graphics with 4 subplots</span>
+<span class="sd">        Sets up the graphics with 4 subplots.</span>
 
-<span class="sd">        :param y_lim:       float, y limit of plot</span>
-<span class="sd">        :param x_lim:       int, x limit of plot</span>
+<span class="sd">        :param y_lim:       float, y limit of the line plot</span>
+<span class="sd">        :param x_lim:       int, x limit of the line plot</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># create new figure window</span>
@@ -131,9 +131,9 @@
 
 <div class="viewcode-block" id="Visualization.create_map"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.create_map">[docs]</a>    <span class="k">def</span> <span class="nf">create_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates island map. Called one time at the start of the simuation.</span>
+<span class="sd">        Creates island map. Called one time at the start of the simulation.</span>
 
-<span class="sd">        :param data:    array, 2D array of map spesifications</span>
+<span class="sd">        :param data:    array, 2D array of map specifications</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_img_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;terrain&#39;</span><span class="p">,</span>
@@ -141,11 +141,11 @@
 
 <div class="viewcode-block" id="Visualization.update_herb_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_herb_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_herb_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_data</span><span class="p">,</span> <span class="n">herb_limit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates heatmap for herbivore distribution</span>
+<span class="sd">        Updates heatmap for herbivore distribution.</span>
 
 <span class="sd">        :param herb_data:   array, 2D array with number of herbivores in each</span>
 <span class="sd">                            cell</span>
-<span class="sd">        :param herb_limit:  int, upper limit for colourbar</span>
+<span class="sd">        :param herb_limit:  int, upper limit for color bar</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_herb_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -161,11 +161,11 @@
 
 <div class="viewcode-block" id="Visualization.update_carn_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_carn_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_carn_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">carn_data</span><span class="p">,</span> <span class="n">carn_limit</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates heatmap for carnivore distribution</span>
+<span class="sd">        Updates heatmap for carnivore distribution.</span>
 
 <span class="sd">        :param carn_data:    array, 2D array with number of carnivores in each</span>
 <span class="sd">                             cell</span>
-<span class="sd">        :param carn_limit:   int, upper limit for colourbar</span>
+<span class="sd">        :param carn_limit:   int, upper limit for color bar</span>
 <span class="sd">        :return: None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_carn_axis</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -181,7 +181,7 @@
 
 <div class="viewcode-block" id="Visualization.update_mean_ax"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_mean_ax">[docs]</a>    <span class="k">def</span> <span class="nf">update_mean_ax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_num</span><span class="p">,</span> <span class="n">carn_num</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates linegraphs for herbivore and carnivore count</span>
+<span class="sd">        Updates linegraphs for herbivore and carnivore count.</span>
 
 <span class="sd">        :param herb_num:    int, total number of herbivores on island</span>
 <span class="sd">        :param carn_num:    int, total number of carnivores on island</span>
@@ -199,9 +199,9 @@
 <div class="viewcode-block" id="Visualization.update_graphics"><a class="viewcode-back" href="../Visualization_documentation.html#visualization.Visualization.update_graphics">[docs]</a>    <span class="k">def</span> <span class="nf">update_graphics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">herb_pos</span><span class="p">,</span> <span class="n">carn_pos</span><span class="p">,</span> <span class="n">num_animals_per_sp</span><span class="p">,</span>
                         <span class="n">col_limits</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Updates graphics with current data</span>
+<span class="sd">        Updates graphics with current data.</span>
 
-<span class="sd">        :param col_limits: limits of colourbars for herbivores and carnivores</span>
+<span class="sd">        :param col_limits: limits of color bars for herbivores and carnivores</span>
 <span class="sd">                           in a dictionary format</span>
 <span class="sd">        :param herb_pos:     array, 2D array containing herbivore distribution</span>
 <span class="sd">                             on the island</span>

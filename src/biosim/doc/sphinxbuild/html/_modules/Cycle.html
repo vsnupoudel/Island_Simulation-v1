@@ -51,14 +51,14 @@
 <span class="sd">    2. Animals feed</span>
 <span class="sd">    3. Animals procreate</span>
 <span class="sd">    4. Animals migrate</span>
-<span class="sd">    5. Animals age</span>
-<span class="sd">    6. Animals loose weight</span>
-<span class="sd">    7. Animals die</span>
+<span class="sd">    5. Animals die</span>
+<span class="sd">    6. Animals age and lose weight</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">object_matrix</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :param object_matrix:   list, nested list (map with population)</span>
+<span class="sd">        :param object_matrix: list, 2D list of cell objects containing</span>
+<span class="sd">                               herbivores and carnivores</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">object_matrix</span> <span class="o">=</span> <span class="n">object_matrix</span>
 
@@ -78,7 +78,8 @@
 
 <div class="viewcode-block" id="Cycle.animals_eat"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_eat">[docs]</a>    <span class="k">def</span> <span class="nf">animals_eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Herbivores and Carnivores eat. This happens once in every cycle</span>
+<span class="sd">        Herbivores and Carnivores eat. This happens once in every cycle.</span>
+
 <span class="sd">        This method updates:</span>
 
 <span class="sd">        - Increases the weight of animal if they eat</span>
@@ -100,7 +101,8 @@
 <div class="viewcode-block" id="Cycle.animals_reproduce"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_reproduce">[docs]</a>    <span class="k">def</span> <span class="nf">animals_reproduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Animals reproduce in every cell on the island.</span>
-<span class="sd">        Animals reproduce if they meet the conditions (for each cell)</span>
+<span class="sd">        Animals reproduce if they meet the conditions (for each cell).</span>
+
 <span class="sd">        This method updates:</span>
 
 <span class="sd">        - The number of animals in the particular cell</span>
@@ -225,7 +227,9 @@
 
 <div class="viewcode-block" id="Cycle.animals_die"><a class="viewcode-back" href="../Cycle_documentation.html#cycle.Cycle.animals_die">[docs]</a>    <span class="k">def</span> <span class="nf">animals_die</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This method makes animals die. Animals die:</span>
+<span class="sd">        This method makes animals die.</span>
+
+<span class="sd">        Animals die:</span>
 
 <span class="sd">        - With certainty if the animals fitness is equal to zero</span>
 <span class="sd">        - with probability</span>
