@@ -4,11 +4,11 @@
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
-from cycle import Cycle
-from geography import CreateMap
-from visualization import Visualization
-from terrain import Savannah, Jungle
-from animal import Herbivore, Carnivore
+from .cycle import Cycle
+from .geography import CreateMap
+from .visualization import Visualization
+from .terrain import Savannah, Jungle
+from .animal import Herbivore, Carnivore
 
 import numpy as np
 import pandas as pd
