@@ -4,8 +4,6 @@
 __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
-import shutil
-
 from .cycle import Cycle
 from .geography import Geo
 from .visualization import Visualization
@@ -106,7 +104,8 @@ class BioSim:
                     for name in files:
                         os.remove(os.path.join(root, name))
 
-    def set_animal_parameters(self, species, params):
+    @staticmethod
+    def set_animal_parameters(species, params):
         """
         Set parameters for animal species.
         :param species:  string, name of animal species
@@ -117,7 +116,8 @@ class BioSim:
         elif species == "Carnivore":
             Carnivore.up_par(params)
 
-    def set_landscape_parameters(self, landscape, params):
+    @staticmethod
+    def set_landscape_parameters(landscape, params):
         """
         Set parameters for landscape type.
 

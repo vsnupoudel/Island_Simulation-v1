@@ -69,12 +69,10 @@ class Animal:
         if self.weight <= 0:
             return 0
         else:
-
             return (1 / (1 + math.e ** (self.animal_params['phi_age'] * (
-                    self.age - self.animal_params['a_half'])))) \
-                   * (1 / (
-                    1 + math.e ** (- self.animal_params['phi_weight'] * (
-                    self.weight - self.animal_params['w_half']))))
+                        self.age - self.animal_params['a_half'])))) * (1 / (
+                        1 + math.e ** (- self.animal_params['phi_weight'] * (
+                            self.weight - self.animal_params['w_half']))))
 
     @property
     def move_prob(self):
@@ -178,7 +176,8 @@ class Herbivore(Animal):
                 self.weight -= baby_weight * self.animal_params['xi']
                 return Herbivore(age=0, weight=baby_weight)
 
-    def herb_migrates(self, animal, adj_cells, proba_list_h):
+    @staticmethod
+    def herb_migrates(animal, adj_cells, proba_list_h):
         """
         Herbivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.
@@ -312,7 +311,8 @@ class Carnivore(Animal):
                 self.weight -= baby_weight * self.animal_params['xi']
                 return Carnivore(age=0, weight=baby_weight)
 
-    def carn_migrates(self, animal, adj_cells, proba_list_c):
+    @staticmethod
+    def carn_migrates(animal, adj_cells, proba_list_c):
         """
         Carnivore migrates. This method decides which cell the animal migrates
         to, of the adjacent cells to the current cell.

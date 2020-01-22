@@ -223,8 +223,6 @@ class Savannah(Cell):
         cls.parameters.update(params_dict)
 
 
-
-
 class Desert(Cell):
     """
     Desert landscape. Child class of the Cell class.

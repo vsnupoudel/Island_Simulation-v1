@@ -59,7 +59,7 @@ if __name__ == "__main__":
                  total_years = 500, img_base='Raw_Images', cmax_animals=
                  {'Herbivore': 100, 'Carnivore': 100})
 
-    sim.set_animal_parameters("Herbivore", {"zeta": 3.2})
+    sim.set_animal_parameters("Herbivore", {"zeta": 2.9})
     sim.set_animal_parameters(
         "Carnivore",
         {
@@ -70,18 +70,18 @@ if __name__ == "__main__":
             "DeltaPhiMax": 9.0,
         },
     )
-    # print(Carnivore.animal_params)
-    # print(Herbivore.animal_params)
+    print(Carnivore.animal_params)
+    print(Herbivore.animal_params)
 
-    # print(Savannah.parameters)
+    print(Savannah.parameters)
     sim.set_landscape_parameters("S", {'f_max': 200 })
-    # print(Savannah.parameters)
+    print(Savannah.parameters)
 
-    sim.simulate(num_years=15, vis_years=1, img_years=1)
+    sim.simulate(num_years=5, vis_years=1, img_years=1)
     sim.add_population(population=ini_carns)
-    sim.simulate(num_years=150, vis_years=1, img_years=1)
+    sim.simulate(num_years=15, vis_years=1, img_years=1)
     sim.make_movie()
 
     plt.savefig("check_sim.pdf")
 
-    input("Press ENTER")
+    # input("Press ENTER")
