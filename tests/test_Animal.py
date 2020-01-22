@@ -14,7 +14,6 @@ from src.biosim.mapping import Cell
 
 import pytest
 
-
 class TestAnimal:
     """
     Several tests for the animal class

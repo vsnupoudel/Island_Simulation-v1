@@ -13,8 +13,8 @@ class Animal:
     SuperClass for Herbivore and Carnivore.
     Contains methods, properties and variables that are common in both.
 
-    :cvar p:     dict, dictionary of parameters for the animal objects.
-                 All parameters are None by default
+    :cvar animal_params:     dict, dictionary of parameters for the animal
+                            objects. All parameters are None by default.
     :cvar has_procreated:   bool(default, False), whether the animal object
                             has procreated or not
     :cvar has_migrated:     bool(default, False), whether the animal object
@@ -60,8 +60,8 @@ class Animal:
         self.has_migrated = False
 
         self.reprod_thresh_weight = self.animal_params['zeta'] * (
-                    self.animal_params['w_birth'] +
-                    self.animal_params['sigma_birth'])
+                self.animal_params['w_birth'] +
+                self.animal_params['sigma_birth'])
 
     @property
     def fitness(self):
@@ -73,8 +73,8 @@ class Animal:
             return (1 / (1 + math.e ** (self.animal_params['phi_age'] * (
                     self.age - self.animal_params['a_half'])))) \
                    * (1 / (
-                        1 + math.e ** (- self.animal_params['phi_weight'] * (
-                        self.weight - self.animal_params['w_half']))))
+                    1 + math.e ** (- self.animal_params['phi_weight'] * (
+                    self.weight - self.animal_params['w_half']))))
 
     @property
     def move_prob(self):
