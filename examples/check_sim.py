@@ -77,11 +77,11 @@ if __name__ == "__main__":
     sim.set_landscape_parameters("S", {'f_max': 200 })
     # print(Savannah.parameters)
 
-    sim.simulate(num_years=50, vis_years=1, img_years=1)
+    sim.simulate(num_years=15, vis_years=1, img_years=1)
     sim.add_population(population=ini_carns)
     sim.simulate(num_years=150, vis_years=1, img_years=1)
     sim.make_movie()
 
-    # plt.savefig("check_sim.pdf")
+    plt.savefig("check_sim.pdf")
 
-    # input("Press ENTER")
+    input("Press ENTER")

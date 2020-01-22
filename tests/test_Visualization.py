@@ -79,10 +79,3 @@ class TestVisualization:
         assert create_vis._carn_axis is not None, "Figure should not be None"
         assert ax_1 != ax_2, "axis should not be equal"
 
-    def test_update_mean_ax(self):
-        """herbivore and carnivore line should be created"""
-        pass
-
-    def test_make_movie(self):
-        """makes movie"""
-        pass
