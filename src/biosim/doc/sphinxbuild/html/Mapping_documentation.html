@@ -6,17 +6,18 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Documentation of mapping &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
+    <title>Documentation of terrain &#8212; Modelling the Ecosystem of an Island- Group 4 Version 001 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation of animals" href="animal_documentation.html" />
-    <link rel="prev" title="Documentation of cycle" href="cycle_documentation.html" />
+    <link rel="next" title="Documentation of animals" href="Animal_documentation.html" />
+    <link rel="prev" title="Documentation of cycle" href="Cycle_documentation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,14 +34,14 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="documentation-of-mapping">
-<h1>Documentation of mapping<a class="headerlink" href="#documentation-of-mapping" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-mapping">
-<span id="the-mapping-class-and-its-subclasses"></span><h2>The mapping Class and its Subclasses<a class="headerlink" href="#module-mapping" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="documentation-of-terrain">
+<h1>Documentation of terrain<a class="headerlink" href="#documentation-of-terrain" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-terrain">
+<span id="the-terrain-class-and-its-subclasses"></span><h2>The terrain Class and its Subclasses<a class="headerlink" href="#module-terrain" title="Permalink to this headline">¶</a></h2>
 <p>File has the Cell class and its subclasses, type of terrain</p>
 <dl class="class">
-<dt id="mapping.Cell">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Cell</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Cell" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Cell</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Cell" title="Permalink to this definition">¶</a></dt>
 <dd><p>Super class for the type of Terrain: Jungle, Savannah, Desert,
 Ocean or Mountain.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -71,20 +72,20 @@ herbivores</li>
 </tbody>
 </table>
 <dl class="attribute">
-<dt id="mapping.Cell.carn_list">
-<code class="descname">carn_list</code><a class="headerlink" href="#mapping.Cell.carn_list" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.carn_list">
+<code class="descname">carn_list</code><a class="headerlink" href="#terrain.Cell.carn_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of all carnivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.carn_sorted_rev">
-<code class="descname">carn_sorted_rev</code><a class="headerlink" href="#mapping.Cell.carn_sorted_rev" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.carn_sorted_rev">
+<code class="descname">carn_sorted_rev</code><a class="headerlink" href="#terrain.Cell.carn_sorted_rev" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted list of all carnivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mapping.Cell.get_population">
-<code class="descname">get_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Cell.get_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Cell.get_population" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.get_population">
+<code class="descname">get_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Cell.get_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Cell.get_population" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the population of the cell</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -97,50 +98,50 @@ herbivores</li>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.herb_list">
-<code class="descname">herb_list</code><a class="headerlink" href="#mapping.Cell.herb_list" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.herb_list">
+<code class="descname">herb_list</code><a class="headerlink" href="#terrain.Cell.herb_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of all herbivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.herb_sorted">
-<code class="descname">herb_sorted</code><a class="headerlink" href="#mapping.Cell.herb_sorted" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.herb_sorted">
+<code class="descname">herb_sorted</code><a class="headerlink" href="#terrain.Cell.herb_sorted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted list of all herbivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.herb_sorted_rev">
-<code class="descname">herb_sorted_rev</code><a class="headerlink" href="#mapping.Cell.herb_sorted_rev" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.herb_sorted_rev">
+<code class="descname">herb_sorted_rev</code><a class="headerlink" href="#terrain.Cell.herb_sorted_rev" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reversed-sorted list of all herbivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.n_carns">
-<code class="descname">n_carns</code><a class="headerlink" href="#mapping.Cell.n_carns" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.n_carns">
+<code class="descname">n_carns</code><a class="headerlink" href="#terrain.Cell.n_carns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of carnivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.n_herbs">
-<code class="descname">n_herbs</code><a class="headerlink" href="#mapping.Cell.n_herbs" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.n_herbs">
+<code class="descname">n_herbs</code><a class="headerlink" href="#terrain.Cell.n_herbs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of herbivore objects in the cell object</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.pi_ij_carn">
-<code class="descname">pi_ij_carn</code><a class="headerlink" href="#mapping.Cell.pi_ij_carn" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.pi_ij_carn">
+<code class="descname">pi_ij_carn</code><a class="headerlink" href="#terrain.Cell.pi_ij_carn" title="Permalink to this definition">¶</a></dt>
 <dd><p>propensity for a cell object for carnivores</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="mapping.Cell.pi_ij_herb">
-<code class="descname">pi_ij_herb</code><a class="headerlink" href="#mapping.Cell.pi_ij_herb" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.pi_ij_herb">
+<code class="descname">pi_ij_herb</code><a class="headerlink" href="#terrain.Cell.pi_ij_herb" title="Permalink to this definition">¶</a></dt>
 <dd><p>propensity for a cell object for herbivores</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="mapping.Cell.set_population">
-<code class="descname">set_population</code><span class="sig-paren">(</span><em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Cell.set_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Cell.set_population" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Cell.set_population">
+<code class="descname">set_population</code><span class="sig-paren">(</span><em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Cell.set_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Cell.set_population" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the population of a cell object</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -157,8 +158,8 @@ set for the cell object, containing:</td>
 </dd></dl>
 
 <dl class="class">
-<dt id="mapping.Desert">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Desert</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Desert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Desert" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Desert">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Desert</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Desert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Desert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Desert landscape. Child class of the Cell class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -183,8 +184,8 @@ or not for animal objects</li>
 </dd></dl>
 
 <dl class="class">
-<dt id="mapping.Jungle">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Jungle</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=300</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Jungle" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Jungle">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Jungle</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=300</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Jungle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Jungle" title="Permalink to this definition">¶</a></dt>
 <dd><p>Jungle landscape. Child class of the Cell class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -211,11 +212,29 @@ or not for animal objects</li>
 </tr>
 </tbody>
 </table>
+<dl class="classmethod">
+<dt id="terrain.Jungle.update_par">
+<em class="property">classmethod </em><code class="descname">update_par</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Jungle.update_par"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Jungle.update_par" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the landscape parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cls</strong> – class method</li>
+<li><strong>params_dict</strong> – Dictionary of parameters to be updated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
-<dt id="mapping.Mountain">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Mountain</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Mountain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Mountain" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Mountain">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Mountain</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Mountain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Mountain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mountian landscape.  Child class of the Cell class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -240,8 +259,8 @@ or not for animal objects</li>
 </dd></dl>
 
 <dl class="class">
-<dt id="mapping.Ocean">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Ocean</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Ocean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Ocean" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Ocean">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Ocean</code><span class="sig-paren">(</span><em>row</em>, <em>column</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Ocean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Ocean" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ocean landscape. Child class of the Cell class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -266,8 +285,8 @@ or not for animal objects</li>
 </dd></dl>
 
 <dl class="class">
-<dt id="mapping.Savannah">
-<em class="property">class </em><code class="descclassname">mapping.</code><code class="descname">Savannah</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=200</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/mapping.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#mapping.Savannah" title="Permalink to this definition">¶</a></dt>
+<dt id="terrain.Savannah">
+<em class="property">class </em><code class="descclassname">terrain.</code><code class="descname">Savannah</code><span class="sig-paren">(</span><em>row</em>, <em>column</em>, <em>f_ij=200</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Savannah"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Savannah" title="Permalink to this definition">¶</a></dt>
 <dd><p>Savannah landscape. Child class of the Cell class.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -297,6 +316,24 @@ or not for animal objects</li>
 </tr>
 </tbody>
 </table>
+<dl class="classmethod">
+<dt id="terrain.Savannah.update_par">
+<em class="property">classmethod </em><code class="descname">update_par</code><span class="sig-paren">(</span><em>params_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/terrain.html#Savannah.update_par"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#terrain.Savannah.update_par" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the landscape parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cls</strong> – class method</li>
+<li><strong>params_dict</strong> – Dictionary of parameters to be updated</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -321,22 +358,22 @@ or not for animal objects</li>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="simulation_documentation.html">Documentation of simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of mapping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-mapping">The mapping Class and its Subclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cycle_documentation.html">Documentation of cycle</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation of terrain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-terrain">The terrain Class and its Subclasses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="geography_documentation.html">Documentation of geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualization_documentation.html">Documentation of visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Animal_documentation.html">Documentation of animals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geography_documentation.html">Documentation of geography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualization_documentation.html">Documentation of visualization</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="cycle_documentation.html" title="previous chapter">Documentation of cycle</a></li>
-      <li>Next: <a href="animal_documentation.html" title="next chapter">Documentation of animals</a></li>
+      <li>Previous: <a href="Cycle_documentation.html" title="previous chapter">Documentation of cycle</a></li>
+      <li>Next: <a href="Animal_documentation.html" title="next chapter">Documentation of animals</a></li>
   </ul></li>
 </ul>
 </div>
@@ -352,14 +389,6 @@ or not for animal objects</li>
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -368,11 +397,11 @@ or not for animal objects</li>
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
       |
-      <a href="_sources/mapping_documentation.rst.txt"
+      <a href="_sources/Mapping_documentation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

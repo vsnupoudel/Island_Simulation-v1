@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Geo class
+CreateMap class
 """
 
 __author__ = "Anders Huse; Bishnu Poudel"
@@ -9,7 +9,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import textwrap
-from src.biosim.terrain import Jungle, Savannah, Desert, Ocean, Mountain
+from terrain import Jungle, Savannah, Desert, Ocean, Mountain
 
 
 class CreateMap:

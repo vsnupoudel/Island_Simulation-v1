@@ -1,7 +1,5 @@
-Documentation of geography
+CreateMap
 ===========================
 
-The geography Class and its Subclasses
--------------------------------------
 .. automodule:: geography
    :members:

@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
    
@@ -35,7 +36,7 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Geo class</span>
+<span class="sd">CreateMap class</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Anders Huse; Bishnu Poudel&quot;</span>
@@ -43,10 +44,10 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">from</span> <span class="nn">mapping</span> <span class="k">import</span> <span class="n">Jungle</span><span class="p">,</span> <span class="n">Savannah</span><span class="p">,</span> <span class="n">Desert</span><span class="p">,</span> <span class="n">Ocean</span><span class="p">,</span> <span class="n">Mountain</span>
+<span class="kn">from</span> <span class="nn">terrain</span> <span class="k">import</span> <span class="n">Jungle</span><span class="p">,</span> <span class="n">Savannah</span><span class="p">,</span> <span class="n">Desert</span><span class="p">,</span> <span class="n">Ocean</span><span class="p">,</span> <span class="n">Mountain</span>
 
 
-<div class="viewcode-block" id="Geo"><a class="viewcode-back" href="../geography_documentation.html#geography.Geo">[docs]</a><span class="k">class</span> <span class="nc">Geo</span><span class="p">:</span>
+<div class="viewcode-block" id="CreateMap"><a class="viewcode-back" href="../Geography_documentation.html#geography.CreateMap">[docs]</a><span class="k">class</span> <span class="nc">CreateMap</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for the islands geography. This class:</span>
 
@@ -144,12 +145,12 @@
 
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">Documentation of simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cycle_documentation.html">Documentation of cycle</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mapping_documentation.html">Documentation of mapping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../animal_documentation.html">Documentation of animals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../geography_documentation.html">Documentation of geography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../visualization_documentation.html">Documentation of visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation_documentation.html">BioSim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Cycle_documentation.html">Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Terrain_documentation.html">Cell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Animal_documentation.html">Animal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geography_documentation.html">CreateMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Visualization_documentation.html">Visualization</a></li>
 </ul>
 
 <div class="relations">
@@ -173,14 +174,6 @@
     </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
         </div>
       </div>
       <div class="clearer"></div>
@@ -189,8 +182,8 @@
       &copy;2020, Anders Huse, Bishnu Poudel.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
       
     </div>
 

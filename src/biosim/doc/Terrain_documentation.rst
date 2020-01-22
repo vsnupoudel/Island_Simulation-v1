@@ -1,5 +1,5 @@
-Animal
+Cell
 ===========================
 
-.. automodule:: animal
+.. automodule:: terrain
    :members:

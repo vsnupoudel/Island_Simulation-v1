@@ -1,7 +1,5 @@
-Documentation of cycle
+Cycle
 ===========================
 
-The cycle Class and its Subclasses
--------------------------------------
 .. automodule:: cycle
    :members:

@@ -1,7 +1,7 @@
-Documentation of mapping
+Documentation of terrain
 ===========================
 
-The mapping Class and its Subclasses
+The terrain Class and its Subclasses
 -------------------------------------
-.. automodule:: mapping
+.. automodule:: terrain
    :members:

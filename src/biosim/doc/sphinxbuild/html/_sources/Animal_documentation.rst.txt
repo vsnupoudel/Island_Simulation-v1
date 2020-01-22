@@ -1,7 +1,5 @@
-Documentation of animals
+Animal
 ===========================
 
-The animal Class and its Subclasses
--------------------------------------
 .. automodule:: animal
    :members:

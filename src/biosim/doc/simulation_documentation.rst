@@ -1,7 +1,5 @@
-Documentation of simulation
+BioSim
 ===========================
 
-The simulation Class and its Subclasses
--------------------------------------
 .. automodule:: simulation
    :members:
