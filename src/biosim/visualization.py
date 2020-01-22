@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Class with plotting functions"""
 
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
@@ -69,7 +70,6 @@ class Visualization:
             self._herb_ax.set_yticklabels([])
             self._herb_ax.set_xticklabels([])
 
-
         if self._carn_ax is None:
             self._carn_ax = self._fig.add_subplot(2, 2, 3)
             self._carn_axis = None
@@ -121,8 +121,8 @@ class Visualization:
                                                    cmap="Greens", vmin=0,
                                                    vmax=herb_limit)
             self._herb_ax.figure.colorbar(self._herb_axis, ax=self._herb_ax,
-                                          orientation='horizontal'
-                                          , fraction=0.07, pad=0.04)
+                                          orientation='horizontal',
+                                          fraction=0.07, pad=0.04)
 
     def update_carn_ax(self, carn_data, carn_limit):
         """
@@ -141,9 +141,8 @@ class Visualization:
                                                    cmap="OrRd", vmin=0,
                                                    vmax=carn_limit)
             self._carn_ax.figure.colorbar(self._carn_axis, ax=self._carn_ax,
-                                          orientation='horizontal'
-                                          , fraction=0.07, pad=0.04)
-
+                                          orientation='horizontal',
+                                          fraction=0.07, pad=0.04)
 
     def update_mean_ax(self, herb_num, carn_num):
         """

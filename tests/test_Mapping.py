@@ -7,7 +7,7 @@ Tests for the mapping file
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from src.biosim.mapping import Savannah, Jungle, Desert, Ocean, Mountain, Cell
+from src.biosim.terrain import Savannah, Jungle, Desert, Ocean, Mountain, Cell
 import pytest
 
 

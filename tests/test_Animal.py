@@ -8,9 +8,9 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from src.biosim.animal import Herbivore, Carnivore
-from src.biosim.geography import Geo
+from src.biosim.geography import CreateMap
 from src.biosim.cycle import Cycle
-from src.biosim.mapping import Cell
+from src.biosim.terrain import Cell
 
 import pytest
 
@@ -38,7 +38,7 @@ class TestAnimal:
                                 OOOO
                                 OJSO
                                 OOOO""")
-        return Geo(input_map)
+        return CreateMap(input_map)
 
     @pytest.fixture()
     def create_cycle(self, create_geo):

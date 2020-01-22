@@ -7,7 +7,7 @@ Geo class
 __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from src.biosim.geography import Geo
+from src.biosim.geography import CreateMap
 import pytest
 
 
@@ -18,7 +18,7 @@ class TestGeo:
     @pytest.fixture()
     def create_map(self):
         """Creates a Geo object"""
-        return Geo("""\
+        return CreateMap("""\
             OOO
             OJO
             OOO""")
@@ -36,18 +36,18 @@ class TestGeo:
     def test_proper_letters(self):
         """all letters should either be: = O, M, J, S, D"""
         with pytest.raises(ValueError):
-            Geo("yyyy")
+            CreateMap("yyyy")
 
     def test_same_legth(self):
         """rows have same length"""
         with pytest.raises(ValueError):
-            Geo(""""\
+            CreateMap(""""\
                     OOOOOOO
                     JJJJJ""")
 
     def test_ocean_edges(self):
         """There should only be ocean around the edges of the map"""
         with pytest.raises(ValueError):
-            Geo(""""\
+            CreateMap(""""\
                     OOOOO
                     JJJJJ""")

@@ -9,10 +9,10 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 import numpy as np
 import textwrap
-from src.biosim.mapping import Jungle, Savannah, Desert, Ocean, Mountain
+from src.biosim.terrain import Jungle, Savannah, Desert, Ocean, Mountain
 
 
-class Geo:
+class CreateMap:
     """
     Class for the islands geography. This class:
 

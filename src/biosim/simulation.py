@@ -5,9 +5,9 @@ __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
 from .cycle import Cycle
-from .geography import Geo
+from .geography import CreateMap
 from .visualization import Visualization
-from .mapping import Savannah, Jungle
+from .terrain import Savannah, Jungle
 from .animal import Herbivore, Carnivore
 
 import numpy as np
@@ -80,7 +80,7 @@ class BioSim:
         self.current_year = 0
         self.seed = seed
         self.ini_pop = ini_pop
-        self.island_map = Geo(island_map)
+        self.island_map = CreateMap(island_map)
         self.object_matrix = self.island_map.object_matrix
         self.ymax_animals = ymax_animals
         self.total_years = total_years
@@ -278,8 +278,8 @@ class BioSim:
 
         rows = np.shape(self.object_matrix)[0]
         columns = np.shape(self.object_matrix)[1]
-        row_nums = [r for r in range(rows) for c in range(columns)]
-        col_nums = [c for r in range(rows) for c in range(columns)]
+        row_nums = [r for r in range(rows) for _ in range(columns)]
+        col_nums = [c for _ in range(rows) for c in range(columns)]
 
         _df = pd.DataFrame(list(zip(row_nums, col_nums, herb_flat, carn_flat)),
                            columns=['Row', 'Col', 'Herbivore', 'Carnivore'],
@@ -304,7 +304,7 @@ class BioSim:
 
         return island_matrix
 
-    def make_movie(self, full_path_and_file = None):
+    def make_movie(self, full_path_and_file=None):
         """
         Makes a movie of a series of images
 
