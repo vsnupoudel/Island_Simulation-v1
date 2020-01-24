@@ -224,6 +224,6 @@ dmypy.json
 
 # Image files
 *.png
-*.mpeg
-*.mp4
+#*.mpeg
+#*.mp4
 .idea/
