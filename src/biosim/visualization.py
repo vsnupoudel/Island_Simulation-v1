@@ -54,8 +54,9 @@ class Visualization:
         """
         # create new figure window
         if self._fig is None:
-            self._fig = plt.figure(figsize=(12, 6))
-            plt.title("Maximum number of years: "+str(x_lim), loc='left')
+            self._fig = plt.figure(figsize=(16, 9))
+            # plt.title("Simulating for maximum : "+str(x_lim)+" years",
+            #           loc='center')
             plt.axis('off')
 
         if self._map_ax is None:
@@ -63,18 +64,21 @@ class Visualization:
             self._img_axis = None
             self._map_ax.set_yticklabels([])
             self._map_ax.set_xticklabels([])
+            self._map_ax.title.set_text('Island Map')
 
         if self._herb_ax is None:
             self._herb_ax = self._fig.add_subplot(2, 2, 2)
             self._herb_axis = None
             self._herb_ax.set_yticklabels([])
             self._herb_ax.set_xticklabels([])
+            self._herb_ax.title.set_text('Herbivore HeatMap')
 
         if self._carn_ax is None:
             self._carn_ax = self._fig.add_subplot(2, 2, 3)
             self._carn_axis = None
             self._carn_ax.set_yticklabels([])
             self._carn_ax.set_xticklabels([])
+            self._carn_ax.title.set_text('Carnivore HeatMap')
 
         if self._mean_ax is None:
             self._mean_ax = self._fig.add_subplot(2, 2, 4)
@@ -82,17 +86,23 @@ class Visualization:
             self._mean_ax.set_xlim(0, x_lim)
             self._mean_ax.set_xlabel('Years')
             self._mean_ax.set_ylabel('Number of Species')
+            self._mean_ax.title.set_text('Number of Species')
+            self._mean_ax.legend()
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, x_lim),
-                                           np.full(x_lim, np.nan))
+                                           np.full(x_lim, np.nan),
+                                           label='Herbivore')
             self._herb_line = herb_plot[0]
+
 
         # Do the same for carn_line
         if self._carn_line is None:
             carn_plot = self._mean_ax.plot(np.arange(0, x_lim),
-                                           np.full(x_lim, np.nan))
+                                           np.full(x_lim, np.nan),
+                                           label='Carnivore')
             self._carn_line = carn_plot[0]
+            self._mean_ax.legend(loc="upper right")
 
     def create_map(self, data):
         """

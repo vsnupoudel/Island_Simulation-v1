@@ -170,7 +170,7 @@ class BioSim:
                 os.makedirs(self.img_base)
             plt.savefig('{}\\_{:05d}.{}'.format(self.img_base, self.num_images,
                                                 self.img_fmt))
-
+        self.num_images += 1
         c = Cycle(self.object_matrix)
         while step <= num_years:
             c.food_grows()
