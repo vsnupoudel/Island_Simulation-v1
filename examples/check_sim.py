@@ -72,10 +72,10 @@ if __name__ == "__main__":
     )
     sim.set_landscape_parameters("J", {"f_max": 700})
 
-    sim.simulate(num_years=50, vis_years=1, img_years=10)
+    sim.simulate(num_years=5, vis_years=1, img_years=10)
 
     sim.add_population(population=ini_carns)
-    sim.simulate(num_years=1800, vis_years=1, img_years=10)
+    sim.simulate(num_years=18, vis_years=1, img_years=10)
     sim.make_movie()
 
     plt.savefig("check_sim.pdf")

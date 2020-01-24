@@ -99,6 +99,8 @@ class Animal:
 
         cls.animal_params.update(params_dict)
 
+        # Getter and setters for Age and Weight
+
 
 class Herbivore(Animal):
     """Herbivore characteristics, subclass of Animal class
