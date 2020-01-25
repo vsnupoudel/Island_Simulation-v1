@@ -1,4 +1,4 @@
-#!"C:\Users\bipo\OneDrive - Norwegian University of Life Sciences\INF200\BioSim_G04_Anders_Bishnu\venv\Scripts\python.exe"
+#!C:\Users\admin\Desktop\INF200\ExamRepo\Simulation_of_Ecosystem\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==40.8.0','console_scripts','easy_install-3.7'
 __requires__ = 'setuptools==40.8.0'
 import re
