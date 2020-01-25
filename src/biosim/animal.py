@@ -53,10 +53,8 @@ class Animal:
         self.weight = weight
         self.age = age
         self.is_dead = False
-
-        if self.weight is None:
-            self.weight = np.random.normal(self.animal_params['w_birth'],
-                                           self.animal_params['sigma_birth'])
+        self._recompute_fitness = True
+        self._fitness = 0
         self.has_migrated = False
 
         self.reprod_thresh_weight = self.animal_params['zeta'] * (
@@ -64,19 +62,48 @@ class Animal:
                 self.animal_params['sigma_birth'])
 
     @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, value):
+        self._recompute_fitness = True
+        self._age = value
+
+    @property
+    def weight(self):
+        return self._weight
+
+    @weight.setter
+    def weight(self, value):
+        self._recompute_fitness = True
+        self._weight = value
+
+    @property
     def fitness(self):
         """The fitness of each animal"""
-        if self.weight <= 0:
-            return 0
-        else:
-            return (1 / (1 + math.e ** (self.animal_params['phi_age'] * (
-                        self.age - self.animal_params['a_half'])))) * (1 / (
-                        1 + math.e ** (- self.animal_params['phi_weight'] * (
-                            self.weight - self.animal_params['w_half']))))
+        if self._recompute_fitness:
+            # print(" am executing")
+            if self.weight <= 0:
+                self._fitness = 0
+                print("zero")
+            else:
+                # print(" in her to0")
+                self._fitness = (1 / (1 + math.e ** (self.animal_params[
+                                                       'phi_age'] * (
+                            self.age - self.animal_params['a_half'])))) * (1 / (
+                            1 + math.e ** (- self.animal_params['phi_weight'] * (
+                                self.weight - self.animal_params['w_half']))))
+            self._recompute_fitness = False
+            # print("fitness recomputed: ", self._fitness)
+
+        # print("fitness not rec: ", self._fitness)
+        return self._fitness
 
     @property
     def move_prob(self):
         """probability for the animal to migrate"""
+        # print(self.animal_params['mu'] , self.fitness)
         return self.animal_params['mu'] * self.fitness
 
     @property
@@ -338,3 +365,11 @@ class Carnivore(Animal):
                 new_cell = adj_cells[i]
                 new_cell.animal_object_list.append(animal)
                 break
+
+if __name__ == "__main__":
+    h = Herbivore(1,7)
+    print(h._recompute_fitness)
+    print(h._age)
+    print(h._weight)
+    print(h.fitness)
+    print(h._fitness)
