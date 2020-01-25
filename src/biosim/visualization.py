@@ -87,7 +87,7 @@ class Visualization:
             self._mean_ax.set_xlabel('Years')
             self._mean_ax.set_ylabel('Number of Species')
             self._mean_ax.title.set_text('Number of Species')
-            self._mean_ax.legend()
+
 
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, x_lim),
