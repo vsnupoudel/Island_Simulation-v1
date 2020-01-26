@@ -7,7 +7,6 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 import numpy as np
 import math
 
-
 class Animal:
     """
     SuperClass for Herbivore and Carnivore.
