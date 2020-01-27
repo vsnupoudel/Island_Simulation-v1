@@ -43,6 +43,15 @@ class Animal:
                      "omega": 0,
                      "F": 0,
                      }
+    e_to_phi_age_half = math.e ** (
+            animal_params['phi_age'] * animal_params[
+        'a_half'])
+    e_to_phi_age = math.e ** (animal_params['phi_age'])
+
+    e_to_phi_w_half = math.e ** (
+            animal_params['phi_weight'] * animal_params[
+        'w_half'])
+    e_to_phi_w = math.e ** (animal_params['phi_weight'])
 
     def __init__(self, age, weight):
         """

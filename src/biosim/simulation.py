@@ -175,12 +175,12 @@ class BioSim:
         while step <= num_years:
             # print([a.fitness for a in c.object_matrix[10][
             #     10].animal_object_list])
-            # c.food_grows()
-            # c.animals_eat()
-            # c.animals_reproduce()
+            c.food_grows()
+            c.animals_eat()
+            c.animals_reproduce()
             c.animals_migrate()
-            # c.animals_die()
-            # c.animals_age()
+            c.animals_die()
+            c.animals_age()
             self.viz.update_graphics(self.herbivore_distribution,
                                    self.carnivore_distribution,
                                    self.num_animals_per_species,
@@ -319,7 +319,7 @@ class BioSim:
                                     the ffmpeg.exe file
          """
         if full_path_and_file is None:
-            full_path_and_file = r'.\ffmpeg'
+            full_path_and_file = r'ffmpeg'
 
         subprocess.run([full_path_and_file,
                         '-f', 'image2',

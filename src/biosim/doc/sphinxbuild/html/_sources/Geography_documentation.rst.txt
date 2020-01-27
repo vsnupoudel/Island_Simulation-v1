@@ -1,5 +1,0 @@
-CreateMap
-===========================
-
-.. automodule:: geography
-   :members:

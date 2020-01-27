@@ -39,9 +39,7 @@ class Cell:
         self.animal_object_list = []
         self.f_ij = f_ij
 
-
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
-
         self.rel_ab_carn = self.tot_herb_weight / (self.n_carns + 1)\
             * Carnivore.animal_params['F']
         self.rel_ab_herb = self.f_ij / (self.n_herbs + 1) *\

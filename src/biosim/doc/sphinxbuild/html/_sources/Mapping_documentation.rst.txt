@@ -1,7 +1,0 @@
-Documentation of terrain
-===========================
-
-The terrain Class and its Subclasses
--------------------------------------
-.. automodule:: terrain
-   :members:
