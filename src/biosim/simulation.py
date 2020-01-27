@@ -173,14 +173,14 @@ class BioSim:
         self.num_images += 1
         c = Cycle(self.object_matrix)
         while step <= num_years:
-            print([a.fitness for a in c.object_matrix[10][
-                10].animal_object_list])
-            c.food_grows()
-            c.animals_eat()
-            c.animals_reproduce()
+            # print([a.fitness for a in c.object_matrix[10][
+            #     10].animal_object_list])
+            # c.food_grows()
+            # c.animals_eat()
+            # c.animals_reproduce()
             c.animals_migrate()
-            c.animals_die()
-            c.animals_age()
+            # c.animals_die()
+            # c.animals_age()
             self.viz.update_graphics(self.herbivore_distribution,
                                    self.carnivore_distribution,
                                    self.num_animals_per_species,

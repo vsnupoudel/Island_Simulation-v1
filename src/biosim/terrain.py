@@ -38,7 +38,7 @@ class Cell:
         self.column = column
         self.animal_object_list = []
         self.f_ij = f_ij
-        
+
 
         self.tot_herb_weight = np.sum([a.weight for a in self.herb_list])
 
