@@ -227,3 +227,6 @@ dmypy.json
 #*.mpeg
 #*.mp4
 .idea/
+
+#ignore html
+*.html
