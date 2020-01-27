@@ -173,6 +173,8 @@ class BioSim:
         self.num_images += 1
         c = Cycle(self.object_matrix)
         while step <= num_years:
+            print([a.fitness for a in c.object_matrix[10][
+                10].animal_object_list])
             c.food_grows()
             c.animals_eat()
             c.animals_reproduce()
