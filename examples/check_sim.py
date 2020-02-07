@@ -57,7 +57,7 @@ if __name__ == "__main__":
     # Should specify the total_years
     sim = BioSim(island_map=geogr, ini_pop=ini_herbs, seed=123456,
                  total_years = 2000, img_base='Raw_Images', cmax_animals=
-                 {'Herbivore': 100, 'Carnivore': 100})
+                 {'Herbivore': 50, 'Carnivore': 50})
 
     sim.set_animal_parameters("Herbivore", {"zeta": 3.2, "xi": 1.8})
     sim.set_animal_parameters(
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     sim.simulate(num_years=10, vis_years=1, img_years=10)
     sim.add_population(population=ini_carns)
-    sim.simulate(num_years=40, vis_years=1, img_years=10)
+    sim.simulate(num_years=10, vis_years=1, img_years=10)
     sim.make_movie()
 
     plt.savefig("check_sim.pdf")

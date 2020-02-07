@@ -1,4 +1,4 @@
-#!C:\Users\admin\Desktop\INF200\ExamRepo\Simulation_of_Ecosystem\venv\Scripts\python.exe
+#!C:\Users\admin\Desktop\INF200\ExamRepo\Island_Simulation\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip3'
 __requires__ = 'pip==19.0.3'
 import re

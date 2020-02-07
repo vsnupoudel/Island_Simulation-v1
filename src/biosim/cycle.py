@@ -146,6 +146,10 @@ class Cycle:
 
         :return: None
         """
+        for row_of_obj in self.object_matrix:
+            for cell in row_of_obj:
+                for animal in cell.animal_object_list:
+                    animal.has_migrated = False
 
         for row, row_of_obj in enumerate(self.object_matrix):
             for col, cell in enumerate(row_of_obj):
@@ -171,7 +175,6 @@ class Cycle:
 
                     for animal in cell.animal_object_list:
                         rand_num = np.random.random()
-                        animal.has_migrated = False
                         if (rand_num <= animal.move_prob) & \
                                 (not animal.has_migrated):
                             if type(animal).__name__ == "Herbivore":
