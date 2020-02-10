@@ -1,4 +1,4 @@
-#!C:\Users\admin\Desktop\INF200\ExamRepo\Simulation_of_Ecosystem\venv\Scripts\python.exe
+#!C:\Users\admin\Documents\Island_Simulation\venv\Scripts\python.exe
 
 # $Id: rst2odt_prepstyles.py 8346 2019-08-26 12:11:32Z milde $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>

@@ -229,5 +229,4 @@ class Cycle:
         for list_of_obj in self.object_matrix:
             for cell in list_of_obj:
                 for animal in cell.animal_object_list:
-                    animal.age += 1
-                    animal.weight -= animal.animal_params['eta']*animal.weight
+                    animal.animals_age()

@@ -1,4 +1,4 @@
-#!C:\Users\admin\Desktop\INF200\ExamRepo\Simulation_of_Ecosystem\venv\Scripts\python.exe
+#!C:\Users\admin\Documents\Island_Simulation\venv\Scripts\python.exe
 
 # $Id: rst2odt.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>

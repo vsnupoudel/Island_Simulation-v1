@@ -1,4 +1,4 @@
-#!C:\Users\admin\Desktop\INF200\ExamRepo\Simulation_of_Ecosystem\venv\Scripts\python.exe
+#!C:\Users\admin\Documents\Island_Simulation\venv\Scripts\python.exe
 
 # $Id: rst2latex.py 5905 2009-04-16 12:04:49Z milde $
 # Author: David Goodger <goodger@python.org>

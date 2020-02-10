@@ -135,6 +135,9 @@ class Animal:
         cls.animal_params.update(params_dict)
 
         # Getter and setters for Age and Weight
+        def animals_age(self):
+            self.age += 1
+            self.weight -= self.animal_params['eta'] * self.weight
 
 
 class Herbivore(Animal):
