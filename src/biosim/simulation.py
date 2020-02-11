@@ -5,9 +5,8 @@ __author__ = "Anders Huse"
 __email__ = "huse.anders@gmail.com"
 
 from .cycle import Cycle
-from .geography import CreateMap
 from .visualization import Visualization
-from .terrain import Savannah, Jungle
+from .terrain import Jungle, Savannah, Desert, Ocean, Mountain
 from .animal import Herbivore, Carnivore
 
 import numpy as np
@@ -83,8 +82,7 @@ class BioSim:
         self.current_year = 0
         self.seed = seed
         self.ini_pop = ini_pop
-        self.island_map = CreateMap(island_map)
-        self.object_matrix = self.island_map.object_matrix
+        self.object_matrix = self.create_map(island_map)
         self.ymax_animals = ymax_animals
         self.total_years = total_years
         self.img_fmt = img_fmt
@@ -106,6 +104,63 @@ class BioSim:
                 for root, dirs, files in os.walk(self.img_base, topdown=False):
                     for name in files:
                         os.remove(os.path.join(root, name))
+
+    def create_map(self, geo_matrix_input_string):
+        valid_landscape_list = ['O', 'S', 'D', 'J', 'M']
+        """
+        When called, this function:
+
+        - Checks if input characters are valid letters
+        - Checks if all rows in map have equal length
+        - Checks that ocean ("O") is around all edges of the map
+
+        :param geo_matrix_input_string:   str, String with map coordinates
+        
+        :return: object_matrix   a 2D list of cell objects
+        """
+
+        lines = geo_matrix_input_string.splitlines()
+        object_matrix = []
+
+        # check if input characters are valid letters
+        for line in lines:
+            for letter in line:
+                if letter not in valid_landscape_list:
+                    raise ValueError(" Invalid Letters in the Input map ")
+
+        geo_list = [list(_) for _ in lines]  # each letter separated
+        geo_shape = np.shape(geo_list)
+
+        # Check if all rows in map have equal length
+        length_first = len(lines[0])
+        for line in lines:
+            if len(line) != length_first:
+                raise ValueError("The length of rows not equal")
+
+        # check that ocean O is around all edges of map
+        first_row = lines[0]
+        last_row = lines[geo_shape[0] - 1]
+        first_column = [list(_)[0] for _ in lines]
+        last_column = [list(_)[geo_shape[1] - 1]
+                            for _ in lines]
+
+        for letter in (first_row + last_row):
+            if letter != 'O':
+                raise ValueError("Ocean not on the edges")
+
+        for letter in (first_column + last_column):
+            if letter != 'O':
+                raise ValueError("Ocean not on the edges")
+
+        # Change the letters in Map to corresponding Objects
+        dict_maps = {'O': Ocean, 'M': Mountain, 'J': Jungle, 'S': Savannah,
+                     'D': Desert}
+        for row_num in range(geo_shape[0]):
+            object_matrix.append(
+                [dict_maps[geo_list[row_num][column]](row_num, column)
+                 for column in range(geo_shape[1])])
+
+        return object_matrix
 
     @staticmethod
     def set_animal_parameters(species, params):
