@@ -55,8 +55,11 @@ class Cycle:
         for row_of_obj in self.object_matrix:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Savannah", "Jungle"]:
+                    # cell.eat()
+                    # cell.eat will make animals eat
                     for herb in cell.herb_sorted_rev:
                         herb.herb_eat(cell)
+                        # print('after sim Herbivore zeta', herb.animal_params['zeta'])
 
                 # Carnivores in the cell eat after herbivores
                 if type(cell).__name__ in ["Savannah", "Jungle", "Desert"]:
@@ -86,6 +89,7 @@ class Cycle:
             for cell in row_of_obj:
                 if type(cell).__name__ in ["Desert", "Savannah", "Jungle"]:
                     new_herbs = []
+                    # cell reproduce
                     for animal in cell.herb_list:
                         new = animal.herb_reproduce(cell.n_herbs)
                         if new:
@@ -230,3 +234,16 @@ class Cycle:
             for cell in list_of_obj:
                 for animal in cell.animal_object_list:
                     animal.animals_age()
+
+
+if __name__ == "__main__":
+    emp = {}
+
+    for i in range(10, 50):
+        key = np.random.choice([1, 2, 3, 4])
+        if key in emp:
+            emp[key].append(i)
+        else:
+            emp[key] = [i]
+
+    print(emp)

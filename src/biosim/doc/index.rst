@@ -10,11 +10,7 @@ Welcome to Modelling the Ecosystem of an Island- Group 4's documentation!
    :maxdepth: 3
    
    simulation_documentation
-   Cycle_documentation   
-   Terrain_documentation
-   Animal_documentation
-   Geography_documentation
-   Visualization_documentation
+
    
 
 

@@ -9,6 +9,7 @@ __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from src.biosim.terrain import Savannah, Jungle, Desert, Ocean, Mountain, Cell
 import pytest
+import unittest
 
 
 class TestMapping:

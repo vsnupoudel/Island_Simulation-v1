@@ -167,7 +167,7 @@ class Jungle(Cell):
             if v <= 0:
                 raise ValueError(k, v, ' Param value must be positive')
 
-        print(params_dict)
+        # print(params_dict)
         cls.parameters.update(params_dict)
 
 

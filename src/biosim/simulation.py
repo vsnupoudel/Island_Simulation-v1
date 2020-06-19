@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """User facing class! Has simulate function and several useful properties"""
 
-__author__ = "Anders Huse"
-__email__ = "huse.anders@gmail.com"
+__author__ = "Anders Huse, Bishnu Poudel"
+__email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
-from .cycle import Cycle
+from .cycle import Cycle # Island
 from .visualization import Visualization
 from .terrain import Jungle, Savannah, Desert, Ocean, Mountain
 from .animal import Herbivore, Carnivore
@@ -47,7 +47,7 @@ class BioSim:
 
     def __init__(
             self,
-            island_map,
+            island_map, # string of maps
             ini_pop,
             seed=1,
             ymax_animals=12000,
@@ -98,6 +98,8 @@ class BioSim:
 
         self.viz = Visualization()
         self.viz.set_graphics(self.ymax_animals, self.total_years)
+        plt.pause(5)
+        # plt.show()
 
         if self.img_base:
             if os.path.exists(self.img_base):
@@ -245,6 +247,7 @@ class BioSim:
             self.current_year += 1
 
             if (step % img_years == 0) & (self.img_base is not None):
+
                 plt.savefig('{}\\_{:05d}.{}'.format(self.img_base,
                                                     self.num_images,
                                                     self.img_fmt))

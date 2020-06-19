@@ -8,7 +8,7 @@ __author__ = "Anders Huse, Bishnu Poudel"
 __email__ = "anhuse@nmbu.no; bipo@nmbu.no"
 
 from src.biosim.animal import Herbivore, Carnivore
-from src.biosim.geography import CreateMap
+# from src.biosim.geography import CreateMap
 from src.biosim.cycle import Cycle
 from src.biosim.terrain import Cell
 

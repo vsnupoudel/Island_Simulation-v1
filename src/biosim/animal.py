@@ -134,7 +134,7 @@ class Animal:
 
         cls.animal_params.update(params_dict)
 
-        # Getter and setters for Age and Weight
+
     def animals_age(self):
         self.age += 1
         self.weight -= self.animal_params['eta'] * self.weight
@@ -198,6 +198,8 @@ class Herbivore(Animal):
             self.weight += self.animal_params['beta'] * cell.f_ij
             cell.f_ij = 0
 
+        # print('after sim Herbivore zeta', self.animal_params['zeta'])
+
     def herb_reproduce(self, length):
         """
         Reproduction for herbivores. The weight of the mother animal decreases
@@ -247,7 +249,7 @@ class Herbivore(Animal):
             cum_prop += prob
             if val <= cum_prop:
                 new_cell = adj_cells[i]
-                new_cell.animal_object_list.append(animal)
+                new_cell.animal_object_list.append(animal)  # encapsulation, call this through func
                 break
 
 
@@ -342,7 +344,7 @@ class Carnivore(Animal):
         # Delete killed herbivores from list in the cell/update the list
         cell.animal_object_list = [
             animal for animal in cell.animal_object_list
-            if animal not in dead_list]
+            if animal not in dead_list]  # Do this through function
 
     def carn_reproduce(self, length):
         """
@@ -393,13 +395,12 @@ class Carnivore(Animal):
             cum_prop += prob
             if val < cum_prop:
                 new_cell = adj_cells[i]
-                new_cell.animal_object_list.append(animal)
+                new_cell.animal_object_list.append(animal)  #through a function
                 break
 
 if __name__ == "__main__":
     h = Herbivore(1,7)
-    print(h._recompute_fitness)
-    print(h._age)
-    print(h._weight)
     print(h.fitness)
-    print(h._fitness)
+    print(h.age)
+    print(h.weight)
+

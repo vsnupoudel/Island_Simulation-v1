@@ -40,7 +40,6 @@ class Visualization:
         self._carn_ax = None
         self._herb_axis = None
         self._carn_axis = None
-
         self._herb_line = None
         self._carn_line = None
 
@@ -55,12 +54,15 @@ class Visualization:
         # create new figure window
         if self._fig is None:
             self._fig = plt.figure(figsize=(16, 9))
+            # print('type(self._fig)',type(self._fig))
             # plt.title("Simulating for maximum : "+str(x_lim)+" years",
             #           loc='center')
             plt.axis('off')
 
+
         if self._map_ax is None:
             self._map_ax = self._fig.add_subplot(2, 2, 1)
+            # print('type(self._map_ax)', type(self._map_ax))
             self._img_axis = None
             self._map_ax.set_yticklabels([])
             self._map_ax.set_xticklabels([])
@@ -88,13 +90,11 @@ class Visualization:
             self._mean_ax.set_ylabel('Number of Species')
             self._mean_ax.title.set_text('Number of Species')
 
-
         if self._herb_line is None:
             herb_plot = self._mean_ax.plot(np.arange(0, x_lim),
                                            np.full(x_lim, np.nan),
                                            label='Herbivore')
             self._herb_line = herb_plot[0]
-
 
         # Do the same for carn_line
         if self._carn_line is None:
@@ -103,6 +103,7 @@ class Visualization:
                                            label='Carnivore')
             self._carn_line = carn_plot[0]
             self._mean_ax.legend(loc="upper right")
+
 
     def create_map(self, data):
         """

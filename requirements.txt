@@ -1,5 +1,4 @@
 pytest
-tox
 matplotlib
 numpy
 sphinx
