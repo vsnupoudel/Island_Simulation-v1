@@ -1,4 +1,6 @@
-## Details are in INF200_H19_BioSim.pdf
+## Detail description are in INF200_H19_BioSim.pdf
+
+# Description
 
 Rossumøya is a small island in the middle of the
 vast ocean that belongs to the island nation of Pylandia.
